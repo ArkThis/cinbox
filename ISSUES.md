@@ -1,6 +1,7 @@
 # Currently Known issues
 
-(2022-03-20)
+TODO: Move this to github issue tracker.
+(2023-08-20)
 
 
 ## 1) BUG: if logfile exists in "done" folder: "could not move" error
@@ -64,5 +65,46 @@ Warning is displayed that config is out of date, but it is not reloaded automati
 
 # Wishlist
 
-  * Check free diskspace on target
+TODO: Move this to github issue tracker.
 
+## Check free diskspace on target
+
+
+## Define a staging folder for temp-copy
+
+Instead of prefixing the final copy target folder with something like "temp",
+then rename it when done - define a completely arbitrary folder location for
+this kind of "copy staging".  Of course that staging folder must be on the same
+filesystem (!) as the final target folder, for the swap/rename to be valid (due
+to no more bits moving after HashValidate of the final copy).
+
+
+## Declare "tmp" folder in config file.
+
+UPDATE: This feature should already be available in the current git HEAD since
+2022-03.  But it is not officially (yet) markeds as resolved, until more
+thoroughly tested.
+
+Background information:
+Until v1.3.0, the temp-folder for state-keeping, etc was assumed to always be
+"/tmp" - or whatever folder the [PHP function
+'sys_get_temp_dir'](https://www.php.net/manual/en/function.sys-get-temp-dir.php)
+returned.
+
+However, OS garbage-collection behavior for /tmp has been changed since the
+initial release of CInbox, making the system-temp to unreliable for persistent
+state-keeping data: not reboot-safe or possibly being auto deleted on
+long-running servers.
+
+
+## Define "working hours" when CInbox may become active
+
+It is desired to be able to have CInbox only become active to process Items
+during certain times.  Therefore the idea is to be able to declare crontab-ish
+patterns (and also invert them) to say:
+
+  * Run on Mon-Fri 07:30 - 19:00
+  * Don't run on Sunday
+
+The syntax and the time-evaluation mechanism shall be kept as simple as
+possible to be reliable and straightforward to configure and use.
