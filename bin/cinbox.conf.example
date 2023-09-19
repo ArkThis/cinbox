@@ -10,7 +10,7 @@ ITEMS_AT_ONCE = 0
 WAIT_FOR_ITEMS = 3
 KEEP_FINISHED = 10
 MOVE_LOGFILES = 1
-;DIR_TEMP = /var/cinbox
+DIR_TEMP = /var/cinbox
 
 DIRLIST_FILE = metadata/[@ITEM_ID@]-[@YEAR@][@MONTH@][@DAY@]-list
 ITEM_ID_VALID[] = /^(v|vx|mk)-\d{5}(_b\d{2})?$/i
