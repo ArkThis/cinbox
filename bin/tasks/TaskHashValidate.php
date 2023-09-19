@@ -90,15 +90,17 @@ class TaskHashValidate extends TaskHash
      * IMPORTANT:
      *   This task must be run *before* TaskRenameTarget, because if validation fails,
      *   after renaming, the Item cannot easily be reset, without deleting the target-leftovers...
-     *   Therefore we use "targetFolderTemp".
+     *   Therefore we use "$this->targetFolderStage".
      *
-     * @see $this->resolveTargetFolderTemp()
+     * @see CITask::resolveTargetFolderStage()
+     * @see CITask::$targetFolderStage
      */
     public function run()
     {
         if (!parent::run()) return false;
 
-        if (!$this->checkTarget($this->sourceFolder, $this->targetFolderTemp)) return false;
+        # TODO: Make source and target definable in cinbox.ini?
+        if (!$this->checkTarget($this->sourceFolder, $this->targetFolderStage)) return false;
 
         // Must return true on success:
         $this->setStatusDone();

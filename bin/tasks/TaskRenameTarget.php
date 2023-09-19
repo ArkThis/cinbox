@@ -80,14 +80,14 @@ class TaskRenameTarget extends TaskCopy
         foreach ($this->itemSubDirs as $subDir=>$CIFolder)
         {
             $targetFolder = $CIFolder->getTargetFolder();
-            $targetFolderTemp = $this->resolveTargetFolderTemp($CIFolder);
+            $targetFolderStage = $this->targetFolderStage;
 
             // Log the resolved target folder in a machine readable way:
             $CIFolder->logTargetFolder($hasOwn=true, $isAbsolute=true);
 
-            if (!file_exists($targetFolderTemp))
+            if (!file_exists($targetFolderStage))
             {
-                $l->logWarning(sprintf(_("Temp folder does not exist anymore: '%s'"), $targetFolderTemp));
+                $l->logWarning(sprintf(_("Temp folder does not exist anymore: '%s'"), $targetFolderStage));
                 $this->setStatusPBC();
                 continue;
             }
@@ -99,7 +99,7 @@ class TaskRenameTarget extends TaskCopy
             }
 
             // Target folder now exists: Merge files from temp into it:
-            if (!$this->mergeFiles($targetFolderTemp, $targetFolder))
+            if (!$this->mergeFiles($targetFolderStage, $targetFolder))
             {
                 $this->setStatusPBCT();
                 return false;
@@ -119,8 +119,8 @@ class TaskRenameTarget extends TaskCopy
         // Temp folders should be empty now. Remove them:
         foreach ($this->itemSubDirs as $subDir=>$CIFolder)
         {
-            $targetFolderTemp = $this->resolveTargetFolderTemp($CIFolder);
-            Helper::removeEmptySubfolders($targetFolderTemp);
+            $targetFolderStage = $this->targetFolderStage;
+            Helper::removeEmptySubfolders($targetFolderStage);
         }
     }
 

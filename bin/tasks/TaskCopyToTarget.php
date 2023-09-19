@@ -89,8 +89,8 @@ class TaskCopyToTarget extends TaskCopyRsync
     {
         if (!parent::run()) return false;
 
-        // Copy files of this folder to targetFolderTemp:
-        if (!$this->copyFolder($this->sourceFolder, $this->targetFolder, $this->targetFolderTemp)) return false;
+        // Copy files of this folder to targetFolderStage:
+        if (!$this->copyFolder($this->sourceFolder, $this->targetFolder, $this->targetFolderStage)) return false;
 
         // Must return true on success:
         $this->setStatusDone();
@@ -103,7 +103,7 @@ class TaskCopyToTarget extends TaskCopyRsync
     // Task-specific methods
     // --------------------------------------------
 
-    protected function copyFolder($sourceFolder, $targetFolder, $targetFolderTemp)
+    protected function copyFolder($sourceFolder, $targetFolder, $targetFolderStage)
     {
         $l = $this->logger;
         $errors = 0;
@@ -112,7 +112,7 @@ class TaskCopyToTarget extends TaskCopyRsync
 
         // Verify if desired target folder is okay:
         if (!$this->checkTargetFolderCondition($targetFolder, $this->updateFolders)) return false;
-        if (!$this->createFolder($targetFolderTemp))
+        if (!$this->createFolder($targetFolderStage))
         {
             $this->setStatusPBCT();
             return false;
@@ -131,7 +131,7 @@ class TaskCopyToTarget extends TaskCopyRsync
             $sourceFile = $key;
             $targetFile = Helper::getTargetFilename($sourceFile, $targetFolder);
 
-            $targetFileTemp = Helper::getTargetFilename($sourceFile, $targetFolderTemp);
+            $targetFileTemp = Helper::getTargetFilename($sourceFile, $targetFolderStage);
 
             if (!$this->checkTargetFileCondition($targetFile, $this->updateFiles))
             {
@@ -174,9 +174,9 @@ class TaskCopyToTarget extends TaskCopyRsync
                         $targetFolder));
             $this->setStatusPBCT();
 
-            // Remove empty subfolders on targetFolderTemp (recursive rmdir?).
-            $l->logInfo(sprintf(_("Removing empty temp-folders in '%s'..."), $targetFolderTemp));
-            Helper::removeEmptySubfolders($targetFolderTemp);
+            // Remove empty subfolders on targetFolderStage (recursive rmdir?).
+            $l->logInfo(sprintf(_("Removing empty temp-folders in '%s'..."), $targetFolderStage));
+            Helper::removeEmptySubfolders($targetFolderStage);
             return false;
         }
 
