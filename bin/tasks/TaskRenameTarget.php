@@ -79,8 +79,9 @@ class TaskRenameTarget extends TaskCopy
 
         foreach ($this->itemSubDirs as $subDir=>$CIFolder)
         {
+            // targetFolderStage needs to point to the current subfolder *within* the staging area:
+            $targetFolderStage = $this->resolveTargetFolderStage($CIFolder);
             $targetFolder = $CIFolder->getTargetFolder();
-            $targetFolderStage = $this->targetFolderStage;
 
             // Log the resolved target folder in a machine readable way:
             $CIFolder->logTargetFolder($hasOwn=true, $isAbsolute=true);
