@@ -271,7 +271,7 @@ abstract class TaskCopy extends CITask
         $l->logMsg(sprintf(_("Creating folder '%s'..."), $folderName));
         if (is_dir($folderName)) return true;
 
-        # TODO: Create parent folders, too. CAUTION: Inhert permissions from existing parent folders.
+        # TODO: Create parent folders, too. CAUTION: Inherit permissions from existing parent folders.
         if (!mkdir($folderName))
         {
             $l->logErrorPhp(sprintf(_("Failed to create folder '%s'."), $folderName));
