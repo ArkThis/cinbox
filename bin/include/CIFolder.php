@@ -454,7 +454,8 @@ class CIFolder
     // ---------------------------------------------------------------
 
     /**
-     * Returns the unmodified value of TARGET_FOLDER setting (placeholders resolved).
+     * Returns the unmodified value of TARGET_FOLDER setting
+     * (placeholders resolved).
      * If it is not configured for this folder, it returns 'null'.
      */
     public function getTargetFolderRaw()
@@ -469,7 +470,8 @@ class CIFolder
 
 
     /**
-     * Load TARGET_STAGE option from config and returns it.
+     * Load TARGET_STAGE option from config (placeholders resolved)
+     * and returns it.
      */
     public function getTargetStageRaw()
     {

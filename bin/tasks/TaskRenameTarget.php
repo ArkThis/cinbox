@@ -117,12 +117,8 @@ class TaskRenameTarget extends TaskCopy
     {
         if (!parent::finalize()) return false;
 
-        // Temp folders should be empty now. Remove them:
-        foreach ($this->itemSubDirs as $subDir=>$CIFolder)
-        {
-            $targetFolderStage = $this->targetFolderStage;
-            Helper::removeEmptySubfolders($targetFolderStage);
-        }
+        // Staging folders should be empty now. Remove them:
+        Helper::removeEmptySubfolders($this->targetFolderStageRaw);
     }
 
 
