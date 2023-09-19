@@ -542,7 +542,8 @@ class CIFolder
 
 
     /**
-     *
+     * Returns the temporary target folder path where the data is initially
+     * copied, *before* validation (hashcodes, etc).
      */
     public function getTargetFolderTemp($targetFolder, $tempMask)
     {
