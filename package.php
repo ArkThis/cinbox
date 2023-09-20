@@ -33,9 +33,9 @@ try
     if (file_exists($targetCompressed)) unlink($targetCompressed);
     $p2 = $p->compress(Phar::GZ);
 
-    $p2->buildFromDirectory('.', '/bin|locale/');
+    $p2->buildFromDirectory('.', '/src|locale/');
     $p2->setStub(
-            $p->createDefaultStub('bin/cinbox.php', 'bin/cinbox.php')
+            $p->createDefaultStub('src/cinbox.php', 'src/cinbox.php')
             );
 }
 catch (Exception $e)
