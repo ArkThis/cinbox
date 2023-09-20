@@ -9,19 +9,10 @@ require_once('version.inc.php');
 #require_once('include/CIConfig.php');
 
 require __DIR__.'/../vendor/autoload.php';
+
 use ArkThis\Logger;
 use ArkThis\CInbox\CInbox;
 use ArkThis\CInbox\CIConfig;
-
-
-/**
- * Autoload.
- * @see: https://www.php.net/manual/en/language.oop5.autoload.php
- */
-spl_autoload_register(function ($class_name) {
-    printf("DELME: class='%s'\n", $class_name);
-    include $class_name . '.php';
-});
 
 
 /**

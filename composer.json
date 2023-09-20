@@ -1,0 +1,20 @@
+{
+    "name": "arkthis/cinbox",
+    "description": "A Common INbox for long term preservation.",
+    "version": "1.4.0",
+    "type": "project",
+    "license": "GNU GPLv3",
+    "authors": [
+        {
+            "name": "Peter Bubestinger-Steindl",
+            "email": "p.bubestinger@ArkThis.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "ArkThis\\": "src/lib"
+        }
+    }
+
+}
