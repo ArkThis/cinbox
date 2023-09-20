@@ -22,9 +22,6 @@ use \ArkThis\CInbox\Task\CITask;
 use \ArkThis\CInbox\Task\TaskFilesMatch;
 use \Exception as Exception;
 
-#require_once('tasks/CITask.php');
-#require_once('tasks/TaskFilesMatch.php');
-
 
 /**
  * Checks if all file/folder entries in this folder are present

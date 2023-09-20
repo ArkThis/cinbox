@@ -4,10 +4,6 @@
 require_once('config.inc.php');
 require_once('version.inc.php');
 
-#require_once('include/Logger.php');
-#require_once('include/CInbox.php');
-#require_once('include/CIConfig.php');
-
 require __DIR__.'/../vendor/autoload.php';
 
 use ArkThis\Logger;

@@ -21,8 +21,6 @@ namespace ArkThis;
 use ArchiveItem;
 use FileCV;
 
-#require_once('include/ArchiveItem.php');
-#require_once('include/FileCV.php');
 
 /**
  * Handles logging messages to different outputs, such as screen

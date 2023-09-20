@@ -24,6 +24,7 @@ use \RecursiveDirectoryIterator as RecursiveDirectoryIterator;
 use \DirectoryIterator as DirectoryIterator;
 use \SplFileInfo as SplFileInfo;
 
+
 /**
  * This class contains functions that just don't fit anywhere else.
  * Or that are simply useful in many different places ;)

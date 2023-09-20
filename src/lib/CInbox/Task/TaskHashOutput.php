@@ -22,8 +22,6 @@ use \ArkThis\CInbox\CIFolder;
 use \ArkThis\Helper;
 use \Exception as Exception;
 
-#require_once('include/CIFolder.php');
-
 
 /**
  * Writes the generated source-hashes to target.

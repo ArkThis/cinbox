@@ -22,8 +22,6 @@ use \ArkThis\CInbox\CIFolder;
 use \ArkThis\Helper;
 use \Exception as Exception;
 
-#require_once('include/CIFolder.php');
-
 
 /**
  * For files matching 'HASH_MUST_EXIST', this task searches for existing hashes in files

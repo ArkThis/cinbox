@@ -22,9 +22,6 @@ use \ArkThis\CInbox\CIFolder;
 use \ArkThis\Helper;
 use \Exception as Exception;
 
-#require_once('include/CIFolder.php');
-#require_once('include/Helper.php');
-
 
 /**
  * Abstract base class for hashcode-related tasks.

@@ -25,11 +25,6 @@ use \ArkThis\CInbox\CIConfig;
 use \ArkThis\CInbox\CIItem;
 use \Exception as Exception;
 
-#require_once('include/Logger.php');
-#require_once('include/Helper.php');
-#require_once('include/CIConfig.php');
-#require_once('include/CIItem.php');
-
 
 /**
  * This class represents the actual CInbox.

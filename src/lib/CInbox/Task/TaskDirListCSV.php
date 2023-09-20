@@ -23,9 +23,6 @@ use \ArkThis\CInbox\CIFolder;
 use \ArkThis\CInbox\CIItem;
 use \Exception as Exception;
 
-#require_once('include/CIFolder.php');
-#require_once('include/CIItem.php');
-
 
 /**
  * Saves a directory listing in CSV format.

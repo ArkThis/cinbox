@@ -23,9 +23,6 @@ use \ArkThis\CInbox\CIConfig;
 use \Exception as Exception;
 use \SplFileInfo as SplFileInfo;
 
-#require_once('include/Helper.php');
-#require_once('include/CIConfig.php');
-
 
 /**
  * This is a wrapper around a physical folder.

@@ -21,9 +21,6 @@ namespace ArkThis\CInbox;
 use \ArkThis\Logger;
 require_once('placeholders.inc.php');
 
-#require_once('include/Logger.php');
-#require_once('include/placeholders.inc.php');
-
 
 /**
  * This class manages the Common Inbox configuration.

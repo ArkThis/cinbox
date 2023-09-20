@@ -24,9 +24,6 @@ use \Exception as Exception;
 use \RecursiveIteratorIterator as RecursiveIteratorIterator;
 use \RecursiveDirectoryIterator as RecursiveDirectoryIterator;
 
-#require_once('include/CIFolder.php');
-#require_once('include/CIItem.php');
-
 
 /**
  * Base class for preparing a directory listing.

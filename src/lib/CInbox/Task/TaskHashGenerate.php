@@ -23,10 +23,6 @@ use \ArkThis\Helper;
 use \ArkThis\CInbox\Task\TaskHash;
 use \Exception as Exception;
 
-#require_once('include/CIFolder.php');
-#require_once('include/Helper.php');
-#require_once('tasks/TaskHash.php');
-
 
 /**
  * Generates hashcodes for files in folder.

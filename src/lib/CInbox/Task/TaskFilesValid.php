@@ -22,9 +22,6 @@ use \ArkThis\CInbox\Task\CITask;
 use \ArkThis\CInbox\Task\TaskFilesMatch;
 use \Exception as Exception;
 
-#require_once('tasks/CITask.php');
-#require_once('tasks/TaskFilesMatch.php');
-
 
 /**
  * Checks if entries in this folder (files/subfolders) are valid or invalid,

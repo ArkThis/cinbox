@@ -21,8 +21,6 @@ namespace ArkThis\CInbox\Task;
 use \ArkThis\CInbox\CIFolder;
 use \Exception as Exception;
 
-#require_once('include/CIFolder.php');
-
 
 /**
  * Cleans files/foldernames of the folder, applying certain replacement rules for 'non-safe' characters.
