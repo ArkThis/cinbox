@@ -16,7 +16,9 @@
    along with 'CInbox'.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once('include/CIFolder.php');
+namespace ArkThis\CInbox\Task;
+
+use \ArkThis\CInbox\CIFolder;
 
 
 /**

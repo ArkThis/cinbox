@@ -22,9 +22,6 @@ use \ArkThis\CInbox\CIFolder;
 use \ArkThis\CInbox\Task\TaskExec;
 use \Exception as Exception;
 
-#require_once('include/CIFolder.php');
-#require_once('tasks/TaskExec.php');
-
 
 /**
  * Runs Post-processor scripts, in order as configured.
