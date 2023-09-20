@@ -21,7 +21,7 @@ use ArkThis\CInbox\CIConfig;
  *
  * @author Peter Bubestinger-Steindl (pb@av-rd.com)
  * @copyright
- *  Copyright 2018 AV-RD e.U.
+ *  Copyright 2023 ArkThis AV-RD e.U.
  *  (License: <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (v3)</a>)
  *
  * @see
