@@ -64,6 +64,7 @@ class CInbox
     const CONF_MOVE_LOGFILES = 'MOVE_LOGFILES';         ///< Move logfiles along with Items
     const CONF_ITEM_LOGSTYLE = 'ITEM_LOGSTYLE';         ///< Log output style for Items. @see Logger::setOutputFormat()
     const CONF_FOLDER_TEMP = 'DIR_TEMP';                ///< Folder where temporary files are being stored (default: /var/cinbox).
+    const CONF_WORK_TIMES = 'WORK_TIMES';               ///< Define when CInbox is supposed to process items (Crontab-like syntax).
     //@}
 
     /**
@@ -757,6 +758,35 @@ class CInbox
 
 
     /**
+     * Returns "true" if processing "is due", given the string in
+     * "CONF_WORK_TIMES".
+     */
+    public function isDue($workTimes)
+    {
+        $l = $this->logger;
+
+        if (empty($workTimes))
+        {
+            $l->logDebug(sprintf(
+                _("No %s set. Nothing to wait for."), 
+                self::CONF_WORK_TIMES
+            ));
+            return true;
+        }
+
+        // From here on, we can assume that $workTimes are set:
+        $l->logInfo(sprintf(_("Work times set: %s"), print_r($workTimes, true)));
+
+        //TODO: Implement reading WORK_TIMES, and actually decide whether or
+        //not we're in or outside of working hours.
+        
+        //FIXME: This is currently hardcoded as mere placeholder, until method
+        //is implemented.
+        return false;
+    }
+
+
+    /**
      * This is the main loop that iterates through items in the inbox.
      */
     public function run($forever=false)
@@ -765,13 +795,38 @@ class CInbox
 
         $pause = $this->config->get(self::CONF_PAUSE_TIME);
         $waitForItems = $this->config->get(self::CONF_WAIT_FOR_ITEMS);
+        $workTimes = $this->config->get(self::CONF_WORK_TIMES);
 
         // TODO: Could this overflow and cause problems in "forever" mode?
         $errors = 0;
 
+        // ==============================================
+        // This is the main loop that picks up new items!
+        // ==============================================
         $itemId = $this->getNextItem();
         while ($forever || ($itemId !== false))
         {
+            // Check WORK_TIMES and sleep until we're "due".
+            // TODO: Once isDue() returns false, keep a bool-tag until "isDue" has been reset again.
+            // This flag can than be used to minimize the waiting output text
+            // (eg just update timestamp and draw a ".", until we're "due"
+            // again.
+            if ($this->isDue($workTimes) === false)
+            {
+                $l->logMsg(sprintf(
+                    _("Current date/time '%s' is outside of 'working hours' (%s).\n I'll wait 😇️"),
+                    date('Y-m-d H:i:s'),
+                    self::CONF_WORK_TIMES
+                    ));
+                $l->logInfo(sprintf(
+                    _("Given work times: %s"),
+                    print_r($workTimes, true)
+                    ));
+                sleep(10); //TODO: Add this as config somewhere. At least a class-property?
+                continue;
+            }
+
+
             if ($this->config->hasChanged())
             {
                 $l->logWarning(sprintf(_("Config has changed while running. Please restart to load new settings!")));
