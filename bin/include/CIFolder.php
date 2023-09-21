@@ -52,6 +52,11 @@ class CIFolder
      * CONSTANTS
      * ======================================= */
 
+    // TODO: Copy target settings should not be here, but rather in TaskCopy
+    // class et al.  This includes all target/stage handling methods here.
+    // They are probably still here, because there currently is no
+    // (other/proper) place to share variables between individual tasks...
+    //
     // Config options:
     const CONF_TARGET_FOLDER = 'TARGET_FOLDER';         // Target folder where to copy data from this folder to.
     const CONF_TARGET_STAGE = 'TARGET_STAGE';           // Folder for pre-validation target copy.
