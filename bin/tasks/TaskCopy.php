@@ -137,6 +137,23 @@ abstract class TaskCopy extends CITask
         $l = $this->logger;
         $config = $this->config;
 
+        // ----------------------------
+        $targetFolder = $config->get(CIFolder::CONF_TARGET_FOLDER);
+        $targetStage = $config->get(CIFolder::CONF_TARGET_STAGE);
+
+        // If a target-folder is given, then a target-stage MUST be set, too:
+        if (!empty($targetFolder) && empty($targetStage))
+        {
+            $l->logError(sprintf(
+                        _("No '%s' set for '%s'. Cannot continue."),
+                        CIFolder::CONF_TARGET_STAGE,
+                        CIFolder::CONF_TARGET_FOLDER,
+                        ));
+            $this->setStatusConfigError();
+            return false;
+        }
+
+        // ----------------------------
         $this->updateFolders = strtolower($config->get(self::CONF_UPDATE_FOLDERS));         // Normalize to lowercase.
         $l->logDebug(sprintf(_("Copy update mode (folders): %s"), $this->updateFolders));
         if (!$this->isValidUpdateFolders($this->updateFolders))
@@ -149,6 +166,7 @@ abstract class TaskCopy extends CITask
             return false;
         }
 
+        // ----------------------------
         $this->updateFiles = strtolower($config->get(self::CONF_UPDATE_FILES));             // Normalize to lowercase.
         $l->logDebug(sprintf(_("Copy update mode (files): %s"), $this->updateFiles));
         if (!$this->isValidUpdateFiles($this->updateFiles))
