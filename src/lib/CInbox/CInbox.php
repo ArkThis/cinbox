@@ -110,6 +110,7 @@ class CInbox
     protected $logger;                                    ///< Logging handler
     protected $config;                                    ///< CIConfig object
     protected $name;
+    protected $workTimes;                                 ///< Working hours (in crontab syntax) when to process new Items.
     //@}
 
     /**
@@ -368,6 +369,8 @@ class CInbox
                 $l->logError(sprintf(_("No inbox name set in config option '%s'. Please set one."), self::CONF_INBOX_NAME));
                 return false;
             }
+
+            $this->getWorkTimes();
         }
         catch (Exception $e)
         {
@@ -401,6 +404,61 @@ class CInbox
         }
 
         return $name;
+    }
+
+
+    /**
+     * Reads WORK_TIMES from the config into the class property
+     * "this->workTimes".  Basic checks are applied and exceptions thrown if
+     * anything is not in order with this setting.
+     *
+     */
+    public function loadWorkTimes()
+    {
+        $l = $this->logger;
+        $config = $this->config;
+
+        $workTimes = $config->get(self::CONF_WORK_TIMES);
+
+        if (empty($workTimes))
+        {
+            $l->logDebug(sprintf(
+                _("No %s set. That's fine. We have nothing to wait for."), 
+                self::CONF_WORK_TIMES
+            ));
+            return false;
+        }
+
+        if (!is_array($workTimes))
+        {
+            throw new \InvalidArgumentException(sprintf(
+                _("Work times should be an array. Did you add '[]' after '%s' in the config?"),
+                self::CONF_WORK_TIMES
+            ));
+        }
+
+        // From here on, we can assume that $workTimes are set:
+        $l->logInfo(sprintf(_("Work times set: %s"), print_r($workTimes, true)));
+
+        return $workTimes;
+    }
+
+
+    /**
+     * Returns the property $this->workTimes.
+     *
+     * If it's not set yet, it calls loadWorkTimes().
+     * Returns "false" if no work times are set, and throws
+     * InvalidArgumentException on errors.
+     */
+    public function getWorkTimes()
+    {
+        if (!isset($this->workTimes))
+        {
+            $this->workTimes = $this->loadWorkTimes();
+        }
+
+        return $this->workTimes;
     }
 
 
@@ -777,7 +835,7 @@ class CInbox
         // From here on, we can assume that $workTimes are set:
         $l->logInfo(sprintf(_("Work times set: %s"), print_r($workTimes, true)));
 
-        //TODO: Implement reading WORK_TIMES, and actually decide whether or
+        //TODO: Implement interpreting WORK_TIMES, and actually decide whether or
         //not we're in or outside of working hours.
         
         //FIXME: This is currently hardcoded as mere placeholder, until method
@@ -795,7 +853,7 @@ class CInbox
 
         $pause = $this->config->get(self::CONF_PAUSE_TIME);
         $waitForItems = $this->config->get(self::CONF_WAIT_FOR_ITEMS);
-        $workTimes = $this->config->get(self::CONF_WORK_TIMES);
+        $workTimes = $this->getWorkTimes();
 
         // TODO: Could this overflow and cause problems in "forever" mode?
         $errors = 0;
@@ -814,7 +872,7 @@ class CInbox
             if ($this->isDue($workTimes) === false)
             {
                 $l->logMsg(sprintf(
-                    _("Current date/time '%s' is outside of 'working hours' (%s).\n I'll wait 😇️"),
+                    _("Current date/time '%s' is outside of 'working hours' set in '%s'.\n I'll wait 😇️"),
                     date('Y-m-d H:i:s'),
                     self::CONF_WORK_TIMES
                     ));
