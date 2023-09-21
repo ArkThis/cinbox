@@ -10,7 +10,9 @@
             "email": "p.bubestinger@ArkThis.com"
         }
     ],
-    "require": {},
+    "require": {
+        "dragonmantank/cron-expression": "^3.3"
+    },
     "autoload": {
         "psr-4": {
             "ArkThis\\": "src/lib"
