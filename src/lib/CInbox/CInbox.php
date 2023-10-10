@@ -95,6 +95,7 @@ class CInbox
     //@{
     const DEFAULT_CONF_FILENAME = 'cinbox.ini';         ///< Default filename of configuration file in Inbox folder
     const DEFAULT_TEMP_SUBFOLDER = 'ci-%s';             ///< Name of temp folder. Placeholder will be replaced by (cleaned) Inbox name.
+    const DEFAULT_WORK_TIMES_SLEEP = 45;                ///< Seconds to sleep/wait until checking again if WORK_TIMES are due. Must be less-than 60!
     //@}
 
 
@@ -110,7 +111,7 @@ class CInbox
     protected $logger;                                    ///< Logging handler
     protected $config;                                    ///< CIConfig object
     protected $name;
-    protected $workTimes;                                 ///< Working hours (in crontab syntax) when to process new Items.
+    protected $workTimes;                                 ///< Array of working hours (crontab strings) when to process new Items.
     //@}
 
     /**
@@ -438,7 +439,7 @@ class CInbox
         }
 
         // From here on, we can assume that $workTimes are set:
-        $l->logInfo(sprintf(_("Work times set: %s"), print_r($workTimes, true)));
+        $l->logDebug(sprintf(_("Work times set: %s"), print_r($workTimes, true)));
 
         return $workTimes;
     }
@@ -453,10 +454,15 @@ class CInbox
      */
     public function getWorkTimes()
     {
+        $l = $this->logger;
+
         if (!isset($this->workTimes))
         {
             $this->workTimes = $this->loadWorkTimes();
         }
+
+        // From here on, we can assume that $workTimes are set:
+        $l->logInfo(sprintf(_("Work times set: %s"), print_r($this->workTimes, true)));
 
         return $this->workTimes;
     }
@@ -818,8 +824,10 @@ class CInbox
     /**
      * Returns "true" if processing "is due", given the string in
      * "CONF_WORK_TIMES".
+     *
+     * Use $isLooped=false to show when next run dates would be, etc.
      */
-    public function isDue($workTimes)
+    public function isDue($workTimes, $isLooped=true)
     {
         $l = $this->logger;
 
@@ -832,14 +840,43 @@ class CInbox
             return true;
         }
 
-        // From here on, we can assume that $workTimes are set:
-        $l->logInfo(sprintf(_("Work times set: %s"), print_r($workTimes, true)));
+        //Interpreting WORK_TIMES, and actually decide whether or not we're in
+        //or outside of working hours:
+        foreach ($workTimes as $workTime)
+        {
+            $cron = new \Cron\CronExpression($workTime);
 
-        //TODO: Implement interpreting WORK_TIMES, and actually decide whether or
-        //not we're in or outside of working hours.
+            if (!$isLooped)
+            {
+                $l->logMsg(sprintf(
+                    _("Next run date is: %s (%s)"),
+                    $cron->getNextRunDate()->format('Y-m-d H:i:s'),
+                    $workTime
+                ));
+            }
+
+            // If 'now' matches any of the expressions in $workTimes, return true:
+            if ($cron->isDue()) 
+            { 
+                $l->logInfo(sprintf(
+                    _("%s expression '%s' is now due!\n Ready to continue.\n\n"),
+                    self::CONF_WORK_TIMES,
+                    $cron->getExpression()
+                ));
+                return true; 
+            }
+        }
         
-        //FIXME: This is currently hardcoded as mere placeholder, until method
-        //is implemented.
+        // No matching expression. We're NOT due.
+        if (!$isLooped)
+        {
+            $l->logDebug(sprintf(
+                _("Current date/time '%s' is outside of working hours set in '%s'.\n I'll wait 😇️"),
+                date('Y-m-d H:i:s'),
+                self::CONF_WORK_TIMES
+                ));
+        }
+
         return false;
     }
 
@@ -855,6 +892,9 @@ class CInbox
         $waitForItems = $this->config->get(self::CONF_WAIT_FOR_ITEMS);
         $workTimes = $this->getWorkTimes();
 
+        // Show current status regarding work times:
+        $this->isDue($workTimes, $isLooped=false);
+
         // TODO: Could this overflow and cause problems in "forever" mode?
         $errors = 0;
 
@@ -864,23 +904,12 @@ class CInbox
         $itemId = $this->getNextItem();
         while ($forever || ($itemId !== false))
         {
-            // Check WORK_TIMES and sleep until we're "due".
-            // TODO: Once isDue() returns false, keep a bool-tag until "isDue" has been reset again.
-            // This flag can than be used to minimize the waiting output text
-            // (eg just update timestamp and draw a ".", until we're "due"
-            // again.
+            // Check WORK_TIMES and sleep until we're "due":
             if ($this->isDue($workTimes) === false)
             {
-                $l->logMsg(sprintf(
-                    _("Current date/time '%s' is outside of 'working hours' set in '%s'.\n I'll wait 😇️"),
-                    date('Y-m-d H:i:s'),
-                    self::CONF_WORK_TIMES
-                    ));
-                $l->logInfo(sprintf(
-                    _("Given work times: %s"),
-                    print_r($workTimes, true)
-                    ));
-                sleep(10); //TODO: Add this as config somewhere. At least a class-property?
+                //Print a dot to indicate we're still alive.
+                echo "."; // just output this. don't bother to log it.
+                sleep(self::DEFAULT_WORK_TIMES_SLEEP);
                 continue;
             }
 

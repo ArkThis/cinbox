@@ -12,6 +12,12 @@ KEEP_FINISHED = 10
 MOVE_LOGFILES = 1
 DIR_TEMP = /var/cinbox
 
+; Working hours when to process new items (crontab syntax):
+; Monday to Friday, every minute.
+;WORK_TIMES[] = * * * * 1-5
+; Monday to Friday, every 5 minutes, 9:00-17:00
+;WORK_TIMES[] = */5 9-17 * * 1-5
+
 DIRLIST_FILE = metadata/[@ITEM_ID@]-[@YEAR@][@MONTH@][@DAY@]-list
 ITEM_ID_VALID[] = /^(v|vx|mk)-\d{5}(_b\d{2})?$/i
 
