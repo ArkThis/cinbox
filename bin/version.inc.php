@@ -1,6 +1,6 @@
 <?php
 
-define('CINBOX_VERSION', '1.4.x Devel Staging Target');
-define('CINBOX_DATE', 'Sep 19 2023');
+define('CINBOX_VERSION', '1.4.0');
+define('CINBOX_DATE', 'Oct 11 2023');
 
 ?>
