@@ -1,0 +1,125 @@
+; Example configuration file for Common Inbox
+; For syntax highlighting in VIM: set filetype=dosini
+
+[__INBOX__]
+INBOX_NAME = Video Testing
+COOLOFF_TIME = 1
+COOLOFF_FILTERS[] = ino
+PAUSE_TIME  = 1
+ITEMS_AT_ONCE = 0
+WAIT_FOR_ITEMS = 3
+KEEP_FINISHED = 10
+MOVE_LOGFILES = 1
+DIR_TEMP = /var/cinbox
+
+; Working hours when to process new items (crontab syntax):
+; Monday to Friday, every minute.
+;WORK_TIMES[] = * * * * 1-5
+; Monday to Friday, every 5 minutes, 9:00-17:00
+;WORK_TIMES[] = */5 9-17 * * 1-5
+
+DIRLIST_FILE = metadata/[@ITEM_ID@]-[@YEAR@][@MONTH@][@DAY@]-list
+ITEM_ID_VALID[] = /^(v|vx|mk)-\d{5}(_b\d{2})?$/i
+
+BUCKET_SCRIPT = /opt/cinbox/bin/plugins/objid_to_path.sh
+
+;TASKLIST[] = FilesWait
+;TASKLIST[] = DirListCSV
+;TASKLIST[] = CleanFilenames
+;TASKLIST[] = PreProcs
+;TASKLIST[] = FilesValid
+;TASKLIST[] = FilesMustExist
+;TASKLIST[] = HashGenerate
+;TASKLIST[] = HashSearch
+;TASKLIST[] = CopyToTarget
+;TASKLIST[] = HashValidate
+;TASKLIST[] = RenameTarget
+;TASKLIST[] = HashOutput
+;TASKLIST[] = PostProcs
+;TASKLIST[] = LogfileCopy
+
+
+[__DEFAULT__]
+CLEAN_SOURCE[] = illegal
+CLEAN_SOURCE[] = umlauts
+
+HASH_TYPE = md5
+HASH_OUTPUT = folder
+HASH_FILENAME = MD5SUMS.md5
+HASH_FILEFORMAT = GNU
+
+UPDATE_FOLDERS = create
+UPDATE_FILES = create
+
+; Don't copy files containing hashcodes, since they will be replaced by "HashOutput":
+COPY_EXCLUDE[] = *.md5
+
+; Copy and rename logfile after successful processing:
+LOG_COPY_DIR = /home/pb/tests/cinbox/target/part2/video/[@BUCKET@]
+LOG_COPY_NAME = [@ITEM_ID_LC@].cv
+
+
+[__UNDEFINED__]
+; Here goes config for folders that have no config section.
+
+
+[.]
+TARGET_STAGE = /home/avrd/archive/STAGE/part2/[@ITEM_ID@]
+TARGET_FOLDER = /home/avrd/archive/part2/video/[@BUCKET@]
+
+PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
+PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET@]
+
+;FILES_WAIT[] = '*.unicorn'
+
+HASH_SEARCH[] = *.xml
+
+MUST_EXIST[] = hires
+MUST_EXIST[] = lowres
+MUST_EXIST[] = metadata
+
+
+[hires]
+PREPROCS[] = /opt/cinbox/bin/plugins/preproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@]
+PREPROCS2[] = /opt/cinbox/bin/plugins/preproc.sh [@DAY@] [@MONTH@] [@YEAR@]
+
+UPDATE_FILES = create_or_update
+
+;FILES_WAIT[] = *.ding
+
+HASH_SEARCH[] = *.md5
+HASH_SEARCH[] = MD5SUMS
+HASH_MUST_EXIST[] = *.avi
+
+FILES_VALID[] = *.avi
+FILES_VALID[] = *.md5
+FILES_VALID[] = *.xxx
+
+MUST_EXIST[] = *.avi
+
+POSTPROCS[] = /opt/cinbox/bin/plugins/postproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@] [@YEAR@]
+
+
+[metadata]
+FILES_VALID[] = *.txt
+FILES_VALID[] = *.png
+FILES_VALID[] = *.xml
+FILES_VALID[] = *.csv
+
+FILES_INVALID[] = *.doc
+FILES_INVALID[] = *.docx
+
+
+[lowres]
+TARGET_STAGE = /home/avrd/archive/STAGE/part1/[@ITEM_ID@]
+TARGET_FOLDER = /home/avrd/archive/part1/video/[@BUCKET@]
+
+PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
+PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET@]
+
+MUST_EXIST[] = *.mpg
+HASH_SEARCH[] = *.md5
+
+POSTPROCS[] = /opt/cinbox/bin/plugins/postproc.sh [@DIR_BASE@]
+
+
