@@ -1,13 +1,4 @@
-# NOTE: This is a development branch!
-
-This branch shall contain a new behavior where a target "staging folder" can be
-defined, instead of the previously used "temp\_" folder mask.
-
-**This is work in progress and not ready yet.**
-
-
 # CInbox: A Common Inbox engine for archiving data
-
 
 The Common-Inbox (CInbox) is a very flexible engine for moving data, and it is
 designed for usage in long-term preservation environments.
