@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updatetimestamp',['updateTimestamp',['../classCIItem.html#ab15c466e7e790b1a496850eaa5305e22',1,'CIItem']]]
+  ['updatetimestamp',['updateTimestamp',['../classArkThis_1_1CInbox_1_1CIItem.html#aac6e6dafb1486ecfc2d0848bc78f8942',1,'ArkThis::CInbox::CIItem']]]
 ];

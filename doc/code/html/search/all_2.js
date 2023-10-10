@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bin_5frsync',['BIN_RSYNC',['../classTaskCopyRsync.html#a6d87f7a210a47c75645e2e279dc824b3',1,'TaskCopyRsync']]]
+  ['bin_5frsync',['BIN_RSYNC',['../classArkThis_1_1CInbox_1_1Task_1_1TaskCopyRsync.html#a86207f7c32866f1c992162c4b65c0c9d',1,'ArkThis::CInbox::Task::TaskCopyRsync']]]
 ];

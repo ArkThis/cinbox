@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['touchfile',['touchFile',['../classHelper.html#ab51298fdb98f8797f5cd4ceb10d2c136',1,'Helper']]]
+  ['touchfile',['touchFile',['../classArkThis_1_1Helper.html#ae366c9adfb9eada6494383219b8d2c72',1,'ArkThis::Helper']]]
 ];

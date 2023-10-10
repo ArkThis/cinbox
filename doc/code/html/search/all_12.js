@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['validateoutputformat',['validateOutputFormat',['../classLogger.html#a2b771f88d58a6e3720809124f9bd2d0a',1,'Logger']]],
-  ['validateprocessingfolders',['validateProcessingFolders',['../classCInbox.html#a21ceebdafd76895c642357b84e109a8f',1,'CInbox']]]
+  ['validateoutputformat',['validateOutputFormat',['../classArkThis_1_1Logger.html#a07d95d29206e6a7af40f8f08c01e2b02',1,'ArkThis::Logger']]],
+  ['validateprocessingfolders',['validateProcessingFolders',['../classArkThis_1_1CInbox_1_1CInbox.html#a1b87add00beea490de6213acd05dd118',1,'ArkThis::CInbox::CInbox']]]
 ];
