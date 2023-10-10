@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['task_5flabel',['TASK_LABEL',['../classTaskFFmpeg.html#afdc8cd4c3aee13fd8cbd4112f0779f6d',1,'TaskFFmpeg\TASK_LABEL()'],['../classTaskPreProcs2.html#a4e0276a0186e49825845021764b45d44',1,'TaskPreProcs2\TASK_LABEL()'],['../classTaskS3Info.html#a3998c0490abf845b5ff7acfc23660b00',1,'TaskS3Info\TASK_LABEL()'],['../classTaskSkeleton.html#a2d3c80ee773dd64af426444c27fe45c4',1,'TaskSkeleton\TASK_LABEL()']]],
-  ['todo_5fin',['TODO_IN',['../classTaskFFmpeg.html#a857beac3d1f6447809820163bbd42579',1,'TaskFFmpeg']]],
-  ['todo_5fout',['TODO_OUT',['../classTaskFFmpeg.html#a5d4d432f20a96aee77907605023dc39a',1,'TaskFFmpeg']]],
-  ['todo_5frecipe',['TODO_RECIPE',['../classTaskFFmpeg.html#ac34de6fdea61d8c4d1d9656ed08b1bf3',1,'TaskFFmpeg']]],
-  ['todo_5fvalidate',['TODO_VALIDATE',['../classTaskFFmpeg.html#acb9e1df7bf9020d0c7dc27ebd1c8f822',1,'TaskFFmpeg']]]
+  ['status_5fconfig_5ferror',['STATUS_CONFIG_ERROR',['../classCITask.html#ae03ea4f3b39337cb7baaf3b33938dd10',1,'CITask']]],
+  ['status_5fdone',['STATUS_DONE',['../classCITask.html#a3ea17d5b0e3599553d96fade4038436c',1,'CITask']]],
+  ['status_5ferror',['STATUS_ERROR',['../classCITask.html#a2f5f3cafb2206cd70183a7360d9b792a',1,'CITask']]],
+  ['status_5fpbc',['STATUS_PBC',['../classCITask.html#a63df9f1547b8105e023d5845a985b3be',1,'CITask']]],
+  ['status_5fpbct',['STATUS_PBCT',['../classCITask.html#a67d95e08e9ee14c4022c194d6568e114',1,'CITask']]],
+  ['status_5frunning',['STATUS_RUNNING',['../classCITask.html#a832bd53e30de6f3a755a7e6c1c1ef534',1,'CITask']]],
+  ['status_5fskipped',['STATUS_SKIPPED',['../classCITask.html#aa2383ab044a537ceedf6ef6c0879e011',1,'CITask']]],
+  ['status_5fundefined',['STATUS_UNDEFINED',['../classCITask.html#aede479f54a20faf0243c12ce4ce39e68',1,'CITask']]],
+  ['status_5fwait',['STATUS_WAIT',['../classCITask.html#a99813276b269abff05cbc3904423b039',1,'CITask']]]
 ];
