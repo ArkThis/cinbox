@@ -52,8 +52,14 @@ class CIFolder
      * CONSTANTS
      * ======================================= */
 
+    // TODO: Copy target settings should not be here, but rather in TaskCopy
+    // class et al.  This includes all target/stage handling methods here.
+    // They are probably still here, because there currently is no
+    // (other/proper) place to share variables between individual tasks...
+    //
     // Config options:
     const CONF_TARGET_FOLDER = 'TARGET_FOLDER';         // Target folder where to copy data from this folder to.
+    const CONF_TARGET_STAGE = 'TARGET_STAGE';           // Folder for pre-validation target copy.
 
     // Miscellaneous:
     const CHANGELOG_FILE = 'folder_changelog.txt';      // Textfile to monitor folder changes in.
@@ -78,6 +84,7 @@ class CIFolder
     protected $parentFolder;                    // CIFolder object that this folder is a subfolder of.
 
     protected $hasTargetFolder = null;          // True/false if this object has a TARGET_FOLDER configured in configfile.
+    protected $baseFolder;                      // The base folder this instance relates to.
 
 
 
@@ -452,7 +459,8 @@ class CIFolder
     // ---------------------------------------------------------------
 
     /**
-     * Returns the unmodified value of TARGET_FOLDER setting (placeholders resolved).
+     * Returns the unmodified value of TARGET_FOLDER setting
+     * (placeholders resolved).
      * If it is not configured for this folder, it returns 'null'.
      */
     public function getTargetFolderRaw()
@@ -463,6 +471,17 @@ class CIFolder
         $this->hasTargetFolder = !empty($targetFolderRaw);
 
         return $targetFolderRaw;
+    }
+
+
+    /**
+     * Load TARGET_STAGE option from config (placeholders resolved)
+     * and returns it.
+     */
+    public function getTargetStageRaw()
+    {
+        $targetStageRaw = $this->config->get(self::CONF_TARGET_STAGE);
+        return $targetStageRaw;
     }
 
 
@@ -502,24 +521,28 @@ class CIFolder
      *   absolute path: use as-is.
      *   relative path: prepend parent's target folder.
      *
-     * Parameter $tempMask:
-     *   The parameter "$tempMask" is a printf-style format string which is applied
-     *   to the basename folder on the CIFolder recursion levels where TARGET_FOLDER
-     *   is set.
+     * Parameter $staging:
+     *   If the parameter "$staging" is true, then the path "TARGET_STAGE" is
+     *   replaced before the basename folder on the CIFolder recursion levels
+     *   where TARGET_FOLDER is set.
      *   This allows maintaining the subfolder-structure on the target, but in
      *   a temporary folder. Useful for handling errors that would occur during e.g.
      *   copying to target, so that an unfinished/erroneous task does not affect
      *   the actual target until it is successful.
      */
-    public function getTargetFolder($tempMask=null)
+    public function getTargetFolder($staging=false)
     {
         $targetFolderRaw = $this->getTargetFolderRaw();
 
         if ($this->hasTargetFolder && $this->isTargetAbsolute())
         {
             // If path is configured and absolute, use as-is:
-            // (apply tempMask, if set)
-            return $this->getTargetFolderTemp($targetFolderRaw, $tempMask);
+            // (apply staging path, if set)
+            if (!$staging) {
+                return $targetFolderRaw;
+            } else {
+                return $this->resolveTargetFolderStage($targetFolderRaw, $this->getTargetStageRaw());
+            }
         }
 
         // For relative paths, we need infos from their parent.
@@ -533,7 +556,7 @@ class CIFolder
 
         // Prepend parent's target folder:
         $targetSubDir = $this->hasTargetFolder ? $targetFolderRaw : basename($this->getPathname());
-        $targetFolder = $parent->getTargetFolder($tempMask) . DIRECTORY_SEPARATOR . $targetSubDir;
+        $targetFolder = $parent->getTargetFolder($staging) . DIRECTORY_SEPARATOR . $targetSubDir;
 
         // TODO: Check if there are any uncomfortable errors that could happen here that we forgot to catch?
 
@@ -542,22 +565,36 @@ class CIFolder
 
 
     /**
-     *
+     * Returns the temporary target folder path where the data is initially
+     * copied, *before* validation (hashcodes, etc).
      */
-    public function getTargetFolderTemp($targetFolder, $tempMask)
+    public function resolveTargetFolderStage($targetFolder, $targetStage)
     {
         if (empty($targetFolder)) return false;         // TODO: exception?
-        if (is_null($tempMask)) return $targetFolder;
-        if (empty($tempMask)) return false;             // tODO: exception?
+
+        // If there's no staging folder given, use the target folder directly:
+        if (is_null($targetStage)) return $targetFolder;
+        if (empty($targetStage)) return false;          // tODO: exception?
 
         $targetDir = dirname($targetFolder);
         $targetBase = basename($targetFolder);
 
-        // Apply $tempMask to last foldername, and then put things back together:
-        $targetTemp = sprintf($tempMask, $targetBase);
-        $targetFolderTemp = $targetDir . DIRECTORY_SEPARATOR . $targetTemp;
+        // Apply $targetStage path before last foldername, and then put things back together:
+        $targetFolderStage = $targetStage . DIRECTORY_SEPARATOR . $targetBase;
 
-        return $targetFolderTemp;
+        return $targetFolderStage;
+    }
+
+
+    /**
+     * Plain access method for $this->targetFolderStage;
+     * Must be resolved before.
+     *
+     * @See: self::resolveTargetFolderStage()
+     */
+    public function getTargetFolderStage()
+    {
+        return $this->targetFolderStage;
     }
 
 

@@ -116,7 +116,7 @@ abstract class CITask
     protected $CIFolder;                    ///< CIFolder object that provides all information needed for this task.
     protected $sourceFolder;                ///< Source folder of this task.
     protected $targetFolder;                ///< Target folder of this task (read from config).
-    protected $targetFolderTemp;            ///< Temporary name of Target folder of this task. Used until inbox processing completed successfully.
+    protected $targetFolderStage;           ///< Temporary name of Target folder of this task. Used until inbox processing completed successfully.
     protected $itemSubDirs;                 ///< Array of Item subfolders: key=foldername, value=CIFolder (initialized with its config).
     //@}
 
@@ -362,12 +362,14 @@ TODO: Idea!
         $l->logDebug(sprintf(_("Target folder for '%s' resolves to: '%s'"), $this->CIFolder->getSubDir(), $this->targetFolder));
 
         // Initialize name of temporary target folder:
-        $this->targetFolderTemp = $this->resolveTargetFolderTemp();
-        if ($this->targetFolderTemp === false) return false;
+        $this->targetFolderStage = $this->resolveTargetFolderStage();
+        $this->targetFolderStageRaw = $this->CIFolder->getTargetStageRaw();
+        if ($this->targetFolderStage === false) return false;
 
         // Add placeholders so that other tasks may use them:
         $this->config->addPlaceholder(__DIR_SOURCE__, $this->sourceFolder);
         $this->config->addPlaceholder(__DIR_TARGET__, $this->targetFolder);
+        $this->config->addPlaceholder(__DIR_TARGET_STAGE__, $this->targetFolderStage);
         $this->config->addPlaceholder(__DIR_BASE__, $this->CIFolder->getBaseFolder());
 
         // Must return true on success:
@@ -828,35 +830,34 @@ TODO: Idea!
 
 
     /**
-     * Constructs the name of the temporary target folder for this CIFolder.
-     * Returns the resolved $targetFolderTemp as string, or False if problems occurred.
+     * Constructs the name of the temporary target staging folder for this CIFolder.
+     * Returns the resolved $targetFolderStage as string, or False if problems occurred.
      *
-     * @see static::MASK_TARGET_TEMP
-     * @see $this->targetFolderTemp
+     * @see static::CONF_TARGET_STAGE
+     * @see $this->targetFolderStage
      */
-    protected function resolveTargetFolderTemp($CIFolder=null)
+    protected function resolveTargetFolderStage($CIFolder=null)
     {
         $l = $this->logger;
 
         if (is_null($CIFolder)) $CIFolder = $this->CIFolder;
-        $targetFolderTemp = $CIFolder->getTargetFolder(static::MASK_TARGET_TEMP);
+        $targetFolderStage = $CIFolder->getTargetFolder($staging=true);
 
-        if (empty($targetFolderTemp))
+        if (empty($targetFolderStage))
         {
             $l->logError(sprintf(
-                        _("Target folder (temp) for '%s' could not be resolved properly."),
+                        _("Target folder (staging) for '%s' could not be resolved properly."),
                         $this->CIFolder->getSubDir()));
             return false;
         }
 
         $l->logDebug(sprintf(
-                    _("Target folder (temp) for '%s' resolves to: '%s'"),
+                    _("Target folder (staging) for '%s' resolves to: '%s'"),
                     $this->CIFolder->getSubDir(),
-                    $targetFolderTemp));
+                    $targetFolderStage));
 
-        return $targetFolderTemp;
+        return $targetFolderStage;
     }
-
 
 }
 

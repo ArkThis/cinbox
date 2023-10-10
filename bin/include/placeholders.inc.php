@@ -44,6 +44,8 @@ define('__DIR_TARGET__', '[@DIR_TARGET@]');         // Item subfolder: target fo
 define('__DIR_SOURCE__', '[@DIR_SOURCE@]');         // Item subfolder: source folder
 define('__DIR_BASE__', '[@DIR_BASE@]');             // Item base folder
 define('__DIR_TEMP__', '[@DIR_TEMP@]');             // Item temp folder
+define('__DIR_TARGET_STAGE__', '[@DIR_TARGET_STAGE@]');         // Item subfolder: target folder
+
 
 define('__TASK_NAME__', '[@TASK_NAME@]');           // Classname of task
 define('__TASK_LABEL__', '[@TASK_LABEL@]');         // Label of task

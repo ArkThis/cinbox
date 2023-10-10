@@ -58,7 +58,12 @@ LOG_COPY_NAME = [@ITEM_ID_LC@].cv
 
 
 [.]
-TARGET_FOLDER = /home/pb/tests/cinbox/target/part2/video/[@BUCKET@]
+TARGET_STAGE = /home/avrd/archive/STAGE/part2/[@ITEM_ID@]
+TARGET_FOLDER = /home/avrd/archive/part2/video/[@BUCKET@]
+
+PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
+PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET@]
+
 ;FILES_WAIT[] = '*.unicorn'
 
 HASH_SEARCH[] = *.xml
@@ -66,7 +71,6 @@ HASH_SEARCH[] = *.xml
 MUST_EXIST[] = hires
 MUST_EXIST[] = lowres
 MUST_EXIST[] = metadata
-
 
 
 [hires]
@@ -101,7 +105,11 @@ FILES_INVALID[] = *.docx
 
 
 [lowres]
-TARGET_FOLDER = /home/pb/tests/cinbox/target/part1/video/[@BUCKET@]
+TARGET_STAGE = /home/avrd/archive/STAGE/part1/[@ITEM_ID@]
+TARGET_FOLDER = /home/avrd/archive/part1/video/[@BUCKET@]
+
+PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
+PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET@]
 
 MUST_EXIST[] = *.mpg
 HASH_SEARCH[] = *.md5
