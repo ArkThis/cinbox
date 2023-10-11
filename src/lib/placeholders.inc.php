@@ -25,6 +25,10 @@ define('__SECOND__', '[@MINUTE@]');
 define('__DATETIME__', '[@DATETIME@]');
 
 
+define('__PHP_SELF__', '[@PHP_SELF@]');             // Value of $_SERVER['PHP_SELF']. See: https://www.php.net/manual/en/reserved.variables.server.php
+define('__PHP_SELF_DIR__', '[@PHP_SELF_DIR@]');     // Path of PHP_SELF.
+define('__PHP_SELF_NAME__', '[@PHP_SELF_NAME@]');   // Filename of PHP_SELF.
+
 define('__DIR_IN__', '[@DIR_IN@]');                 // Path of input file
 define('__FILE_IN__', '[@FILE_IN@]');               // A filename (in/source)
 define('__FILE_IN_NOEXT__', '[@FILE_IN_NOEXT@]');   // FILE_IN without its suffix/extension

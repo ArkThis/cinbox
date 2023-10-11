@@ -107,7 +107,12 @@ class CIConfig
                 __DAY__ => date('d'),
                 __HOUR__ => date('H'),
                 __MINUTE__ => date('m'),
-                __SECOND__ => date('s')
+                __SECOND__ => date('s'),
+
+                // Information about the currently running script:
+                __PHP_SELF__ => $_SERVER['PHP_SELF'],
+                __PHP_SELF_DIR__ => dirname($_SERVER['PHP_SELF']),
+                __PHP_SELF_NAME__ => basename($_SERVER['PHP_SELF'])
                 );
 
         if (is_array($arguments))

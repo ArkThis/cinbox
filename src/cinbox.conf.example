@@ -21,7 +21,7 @@ DIR_TEMP = /var/cinbox
 DIRLIST_FILE = metadata/[@ITEM_ID@]-[@YEAR@][@MONTH@][@DAY@]-list
 ITEM_ID_VALID[] = /^(v|vx|mk)-\d{5}(_b\d{2})?$/i
 
-BUCKET_SCRIPT = /opt/cinbox/bin/plugins/objid_to_path.sh
+BUCKET_SCRIPT = [@PHP_SELF_DIR@]/plugins/objid_to_path.sh
 
 ;TASKLIST[] = FilesWait
 ;TASKLIST[] = DirListCSV
@@ -67,8 +67,8 @@ LOG_COPY_NAME = [@ITEM_ID_LC@].cv
 TARGET_STAGE = /home/avrd/archive/STAGE/part2/[@ITEM_ID@]
 TARGET_FOLDER = /home/avrd/archive/part2/video/[@BUCKET@]
 
-PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
-PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET@]
+PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
+PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET@]
 
 ;FILES_WAIT[] = '*.unicorn'
 
@@ -80,8 +80,8 @@ MUST_EXIST[] = metadata
 
 
 [hires]
-PREPROCS[] = /opt/cinbox/bin/plugins/preproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@]
-PREPROCS2[] = /opt/cinbox/bin/plugins/preproc.sh [@DAY@] [@MONTH@] [@YEAR@]
+PREPROCS[] = [@PHP_SELF_DIR@]/plugins/preproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@]
+PREPROCS2[] = [@PHP_SELF_DIR@]/plugins/preproc.sh [@DAY@] [@MONTH@] [@YEAR@]
 
 UPDATE_FILES = create_or_update
 
@@ -97,7 +97,7 @@ FILES_VALID[] = *.xxx
 
 MUST_EXIST[] = *.avi
 
-POSTPROCS[] = /opt/cinbox/bin/plugins/postproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@] [@YEAR@]
+POSTPROCS[] = [@PHP_SELF_DIR@]/plugins/postproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@] [@YEAR@]
 
 
 [metadata]
@@ -114,12 +114,12 @@ FILES_INVALID[] = *.docx
 TARGET_STAGE = /home/avrd/archive/STAGE/part1/[@ITEM_ID@]
 TARGET_FOLDER = /home/avrd/archive/part1/video/[@BUCKET@]
 
-PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
-PREPROCS[] = /opt/cinbox/bin/plugins/mkparent.sh [@DIR_TARGET@]
+PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
+PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET@]
 
 MUST_EXIST[] = *.mpg
 HASH_SEARCH[] = *.md5
 
-POSTPROCS[] = /opt/cinbox/bin/plugins/postproc.sh [@DIR_BASE@]
+POSTPROCS[] = [@PHP_SELF_DIR@]/plugins/postproc.sh [@DIR_BASE@]
 
 
