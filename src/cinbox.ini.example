@@ -2,8 +2,8 @@
 ; For syntax highlighting in VIM: set filetype=dosini
 
 [__INBOX__]
-INBOX_NAME = Video Testing
-COOLOFF_TIME = 1
+INBOX_NAME = CInbox Test-and-Demo Config
+COOLOFF_TIME = 0
 COOLOFF_FILTERS[] = ino
 PAUSE_TIME  = 1
 ITEMS_AT_ONCE = 0
@@ -14,7 +14,7 @@ DIR_TEMP = /var/cinbox
 
 ; Working hours when to process new items (crontab syntax):
 ; Monday to Friday, every minute.
-;WORK_TIMES[] = * * * * 1-5
+WORK_TIMES[] = * * * * 1-5
 ; Monday to Friday, every 5 minutes, 9:00-17:00
 ;WORK_TIMES[] = */5 9-17 * * 1-5
 
@@ -23,20 +23,21 @@ ITEM_ID_VALID[] = /^(v|vx|mk)-\d{5}(_b\d{2})?$/i
 
 BUCKET_SCRIPT = [@PHP_SELF_DIR@]/plugins/objid_to_path.sh
 
-;TASKLIST[] = FilesWait
-;TASKLIST[] = DirListCSV
-;TASKLIST[] = CleanFilenames
-;TASKLIST[] = PreProcs
-;TASKLIST[] = FilesValid
-;TASKLIST[] = FilesMustExist
-;TASKLIST[] = HashGenerate
-;TASKLIST[] = HashSearch
-;TASKLIST[] = CopyToTarget
-;TASKLIST[] = HashValidate
-;TASKLIST[] = RenameTarget
-;TASKLIST[] = HashOutput
-;TASKLIST[] = PostProcs
-;TASKLIST[] = LogfileCopy
+TASKLIST[] = FilesWait
+TASKLIST[] = DirListCSV
+TASKLIST[] = CleanFilenames
+TASKLIST[] = PreProcs
+;TASKLIST[] = PreProcs2
+TASKLIST[] = FilesValid
+TASKLIST[] = FilesMustExist
+TASKLIST[] = HashGenerate
+TASKLIST[] = HashSearch
+TASKLIST[] = CopyToTarget
+TASKLIST[] = HashValidate
+TASKLIST[] = RenameTarget
+TASKLIST[] = HashOutput
+TASKLIST[] = PostProcs
+TASKLIST[] = LogfileCopy
 
 
 [__DEFAULT__]
@@ -55,7 +56,7 @@ UPDATE_FILES = create
 COPY_EXCLUDE[] = *.md5
 
 ; Copy and rename logfile after successful processing:
-LOG_COPY_DIR = /home/pb/tests/cinbox/target/part2/video/[@BUCKET@]
+LOG_COPY_DIR = /home/avrd/archive/part2/video/[@BUCKET@]
 LOG_COPY_NAME = [@ITEM_ID_LC@].cv
 
 
@@ -67,9 +68,11 @@ LOG_COPY_NAME = [@ITEM_ID_LC@].cv
 TARGET_STAGE = /home/avrd/archive/STAGE/part2/[@ITEM_ID@]
 TARGET_FOLDER = /home/avrd/archive/part2/video/[@BUCKET@]
 
+; plugins/mkparent.sh is used to prepare deeply nested folder structures:
 PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
 PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET@]
 
+; Enable this to wait until unicorns appear:
 ;FILES_WAIT[] = '*.unicorn'
 
 HASH_SEARCH[] = *.xml
@@ -80,8 +83,10 @@ MUST_EXIST[] = metadata
 
 
 [hires]
-PREPROCS[] = [@PHP_SELF_DIR@]/plugins/preproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@]
-PREPROCS2[] = [@PHP_SELF_DIR@]/plugins/preproc.sh [@DAY@] [@MONTH@] [@YEAR@]
+; The "plugins/preproc.sh" script is just for testing/debugging commandline arguments
+; or to see which actual value a certain placeholder would have when being called:
+;PREPROCS[] = [@PHP_SELF_DIR@]/plugins/preproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@]
+;PREPROCS2[] = [@PHP_SELF_DIR@]/plugins/preproc.sh [@DAY@] [@MONTH@] [@YEAR@]
 
 UPDATE_FILES = create_or_update
 
@@ -97,7 +102,8 @@ FILES_VALID[] = *.xxx
 
 MUST_EXIST[] = *.avi
 
-POSTPROCS[] = [@PHP_SELF_DIR@]/plugins/postproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@] [@YEAR@]
+; The "plugins/postproc.sh" script is identical to "preproc.sh".
+;POSTPROCS[] = [@PHP_SELF_DIR@]/plugins/postproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@] [@YEAR@]
 
 
 [metadata]
