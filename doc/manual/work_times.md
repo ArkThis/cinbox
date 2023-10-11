@@ -6,8 +6,6 @@ For example, this option allows you to limit the CInbox to only do its work outs
 You can add more than 1 WORK\_TIMES option, in order to declare more complex "working hours" patterns.
 The syntax is compatible to the well known `[cron/crontab](https://en.wikipedia.org/wiki/Cron)`.
 
-![Source: Wikipedia](crontab_syntax.png)
-
 
 ## Here's how it works:
 
