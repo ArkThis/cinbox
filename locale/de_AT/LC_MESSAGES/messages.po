@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Common Inbox (v1.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-11 18:22+0200\n"
-"PO-Revision-Date: 2023-10-11 18:33+0200\n"
+"PO-Revision-Date: 2023-10-11 18:42+0200\n"
 "Last-Translator: Peter B. <pb@av-rd.com>\n"
 "Language-Team: ArkThis AV-RD (Software) <software@ArkThis.com>\n"
 "Language: de_AT\n"
@@ -645,7 +645,7 @@ msgstr "Temporärverzeichnis gelöscht."
 #: lib/CInbox/CIItem.php:787
 #, php-format
 msgid "Could not remove temp folder '%s'."
-msgstr "Konnte Temporärverzeichnis nicht löschen: '%s'"
+msgstr "Konnte Temporärverzeichnis nicht löschen: '%s'."
 
 #: lib/CInbox/CIItem.php:813
 #, php-format
@@ -782,7 +782,7 @@ msgstr "  - Item: '%s'"
 #: lib/CInbox/CInbox.php:535
 #, php-format
 msgid "Inbox '%s' contains %d items."
-msgstr "Inbox  '%s' enthält %d Items."
+msgstr "Inbox  '%s' enthält %d Item(s)."
 
 #: lib/CInbox/CInbox.php:613
 msgid ""
