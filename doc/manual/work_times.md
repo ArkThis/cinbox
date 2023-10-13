@@ -10,13 +10,12 @@ The syntax is compatible to the well known `[cron/crontab](https://en.wikipedia.
 ## Here's how it works:
 
 ```
-#              
 #              ┌───────────── minute (0 - 59)
 #              │ ┌───────────── hour (0 - 23)
 #              │ │ ┌───────────── day of the month (1 - 31)
 #              │ │ │ ┌───────────── month (1 - 12)
-#              │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday;
-#              │ │ │ │ │                                   7 is also Sunday on some systems)
+#              │ │ │ │ ┌───────────── day of the week (0 - 7) (Sunday=0 or 7)
+#              │ │ │ │ │
 #              │ │ │ │ │
 #              │ │ │ │ │
 WORK_TIMES[] = * * * * *
@@ -28,12 +27,12 @@ You must add "[]" to "WORK\_TIMES", because it can appear multiple values (=appe
 ## Some examples
 
   * Monday to Friday, only 9-17h:  
-    `WORK_TIMES[] = * * * * 1-5
+    `WORK_TIMES[] = * 9-17 * * 1-5`
 
-  * Only on weekends (Sat/Sun):
-    `WORK_TIMES[] = * * * * 0,6,7`
+  * Only on weekends (Sat/Sun):  
+    `WORK_TIMES[] = * * * * 6,7`
 
-  * Every 5 minutes:
+  * Every 5 minutes:  
     `WORK_TIMES[] = */5 * * * *`
 
 You can use any cron-syntax generator of your choice. Here are some for example:
@@ -45,7 +44,7 @@ You can use any cron-syntax generator of your choice. Here are some for example:
   * http://www.crontabgenerator.com/
 
 
-## Behavior 
+## Behavior
 
 In the main loop, iterating through each item in the TODO folder, CInbox will check the WORK_TIMES entries if any of them is currently "due". If any cron pattern matches, the next item will be processed normally.
 
@@ -59,7 +58,7 @@ Start new Items only at:
   * `* 12-13 * * 1`     (Monday, between 12-13h)
   * `*/15 * * * 5`      (Friday, the whole day, every 15 minutes)
 
-Just add both lines as 2 WORK_TIMES[] config lines in your cinbox.ini:
+Just add both lines as 2 WORK\_TIMES[] config lines in your cinbox.ini:
 
 ```
 WORK_TIMES[] = * 12-13 * * 1
