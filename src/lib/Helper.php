@@ -202,13 +202,21 @@ class Helper
     {
         if (!file_exists($folderName)) return true;
         // TODO: Throw "InvalidArgumentException"?
-        if (!is_dir($folderName)) throw new Exception(sprintf(_("removeEmptySubfolders: Invalid folder '%s' (not a directory?)."), $folderName));
+        if (!is_dir($folderName)) throw new Exception(
+            sprintf(
+                _("removeEmptySubfolders: Invalid folder '%s' (not a directory?)."),
+                $folderName));
 
         $all = glob($folderName . DIRECTORY_SEPARATOR . '*', GLOB_ONLYDIR);
-        $result = false;
         foreach($all as $entry)
         {
-            $result = self::removeEmptySubfolders($entry) && $result;
+            $result = self::removeEmptySubfolders($entry);
+            if (!$result)
+            {
+                throw new Exception(sprintf(
+                    _("Could not remove folder '%s'."),
+                    $entry));
+            }
         }
 
         return @rmdir($folderName);
