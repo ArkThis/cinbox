@@ -61,6 +61,8 @@ class TaskRenameTarget extends TaskCopy
 
     // Class properties are defined here.
 
+    private $targetFolderStages = array();          // List of all (temp) staging folders: used for garbage collection.
+
 
 
     /* ========================================
@@ -85,9 +87,20 @@ class TaskRenameTarget extends TaskCopy
 
         foreach ($this->itemSubDirs as $subDir=>$CIFolder)
         {
-            // targetFolderStage needs to point to the current subfolder *within* the staging area:
+            // '$targetFolderStage' needs to point to the current subfolder *within* the staging area:
             $targetFolderStage = $this->resolveTargetFolderStage($CIFolder);
             $targetFolder = $CIFolder->getTargetFolder();
+
+            // Keep record of used staging folders (for later garbage collection):
+            $this->targetFolderStages[] = $targetFolderStage;
+            // "raw" = The "parent" (root) staging folder as set in the config.
+            // Otherwise, only the item_ID subfolders would be removed later,
+            // and their parent folders for staging would be left, yet empty.
+            $targetFolderStageRaw = $CIFolder->getTargetStageRaw();
+            if (!empty($targetFolderStageRaw))
+            {
+                $this->targetFolderStages[] = $targetFolderStageRaw;
+            }
 
             // Log the resolved target folder in a machine readable way:
             $CIFolder->logTargetFolder($hasOwn=true, $isAbsolute=true);
@@ -111,6 +124,7 @@ class TaskRenameTarget extends TaskCopy
                 $this->setStatusPBCT();
                 return false;
             }
+
         }
 
         // Must return true on success:
@@ -121,10 +135,42 @@ class TaskRenameTarget extends TaskCopy
 
     public function finalize()
     {
+        $l = $this->logger;
         if (!parent::finalize()) return false;
 
-        // Staging folders should be empty now. Remove them:
-        Helper::removeEmptySubfolders($this->targetFolderStageRaw);
+        // ----------------------
+
+        // Tell us which staging folders have been used:
+        $l->logDebug(sprintf(
+            _("Staging folders to remove: %s"),
+            print_r($this->targetFolderStages, true)
+        ));
+
+        try
+        {
+            // Staging folders should be empty now. Remove them:
+            $l->logInfo(sprintf(
+                _("Cleaning up %d empty staging folder structures..."),
+                count($this->targetFolderStages)
+            ));
+
+            foreach ($this->targetFolderStages as $stage)
+            {
+                $l->logInfo(sprintf(
+                    _("Removing empty stage folder '%s'..."),
+                    $stage
+                ));
+                Helper::removeEmptySubfolders($stage);
+            }
+        }
+        catch (Exception $e)
+        {
+            // Non-empty folders here should not happen, but they're not tragic either.
+            // Just "not clean" somehow...
+            $l->logException(
+                _("Some folders in staging were not empty when trying to remove them. Not clean."),
+                $e);
+        }
     }
 
 
