@@ -366,7 +366,6 @@ TODO: Idea!
 
         // Initialize name of temporary target folder:
         $this->targetFolderStage = $this->resolveTargetFolderStage();
-        $this->targetFolderStageRaw = $this->CIFolder->getTargetStageRaw();
         if ($this->targetFolderStage === false) return false;
 
         // Add placeholders so that other tasks may use them:
