@@ -478,8 +478,9 @@ class CIFolder
 
 
     /**
-     * Load TARGET_STAGE option from config (placeholders resolved)
-     * and returns it.
+     * Returns the unmodified value of TARGET_STAGE setting
+     * (placeholders resolved).
+     * If it is not configured for this folder, it returns 'null'.
      */
     public function getTargetStageRaw()
     {
