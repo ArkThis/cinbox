@@ -93,14 +93,6 @@ class TaskRenameTarget extends TaskCopy
 
             // Keep record of used staging folders (for later garbage collection):
             $this->targetFolderStages[] = $targetFolderStage;
-            // "raw" = The "parent" (root) staging folder as set in the config.
-            // Otherwise, only the item_ID subfolders would be removed later,
-            // and their parent folders for staging would be left, yet empty.
-            $targetFolderStageRaw = $CIFolder->getTargetStageRaw();
-            if (!empty($targetFolderStageRaw))
-            {
-                $this->targetFolderStages[] = $targetFolderStageRaw;
-            }
 
             // Log the resolved target folder in a machine readable way:
             $CIFolder->logTargetFolder($hasOwn=true, $isAbsolute=true);
