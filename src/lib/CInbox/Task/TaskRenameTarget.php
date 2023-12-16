@@ -92,7 +92,7 @@ class TaskRenameTarget extends TaskCopy
             $targetFolder = $CIFolder->getTargetFolder();
 
             // Keep record of used staging folders (for later garbage collection):
-            $this->targetFolderStages[] = $targetFolderStage;
+            $this->targetFolderStages[$targetFolder] = $targetFolderStage;
 
             // Log the resolved target folder in a machine readable way:
             $CIFolder->logTargetFolder($hasOwn=true, $isAbsolute=true);
@@ -142,7 +142,7 @@ class TaskRenameTarget extends TaskCopy
         {
             // Staging folders should be empty now. Remove them:
             $l->logInfo(sprintf(
-                _("Cleaning up %d empty staging folder structures..."),
+                _("Cleaning up %d empty staging folder structures:"),
                 count($this->targetFolderStages)
             ));
 

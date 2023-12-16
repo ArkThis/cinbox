@@ -65,7 +65,7 @@ LOG_COPY_NAME = [@ITEM_ID_LC@].cv
 
 
 [.]
-TARGET_STAGE = /home/avrd/archive/STAGE/part2
+TARGET_STAGE = /home/avrd/archive/STAGE/part2/[@ITEM_ID@]
 TARGET_FOLDER = /home/avrd/archive/part2/video/[@BUCKET@]
 
 ; plugins/mkparent.sh is used to prepare deeply nested folder structures:
@@ -117,7 +117,7 @@ FILES_INVALID[] = *.docx
 
 
 [lowres]
-TARGET_STAGE = /home/avrd/archive/STAGE/part1
+TARGET_STAGE = /home/avrd/archive/STAGE/part1/[@ITEM_ID@]
 TARGET_FOLDER = /home/avrd/archive/part1/video/[@BUCKET@]
 
 PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET_STAGE@]

@@ -580,11 +580,16 @@ class CIFolder
         if (is_null($targetStage)) return $targetFolder;
         if (empty($targetStage)) return false;          // tODO: exception?
 
-        $targetDir = dirname($targetFolder);
-        $targetBase = basename($targetFolder);
+        // --------------------------------------------------------------------
+        // **HERE IS THE PLACE** where the decision is made "how" a staging
+        // folder naming/structure/etc is put together and related to its final
+        // target layout!
+        // --------------------------------------------------------------------
 
-        // Apply $targetStage path before last foldername, and then put things back together:
-        $targetFolderStage = $targetStage . DIRECTORY_SEPARATOR . $targetBase;
+        // Simply use the stage as-is as temp-target folder.
+        // All subfolders will be added when re-iterating/recursing through
+        // subfolders anyways.
+        $targetFolderStage = $targetStage;
 
         return $targetFolderStage;
     }
