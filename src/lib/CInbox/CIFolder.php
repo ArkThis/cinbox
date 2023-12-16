@@ -594,6 +594,9 @@ class CIFolder
      * Plain access method for $this->targetFolderStage;
      * Must be resolved before.
      *
+     * FIXME: The property is never set, and this method never used.
+     * This property is set in CITask, however...
+     *
      * @See: self::resolveTargetFolderStage()
      */
     public function getTargetFolderStage()
