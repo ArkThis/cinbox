@@ -166,7 +166,14 @@ TODO: Idea!
         $this->logger = $CIFolder->getLogger();
         $this->config = $CIFolder->getConfig();
 
-        $this->setName(get_class($this));
+        // Read the Task's name from it's class-name, but without PHP
+        // namespaces:
+        $className = get_class($this);
+        $this->setName(
+            // Takes the TaskName as last string after the last '\':
+            substr($className, strrpos($className, '\\') +1)
+        );
+
         $this->setLabel($label);
 
         if (!$CIFolder instanceof CIFolder)
