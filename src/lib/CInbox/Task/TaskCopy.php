@@ -150,7 +150,7 @@ abstract class TaskCopy extends CITask
             $l->logError(sprintf(
                         _("No '%s' set for '%s'. Cannot continue."),
                         CIFolder::CONF_TARGET_STAGE,
-                        CIFolder::CONF_TARGET_FOLDER,
+                        CIFolder::CONF_TARGET_FOLDER
                         ));
             $this->setStatusConfigError();
             return false;
