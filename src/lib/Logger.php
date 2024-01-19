@@ -49,36 +49,52 @@ class Logger
      * CONSTANTS:
      * ======================================= */
 
-    // Log levels:
-    const LEVEL_NONE = 0;
-    const LEVEL_DEBUG = 1;
-    const LEVEL_INFO = 2;
-    const LEVEL_NORMAL = 3;
-    const LEVEL_WARNING = 5;
-    const LEVEL_ALWAYS = 10;
-    const LEVEL_ERROR = 20;
+    /**
+     * Existing log level options.
+     * Used as technical (numeric) threshold value to decide which message to
+     * output.
+     */
+    const LEVEL_NONE = 0;                   ///< Log nothing. Silence.
+    const LEVEL_DEBUG = 1;                  ///< Show as much as possible. Very noisy.
+    const LEVEL_INFO = 2;                   ///< Additional information. Quite handy for daily use. Not so noisy.
+    const LEVEL_NORMAL = 3;                 ///< Regular, vitally-necessary information. Sufficient.
+    const LEVEL_WARNING = 5;                ///< This information contains a warning.
+    const LEVEL_ALWAYS = 10;                ///< This message shall always appear.
+    const LEVEL_ERROR = 20;                 ///< This information contains an error.
 
-    // Output targets:
-    const OUT_SCREEN = 1;
-    const OUT_TEXTFILE = 2;
-    // Array indices of output target options:
+    /**
+     * Different output target options.
+     */
+    const OUT_SCREEN = 1;                   ///< Output to screen (stdout)
+    const OUT_TEXTFILE = 2;                 ///< Output to a textfile.
+
+    /**
+     * Positional ranking of technical logging information:
+     */
     const OUT_OPT_LOGLEVEL = 0;
     const OUT_OPT_PREFIXES = 1;
     const OUT_OPT_TIMESTAMPS = 2;
     const OUT_OPT_INSTANCEID = 3;
 
-    // NOTE: If you add or change these values, don't forget to update
-    //       the --help text in 'cinbox.php'.
-    // Output formats:
-    const OUT_STYLE_CLASSIC = 0;
-    const OUT_STYLE_FILECV = 1;
+    /**
+     * Output formatting/type options.
+     *
+     * NOTE: If you add or change any of these values, don't forget to update
+     *       the --help text in 'cinbox.php'.
+     */
+    const OUT_STYLE_CLASSIC = 0;            ///< Regular sane output format.
+    const OUT_STYLE_FILECV = 1;             ///< Write in a unified, existing logfile. A Curriculum Vitae of an Item, so to say.
 
-    // Output formatting:
-    const HEADLINE_CHAR1 = '=';
-    const HEADLINE_CHAR2 = '-';
-    const HEADLINE_CHAR3 = '+';
+    /**
+     * "Headline" text output formatting.
+     * This is used to highlight certain messages/blocks.
+     */
+    const HEADLINE_CHAR1 = '=';             ///< Default character used to draw a head-"line".
+    const HEADLINE_CHAR2 = '-';             ///< Another option.
+    const HEADLINE_CHAR3 = '+';             ///< Another option.
+    const HEADLINE_CHAR = self::HEADLINE_CHAR1; ///< Default style.
 
-    const HEADLINE_WIDTH1 = 60;
+    const HEADLINE_LENGTH = 60;             ///< Number of HEADLINE_CHARs to print.
 
 
     /* ========================================
@@ -88,6 +104,12 @@ class Logger
     public static $TIMESTAMP_FORMAT = 'Y-m-d\TH:i:s';
 
     public $instanceId;
+
+    /**
+     * A list of loglevels available.
+     * The entries correspond to the text/symbol being used to mark each log
+     * entry.
+     */
     private static $logLevels = array(
             self::LEVEL_ERROR,
             self::LEVEL_ALWAYS,
@@ -97,20 +119,35 @@ class Logger
             self::LEVEL_DEBUG
             );
 
+    /**
+     * List of available logging styles.
+     * See: isValidOutputFormat().
+     */
     private static $logStyles = array(
             'classic' => self::OUT_STYLE_CLASSIC,
             'cv' => self::OUT_STYLE_FILECV
             );
 
-    private $msgBuffer;
-    private $msgOutput;
-    private $logfile = null;
+    /**
+     * @name Basics
+     */
+    //@{
+    protected $logger;                      ///< FIXME: I believe this is not used anywhere. delme?
+    private $msgBuffer;                     ///< Holds all logged messages (until output). See: outputMsgBuffer().
+    private $msgOutput;                     ///< Contains logging output options (file, screen, etc). See: addOutputOption().
+    private $logfile = null;                ///< Name of the file to write the logs into.
 
-    private $showTimestamp = false;
-    private $showInstanceId = false;
+    private $showTimestamp = false;         ///< Display a timestamp of each log entry.
+    private $showInstanceId = false;        ///< Write the CInbox instance Id label in each log entry.
+    //@}
 
+    /**
+     * @name CV logging-style related
+     */
+    //@{
     private $useFileCV = false;
     private $cv;
+    //@}
 
 
 
@@ -124,6 +161,7 @@ class Logger
         $this->instanceId = spl_object_hash($this);
 
         // By default, log everything to file but only "Normal" to screen:
+        // addOutputOption($output, $logLevel, $prefixes, $showTimestamp=false, $showInstanceId=false)
         $this->addOutputOption(self::OUT_SCREEN, self::LEVEL_NORMAL, $this->getPrefixScreen(), false, false);
         $this->addOutputOption(self::OUT_TEXTFILE, self::LEVEL_INFO, $this->getPrefixMixed(), true, false);
 
@@ -217,6 +255,10 @@ class Logger
     }
 
 
+    /**
+     * Set a certain option (setting/parameter) for a given msgOutput $output.
+     * For example, set a different loglevel than defined by default.
+     */
     public function setOutputOption($output, $option, $value)
     {
         $this->msgOutput[$output][$option] = $value;
@@ -677,10 +719,10 @@ class Logger
     public function logHeader($msg)
     {
         $this->logNewline(2);
-        $this->logAlways($this->getHeadline(self::HEADLINE_CHAR1));
+        $this->logAlways($this->getHeadline(self::HEADLINE_CHAR));
         $this->logAlways($msg);
         $this->logAlways($this->getTimestamp());
-        $this->logAlways($this->getHeadline(self::HEADLINE_CHAR1));
+        $this->logAlways($this->getHeadline(self::HEADLINE_CHAR));
     }
 
 
@@ -688,7 +730,7 @@ class Logger
      * Returns a horizontal line consisting of '=' characters.
      * Can be used for markdown-style headlines.
      */
-    public function getHeadline($char=self::HEADLINE_CHAR1, $width=self::HEADLINE_WIDTH1)
+    public function getHeadline($char=self::HEADLINE_CHAR, $width=self::HEADLINE_LENGTH)
     {
         $line = '';
         for ($count = 1; $count <= $width; $count++) $line .= $char;
