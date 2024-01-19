@@ -388,6 +388,11 @@ class Logger
      */
     public function outputMsgBuffer()
     {
+        // TODO/FIXME: Confusing variable-name similarity:
+        // $logLevel: From msgOutput.
+        // $eLogLevel: From msgBuffer entry.
+        // $log_level: Decoupled loglevel syntax for FileCV entries.
+
         // === Textfile:
         list ($logLevel, $prefixes, $showTimestamp, $showInstanceId) = $this->msgOutput[self::OUT_TEXTFILE];
         if ($logLevel != null)
@@ -456,7 +461,7 @@ class Logger
             }
             else
             {
-                // Use the old traditional CInbox Logger format.
+                // Use the regular CInbox Logger format.
                 $this->showTimestamp($showTimestamp);
                 $this->showInstanceId($showInstanceId);
                 $lines = $this->formatAsText($this->msgBuffer, $logLevel, $prefixes);
@@ -512,14 +517,15 @@ class Logger
     /**
      * Formats current contents of the message buffer as text and returns it as an array of lines.
      */
-    public function formatAsText($msgBuffer, $targetlogLevel, $prefixes)
+    public function formatAsText($msgBuffer, $targetLogLevel, $prefixes)
     {
         $output = null;
 
         foreach ($msgBuffer as $entry)
         {
             list ($logLevel, $timestamp, $message, $source, $lineNumber) = $entry;
-            if ($logLevel < $targetlogLevel) continue;
+            // Skip log entries in msgBuffer that don't apply to the current $targetLogLevel
+            if ($logLevel < $targetLogLevel) continue;
 
             // If message is empty, make a clean newline (no timestamp, etc):
             if (empty($message))
