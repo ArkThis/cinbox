@@ -50,10 +50,12 @@ class Logger
      * ======================================= */
 
     /**
-     * Existing log level options.
+     * @name Existing log level options.
+     *
      * Used as technical (numeric) threshold value to decide which message to
      * output.
      */
+    //@{
     const LEVEL_NONE = 0;                   ///< Log nothing. Silence.
     const LEVEL_DEBUG = 1;                  ///< Show as much as possible. Very noisy.
     const LEVEL_INFO = 2;                   ///< Additional information. Quite handy for daily use. Not so noisy.
@@ -61,40 +63,49 @@ class Logger
     const LEVEL_WARNING = 5;                ///< This information contains a warning.
     const LEVEL_ALWAYS = 10;                ///< This message shall always appear.
     const LEVEL_ERROR = 20;                 ///< This information contains an error.
+    //@}
 
     /**
-     * Different output target options.
+     * @name Different output target options.
      */
+    //@{
     const OUT_SCREEN = 1;                   ///< Output to screen (stdout)
     const OUT_TEXTFILE = 2;                 ///< Output to a textfile.
+    //@}
 
     /**
-     * Positional ranking of technical logging information:
+     * @name Positional ranking of technical logging information
      */
+    //@{
     const OUT_OPT_LOGLEVEL = 0;
     const OUT_OPT_PREFIXES = 1;
     const OUT_OPT_TIMESTAMPS = 2;
     const OUT_OPT_INSTANCEID = 3;
+    //@}
 
     /**
-     * Output formatting/type options.
+     * @name Output formatting/type options.
      *
      * NOTE: If you add or change any of these values, don't forget to update
      *       the --help text in 'cinbox.php'.
      */
+    //@{
     const OUT_STYLE_CLASSIC = 0;            ///< Regular sane output format.
     const OUT_STYLE_FILECV = 1;             ///< Write in a unified, existing logfile. A Curriculum Vitae of an Item, so to say.
+    //@}
 
     /**
-     * "Headline" text output formatting.
+     * @name "Headline" text output formatting.
      * This is used to highlight certain messages/blocks.
      */
+    //@{
     const HEADLINE_CHAR1 = '=';             ///< Default character used to draw a head-"line".
     const HEADLINE_CHAR2 = '-';             ///< Another option.
     const HEADLINE_CHAR3 = '+';             ///< Another option.
     const HEADLINE_CHAR = self::HEADLINE_CHAR1; ///< Default style.
 
     const HEADLINE_LENGTH = 60;             ///< Number of HEADLINE_CHARs to print.
+    //@}
 
 
     /* ========================================
@@ -145,8 +156,8 @@ class Logger
      * @name CV logging-style related
      */
     //@{
-    private $useFileCV = false;
-    private $cv;
+    private $useFileCV = false;             ///< Default is *not* to use file-CV output.
+    private $cv;                            ///< Holds a FileCV class instance.
     //@}
 
 
