@@ -844,13 +844,23 @@ class CInbox
         //or outside of working hours:
         foreach ($workTimes as $workTime)
         {
+            // Create new CronExpression Parser Object to parse workTime string:
             $cron = new \Cron\CronExpression($workTime);
+
+            /* VERY noisy:
+            $l->logDebug(sprintf(
+                _("New CronExpression Object for '%s': %s"),
+                $workTime,
+                print_r($cron, true)
+            ));
+             */
 
             if (!$isLooped)
             {
-                $l->logMsg(sprintf(
-                    _("Next run date is: %s (%s)"),
-                    $cron->getNextRunDate()->format('Y-m-d H:i:s'),
+                $l->logHeader(sprintf(
+                    _("Next run date is: %s (raw=%s)\nFor crontab: '%s')"),
+                    $cron->getNextRunDate()->format(Logger::$TIMESTAMP_FORMAT),
+                    $cron->getNextRunDate()->getTimestamp(),
                     $workTime
                 ));
             }
@@ -868,13 +878,18 @@ class CInbox
         }
         
         // No matching expression. We're NOT due.
+        $msg = sprintf(
+            _("Current date/time '%s' is outside of working hours set in '%s'.\n I'll wait 😇️"),
+            date('Y-m-d H:i:s'),
+            self::CONF_WORK_TIMES
+        );
+
+        // To avoid "NOP-noise" in the logs:
+        // log-always if DEBUG, and only if not-looped: log INFO.
+        $l->logDebug($msg);
         if (!$isLooped)
         {
-            $l->logDebug(sprintf(
-                _("Current date/time '%s' is outside of working hours set in '%s'.\n I'll wait 😇️"),
-                date('Y-m-d H:i:s'),
-                self::CONF_WORK_TIMES
-                ));
+            $l->logInfo($msg);
         }
 
         return false;

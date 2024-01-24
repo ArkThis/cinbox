@@ -420,6 +420,11 @@ class CronExpression
             $currentTime = new DateTime($currentTime);
         }
 
+        printf("DEBUG: Cron DateTime is '%s' (%s)\n",
+            $currentTime->format('Y-m-d H:i:s'),
+            $currentTime->getTimestamp()); //DELME
+        printf("DEBUG: Cron Timezone: '%s'\n", $timeZone); //DELME
+
         Assert::isInstanceOf($currentTime, DateTime::class);
         $currentTime->setTimezone(new DateTimeZone($timeZone));
 
@@ -427,7 +432,13 @@ class CronExpression
         $currentTime->setTime((int) $currentTime->format('H'), (int) $currentTime->format('i'), 0);
 
         try {
-            return $this->getNextRunDate($currentTime, 0, true)->getTimestamp() === $currentTime->getTimestamp();
+            $nextTime = $this->getNextRunDate($currentTime, 0, true);
+            printf("DEBUG: Cron NextRunDate is '%s' (%s / %s)\n",
+                $nextTime->format('Y-m-d H:i:s'),
+                $nextTime->getTimestamp(),
+                $currentTime->getTimestamp()
+            ); //DELME
+            return $nextTime->getTimestamp() === $currentTime->getTimestamp();
         } catch (Exception $e) {
             return false;
         }
