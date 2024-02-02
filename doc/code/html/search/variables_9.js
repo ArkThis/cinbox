@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['task_5flabel',['TASK_LABEL',['../classArkThis_1_1CInbox_1_1Task_1_1TaskFFmpeg.html#ae27bdae46d8da1e7fa8c87d140de596b',1,'ArkThis\CInbox\Task\TaskFFmpeg\TASK_LABEL()'],['../classArkThis_1_1CInbox_1_1Task_1_1TaskPreProcs2.html#ab0024ac829df81039aa5d344ae6db9f7',1,'ArkThis\CInbox\Task\TaskPreProcs2\TASK_LABEL()'],['../classArkThis_1_1CInbox_1_1Task_1_1TaskS3Info.html#ae84f08580b4ca485e5a2ff0168a75b70',1,'ArkThis\CInbox\Task\TaskS3Info\TASK_LABEL()'],['../classArkThis_1_1CInbox_1_1Task_1_1TaskSkeleton.html#ae170c5e9ce36b9d8dfb7a0145f52bfc1',1,'ArkThis\CInbox\Task\TaskSkeleton\TASK_LABEL()']]],
-  ['todo_5fin',['TODO_IN',['../classArkThis_1_1CInbox_1_1Task_1_1TaskFFmpeg.html#afa4990143b8966e1a2706e88d674271b',1,'ArkThis::CInbox::Task::TaskFFmpeg']]],
-  ['todo_5fout',['TODO_OUT',['../classArkThis_1_1CInbox_1_1Task_1_1TaskFFmpeg.html#aab8d4219fc2bb77ee70d16814d2499cc',1,'ArkThis::CInbox::Task::TaskFFmpeg']]],
-  ['todo_5frecipe',['TODO_RECIPE',['../classArkThis_1_1CInbox_1_1Task_1_1TaskFFmpeg.html#a2e8fc5978de3e0eb19572d57352f0504',1,'ArkThis::CInbox::Task::TaskFFmpeg']]],
-  ['todo_5fvalidate',['TODO_VALIDATE',['../classArkThis_1_1CInbox_1_1Task_1_1TaskFFmpeg.html#a3cac04f3c79dbb3baaf286d0d5346f0c',1,'ArkThis::CInbox::Task::TaskFFmpeg']]]
+  ['status_5fconfig_5ferror',['STATUS_CONFIG_ERROR',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#aca0ffbeb3248085cc4c4c4427b629d77',1,'ArkThis::CInbox::Task::CITask']]],
+  ['status_5fdone',['STATUS_DONE',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#ab4094d37034a9110d31213b8dd8f83df',1,'ArkThis::CInbox::Task::CITask']]],
+  ['status_5ferror',['STATUS_ERROR',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a872f1a95057183de61318badb8440425',1,'ArkThis::CInbox::Task::CITask']]],
+  ['status_5fpbc',['STATUS_PBC',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a47686e7b93ba47b05b981a69e60fc1d0',1,'ArkThis::CInbox::Task::CITask']]],
+  ['status_5fpbct',['STATUS_PBCT',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#ace6d9f9d406756488bcea97d708a46d8',1,'ArkThis::CInbox::Task::CITask']]],
+  ['status_5frunning',['STATUS_RUNNING',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#aa1599fa236db47f48987b4af69a8be59',1,'ArkThis::CInbox::Task::CITask']]],
+  ['status_5fskipped',['STATUS_SKIPPED',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#adfefbc448948f7bbf0a24156840ef5a5',1,'ArkThis::CInbox::Task::CITask']]],
+  ['status_5fundefined',['STATUS_UNDEFINED',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a98bbc08ace75fb9eef19fcc2eb0bf073',1,'ArkThis::CInbox::Task::CITask']]],
+  ['status_5fwait',['STATUS_WAIT',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a089ab22106c3eeef2d237996cc1aeb3c',1,'ArkThis::CInbox::Task::CITask']]]
 ];

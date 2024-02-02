@@ -19,6 +19,7 @@ var searchData=
   ['setmovelogs',['setMoveLogs',['../classArkThis_1_1CInbox_1_1CIFolder.html#af93b2a86ea47637851f550e3255fbb56',1,'ArkThis::CInbox::CIFolder']]],
   ['setname',['setName',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#ad5c525b1d67ec1660d4b2ab5ac8ad5a1',1,'ArkThis::CInbox::Task::CITask']]],
   ['setoutputformat',['setOutputFormat',['../classArkThis_1_1Logger.html#a978d9926103ce436965c44087fe9175e',1,'ArkThis::Logger']]],
+  ['setoutputoption',['setOutputOption',['../classArkThis_1_1Logger.html#aa23beeac3c3fd6e3b8f6d73e121323cc',1,'ArkThis::Logger']]],
   ['setoverridelogfile',['setOverrideLogfile',['../classArkThis_1_1FileCV.html#a76f381e3ced294114378b087d3bf21b5',1,'ArkThis::FileCV']]],
   ['setparentfolder',['setParentFolder',['../classArkThis_1_1CInbox_1_1CIFolder.html#a2d51121aac3948b886af1c83dd076baf',1,'ArkThis::CInbox::CIFolder']]],
   ['setparentitem',['setParentItem',['../classArkThis_1_1CInbox_1_1CIFolder.html#a6783e951945e70f077908492c5f48816',1,'ArkThis::CInbox::CIFolder']]],

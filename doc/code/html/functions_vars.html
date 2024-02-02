@@ -72,6 +72,9 @@ $(function() {
 <li>$copyExclude
 : <a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1CITask.html#ac9d51668d5d62a562ec83e7e2b1f31e5">ArkThis\CInbox\Task\CITask</a>
 </li>
+<li>$cv
+: <a class="el" href="classArkThis_1_1Logger.html#a84e5365d2dbb4ee5bcebd07766a49179">ArkThis\Logger</a>
+</li>
 <li>$description
 : <a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a532b66c907b69f02c8d2b13e28768407">ArkThis\CInbox\Task\CITask</a>
 </li>
@@ -108,9 +111,25 @@ $(function() {
 <li>$logFile
 : <a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1TaskExec.html#a34fcdf65ea7f5aa9957544264e19d6b3">ArkThis\CInbox\Task\TaskExec</a>
 </li>
+<li>$logfile
+: <a class="el" href="classArkThis_1_1Logger.html#ab35e13b8c2d1e8d4363a76e699ee10fb">ArkThis\Logger</a>
+</li>
 <li>$logger
 : <a class="el" href="classArkThis_1_1CInbox_1_1CInbox.html#a43067ff55fd3188715aa04eba30e8c4e">ArkThis\CInbox\CInbox</a>
 , <a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a3867dd9b299bc579a733ab4a843d4990">ArkThis\CInbox\Task\CITask</a>
+, <a class="el" href="classArkThis_1_1Logger.html#ad1911196c75d2e44b529bb501be4ce66">ArkThis\Logger</a>
+</li>
+<li>$logLevels
+: <a class="el" href="classArkThis_1_1Logger.html#a6a1d1b3faa5f2605e3faef64cb95a82e">ArkThis\Logger</a>
+</li>
+<li>$logStyles
+: <a class="el" href="classArkThis_1_1Logger.html#aee6f2fffbb4fb2271daae72d999b8df1">ArkThis\Logger</a>
+</li>
+<li>$msgBuffer
+: <a class="el" href="classArkThis_1_1Logger.html#af270fba7eea1ac7e3610d29b806de418">ArkThis\Logger</a>
+</li>
+<li>$msgOutput
+: <a class="el" href="classArkThis_1_1Logger.html#a8865b3a355556e88ff310fccf86e4c5c">ArkThis\Logger</a>
 </li>
 <li>$name
 : <a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a2f4c30c05cd81e39889a2ca7fafc1074">ArkThis\CInbox\Task\CITask</a>
@@ -132,6 +151,12 @@ $(function() {
 </li>
 <li>$s3InfoFile
 : <a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1TaskS3Info.html#a2a4285ac18c26a6ffae0fbae16e6b7cb">ArkThis\CInbox\Task\TaskS3Info</a>
+</li>
+<li>$showInstanceId
+: <a class="el" href="classArkThis_1_1Logger.html#af7a9a1380d193371ac850728730d5845">ArkThis\Logger</a>
+</li>
+<li>$showTimestamp
+: <a class="el" href="classArkThis_1_1Logger.html#a29f262c1a2c3a71feca4a037fd5a1f6e">ArkThis\Logger</a>
 </li>
 <li>$skip
 : <a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1CITask.html#ac13e306855950454e59b3e2699c5979e">ArkThis\CInbox\Task\CITask</a>
@@ -179,6 +204,9 @@ $(function() {
 </li>
 <li>$todoList
 : <a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1TaskFFmpeg.html#aff27a34c44d92bcdef930504f52fb417">ArkThis\CInbox\Task\TaskFFmpeg</a>
+</li>
+<li>$useFileCV
+: <a class="el" href="classArkThis_1_1Logger.html#a711fa2c84ef4ac61e579d16bb33d753f">ArkThis\Logger</a>
 </li>
 <li>$validates
 : <a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1TaskFFmpeg.html#aaa5ec67ad68f30ef8d79c582302c3385">ArkThis\CInbox\Task\TaskFFmpeg</a>
@@ -335,6 +363,21 @@ $(function() {
 <li>HASH_VIDEO
 : <a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1TaskFFmpeg.html#a763df1e538df2990a8dc73b65bb00225">ArkThis\CInbox\Task\TaskFFmpeg</a>
 </li>
+<li>HEADLINE_CHAR
+: <a class="el" href="classArkThis_1_1Logger.html#a8403caa2a21e33f0f64c16214a8d5982">ArkThis\Logger</a>
+</li>
+<li>HEADLINE_CHAR1
+: <a class="el" href="classArkThis_1_1Logger.html#a6124a8605ff6d6bc62ffdc2118efb67b">ArkThis\Logger</a>
+</li>
+<li>HEADLINE_CHAR2
+: <a class="el" href="classArkThis_1_1Logger.html#ab3db0156a3e8538a048d457bfd5a4eef">ArkThis\Logger</a>
+</li>
+<li>HEADLINE_CHAR3
+: <a class="el" href="classArkThis_1_1Logger.html#a99d29f06fe549399940fb5bb737bfa79">ArkThis\Logger</a>
+</li>
+<li>HEADLINE_LENGTH
+: <a class="el" href="classArkThis_1_1Logger.html#a68021952332bf8fd792eeea2e65746dd">ArkThis\Logger</a>
+</li>
 </ul>
 
 
@@ -345,9 +388,46 @@ $(function() {
 </ul>
 
 
+<h3><a id="index_l"></a>- l -</h3><ul>
+<li>LEVEL_ALWAYS
+: <a class="el" href="classArkThis_1_1Logger.html#aea3cdaa65d939bfb6938eb5afb552861">ArkThis\Logger</a>
+</li>
+<li>LEVEL_DEBUG
+: <a class="el" href="classArkThis_1_1Logger.html#a67b5d566207aa5b20f33323392408cf6">ArkThis\Logger</a>
+</li>
+<li>LEVEL_ERROR
+: <a class="el" href="classArkThis_1_1Logger.html#aef2364920348cabfebd512a56948e7f8">ArkThis\Logger</a>
+</li>
+<li>LEVEL_INFO
+: <a class="el" href="classArkThis_1_1Logger.html#a3c13c2fe9c465da81cb87038247d1872">ArkThis\Logger</a>
+</li>
+<li>LEVEL_NONE
+: <a class="el" href="classArkThis_1_1Logger.html#a20fa3e2f1b11cde7c146adf662bfb264">ArkThis\Logger</a>
+</li>
+<li>LEVEL_NORMAL
+: <a class="el" href="classArkThis_1_1Logger.html#a74b12a37f949d8c95d77631ebc568f6b">ArkThis\Logger</a>
+</li>
+<li>LEVEL_WARNING
+: <a class="el" href="classArkThis_1_1Logger.html#ab1ffb237674a455ab879be7658dc4b39">ArkThis\Logger</a>
+</li>
+</ul>
+
+
 <h3><a id="index_o"></a>- o -</h3><ul>
 <li>ONCE_PER_ITEM
 : <a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1CITask.html#aeabf145d9a4bfd4c5a9a956315dd4391">ArkThis\CInbox\Task\CITask</a>
+</li>
+<li>OUT_SCREEN
+: <a class="el" href="classArkThis_1_1Logger.html#adb0eb8e5f66489a1584bb09ceef7be70">ArkThis\Logger</a>
+</li>
+<li>OUT_STYLE_CLASSIC
+: <a class="el" href="classArkThis_1_1Logger.html#aaa336db78a97e84c642ad6317c1cfcc3">ArkThis\Logger</a>
+</li>
+<li>OUT_STYLE_FILECV
+: <a class="el" href="classArkThis_1_1Logger.html#a9a8af9df6ee04b48df6db2295f77d6e8">ArkThis\Logger</a>
+</li>
+<li>OUT_TEXTFILE
+: <a class="el" href="classArkThis_1_1Logger.html#a9eaa26ee4e74a571d3d1fd7f37be5951">ArkThis\Logger</a>
 </li>
 </ul>
 
@@ -406,7 +486,7 @@ $(function() {
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 10 2023 20:11:42 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 2 2024 17:56:10 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

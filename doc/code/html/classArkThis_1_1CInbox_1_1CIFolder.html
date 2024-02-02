@@ -433,6 +433,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Plain access method for $this-&gt;targetFolderStage; Must be resolved before.</p>
+<p>FIXME: The property is never set, and this method never used. This property is set in CITask, however...</p>
 <p>: self::resolveTargetFolderStage() </p>
 
 </div>
@@ -451,7 +452,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Load TARGET_STAGE option from config (placeholders resolved) and returns it. </p>
+<p>Returns the unmodified value of TARGET_STAGE setting (placeholders resolved). If it is not configured for this folder, it returns 'null'. </p>
 
 </div>
 </div>
@@ -710,7 +711,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 10 2023 20:11:42 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 2 2024 17:56:10 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

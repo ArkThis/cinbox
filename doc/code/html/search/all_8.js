@@ -10,5 +10,10 @@ var searchData=
   ['hasmissingfiles',['hasMissingFiles',['../classArkThis_1_1CInbox_1_1Task_1_1TaskFilesMatch.html#a17a28ee87be011bc4a0b7cc9fdfcf937',1,'ArkThis::CInbox::Task::TaskFilesMatch']]],
   ['hasnonvalidfiles',['hasNonValidFiles',['../classArkThis_1_1CInbox_1_1Task_1_1TaskFilesValid.html#af1ccb14c00ba6043dd916624475a6a06',1,'ArkThis::CInbox::Task::TaskFilesValid']]],
   ['hasparent',['hasParent',['../classArkThis_1_1CInbox_1_1CIFolder.html#ace2dee2514127a29709b7ff2dbef417f',1,'ArkThis::CInbox::CIFolder']]],
+  ['headline_5fchar',['HEADLINE_CHAR',['../classArkThis_1_1Logger.html#a8403caa2a21e33f0f64c16214a8d5982',1,'ArkThis::Logger']]],
+  ['headline_5fchar1',['HEADLINE_CHAR1',['../classArkThis_1_1Logger.html#a6124a8605ff6d6bc62ffdc2118efb67b',1,'ArkThis::Logger']]],
+  ['headline_5fchar2',['HEADLINE_CHAR2',['../classArkThis_1_1Logger.html#ab3db0156a3e8538a048d457bfd5a4eef',1,'ArkThis::Logger']]],
+  ['headline_5fchar3',['HEADLINE_CHAR3',['../classArkThis_1_1Logger.html#a99d29f06fe549399940fb5bb737bfa79',1,'ArkThis::Logger']]],
+  ['headline_5flength',['HEADLINE_LENGTH',['../classArkThis_1_1Logger.html#a68021952332bf8fd792eeea2e65746dd',1,'ArkThis::Logger']]],
   ['helper',['Helper',['../classArkThis_1_1Helper.html',1,'ArkThis']]]
 ];

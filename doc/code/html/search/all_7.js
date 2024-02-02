@@ -33,7 +33,7 @@ var searchData=
   ['gethashtempfilename',['getHashTempFilename',['../classArkThis_1_1CInbox_1_1Task_1_1TaskHash.html#a0801d128e0513cc03312762b61448c09',1,'ArkThis::CInbox::Task::TaskHash']]],
   ['gethashtempfilenames',['getHashTempFilenames',['../classArkThis_1_1CInbox_1_1Task_1_1TaskFFmpeg.html#ab9b64ecdbc4ad493fbc79bf22b494011',1,'ArkThis::CInbox::Task::TaskFFmpeg']]],
   ['gethashtypesallowed',['getHashTypesAllowed',['../classArkThis_1_1CInbox_1_1Task_1_1TaskFFmpeg.html#af8fa2b3fca9e57ec3a2bbad03c3c7bce',1,'ArkThis\CInbox\Task\TaskFFmpeg\getHashTypesAllowed()'],['../classArkThis_1_1CInbox_1_1Task_1_1TaskHash.html#a1fc8c7a1998d0361b35307ec0e2b66c2',1,'ArkThis\CInbox\Task\TaskHash\getHashTypesAllowed()']]],
-  ['getheadline',['getHeadline',['../classArkThis_1_1Logger.html#affb4fbe5ec4d409f45e9f6108499d2b6',1,'ArkThis::Logger']]],
+  ['getheadline',['getHeadline',['../classArkThis_1_1Logger.html#ada4115907a83fae41686667037707427',1,'ArkThis::Logger']]],
   ['getitemcount',['getItemCount',['../classArkThis_1_1CInbox_1_1CInbox.html#a70b112ffcdd6042266e8278fc051b9b1',1,'ArkThis::CInbox::CInbox']]],
   ['getitemlogfile',['getItemLogfile',['../classArkThis_1_1CInbox_1_1CInbox.html#aee5cb231bd54df1d73169b44e0a96c54',1,'ArkThis::CInbox::CInbox']]],
   ['getlabel',['getLabel',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a6e024475f1b672e9affab0b1fe199eba',1,'ArkThis::CInbox::Task::CITask']]],
