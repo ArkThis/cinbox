@@ -100,6 +100,10 @@ FILES_VALID[] = *.avi
 FILES_VALID[] = *.md5
 FILES_VALID[] = *.xxx
 
+; Hidden files (unix):
+;FILES_VALID[] = .[!.]*
+;FILES_INVALID[] = .[!.]*
+
 MUST_EXIST[] = *.avi
 
 ; The "plugins/postproc.sh" script is identical to "preproc.sh".

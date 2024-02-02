@@ -112,7 +112,7 @@ abstract class TaskFilesMatch extends CITask
         $l = $this->logger;
 
         // Make a list of all files (!) in this folder (for later comparison):
-        $all = $this->getMatchingFiles($CIFolder, array('*'));
+        $all = $this->getMatchingFiles($CIFolder, array('*', '.[!.]*', '..?'));
         // Make a list of files matching the valid-files pattern:
         $matching = $this->getMatchingFiles($CIFolder, $patterns);
 
