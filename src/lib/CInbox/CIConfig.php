@@ -19,6 +19,7 @@
 namespace ArkThis\CInbox;
 
 use \ArkThis\Logger;
+use \Exception as Exception;
 require_once('placeholders.inc.php');
 
 
