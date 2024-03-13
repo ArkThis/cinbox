@@ -400,6 +400,56 @@ class Helper
 
 
     /**
+     * Same functionality as getFolderListing(), but does *not* keep the listed
+     * filesystem entries open.
+     *
+     * Uses FilesystemIterator instead of DirectoryIterator.
+     */
+    public static function getFolderListing3($folder)
+    {
+        if (empty($folder)) throw new \InvalidArgumentException(_("Foldername must not be empty"));
+
+        $list = array();
+        $di = new \FilesystemIterator($folder, \FilesystemIterator::NEW_CURRENT_AND_KEY);
+        foreach ($di as $key=>$entry) {
+            $list[$key] = self::stringCopyFileInfo($entry);
+        }
+        return $list;
+    }
+
+
+    /**
+     * Copies information from an SplFileInfo Object as strings and numbers -
+     * so the SplFileInfo Object can be freed - and the file-handle it points
+     * to closed.
+     *
+     * Used to avoid running into "too many open files" errors.
+     */
+    public static function stringCopyFileInfo($splFileInfo)
+    {
+        if (!($splFileInfo instanceof \SplFileInfo))
+        {
+            throw new \InvalidArgumentException(_("Parameter must be an instance of an SplFileInfo class."));
+        }
+
+        $fileinfo = array(
+            'Filename' => $splFileInfo->getFilename(),
+            'Pathname' => $splFileInfo->getPathname(),
+            'isDir' => $splFileInfo->isDir(),
+            'isFile' => $splFileInfo->isFile(),
+            'isReadable' => $splFileInfo->isReadable(),
+            'isWritable' => $splFileInfo->isWritable(),
+            'MTime' => $splFileInfo->getMTime(),
+            'CTime' => $splFileInfo->getCTime(),
+            'ATime' => $splFileInfo->getATime(),
+            'Type' => $splFileInfo->getType(),
+        );
+
+        return($fileinfo);
+    }
+
+
+    /**
      * Similar to getFolderListing(), but recurses through subfolders.
      *
      * Supports some flags, borrowed from glob():

@@ -519,15 +519,15 @@ class CInbox
         $this->validateProcessingFolders(static::$processingFolders, $quiet=true);
 
         $this->resetItemList();
-        $list = Helper::getFolderListing($sourceFolder);
+        $list = Helper::getFolderListing3($sourceFolder);
         ksort($list); // sort filenames alphabetically
 
         foreach ($list as $key=>$entry)
         {
-            if ($entry->isDir())
+            if ($entry['isDir'])
             {
-                $l->logInfo(sprintf(_("  - Item: '%s'"), $entry->getFilename()));
-                $this->addItem($entry->getPathname());
+                $l->logInfo(sprintf(_("  - Item: '%s'"), $entry['Filename']));
+                $this->addItem($entry['Pathname']);
             }
         }
 
@@ -1178,13 +1178,13 @@ class CInbox
         $l->logNewline();
         $l->logMsg(sprintf(_("Removing finished Items older than %d days..."), $keepFinished));
 
-        $list = Helper::getFolderListing($folder);
+        $list = Helper::getFolderListing3($folder);
         ksort($list); // sort filenames alphabetically
 
         foreach ($list as $key=>$entry)
         {
-            $folderName = $entry->getPathname();
-            $days = (time() - $entry->getMTime()) / 60 / 60 / 24;        // Conversion: Seconds to days
+            $folderName = $entry['Pathname'];
+            $days = (time() - $entry['MTime']) / 60 / 60 / 24;        // Conversion: Seconds to days
             $l->logInfo(sprintf(_("Item: %s (%d days old)"), basename($folderName), $days));
 
             if ($days > $keepFinished)
