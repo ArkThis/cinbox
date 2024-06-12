@@ -243,8 +243,14 @@ class TaskHashGenerate extends TaskHash
         $hashFile = $this->getHashTempFilename($fileName, $folder, $hashType);
 
         $l->logDebug(sprintf(_("Hash file for '%s': %s"), $fileName, $hashFile));
-        // hashFile was touched before, so filesize can be greater than 0 - but smaller than with actual hashcode content.
-        // IDEA: It might be possible to use 'sizeof(hash($hashType, "---"))' as limit for valid filesize for this hashType.
+        // IDEAs for hashcode file validity checks:
+        // * Filesize > 0?
+        //   hashFile was touched before, so filesize can be greater than 0 - but
+        //   smaller than with actual hashcode content.
+        // * Filesize matching the hash-type/length?
+        //   It might be possible to use 'sizeof(hash($hashType, "---"))' as
+        //   limit for valid filesize for this hashType?
+        // * If hashFile exists, but is *older* than $fileName: update hashcode.
         if (file_exists($hashFile) && filesize($hashFile) > 1)
         {
             // Continue to next file if hash-file for $filename already exists:
