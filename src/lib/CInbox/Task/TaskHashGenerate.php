@@ -227,6 +227,82 @@ class TaskHashGenerate extends TaskHash
 
 
     /**
+     * Checks if a hashcode file ($hashFile) already exists, performs
+     * validity checks to decide what to do in such a case.
+     * Returns True if existing hash is fine - and can be skipped.
+     * False if hashcode shall be re-generated.
+     *
+     * Checks performed:
+     *
+     *   * Is filesize > 1?
+     *     If it exists, but it's empty it's treated as "does NOT exist".
+     *
+     *   * Is $hashFile younger than $fileName?
+     *     (otherwise, the hashcode will most likely be outdated)
+     */
+    protected function skipExistingHashcode($hashFile, $fileName)
+    {
+        $l = $this->logger;
+
+        // IDEAs for hashcode file validity checks:
+        // * Filesize > 0?
+        //   hashFile was touched before, so filesize can be greater than 0 - but
+        //   smaller than with actual hashcode content.
+        // * Filesize matching the hash-type/length?
+        //   It might be possible to use 'sizeof(hash($hashType, "---"))' as
+        //   limit for valid filesize for this hashType?
+        // * If hashFile exists, but is *older* than $fileName: update hashcode.
+
+        if (!file_exists($hashFile))
+        {
+            $l->logDebug(sprintf(
+                _("Hashfile does NOT exist yet. Good. (%s)"),
+                $hashFile
+            ));
+
+            // Skip? False.
+            return false;
+        }
+
+        // From here on now, we assume $hashFile exists:
+        $l->logInfo(sprintf(
+            _("Hashfile already exists (%s)."),
+            $hashFile
+        ));
+
+        if (filesize($hashFile) == 0)
+        {
+            // hashFile exists, but is empty.
+            $l->logInfo(sprintf(
+                _("Hashfile is empty."),
+                $hashFile
+            ));
+
+            // Skip? False.
+            return false;
+        }
+
+        if (Helper::isFileOlderThan($hashFile, $fileName))
+        {
+            $l->logInfo(sprintf(
+                _("Hashcode is possibly outdated: data file is newer or has changed?\n hash time = %s / data time = %s)"),
+                date(DATE_ISO8601, filemtime($hashFile)),
+                date(DATE_ISO8601, filemtime($fileName))
+            ));
+
+            return false;
+        }
+
+        // Skip calculating the has for $fileName, if $hashFile can be re-used.
+        // Saving computing cycles saves time, produces less heat and
+        // therefore saves climate - and nature! :)
+
+        // Skip? True.
+        return true;
+    }
+
+
+    /**
      * Generates a hashcode for a file.
      *
      * The hashcode algorithm type is defined in '$this->hashType' and therefore
@@ -243,19 +319,15 @@ class TaskHashGenerate extends TaskHash
         $hashFile = $this->getHashTempFilename($fileName, $folder, $hashType);
 
         $l->logDebug(sprintf(_("Hash file for '%s': %s"), $fileName, $hashFile));
-        // IDEAs for hashcode file validity checks:
-        // * Filesize > 0?
-        //   hashFile was touched before, so filesize can be greater than 0 - but
-        //   smaller than with actual hashcode content.
-        // * Filesize matching the hash-type/length?
-        //   It might be possible to use 'sizeof(hash($hashType, "---"))' as
-        //   limit for valid filesize for this hashType?
-        // * If hashFile exists, but is *older* than $fileName: update hashcode.
-        if (file_exists($hashFile) && filesize($hashFile) > 1)
+
+        if ($this->skipExistingHashcode($hashFile, $fileName))
         {
-            // Continue to next file if hash-file for $filename already exists:
-            // Saving computing cycles saves time, produces less heat and therefore saves climate - and nature! :)
-            $l->logInfo(sprintf(_("Skipping file. Hashfile already exists (%s)."), $hashFile));
+            $l->logMsg(sprintf(
+                _("Allowed to skip hashcode creation for '%s' :)"),
+                $fileName
+            ));
+
+            // Continue to next file if $hashFile can be re-used:
             return true;
         }
 

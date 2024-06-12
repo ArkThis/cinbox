@@ -647,6 +647,42 @@ class Helper
     }
 
 
+    /**
+     * Returns "true" if $file is older than $fileRef.
+     * At least 1 second.
+     *
+     * Uses the difference of their filemtime() to determine that.
+     */
+    public static function isFileOlderThan($file, $fileRef)
+    {
+        if (!file_exists($file) || !is_file($file)) throw
+            new InvalidArgumentException(
+                sprintf(
+                    _("isFileOlderThan: Invalid file '%s'. Does it exist and is a file?"),
+                    $file
+                )
+            );
+
+        if (!file_exists($fileRef) || !is_file($fileRef)) throw
+            new InvalidArgumentException(
+                sprintf(
+                    _("isFileOlderThan: Invalid reference file '%s'. Does it exist and is a file?"),
+                    $fileRef
+                )
+            );
+
+        $mtimeFile = filemtime($file);
+        $mtimeFileRef = filemtime($fileRef);
+
+        // Yes, it is older (at least 1 second):
+        if ($mtimeFile < $mtimeFileRef) return true;
+
+        // Timestamp is either newer or identical (!),
+        // but *not* older:
+        return false;
+    }
+
+
 
 }
 
