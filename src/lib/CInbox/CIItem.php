@@ -114,7 +114,10 @@ class CIItem extends CIFolder
         parent::__construct($logger, $folderName, $baseFolder);
 
         $this->setItemId($itemId);
-        $logger->logHeader(sprintf(_("Item: %s"), $itemId));
+        $logger->logHeader(sprintf(
+            _("Item: %s"),
+            $itemId
+        ));
     }
 
 
@@ -330,7 +333,10 @@ class CIItem extends CIFolder
 
         if (empty($script))
         {
-            $l->logDebug(sprintf(_("No bucket script given. NOTE: Placeholder '%s' will NOT be resolved."), __BUCKET__));
+            $l->logDebug(sprintf(
+                _("No bucket script given. NOTE: Placeholder '%s' will NOT be resolved."),
+                __BUCKET__
+            ));
             return false;
         }
 
@@ -417,7 +423,10 @@ class CIItem extends CIFolder
         $maxDepth = $itemConfig->get(self::CONF_MAX_FOLDER_DEPTH);
         if ($depth > $maxDepth)
         {
-            throw new Exception(sprintf(_("Maximum recursion depth %d exceeded (%d)!"), $maxDepth, $depth));
+            throw new Exception(sprintf(
+                _("Maximum recursion depth %d exceeded (%d)!"),
+                $maxDepth, $depth
+            ));
         }
 
         // Include start folder (baseFolder is itemFolder):
@@ -455,7 +464,12 @@ class CIItem extends CIFolder
         $folder->setParentItem($this);
         $folder->setParentFolder($parent);
         $folder->setTempFolder($this->getTempFolder());
-        $l->logDebug(sprintf(_("Initializing Item subfolder: '%s' (=%s) / base: '%s'"), $folderName, $folder->getSubDir(), $baseFolder));
+        $l->logDebug(sprintf(
+            _("Initializing Item subfolder: '%s' (=%s) / base: '%s'"),
+            $folderName,
+            $folder->getSubDir(),
+            $baseFolder
+        ));
 
         // Set as many placeholder values that we can already provide at this point:
         $itemConfig->addPlaceholder(__DIR_BASE__, $baseFolder);
@@ -498,7 +512,10 @@ class CIItem extends CIFolder
         $task->setItemSubDirs($itemSubDirs);
         $folderName = $folder->getPathname();
 
-        $l->logInfo(sprintf(_("Running task '%s' on folder: '%s'"), $taskName, $folder->getSubDir()));
+        $l->logInfo(
+            sprintf(_("Running task '%s' on folder: '%s'"),
+            $taskName, $folder->getSubDir()
+        ));
 
         // Here's the call to the actual processing of each folder entry:
         if (!$task->init()) return $task;
@@ -525,7 +542,11 @@ class CIItem extends CIFolder
         $this->tryAgain = false;
 
         // Check if item has been initialized before processing it. Exception if not.
-        if (!$this->isInitialized()) throw new Exception(sprintf(_("Unable to process item '%s'. Item not initialized."), $itemId));
+        if (!$this->isInitialized()) throw
+            new Exception(sprintf(
+                _("Unable to process item '%s'. Item not initialized."),
+                $itemId
+            ));
 
         $l->logMsg(sprintf(_("Processing item '%s'..."), $itemId));
 
@@ -539,7 +560,11 @@ class CIItem extends CIFolder
 
         // Item subfolders can be changed by tasks. Will be reloaded if necessary (see $subDirsNow, below).
         $subDirs = $this->initItemSubFolders($itemFolder);
-        $l->logInfo(sprintf(_("Subfolder structure of '%s':\n%s"), $itemFolder, print_r(array_keys($subDirs), true)));
+        $l->logInfo(sprintf(
+            _("Subfolder structure of '%s':\n%s"),
+            $itemFolder,
+            print_r(array_keys($subDirs), true)
+        ));
 
         $tasksDone = 0;
         $taskList = $config->get(self::CONF_TASKLIST);
@@ -556,9 +581,17 @@ class CIItem extends CIFolder
             $diff = Helper::arrayDiffKey($subDirsList, $subDirsNow);
             if (!empty($diff))
             {
-                $l->logMsg(sprintf(_("(%s) Subfolder structure has changed. Loading it again."), $itemId));
+                $l->logMsg(sprintf(
+                    _("(%s) Subfolder structure has changed. Loading it again."),
+                    $itemId
+                ));
+
                 $subDirs = $this->initItemSubFolders($itemFolder);
-                $l->logInfo(sprintf(_("Subfolder structure of '%s':\n%s"), $itemFolder, print_r(array_keys($subDirs), true)));
+                $l->logInfo(sprintf(
+                    _("Subfolder structure of '%s':\n%s"),
+                    $itemFolder,
+                    print_r(array_keys($subDirs), true)
+                ));
             }
 
             $l->logNewline();
@@ -574,47 +607,71 @@ class CIItem extends CIFolder
                 // Evaluate task's status to see if we shall abort or "problem but continue".
                 if ($task->statusError())
                 {
-                    $l->logError(sprintf(_("(%s): Issue found in task '%s'. Aborting task list"), $itemId, $taskName));
+                    $l->logError(sprintf(
+                        _("(%s): Issue found in task '%s'. Aborting task list"),
+                        $itemId, $taskName
+                    ));
                     $abortAfterTask = true;
                     $task_errors1++;
                     break;
                 }
                 if ($task->statusConfigError())
                 {
-                    $l->logError(sprintf(_("(%s): Problem with config setting found in task '%s'. Aborting task list"), $itemId, $taskName));
+                    $l->logError(sprintf(
+                        _("(%s): Problem with config setting found in task '%s'. Aborting task list"),
+                        $itemId, $taskName
+                    ));
                     $abortAfterTask = true;
                     $task_errors1++;
                     break;
                 }
                 elseif ($task->statusPBCT())
                 {
-                    $l->logWarning(sprintf(_("(%s): Issue found in task '%s'. This Task may proceed, but tasklist will be aborted."), $itemId, $taskName));
+                    $l->logWarning(sprintf(
+                        _("(%s): Issue found in task '%s'. This Task may proceed, but tasklist will be aborted."),
+                        $itemId, $taskName
+                    ));
                     $abortAfterTask = true;
                     $task_errors2++;
                 }
                 elseif ($task->statusPBC())
                 {
-                    $l->logWarning(sprintf(_("(%s): Issue found in task '%s'. Processing may still proceed..."), $itemId, $taskName));
+                    $l->logWarning(sprintf(
+                        _("(%s): Issue found in task '%s'. Processing may still proceed..."),
+                        $itemId, $taskName
+                    ));
                     $task_errors2++;
                 }
                 elseif ($task->statusDone())
                 {
-                    $l->logDebug(sprintf(_("(%s): Task '%s' okay for '%s'."), $itemId, $taskName, $CIFolder->getSubDir()));
+                    $l->logDebug(sprintf(
+                        _("(%s): Task '%s' okay for '%s'."),
+                        $itemId, $taskName, $CIFolder->getSubDir()
+                    ));
                 }
                 elseif ($task->statusSkipped())
                 {
-                    $l->logInfo(sprintf(_("(%s): Task '%s' skipped for '%s'."), $itemId, $taskName, $CIFolder->getSubDir()));
+                    $l->logInfo(sprintf(
+                        _("(%s): Task '%s' skipped for '%s'."),
+                        $itemId, $taskName, $CIFolder->getSubDir()
+                    ));
                 }
                 elseif ($task->statusWait())
                 {
-                    $l->logMsg(sprintf(_("(%s): Task '%s' triggered Item to wait. Resetting Item after this task."), $itemId, $taskName));
+                    $l->logMsg(sprintf(
+                        _("(%s): Task '%s' triggered Item to wait. Resetting Item after this task."),
+                        $itemId, $taskName
+                    ));
                     $this->tryAgain = true;
                     $abortAfterTask = true;
                     break;
                 }
                 else
                 {
-                    $l->logError(sprintf(_("(%s): Task '%s': Invalid task status '%s'."), $itemId, $taskName, $task->getStatus()));
+                    $l->logError(sprintf(
+                        _("(%s): Task '%s': Invalid task status '%s'."),
+                        $itemId, $taskName, $task->getStatus()
+                    ));
                     $task_errors1++;
                     break;
                 }
@@ -623,12 +680,18 @@ class CIItem extends CIFolder
                 // Special task types may abort earlier:
                 if ($task->isRecursive())
                 {
-                    $l->logMsg(sprintf(_("Task '%s' is recursive itself. Applied only to '%s'."), $taskName, $CIFolder->getSubDir()));
+                    $l->logMsg(sprintf(
+                        _("Task '%s' is recursive itself. Applied only to '%s'."),
+                        $taskName, $CIFolder->getSubDir()
+                    ));
                     break;
                 }
                 elseif($task->oncePerItem())
                 {
-                    $l->logMsg(sprintf(_("Task '%s' is marked as 'once per Item'. Applied only to '%s'."), $taskName, $CIFolder->getSubDir()));
+                    $l->logMsg(sprintf(
+                        _("Task '%s' is marked as 'once per Item'. Applied only to '%s'."),
+                        $taskName, $CIFolder->getSubDir()
+                    ));
                     break;
                 }
 
@@ -637,7 +700,10 @@ class CIItem extends CIFolder
 
             if ($task_errors1 + $task_errors2 == 0)
             {
-                $l->logMsg(sprintf(_("(%s): Task '%s' ran successfully."), $itemId, $taskName));
+                $l->logMsg(sprintf(
+                    _("(%s): Task '%s' ran successfully."),
+                    $itemId, $taskName
+                ));
                 $tasksDone++;
             }
             else
@@ -708,7 +774,10 @@ class CIItem extends CIFolder
     {
         $l = $this->logger;
 
-        $l->logMsg(sprintf(_("Checking if item '%s' is ready for processing..."), $this->itemId));
+        $l->logMsg(sprintf(
+            _("Checking if item '%s' is ready for processing..."),
+            $this->itemId
+        ));
 
         // TODO: This would be a good point to check if item is empty - and decide whether to process it then or not.
 
@@ -724,11 +793,17 @@ class CIItem extends CIFolder
         }
 
         $age = round($this->lastChanged($cooloff_filters));
-        $l->logMsg(sprintf(_("Item age is: %d minutes (cooloff time: %d)"), $age, $cooloff_time));
+        $l->logMsg(sprintf(
+            _("Item age is: %d minutes (cooloff time: %d)"),
+            $age, $cooloff_time
+        ));
 
         if ($age < $cooloff_time)
         {
-            $l->logMsg(sprintf(_("Item not ready for processing: Need to wait %d more minutes."), ($cooloff_time - $age)));
+            $l->logMsg(sprintf(
+                _("Item not ready for processing: Need to wait %d more minutes."),
+                ($cooloff_time - $age)
+            ));
             return false;
         }
 
@@ -746,7 +821,10 @@ class CIItem extends CIFolder
 
         if (!is_writeable($tempFolder))
         {
-            throw new Exception(sprintf(_("Invalid temp folder given. '%s' is not writable. Check access rights?"), $tempFolder));
+            throw new Exception(sprintf(
+                _("Invalid temp folder given. '%s' is not writable. Check access rights?"),
+                $tempFolder
+            ));
         }
 
         // Add itemID (lowercase) as subfolder to "tempFolder":
@@ -755,12 +833,18 @@ class CIItem extends CIFolder
 
         if (!file_exists($tempFolder) && !mkdir($tempFolder))
         {
-            throw new Exception(sprintf(_("Creating temp folder '%s' failed."), $tempFolder));
+            throw new Exception(sprintf(
+                _("Creating temp folder '%s' failed."),
+                $tempFolder
+            ));
         }
 
         return parent::setTempFolder($tempFolder);
 
-        $l->logMsg(sprintf(_("Set temp folder for '%s' to '%s'."), $itemId, $tempFolder));
+        $l->logMsg(sprintf(
+            _("Set temp folder for '%s' to '%s'."),
+            $itemId, $tempFolder
+        ));
     }
 
 
@@ -776,7 +860,11 @@ class CIItem extends CIFolder
         // If it's already gone, why bother? ;)
         if (!file_exists($tempFolder)) return true;
 
-        $l->logInfo(sprintf(_("Trying to remove temp folder '%s'..."), $tempFolder));
+        $l->logInfo(sprintf(
+            _("Trying to remove temp folder '%s'..."),
+            $tempFolder
+        ));
+
         if (Helper::removeFolder($tempFolder))
         {
             $l->logInfo(_("Removed temp folder."));
@@ -784,7 +872,10 @@ class CIItem extends CIFolder
         }
         else
         {
-            $l->logError(sprintf(_("Could not remove temp folder '%s'."), $tempFolder));
+            $l->logError(sprintf(
+                _("Could not remove temp folder '%s'."),
+                $tempFolder
+            ));
             return false;
         }
     }
@@ -810,7 +901,11 @@ class CIItem extends CIFolder
         $youngest = Helper::getYoungest($this->getPathname());
         if (!is_a($youngest, 'SplFileInfo'))
         {
-            throw new Exception(sprintf(_("Unable to determine age of %s. Invalid return type: %s"), print_r($youngest, true), gettype($youngest)));
+            throw new Exception(sprintf(
+                _("Unable to determine age of %s. Invalid return type: %s"),
+                print_r($youngest, true),
+                gettype($youngest)
+            ));
         }
 
         $age = time() - $youngest->getMTime();
@@ -886,7 +981,10 @@ class CIItem extends CIFolder
 
         $sourceFolder = $this->getPathname();
         $now = time();
-        $l->logInfo(sprintf(_("Updating Item timestamp to: %s"), date(DATE_ATOM, $now)));
+        $l->logInfo(sprintf(
+            _("Updating Item timestamp to: %s"),
+            date(DATE_ATOM, $now)
+        ));
 
         return touch($sourceFolder);
     }
