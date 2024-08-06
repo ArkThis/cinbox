@@ -381,7 +381,7 @@ class CIConfig
      * Updates the file properties of the config file and stores
      * them in $configFileProps.
      *
-     * This is used to monitor the config file during runtime in order to 
+     * This is used to monitor the config file during runtime in order to
      * know if settings must be reloaded or not.
      *
      * @retval Array
