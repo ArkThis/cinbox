@@ -93,10 +93,17 @@ class TaskRenameTarget extends TaskCopy
 
             // Keep record of used staging folders (for later garbage collection):
             $this->targetFolderStages[$targetFolder] = $targetFolderStage;
-            // TODO: This would be good to have as a item-level information (beyond this task).
+
+            // Use the parentItem to remember things:
+            $parentItem = $this->getParentItem();
+            $parentItem->remember('targetFolderStages', $this->targetFolderStages);
 
             // Log the resolved target folder in a machine readable way:
-            $CIFolder->logTargetFolder($hasOwn=true, $isAbsolute=true);
+            $result = $CIFolder->logTargetFolder($hasOwn=true, $isAbsolute=true);
+            if ($result !== false)
+            {
+                $parentItem->remember('targetFolders', $result, $append=true);
+            }
 
             if (!file_exists($targetFolderStage))
             {
