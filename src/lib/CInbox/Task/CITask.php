@@ -308,7 +308,10 @@ TODO: Idea!
      */
     public function setItemSubDirs($itemSubDirs)
     {
-        if (!is_array($itemSubDirs)) throw new Exception(_("Invalid item subdirs: not an array."));
+        if (!is_array($itemSubDirs)) throw new InvalidArgumentException(
+            _("Invalid item subdirs variable: not an array.")
+        );
+
         // TODO: More checks if contents of array are proper?
         $this->itemSubDirs = $itemSubDirs;
     }
