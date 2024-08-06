@@ -19,6 +19,7 @@
 namespace ArkThis\CInbox\Task;
 
 use \ArkThis\CInbox\CIFolder;
+use \ArkThis\CInbox\CIItem;
 use \Exception as Exception;
 
 
@@ -117,6 +118,7 @@ abstract class CITask
      */
     //@{
     protected $CIFolder;                    ///< CIFolder object that provides all information needed for this task.
+    protected $parentItem;                  ///< CIItem object this task is called/spawned by. Its parent.
     protected $sourceFolder;                ///< Source folder of this task.
     protected $targetFolder;                ///< Target folder of this task (read from config).
     protected $targetFolderStage;           ///< Temporary name of Target folder of this task. Used until inbox processing completed successfully.
@@ -253,6 +255,39 @@ TODO: Idea!
     public function getDescription()
     {
         return $this->description;
+    }
+
+
+    /**
+     * Sets the parent CIItem this task belongs to.
+     *
+     * This item reference can be used to coordinate certain things "beyond a
+     * task's view/scope".
+     */
+    public function setParentItem($item)
+    {
+        if (!$item instanceof CIItem)
+        {
+            throw new InvalidArgumentException(sprintf(
+                _("Cannot set parent item for task '%s': item is not an instance of a CIItem class, but '%s'."), 
+                $this->name,
+                gettype($item)
+            ));
+        }
+
+        $this->parentItem = $item;
+    }
+
+
+    /**
+     * Returns the parent CIItem this task belongs to.
+     *
+     * This item reference can be used to coordinate certain things "beyond a
+     * task's view/scope".
+     */
+    public function getParentItem()
+    {
+        return $this->parentItem;
     }
 
 
