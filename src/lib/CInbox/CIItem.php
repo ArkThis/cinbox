@@ -186,7 +186,7 @@ class CIItem extends CIFolder
         $l = $this->logger;
 
         $l->logDebug(sprintf(
-            _("Item '%s' memory: Remembering '%s' as '%s'.\n"),
+            _("Item memory '%s': Remembering '%s' as '%s'.\n"),
             $this->itemId,
             $key,
             print_r($value, true)
@@ -219,7 +219,7 @@ class CIItem extends CIFolder
         if (!isset($this->memory[$key]))
         {
             throw new LogicException(sprintf(
-                _("Item '%s' memory: Unable to recall key '%s', because it's not set."),
+                _("Item memory '%s': Unable to recall key '%s', because it's not set."),
                 $this->itemId,
                 $key
             ));
@@ -251,7 +251,7 @@ class CIItem extends CIFolder
         if (empty($key))
         {
             throw new InvalidArgumentException(sprintf(
-                _("Item '%s' memory: Cannot forget empty key value. 🤔️"),
+                _("Item memory '%s': Cannot forget empty key value. 🤔️"),
                 $this->itemId
             ));
         }
@@ -259,7 +259,7 @@ class CIItem extends CIFolder
         if (!isset($this->memory[$key]))
         {
             $l->logDebug(sprintf(
-                _("Item '%s' memory: Asked to forget a key that wasn't remembered: '%s'?"),
+                _("Item memory '%s': Asked to forget a key that wasn't remembered: '%s'?"),
                 $this->itemId,
                 $key
             ));
