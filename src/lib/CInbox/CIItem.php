@@ -200,7 +200,18 @@ class CIItem extends CIFolder
             $this->memory[$key] = array();
         }
 
-        $this->memory[$key][] = $value;
+        // Use the current UNIX timestamp as sub-key.
+        // This allows to know *when* the information was stored here.
+        $time = time();
+
+        // To avoid collisions on the same "second", bump it up "1s later".
+        // - until we get a free space.
+        while (array_key_exists($time, $this->memory[$key]))
+        {
+            $time += 1;
+        }
+
+        $this->memory[$key][$time] = $value;
 
         return true;
     }
