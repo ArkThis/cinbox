@@ -41,6 +41,7 @@ var searchData=
   ['showinstanceid',['showInstanceId',['../classArkThis_1_1Logger.html#af14a596d20c6a91c84360737c9c595b2',1,'ArkThis::Logger']]],
   ['showtimestamp',['showTimestamp',['../classArkThis_1_1Logger.html#a9eadb836e7ff459c4710709f443a7ad1',1,'ArkThis::Logger']]],
   ['skip',['skip',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#af7e5dd33567c549f45c754895100d453',1,'ArkThis::CInbox::Task::CITask']]],
+  ['skipexistinghashcode',['skipExistingHashcode',['../classArkThis_1_1CInbox_1_1Task_1_1TaskHashGenerate.html#a801616aad4a39cf54ccff5f8e3838acf',1,'ArkThis::CInbox::Task::TaskHashGenerate']]],
   ['skipit',['skipIt',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a8a38209165ab401fd29a33f2aeb8f5c4',1,'ArkThis::CInbox::Task::CITask']]],
   ['sortitems',['sortItems',['../classArkThis_1_1CInbox_1_1CInbox.html#a21418a54fcdf0a552c9f849a6862593a',1,'ArkThis::CInbox::CInbox']]],
   ['status_5fconfig_5ferror',['STATUS_CONFIG_ERROR',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#aca0ffbeb3248085cc4c4c4427b629d77',1,'ArkThis::CInbox::Task::CITask']]],
@@ -62,5 +63,6 @@ var searchData=
   ['statusundefined',['statusUndefined',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#af754aa11b7f3a2ffc06dc520ee70c491',1,'ArkThis::CInbox::Task::CITask']]],
   ['statuswait',['statusWait',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a28de2595d767f6ed85d9fb698edfc6ad',1,'ArkThis::CInbox::Task::CITask']]],
   ['storeconfigfileprops',['storeConfigFileProps',['../classArkThis_1_1CInbox_1_1CIConfig.html#a42969a233abd6804badf1003f90711f9',1,'ArkThis::CInbox::CIConfig']]],
+  ['stringcopyfileinfo',['stringCopyFileInfo',['../classArkThis_1_1Helper.html#a0dbfa90d19d6dc087a720bfae9fc9e5e',1,'ArkThis::Helper']]],
   ['switchstatus',['switchStatus',['../classArkThis_1_1CInbox_1_1CInbox.html#a450ecb98423b1f6c125c77bfc7ea22b2',1,'ArkThis::CInbox::CInbox']]]
 ];

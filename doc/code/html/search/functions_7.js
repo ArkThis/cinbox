@@ -12,6 +12,7 @@ var searchData=
   ['isabsolutepath',['isAbsolutePath',['../classArkThis_1_1Helper.html#aeb99ed505c5bdf0fca437afd96fe96d0',1,'ArkThis::Helper']]],
   ['iscmdvalid',['isCmdValid',['../classArkThis_1_1CInbox_1_1Task_1_1TaskExec.html#a6e9ffb0bb49b330ee83f7254a2191a20',1,'ArkThis::CInbox::Task::TaskExec']]],
   ['isdue',['isDue',['../classArkThis_1_1CInbox_1_1CInbox.html#a1715f93aa1e0bba62dfcccf3c7d57a52',1,'ArkThis::CInbox::CInbox']]],
+  ['isfileolderthan',['isFileOlderThan',['../classArkThis_1_1Helper.html#ad8f7b9ccae7803011649f58aa7cba814',1,'ArkThis::Helper']]],
   ['isfolderempty',['isFolderEmpty',['../classArkThis_1_1Helper.html#af81e95e3a1434ba342d47c0fa8f35ff6',1,'ArkThis::Helper']]],
   ['isitemidvalid',['isItemIdValid',['../classArkThis_1_1CInbox_1_1CIItem.html#a0d10ab6d860d0d696125f8a35c666f7b',1,'ArkThis::CInbox::CIItem']]],
   ['isrecursive',['isRecursive',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#aa6b10b8f074432a4d8bd0c2233d1435e',1,'ArkThis::CInbox::Task::CITask']]],

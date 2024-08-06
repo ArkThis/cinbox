@@ -102,6 +102,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a430d08928c907b3c5158fa5a818ec23b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa809ea13a9eba38e53c206149d58bb4b"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1Helper.html#aa809ea13a9eba38e53c206149d58bb4b">getFolderListing2</a> ($folder)</td></tr>
 <tr class="separator:aa809ea13a9eba38e53c206149d58bb4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18deac35605ca9adf9e0e1bc4ba8d497"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1Helper.html#a18deac35605ca9adf9e0e1bc4ba8d497">getFolderListing3</a> ($folder)</td></tr>
+<tr class="separator:a18deac35605ca9adf9e0e1bc4ba8d497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dbfa90d19d6dc087a720bfae9fc9e5e"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1Helper.html#a0dbfa90d19d6dc087a720bfae9fc9e5e">stringCopyFileInfo</a> ($splFileInfo)</td></tr>
+<tr class="separator:a0dbfa90d19d6dc087a720bfae9fc9e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7e78e2b6ae9e163908873b96b2ff1a0"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1Helper.html#ab7e78e2b6ae9e163908873b96b2ff1a0">getRecursiveFolderListing</a> ($folder, $flags=null)</td></tr>
 <tr class="separator:ab7e78e2b6ae9e163908873b96b2ff1a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b1f2b6f46f64bd39543c8557482aa17"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1Helper.html#a9b1f2b6f46f64bd39543c8557482aa17">dirlistToText</a> ($list, $filter_keys=null)</td></tr>
@@ -114,6 +118,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a420a3532367b7638a2a320506512ff61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a9e3add334c62edded34bec4b499a79"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1Helper.html#a4a9e3add334c62edded34bec4b499a79">getAbsoluteName</a> ($filename, $base=null)</td></tr>
 <tr class="separator:a4a9e3add334c62edded34bec4b499a79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8f7b9ccae7803011649f58aa7cba814"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1Helper.html#ad8f7b9ccae7803011649f58aa7cba814">isFileOlderThan</a> ($file, $fileRef)</td></tr>
+<tr class="separator:ad8f7b9ccae7803011649f58aa7cba814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class contains functions that just don't fit anywhere else. Or that are simply useful in many different places ;)</p>
@@ -447,6 +453,34 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a18deac35605ca9adf9e0e1bc4ba8d497"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18deac35605ca9adf9e0e1bc4ba8d497">&#9670;&nbsp;</a></span>getFolderListing3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ArkThis\Helper::getFolderListing3 </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$folder</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Same functionality as <a class="el" href="classArkThis_1_1Helper.html#a430d08928c907b3c5158fa5a818ec23b">getFolderListing()</a>, but does <em>not</em> keep the listed filesystem entries open.</p>
+<p>Uses FilesystemIterator instead of DirectoryIterator. </p>
+
+</div>
+</div>
 <a id="a1c396189aa79033b830cc128002b271e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1c396189aa79033b830cc128002b271e">&#9670;&nbsp;</a></span>getPhpUser()</h2>
 
@@ -684,6 +718,44 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ad8f7b9ccae7803011649f58aa7cba814"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8f7b9ccae7803011649f58aa7cba814">&#9670;&nbsp;</a></span>isFileOlderThan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ArkThis\Helper::isFileOlderThan </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$fileRef</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns "true" if $file is older than $fileRef. At least 1 second.</p>
+<p>Uses the difference of their filemtime() to determine that. </p>
+
+</div>
+</div>
 <a id="af81e95e3a1434ba342d47c0fa8f35ff6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af81e95e3a1434ba342d47c0fa8f35ff6">&#9670;&nbsp;</a></span>isFolderEmpty()</h2>
 
@@ -809,6 +881,34 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a0dbfa90d19d6dc087a720bfae9fc9e5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dbfa90d19d6dc087a720bfae9fc9e5e">&#9670;&nbsp;</a></span>stringCopyFileInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ArkThis\Helper::stringCopyFileInfo </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$splFileInfo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Copies information from an SplFileInfo Object as strings and numbers - so the SplFileInfo Object can be freed - and the file-handle it points to closed.</p>
+<p>Used to avoid running into "too many open files" errors. </p>
+
+</div>
+</div>
 <a id="ae366c9adfb9eada6494383219b8d2c72"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae366c9adfb9eada6494383219b8d2c72">&#9670;&nbsp;</a></span>touchFile()</h2>
 
@@ -842,7 +942,7 @@ Static Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 2 2024 17:56:10 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 6 2024 10:24:24 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

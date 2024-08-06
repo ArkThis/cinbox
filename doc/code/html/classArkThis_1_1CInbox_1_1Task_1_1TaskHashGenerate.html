@@ -219,6 +219,8 @@ Protected Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Task-specific methods</div></td></tr>
 <tr class="memitem:afea7a5d2cfc28aed38dc8b359e53731b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1TaskHashGenerate.html#afea7a5d2cfc28aed38dc8b359e53731b">generateHashcodes</a> ($sourceFolder)</td></tr>
 <tr class="separator:afea7a5d2cfc28aed38dc8b359e53731b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a801616aad4a39cf54ccff5f8e3838acf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1TaskHashGenerate.html#a801616aad4a39cf54ccff5f8e3838acf">skipExistingHashcode</a> ($hashFile, $fileName)</td></tr>
+<tr class="separator:a801616aad4a39cf54ccff5f8e3838acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a662292a0403d9d68fb3bb8aa187e1f92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1TaskHashGenerate.html#a662292a0403d9d68fb3bb8aa187e1f92">generateHashcode</a> ($hashType=null, $fileName)</td></tr>
 <tr class="separator:a662292a0403d9d68fb3bb8aa187e1f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81b324ccaf09269ecff6ed4f8fdf8e0f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1CInbox_1_1Task_1_1TaskHashGenerate.html#a81b324ccaf09269ecff6ed4f8fdf8e0f">checkForHashDuplicates</a> ()</td></tr>
@@ -494,13 +496,55 @@ static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 
 </div>
 </div>
+<a id="a801616aad4a39cf54ccff5f8e3838acf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a801616aad4a39cf54ccff5f8e3838acf">&#9670;&nbsp;</a></span>skipExistingHashcode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ArkThis\CInbox\Task\TaskHashGenerate::skipExistingHashcode </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$hashFile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$fileName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Checks if a hashcode file ($hashFile) already exists, performs validity checks to decide what to do in such a case. Returns True if existing hash is fine - and can be skipped. False if hashcode shall be re-generated.</p>
+<p>Checks performed:</p>
+<ul>
+<li>Is filesize &gt; 1? If it exists, but it's empty it's treated as "does NOT exist".</li>
+<li>Is $hashFile younger than $fileName? (otherwise, the hashcode will most likely be outdated) </li>
+</ul>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>/opt/arkthis.github/cinbox/src/lib/CInbox/Task/TaskHashGenerate.php</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 2 2024 17:56:10 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 6 2024 10:24:24 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

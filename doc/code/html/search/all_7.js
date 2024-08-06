@@ -26,6 +26,7 @@ var searchData=
   ['getfilename',['getFilename',['../classArkThis_1_1CInbox_1_1CIFolder.html#a122bf3d8cf33d5a7ace11847aeae78f7',1,'ArkThis\CInbox\CIFolder\getFilename()'],['../classArkThis_1_1CInbox_1_1Task_1_1TaskDirListCSV.html#adc639458dac9edd3b303ad2a0c94bec1',1,'ArkThis\CInbox\Task\TaskDirListCSV\getFilename()']]],
   ['getfolderlisting',['getFolderListing',['../classArkThis_1_1Helper.html#a430d08928c907b3c5158fa5a818ec23b',1,'ArkThis::Helper']]],
   ['getfolderlisting2',['getFolderListing2',['../classArkThis_1_1Helper.html#aa809ea13a9eba38e53c206149d58bb4b',1,'ArkThis::Helper']]],
+  ['getfolderlisting3',['getFolderListing3',['../classArkThis_1_1Helper.html#a18deac35605ca9adf9e0e1bc4ba8d497',1,'ArkThis::Helper']]],
   ['getfromarray',['getFromArray',['../classArkThis_1_1CInbox_1_1CIConfig.html#ad24f91c13a693e621642050152d8d634',1,'ArkThis::CInbox::CIConfig']]],
   ['getfromdefault',['getFromDefault',['../classArkThis_1_1CInbox_1_1CIConfig.html#a67fd2610a3a5551e0f3cb1e355d07d7b',1,'ArkThis::CInbox::CIConfig']]],
   ['getfromundefined',['getFromUndefined',['../classArkThis_1_1CInbox_1_1CIConfig.html#a11e9224056319634ad088059e25754a7',1,'ArkThis::CInbox::CIConfig']]],
