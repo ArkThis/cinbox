@@ -269,7 +269,7 @@ TODO: Idea!
         if (!$item instanceof CIItem)
         {
             throw new InvalidArgumentException(sprintf(
-                _("Cannot set parent item for task '%s': item is not an instance of a CIItem class, but '%s'."), 
+                _("Cannot set parent item for task '%s': item is not an instance of a CIItem class, but '%s'."),
                 $this->name,
                 gettype($item)
             ));

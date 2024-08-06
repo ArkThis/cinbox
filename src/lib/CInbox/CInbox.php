@@ -199,7 +199,7 @@ class CInbox
         if (is_dir($tempFolder))
         {
             $l->logInfo(sprintf(
-                _("Trying to remove temp folder '%s'..."), 
+                _("Trying to remove temp folder '%s'..."),
                 $tempFolder
             ));
             if (Helper::removeEmptySubfolders($tempFolder))
@@ -210,7 +210,7 @@ class CInbox
             {
                 $l->logMsg(sprintf(
                     _("Could not remove temp folder '%s'. ".
-                    "This is okay if some items are still in present in the processing folders."), 
+                    "This is okay if some items are still in present in the processing folders."),
                     $tempFolder
                 ));
             }
@@ -379,7 +379,7 @@ class CInbox
             $config->setSettingsDefaults($this->getDefaultValues());
             $config->loadSettings($configArray);
             $l->logDebug(sprintf(
-                _("Settings for inbox:\n%s"), 
+                _("Settings for inbox:\n%s"),
                 print_r($config->getSettings(), true))
             );
 
@@ -454,7 +454,7 @@ class CInbox
         if (empty($workTimes))
         {
             $l->logDebug(sprintf(
-                _("No %s set. That's fine. We have nothing to wait for."), 
+                _("No %s set. That's fine. We have nothing to wait for."),
                 self::CONF_WORK_TIMES
             ));
             return false;
@@ -708,7 +708,7 @@ class CInbox
             if (!mkdir($tempFolder))
             {
                 $l->logError(sprintf(
-                    _("Could not create temp folder '%s'. Check access rights? Does parent folder exist?"), 
+                    _("Could not create temp folder '%s'. Check access rights? Does parent folder exist?"),
                     $tempFolder));
                 return false;
             }
@@ -883,7 +883,7 @@ class CInbox
         if (empty($workTimes))
         {
             $l->logDebug(sprintf(
-                _("No %s set. Nothing to wait for."), 
+                _("No %s set. Nothing to wait for."),
                 self::CONF_WORK_TIMES
             ));
             return true;
@@ -905,14 +905,14 @@ class CInbox
             }
 
             // If 'now' matches any of the expressions in $workTimes, return true:
-            if ($cron->isDue()) 
-            { 
+            if ($cron->isDue())
+            {
                 $l->logInfo(sprintf(
                     _("%s expression '%s' is now due!\n Ready to continue.\n\n"),
                     self::CONF_WORK_TIMES,
                     $cron->getExpression()
                 ));
-                return true; 
+                return true;
             }
         }
 
@@ -1243,8 +1243,8 @@ class CInbox
             $folderName = $entry['Pathname'];
             $days = (time() - $entry['MTime']) / 60 / 60 / 24;        // Conversion: Seconds to days
             $l->logInfo(sprintf(
-                _("Item: %s (%d days old)"), 
-                basename($folderName), 
+                _("Item: %s (%d days old)"),
+                basename($folderName),
                 $days)
             );
 
@@ -1252,7 +1252,7 @@ class CInbox
             {
                 if (is_dir($folderName)) {
                     $l->logMsg(sprintf(
-                        _("Deleting finished Item: %s"), 
+                        _("Deleting finished Item: %s"),
                         basename($folderName))
                     );
                     // Only remove it, if it's a folder. Files directly in the "done" folder will stay:
