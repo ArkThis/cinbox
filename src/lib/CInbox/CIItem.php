@@ -610,6 +610,11 @@ class CIItem extends CIFolder
                 $task = $this->runTask($CIFolder, $taskName, $subDirs);
                 // TODO: Add some object to group subdir-tasks and share common
                 // settings/data/information between subdir tasks.
+ 
+                // TODO (issue #23):
+                // If item had an error, and TARGET_STAGE was already populated: delete it.
+                // Currently it's confusing where, in which class (CIFolder vs
+                // CITask) resolves and keeps/tracks the targetStage path.
 
                 // Evaluate task's status to see if we shall abort or "problem but continue".
                 if ($task->statusError())
