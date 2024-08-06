@@ -375,15 +375,13 @@ class CIItem extends CIFolder
         $this->config->loadSettings($configArray);
 
         // At this point, we can pick up the resolved token names:
-        $this->tokens[self::CONF_TOKEN_DONE] = $this->config->get(self::CONF_TOKEN_DONE);
-        $this->tokens[self::CONF_TOKEN_ERROR] = $this->config->get(self::CONF_TOKEN_ERROR);
+        $this->tokens[self::STATUS_DONE] = $this->config->get(self::CONF_TOKEN_DONE);
+        $this->tokens[self::STATUS_ERROR] = $this->config->get(self::CONF_TOKEN_ERROR);
 
         $l->logDebug(sprintf(
             _("Item Token folders: %s"),
             print_r($this->tokens, true)
         ));
-
-        die(); //DELME!
 
         // ----------------------
         $this->configured = true;
