@@ -1180,7 +1180,7 @@ class CIItem extends CIFolder
      * Returns a parse-able text that contains all desired information to be
      * written in an item's "token" file for inter-process communication.
      */
-    public function getTokenData()
+    public function getTokenData($flags=null)
     {
         // TODO/FIXME:
         // There should be a different variable for this, than just dumping the
@@ -1191,7 +1191,7 @@ class CIItem extends CIFolder
         $tokenData['itemId'] = $this->itemId;
         $tokenData['targetFolders'] = $this->recall('targetFolders', $strict=false);
 
-        $json = json_encode($tokenData);
+        $json = json_encode($tokenData, $flags);
 
         return $json;
     }
