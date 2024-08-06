@@ -379,7 +379,7 @@ class CIItem extends CIFolder
         $this->tokens[self::STATUS_ERROR] = $this->config->get(self::CONF_TOKEN_ERROR);
 
         $l->logDebug(sprintf(
-            _("Item Token folders: %s"),
+            _("Item Token filenames: %s"),
             print_r($this->tokens, true)
         ));
 
@@ -1142,6 +1142,68 @@ class CIItem extends CIFolder
     }
 
 
+    /**
+     * Returns a filename (if set) for a given token-key.
+     *
+     * @param[in] key   Can be any CIItem STATUS (CIItem::STATUS_DONE, CIItem::STATUS_ERROR, etc)
+     * @return a filename if set for this key/status, otherwise False.
+     */
+    public function getTokenFilename($key)
+    {
+        $l = $this->logger;
+
+        if (!array_key_exists($key, $this->tokens))
+        {
+            $l->logDebug(sprintf(
+                _("No token filename exists for given key '%s'."),
+                $key
+            ));
+            // This is a regular case. This is not necessarily an error.
+            // Therefore no exception here.
+            return false;
+        }
+
+        return $this->tokens[$key];
+    }
+
+
+    /**
+     * Returns a parse-able text that contains all desired information to be
+     * written in an item's "token" file for inter-process communication.
+     */
+    public function getTokenData()
+    {
+        $json = json_encode($this->memory);
+
+        return $json;
+    }
+
+
+    /**
+     * Writes $data to $tokenFile.
+     */
+    public function writeTokenFile($tokenFile, $data)
+    {
+        if (empty($tokenFile))
+        {
+            throw new DomainException(
+                _("Cannot write token file: Empty filename given."),
+            );
+        }
+
+        // prepare all subfolders, etc before we write the contents:
+        Helper::touchFile($tokenFile);
+
+        if (file_put_contents($tokenFile, $data) === false)
+        {
+            throw new RuntimeException(sprintf(
+                _("Could not write to token file '%s'. Check access rights?"),
+                $tokenFile
+            ));
+        }
+
+        return true;
+    }
 
 }
 

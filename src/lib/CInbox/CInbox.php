@@ -1211,12 +1211,29 @@ class CInbox
             $item->moveFolder($targetFolder);
             $this->itemList[$itemId] = $targetFolder;
             $l->logMsg(sprintf(_("(%s): Changed status from '%s' to '%s'..."), $this->itemId, basename(dirname($folder)), $status));
-            return $targetFolder;
         }
         catch (Exception $e)
         {
             $l->logException(sprintf(_("(%s): Could not move folder '%s' to '%s'."), $itemId, $folder, $targetFolder), $e);
         }
+
+        // Write token to trigger external processes:
+        $tokenFile = $item->getTokenFilename($status);
+        if (!empty($tokenFile))
+        {
+            $data = $item->getTokenData();
+            $result = $item->writeTokenFile($tokenFile, $data);
+            if ($result)
+            {
+                $l->logMsg(sprintf(
+                    _("Token '%s' written to: '%s'."),
+                    $status,
+                    $tokenFile
+                ));
+            }
+        }
+
+        return $targetFolder;
     }
 
 

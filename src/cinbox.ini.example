@@ -12,6 +12,12 @@ KEEP_FINISHED = 10
 MOVE_LOGFILES = 1
 DIR_TEMP = /var/cinbox
 
+; Create a file on success/error to trigger external processes.
+; That file will contain vitally necessary information (item_id,
+; target_folders, etc) to help trigger subsequent other, external processes.
+TOKEN_DONE = /tmp/done-[@ITEM_ID@]-[@YEAR@][@MONTH@].txt
+TOKEN_ERROR = /tmp/error-[@ITEM_ID@].txt
+
 ; Working hours when to process new items (crontab syntax):
 ; Monday to Friday, every minute.
 WORK_TIMES[] = * * * * 1-5
