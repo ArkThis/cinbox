@@ -617,7 +617,7 @@ class CIFolder
      * $hasOwn = false:     Only log if this folder has TARGET_FOLDER set in config file.
      * $isAbsolute = true:  Only log if the TARGET_FOLDER is an absolute path.
      *
-     * @return bool     success     True if line was logged, false if not (This is not an error).
+     * @return The target folder (string) if it was logged, False if not.
      */
     public function logTargetFolder($hasOwn=false, $isAbsolute=true)
     {
@@ -629,8 +629,10 @@ class CIFolder
         // Don't log relative paths:
         if ($isAbsolute && !$this->isTargetAbsolute()) return false;
 
-        $l->logPlain(sprintf(_("%s='%s'\n"), self::CONF_TARGET_FOLDER, $this->getTargetFolder()));
-        return true;
+        $folder = $this->getTargetFolder();
+        $l->logPlain(sprintf(_("%s='%s'\n"), self::CONF_TARGET_FOLDER, $folder));
+
+        return $folder;
     }
 
 
