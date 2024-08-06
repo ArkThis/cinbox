@@ -94,8 +94,9 @@ class CIConfig
 
 
     /**
-     * Initializes values for common placeholders, such as date/time values.
-     * This allows consistent timestamps across certain execution ranges.
+     * Initializes values for common placeholders, such as date/time values,
+     * PHP_SELF, etc.
+     * This allows consistent values across certain execution ranges.
      */
     public function initPlaceholders($arguments=null)
     {
