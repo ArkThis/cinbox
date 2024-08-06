@@ -224,23 +224,32 @@ class CIItem extends CIFolder
     /**
      * Recall information (value by key) from the item's "memory" property.
      *
-     * @param[in] key   The key in the memory array to look up.
+     * @param[in] key       The key in the memory array to look up.
+     * @param[in] strict    True: throw exception if key is not found, otherwise just return "null";
      * @return the uninterpreted value stored under the given $key.
      */
-    public function recall($key)
+    public function recall($key, $strict=true)
     {
         $l = $this->logger;
 
-        if (!isset($this->memory[$key]))
+        if (!array_key_exists($key, $this->memory))
         {
-            throw new LogicException(sprintf(
-                _("Item memory '%s': Unable to recall key '%s', because it's not set."),
-                $this->itemId,
-                $key
-            ));
-        }
+            if ($strict)
+            {
+                throw new LogicException(sprintf(
+                    _("Item memory '%s': Unable to recall key '%s', because it's not set."),
+                    $this->itemId,
+                    $key
+                ));
+            }
 
-        $value = $this->memory[$key];
+            // Return null if key doesn't exist, but we don't care:
+            $value = null;
+        }
+        else // array key *does* exist:
+        {
+            $value = $this->memory[$key];
+        }
 
         $l->logDebug(sprintf(
             _("Item '%s': Recalling '%s' as '%s'.\n"),
@@ -1173,7 +1182,16 @@ class CIItem extends CIFolder
      */
     public function getTokenData()
     {
-        $json = json_encode($this->memory);
+        // TODO/FIXME:
+        // There should be a different variable for this, than just dumping the
+        // item's "memory" here...
+        //
+
+        $tokenData = array();
+        $tokenData['itemId'] = $this->itemId;
+        $tokenData['targetFolders'] = $this->recall('targetFolders', $strict=false);
+
+        $json = json_encode($tokenData);
 
         return $json;
     }
