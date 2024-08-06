@@ -839,6 +839,15 @@ class CInbox
     }
 
 
+    public function finalizeItem()
+    {
+        $l = $this->logger;
+        $item = $this->item;
+
+        return $item->finalize();
+    }
+
+
     /**
      * Waits a number of seconds and displays a countdown.
      * $update defines how many seconds to wait between updating the countdown output.
@@ -967,7 +976,15 @@ class CInbox
                 {
                     if ($this->initItem() !== false)
                     {
-                        if (!$this->processItem()) throw new Exception(_("Could not process item"));;
+                        if (!$this->processItem()) throw new Exception(sprintf(
+                            _("Could not process item '%s'"),
+                            $itemId
+                        ));
+
+                        if (!$this->finalizeItem()) throw new Exception(sprintf(
+                            _("Could not finalize item '%s'"),
+                            $itemId
+                        ));
                     }
                 }
                 catch (Exception $e)
