@@ -20,7 +20,7 @@ define('__MONTH__', '[@MONTH@]');
 define('__DAY__', '[@DAY@]');
 define('__HOUR__', '[@HOUR@]');
 define('__MINUTE__', '[@MINUTE@]');
-define('__SECOND__', '[@MINUTE@]');
+define('__SECOND__', '[@SECOND@]');
 
 define('__DATETIME__', '[@DATETIME@]');
 
