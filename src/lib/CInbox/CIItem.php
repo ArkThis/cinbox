@@ -25,6 +25,10 @@ use \ArkThis\CInbox\CIConfig;
 use \ArkThis\CInbox\Task\CITask;
 use \Exception as Exception;
 
+// TODO: Create some some object/variable to share common
+// settings/data/information between subdir tasks.
+// Currently each task is fairly unable to get access to outcomes/info from
+// other tasks. This works, but it could be improved :)
 
 /**
  * This class is a logical representation of an CInbox Item.
@@ -510,6 +514,8 @@ class CIItem extends CIFolder
         // Instantiate task to execute:
         $task = CITask::getTaskByName($taskName, $folder);
         $task->setItemSubDirs($itemSubDirs);
+        // TODO: Here a task may be given a handle to some object/variable to
+        // share common settings/data/information between subdir tasks.
         $folderName = $folder->getPathname();
 
         $l->logInfo(
@@ -602,7 +608,8 @@ class CIItem extends CIFolder
             foreach ($subDirs as $subDir=>$CIFolder)
             {
                 $task = $this->runTask($CIFolder, $taskName, $subDirs);
-                // TODO: Add some object to group subdir-tasks and share common settings/data between subdir tasks.
+                // TODO: Add some object to group subdir-tasks and share common
+                // settings/data/information between subdir tasks.
 
                 // Evaluate task's status to see if we shall abort or "problem but continue".
                 if ($task->statusError())
