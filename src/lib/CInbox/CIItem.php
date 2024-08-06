@@ -108,6 +108,8 @@ class CIItem extends CIFolder
 
     public $tryAgain = false;                    // True if item needs to be reset back to #STATUS_TODO (@see CITask::STATUS_WAIT)
 
+    protected $memory = array();                  // A dictionary to hold information to be shared across tasks for this item.
+
 
     /* ========================================
      * METHODS
@@ -169,6 +171,105 @@ class CIItem extends CIFolder
     public function getItemId()
     {
         return $this->itemId;
+    }
+
+
+    /**
+     * Add information (key/value) to the item's "memory" property.
+     *
+     * @param[in] key   They key in the memory array to store the value in.
+     * @param[in] value They value to "remember".
+     * @return True on success.
+     */
+    public function remember($key, $value)
+    {
+        $l = $this->logger;
+
+        $l->logDebug(sprintf(
+            _("Item '%s' memory: Remembering '%s' as '%s'.\n"),
+            $this->itemId,
+            $key,
+            $value
+        ));
+
+        $this->memory[$key] = $value;
+
+        return true;
+    }
+
+
+    /**
+     * Recall information (value by key) from the item's "memory" property.
+     *
+     * @param[in] key   They key in the memory array to look up.
+     * @return the uninterpreted value stored under the given $key.
+     */
+    public function recall($key)
+    {
+        $l = $this->logger;
+
+        if (!isset($this->memory[$key]))
+        {
+            $msg = sprintf(
+                _("Item '%s' memory: Unable to recall key '%s', because it's not set."),
+                $this->itemId,
+                $key
+            );
+
+            $l->logError($msg);
+            throw new LogicException($msg);
+
+            return false;
+        }
+
+        $value = $this->memory[$key];
+
+        $l->logDebug(sprintf(
+            _("Item '%s': Recalling '%s' as '%s'.\n"),
+            $this->itemId,
+            $key,
+            $value
+        ));
+
+        return $value;
+    }
+
+
+    /**
+     * Delete an information entry (by key) from the item's "memory" property.
+     *
+     * @param[in] key   They key in the memory array to delete.
+     * @return True if successful, False if not.
+     */
+    public function forget($key)
+    {
+        $l = $this->logger;
+
+        if (empty($key))
+        {
+            throw new InvalidArgumentException(sprintf(
+                _("Item '%s' memory: Cannot forget empty key value. 🤔️"),
+                $this->itemId
+            ));
+        }
+
+        if (!isset($this->memory[$key]))
+        {
+            $l->logDebug(sprintf(
+                _("Item '%s' memory: Asked to forget a key that wasn't remembered: '%s'?"),
+                $this->itemId,
+                $key
+            ));
+            // Maybe it's an error to believe the key was there, but this is outside of my scope here,
+            // so I say it's okay. (like "delete a file that's gone": okay. it's gone already.)
+            return true;
+        }
+
+        // This line *actually* removes the key/value:
+        unset($this->memory[$key]);
+
+        // Success if key is gone, false if "unset" didn't work as expected:
+        return !isset($this->memory[$key]);
     }
 
 
@@ -389,6 +490,7 @@ class CIItem extends CIFolder
                 self::CONF_COOLOFF_TIME => 30,                     // in minutes.
                 self::CONF_COOLOFF_FILTERS => null,                // List of stat() values to exclude from cooloff-check
 
+                // TODO: Empty this. It is confusing and odd to have a preconfigured tasklist here.
                 self::CONF_TASKLIST => array(
                     'FilesWait',                // Wait until certain files are present
                     'DirListCSV',               // Create directory listing as CSV
@@ -610,7 +712,7 @@ class CIItem extends CIFolder
                 $task = $this->runTask($CIFolder, $taskName, $subDirs);
                 // TODO: Add some object to group subdir-tasks and share common
                 // settings/data/information between subdir tasks.
- 
+
                 // TODO (issue #23):
                 // If item had an error, and TARGET_STAGE was already populated: delete it.
                 // Currently it's confusing where, in which class (CIFolder vs
