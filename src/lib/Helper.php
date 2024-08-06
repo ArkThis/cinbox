@@ -112,7 +112,10 @@ class Helper
         {
             if (!mkdir($subDir, 0777, true))
             {
-                throw new Exception(sprintf(_("touchFile: Could not create subfolder: '%s'."), $subDir));
+                throw new RuntimeException(sprintf(
+                    _("touchFile: Could not create subfolder: '%s'."),
+                    $subDir
+                ));
             }
         }
 
