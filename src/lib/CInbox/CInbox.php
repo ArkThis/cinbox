@@ -80,13 +80,13 @@ class CInbox
 
     /** List of all processing folders and their default values */
     public static $processingFolders = array(
-            self::CONF_FOLDER_STATEKEEPING => '.',
-            self::CONF_FOLDER_LOGS => 'log',
-            self::CONF_FOLDER_TODO => 'todo',
-            self::CONF_FOLDER_IN_PROGRESS => 'in_progress',
-            self::CONF_FOLDER_DONE => 'done',
-            self::CONF_FOLDER_ERROR => 'error',
-            );
+        self::CONF_FOLDER_STATEKEEPING => '.',
+        self::CONF_FOLDER_LOGS => 'log',
+        self::CONF_FOLDER_TODO => 'todo',
+        self::CONF_FOLDER_IN_PROGRESS => 'in_progress',
+        self::CONF_FOLDER_DONE => 'done',
+        self::CONF_FOLDER_ERROR => 'error',
+    );
     //@}
 
     /**
@@ -198,14 +198,21 @@ class CInbox
         $tempFolder = $this->tempFolder;
         if (is_dir($tempFolder))
         {
-            $l->logInfo(sprintf(_("Trying to remove temp folder '%s'..."), $tempFolder));
+            $l->logInfo(sprintf(
+                _("Trying to remove temp folder '%s'..."), 
+                $tempFolder
+            ));
             if (Helper::removeEmptySubfolders($tempFolder))
             {
                 $l->logInfo(_("Removed temp folder."));
             }
             else
             {
-                $l->logMsg(sprintf(_("Could not remove temp folder '%s'. This is okay if some items are still in present in the processing folders."), $tempFolder));
+                $l->logMsg(sprintf(
+                    _("Could not remove temp folder '%s'. ".
+                    "This is okay if some items are still in present in the processing folders."), 
+                    $tempFolder
+                ));
             }
         }
 
@@ -248,11 +255,17 @@ class CInbox
         }
         if (!file_exists($sourceFolder))
         {
-            throw new Exception(sprintf(_("Source folder does not exist: '%s'"), $sourceFolder));
+            throw new Exception(sprintf(
+                _("Source folder does not exist: '%s'"),
+                $sourceFolder
+            ));
         }
         if (!is_dir($sourceFolder))
         {
-            throw new Exception(sprintf(_("Source folder is not a directory: '%s'"), $sourceFolder));
+            throw new Exception(sprintf(
+                _("Source folder is not a directory: '%s'"),
+                $sourceFolder
+            ));
         }
 
         $this->sourceFolder = $sourceFolder;
@@ -285,7 +298,11 @@ class CInbox
         {
             if (empty($sourceFolder))
             {
-                throw new Exception(sprintf(_("Unable to set config filename to default '%s', because source folder is not set."), self::DEFAULT_CONF_FILENAME));
+                throw new Exception(sprintf(
+                    _("Unable to set config filename to default '%s', ".
+                    "because source folder is not set."),
+                    self::DEFAULT_CONF_FILENAME
+                ));
             }
 
             // If empty and source folder is set: use default config filename in source_folder
@@ -361,13 +378,19 @@ class CInbox
             // of empty values where no setting was configured in config file.
             $config->setSettingsDefaults($this->getDefaultValues());
             $config->loadSettings($configArray);
-            $l->logDebug(sprintf(_("Settings for inbox:\n%s"), print_r($config->getSettings(), true)));
+            $l->logDebug(sprintf(
+                _("Settings for inbox:\n%s"), 
+                print_r($config->getSettings(), true))
+            );
 
             // Check for must-exist values:
             $inboxName = $this->getName();
             if (empty($inboxName))
             {
-                $l->logError(sprintf(_("No inbox name set in config option '%s'. Please set one."), self::CONF_INBOX_NAME));
+                $l->logError(sprintf(
+                    _("No inbox name set in config option '%s'. ".
+                    "Please set one."), self::CONF_INBOX_NAME
+                ));
                 return false;
             }
 
@@ -375,7 +398,12 @@ class CInbox
         }
         catch (Exception $e)
         {
-            $l->logError(sprintf(_("Could not load settings for '%s': %s\n%s"), self::CONF_SECTION_INBOX, $e->getMessage(), $e->getTraceAsString()));
+            $l->logError(sprintf(
+                _("Could not load settings for '%s': %s\n%s"),
+                self::CONF_SECTION_INBOX,
+                $e->getMessage(),
+                $e->getTraceAsString()
+            ));
             return false;
         }
 
@@ -394,7 +422,9 @@ class CInbox
 
         if (!$config instanceof CIConfig)
         {
-            throw new Exception(_("Unable to get Inbox name: Config not initialized."));
+            throw new Exception(
+                _("Unable to get Inbox name: Config not initialized.")
+            );
         }
 
         $name = $config->get(self::CONF_INBOX_NAME);
@@ -439,7 +469,10 @@ class CInbox
         }
 
         // From here on, we can assume that $workTimes are set:
-        $l->logDebug(sprintf(_("Work times set: %s"), print_r($workTimes, true)));
+        $l->logDebug(sprintf(
+            _("Work times set: %s"),
+            print_r($workTimes, true)
+        ));
 
         return $workTimes;
     }
@@ -476,17 +509,17 @@ class CInbox
     public function getDefaultValues()
     {
         $defaultValues = array_merge(
-                array(
-                    self::CONF_PAUSE_TIME => 5,
-                    self::CONF_ITEMS_AT_ONCE => 10,
-                    self::CONF_KEEP_FINISHED => 0,
-                    self::CONF_WAIT_FOR_ITEMS => 5,
-                    self::CONF_MOVE_LOGFILES => 1,
+            array(
+                self::CONF_PAUSE_TIME => 5,
+                self::CONF_ITEMS_AT_ONCE => 10,
+                self::CONF_KEEP_FINISHED => 0,
+                self::CONF_WAIT_FOR_ITEMS => 5,
+                self::CONF_MOVE_LOGFILES => 1,
 
-                    self::CONF_FOLDER_TEMP => '/var/cinbox',
-                    ),
-                self::$processingFolders
-                );
+                self::CONF_FOLDER_TEMP => '/var/cinbox',
+            ),
+            self::$processingFolders
+        );
 
         return $defaultValues;
     }
@@ -610,7 +643,9 @@ class CInbox
 
         if (empty($tempFolderSys))
         {
-            throw new Exception(_("Could not get operating system's temp folder. 'sys_get_temp_dir()' was empty."));
+            throw new Exception(
+                _("Could not get operating system's temp folder. 'sys_get_temp_dir()' was empty."
+                ));
         }
 
         if (!is_dir($tempFolderSys))
@@ -778,7 +813,11 @@ class CInbox
         }
         catch (Exception $e)
         {
-            $this->item->getLogger()->logException(sprintf(_("Problems with '%s'"), $item->getItemId()), $e);
+            $this->item->getLogger()->logException(
+                sprintf(
+                    _("Problems with '%s'"),
+                    $item->getItemId()),
+                $e);
             $this->switchStatus($item, $item::STATUS_ERROR);
             throw $e;
         }
@@ -791,6 +830,7 @@ class CInbox
         }
 
         $item->removeTempFolder();
+        // TODO: This may be a good place to handle token-creation on "item finished"?
         $this->switchStatus($item, $item::STATUS_DONE);
 
         // This is required for the garbage collection (KEEP_FINISHED):
@@ -866,7 +906,7 @@ class CInbox
                 return true; 
             }
         }
-        
+
         // No matching expression. We're NOT due.
         if (!$isLooped)
         {
@@ -874,7 +914,7 @@ class CInbox
                 _("Current date/time '%s' is outside of working hours set in '%s'.\n I'll wait 😇️"),
                 date('Y-m-d H:i:s'),
                 self::CONF_WORK_TIMES
-                ));
+            ));
         }
 
         return false;
@@ -1125,8 +1165,8 @@ class CInbox
 
         // Check if each processing folder is okay:
         $this->validateProcessingFolders(
-                static::$processingFolders,
-                $quiet=false);
+            static::$processingFolders,
+            $quiet=false);
 
         return true;
     }
@@ -1185,12 +1225,19 @@ class CInbox
         {
             $folderName = $entry['Pathname'];
             $days = (time() - $entry['MTime']) / 60 / 60 / 24;        // Conversion: Seconds to days
-            $l->logInfo(sprintf(_("Item: %s (%d days old)"), basename($folderName), $days));
+            $l->logInfo(sprintf(
+                _("Item: %s (%d days old)"), 
+                basename($folderName), 
+                $days)
+            );
 
             if ($days > $keepFinished)
             {
                 if (is_dir($folderName)) {
-                    $l->logMsg(sprintf(_("Deleting finished Item: %s"), basename($folderName)));
+                    $l->logMsg(sprintf(
+                        _("Deleting finished Item: %s"), 
+                        basename($folderName))
+                    );
                     // Only remove it, if it's a folder. Files directly in the "done" folder will stay:
                     if (Helper::removeFolder($folderName)) $count++;
                 } else {
