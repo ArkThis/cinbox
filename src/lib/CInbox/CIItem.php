@@ -70,6 +70,9 @@ class CIItem extends CIFolder
     const CONF_COOLOFF_TIME = 'COOLOFF_TIME';               // Time to wait until considering an item "old (=unchanging) enough" to be processed (in minutes)
     const CONF_COOLOFF_FILTERS = 'COOLOFF_FILTERS';         // Filter to exclude some stat() values from cooloff-check
     const CONF_TASKLIST = 'TASKLIST';                       // List of tasks to process (task name = class name of Task)
+
+    const CONF_TOKEN_DONE = 'TOKEN_DONE';                   // Filename to create when an item was successful and moved to DIR_DONE.
+    const CONF_TOKEN_ERROR = 'TOKEN_ERROR';                 // Filename to create when an item had a problem and was moved to DIR_ERROR.
     //@}
 
     /**
@@ -109,6 +112,7 @@ class CIItem extends CIFolder
     public $tryAgain = false;                    // True if item needs to be reset back to #STATUS_TODO (@see CITask::STATUS_WAIT)
 
     protected $memory = array();                  // A dictionary to hold information to be shared across tasks for this item.
+    protected $tokens = array();                  // A number of "token" files to create, depending on processing status of item.
 
 
     /* ========================================
@@ -204,8 +208,8 @@ class CIItem extends CIFolder
         // This allows to know *when* the information was stored here.
         $time = time();
 
-        // To avoid collisions on the same "second", bump it up "1s later".
-        // - until we get a free space.
+        // To avoid collisions on the same second, bump it up "1s later".
+        // - until we get a free space. Yes, it's a clever hack :P
         while (array_key_exists($time, $this->memory[$key]))
         {
             $time += 1;
@@ -370,6 +374,18 @@ class CIItem extends CIFolder
         $this->config->setSettingsDefaults($this->getDefaultValues());
         $this->config->loadSettings($configArray);
 
+        // At this point, we can pick up the resolved token names:
+        $this->tokens[self::CONF_TOKEN_DONE] = $this->config->get(self::CONF_TOKEN_DONE);
+        $this->tokens[self::CONF_TOKEN_ERROR] = $this->config->get(self::CONF_TOKEN_ERROR);
+
+        $l->logDebug(sprintf(
+            _("Item Token folders: %s"),
+            print_r($this->tokens, true)
+        ));
+
+        die(); //DELME!
+
+        // ----------------------
         $this->configured = true;
         return true;
     }
