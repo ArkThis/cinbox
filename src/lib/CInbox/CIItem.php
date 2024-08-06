@@ -177,11 +177,11 @@ class CIItem extends CIFolder
     /**
      * Add information (key/value) to the item's "memory" property.
      *
-     * @param[in] key   They key in the memory array to store the value in.
-     * @param[in] value They value to "remember".
+     * @param[in] key   The key in the memory array to store the value in.
+     * @param[in] value The value to "remember".
      * @return True on success.
      */
-    public function remember($key, $value)
+    public function remember($key, $value, $append=false)
     {
         $l = $this->logger;
 
@@ -189,10 +189,18 @@ class CIItem extends CIFolder
             _("Item '%s' memory: Remembering '%s' as '%s'.\n"),
             $this->itemId,
             $key,
-            $value
+            print_r($value, true)
         ));
 
-        $this->memory[$key] = $value;
+        $is_new = !array_key_exists($key, $this->memory);
+
+        // Initialize empty array if key is new (or to-be-replaced):
+        if ($is_new or !$append)
+        {
+            $this->memory[$key] = array();
+        }
+
+        $this->memory[$key][] = $value;
 
         return true;
     }
@@ -201,7 +209,7 @@ class CIItem extends CIFolder
     /**
      * Recall information (value by key) from the item's "memory" property.
      *
-     * @param[in] key   They key in the memory array to look up.
+     * @param[in] key   The key in the memory array to look up.
      * @return the uninterpreted value stored under the given $key.
      */
     public function recall($key)
@@ -210,16 +218,11 @@ class CIItem extends CIFolder
 
         if (!isset($this->memory[$key]))
         {
-            $msg = sprintf(
+            throw new LogicException(sprintf(
                 _("Item '%s' memory: Unable to recall key '%s', because it's not set."),
                 $this->itemId,
                 $key
-            );
-
-            $l->logError($msg);
-            throw new LogicException($msg);
-
-            return false;
+            ));
         }
 
         $value = $this->memory[$key];
@@ -228,7 +231,7 @@ class CIItem extends CIFolder
             _("Item '%s': Recalling '%s' as '%s'.\n"),
             $this->itemId,
             $key,
-            $value
+            print_r($value, true)
         ));
 
         return $value;
@@ -238,7 +241,7 @@ class CIItem extends CIFolder
     /**
      * Delete an information entry (by key) from the item's "memory" property.
      *
-     * @param[in] key   They key in the memory array to delete.
+     * @param[in] key   The key in the memory array to delete.
      * @return True if successful, False if not.
      */
     public function forget($key)
@@ -615,6 +618,8 @@ class CIItem extends CIFolder
 
         // Instantiate task to execute:
         $task = CITask::getTaskByName($taskName, $folder);
+        // Provide the task a handle to *this* item, for common information exchange between tasks:
+        $task->setParentItem($this);
         $task->setItemSubDirs($itemSubDirs);
         // TODO: Here a task may be given a handle to some object/variable to
         // share common settings/data/information between subdir tasks.
@@ -875,7 +880,15 @@ class CIItem extends CIFolder
      */
     public function finalize()
     {
-        // TODO.
+        $l = $this->logger;
+
+        $l->logDebug(sprintf(
+            _("Item memory (%s) on finalize: %s\n"),
+            $this->itemId,
+            print_r($this->memory, true)
+        ));
+
+        // TODO more?
         return true;
     }
 
