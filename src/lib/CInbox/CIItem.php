@@ -1179,6 +1179,8 @@ class CIItem extends CIFolder
     /**
      * Returns a parse-able text that contains all desired information to be
      * written in an item's "token" file for inter-process communication.
+     *
+     * @param[in] flags    See: https://www.php.net/manual/en/json.constants.php
      */
     public function getTokenData($flags=null)
     {

@@ -1222,7 +1222,9 @@ class CInbox
         if (!empty($tokenFile))
         {
             // Encode data in JSON (but don't escape slashes):
-            $data = $item->getTokenData($flags=JSON_UNESCAPED_SLASHES);
+            $data = $item->getTokenData(
+                $flags = JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
+            );
 
             $result = $item->writeTokenFile($tokenFile, $data);
             if ($result)
