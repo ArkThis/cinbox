@@ -96,7 +96,8 @@ class CIItem extends CIFolder
      * @name Miscellaneous
      */
     //@{
-    const CHANGELOG_FILE = 'item_changelog.txt';             // Textfile to monitor folder changes in.
+    const CHANGELOG_FILE = 'item_changelog.txt';            // Textfile to monitor folder changes in.
+    const MEMORY_TS_FORMAT = 'Ymd-His';                     // String format for timestamp value in Item->memory entries (@see: self::recall_TS())
     //@}
 
 
@@ -259,6 +260,35 @@ class CIItem extends CIFolder
         ));
 
         return $value;
+    }
+
+
+    /**
+     * Same as recall(), but formats the unix-timestamp array key to contain a
+     * human-readable timestamp string, too.
+     */
+    public function recall_TS($key, $strict=true)
+    {
+        // Recall entry (array) with unix-time keys:
+        $entry = $this->recall($key, $strict);
+        $new_entry = array();   // Target array with "$new_key" format.
+
+        foreach ($entry as $unix_time => $value)
+        {
+            $timestamp = date(self::MEMORY_TS_FORMAT, $unix_time);
+
+            // Simply prepend the timestamp-string before the unix_time:
+            $new_key = sprintf(
+                '%s %s',
+                $timestamp,
+                $unix_time
+            );
+
+            // Populate new target array:
+            $new_entry[$new_key] = $value;
+        }
+
+        return $new_entry;
     }
 
 
@@ -1191,7 +1221,7 @@ class CIItem extends CIFolder
 
         $tokenData = array();
         $tokenData['itemId'] = $this->itemId;
-        $tokenData['targetFolders'] = $this->recall('targetFolders', $strict=false);
+        $tokenData['targetFolders'] = $this->recall_TS('targetFolders', $strict=false);
 
         $json = json_encode($tokenData, $flags);
 
