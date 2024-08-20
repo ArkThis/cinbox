@@ -408,7 +408,13 @@ class CIItem extends CIFolder
         }
 
         $config = $this->config;
-        $config->initPlaceholders();
+
+        // This clears all previously set placeholders and
+        // is setting the current timestamp values for *the whole item run":
+        $config->initPlaceholders(
+            $config->getPlaceholdersTime()
+        );
+
         $config->addPlaceholder(__ITEM_ID__, $itemId);                  // Add current item id as placeholder value.
         $config->addPlaceholder(__ITEM_ID_UC__, strtoupper($itemId));   // Uppercase
         $config->addPlaceholder(__ITEM_ID_LC__, strtolower($itemId));   // Lowercase
@@ -1228,7 +1234,7 @@ class CIItem extends CIFolder
         $tokenData = array();
         $tokenData['itemId'] = $this->itemId;
         $tokenData['targetFolders'] = $this->recallNice(
-            'targetFolders', 
+            'targetFolders',
             $strict=false,
             $unique=true        // For the token, we don't want duplicate memories ;)
         );

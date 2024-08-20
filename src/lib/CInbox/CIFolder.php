@@ -331,6 +331,7 @@ class CIFolder
 
         $l->logInfo(sprintf(_("Constructing config for folder '%s'"), $myDir));
 
+        // This seems odd here, as it should already be initialized by initItemSettings() before?
         $config->initPlaceholders();
         $defaultConfig = $config->getConfigForDefault();
         $undefinedConfig = $config->getConfigForUndefined();

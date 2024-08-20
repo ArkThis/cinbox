@@ -94,23 +94,12 @@ class CIConfig
 
 
     /**
-     * Initializes values for common placeholders, such as date/time values,
+     * Initializes values for common placeholders, such as:
      * PHP_SELF, etc.
-     * This allows consistent values across certain execution ranges.
      */
     public function initPlaceholders($arguments=null)
     {
         $this->placeholders = array();                  // NOTE: This clears existing placeholder values!
-
-        $datetime = array(
-                __DATETIME__ => date('Ymd_His'),
-                __YEAR__ => date('Y'),
-                __MONTH__ => date('m'),
-                __DAY__ => date('d'),
-                __HOUR__ => date('H'),
-                __MINUTE__ => date('m'),
-                __SECOND__ => date('s')
-            );
 
         $php_self = array(
                 // Information about the currently running script:
@@ -125,7 +114,6 @@ class CIConfig
             $this->placeholders = array_merge(
                 $this->placeholders,
                 $arguments,
-                $datetime,
                 $php_self
             );
         }
@@ -134,10 +122,28 @@ class CIConfig
             // Only merge existing placeholder values:
             $this->placeholders = array_merge(
                 $this->placeholders,
-                $datetime,
                 $php_self
             );
         }
+    }
+
+
+    /**
+     * Returns an array with placeholders for date/time.
+     * This allows consistent values across certain execution ranges.
+     */
+    public function getPlaceholdersTime()
+    {
+        $datetime = array(
+                __DATETIME__ => date('Ymd_His'),
+                __YEAR__ => date('Y'),
+                __MONTH__ => date('m'),
+                __DAY__ => date('d'),
+                __HOUR__ => date('H'),
+                __MINUTE__ => date('m'),
+                __SECOND__ => date('s')
+            );
+        return $datetime;
     }
 
 

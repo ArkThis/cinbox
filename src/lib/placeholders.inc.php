@@ -14,7 +14,9 @@ define('__ITEM_ID_UC__', '[@ITEM_ID_UC@]');     // Item ID. UpperCase.
 define('__ITEM_ID_LC__', '[@ITEM_ID_LC@]');     // Item ID. LowerCase.
 define('__BUCKET__', '[@BUCKET@]');             // "bucketized" subfolder structure in archive
 
-// Date / time:
+// Date / time (per Item!)
+// These values are updated once an item is loaded. They do NOT represent the current date/time
+// during execution. This behavior is intentional, as it provides consistent timestamps per-item.
 define('__YEAR__', '[@YEAR@]');
 define('__MONTH__', '[@MONTH@]');
 define('__DAY__', '[@DAY@]');

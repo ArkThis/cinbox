@@ -343,7 +343,9 @@ class CInbox
         $config = $this->config;
 
         $config->loadConfigFromFile();
-        $config->initPlaceholders();        // Only basic placeholders resolved here (date, time, etc).
+
+        // Only basic placeholders resolved here (pre-item information):
+        $config->initPlaceholders();
 
         return true;
     }
