@@ -97,7 +97,7 @@ class CIItem extends CIFolder
      */
     //@{
     const CHANGELOG_FILE = 'item_changelog.txt';            // Textfile to monitor folder changes in.
-    const MEMORY_TS_FORMAT = 'Ymd-His';                     // String format for timestamp value in Item->memory entries (@see: self::recall_TS())
+    const MEMORY_TS_FORMAT = 'Ymd-His';                     // String format for timestamp value in Item->memory entries (@see: self::recallNice())
     //@}
 
 
@@ -269,7 +269,7 @@ class CIItem extends CIFolder
      * way. Translating the unix time to a formatted date/time string, and
      * reformatting the information in a more "common" way.
      */
-    public function recall_TS($key, $strict=true)
+    public function recallNice($key, $strict=true)
     {
         // Recall entry (array) with unix-time keys:
         $entry = $this->recall($key, $strict);
@@ -1221,7 +1221,7 @@ class CIItem extends CIFolder
 
         $tokenData = array();
         $tokenData['itemId'] = $this->itemId;
-        $tokenData['targetFolders'] = $this->recall_TS('targetFolders', $strict=false);
+        $tokenData['targetFolders'] = $this->recallNice('targetFolders', $strict=false);
 
         $json = json_encode($tokenData, $flags);
 
