@@ -228,9 +228,10 @@ class CIItem extends CIFolder
      *
      * @param[in] key       The key in the memory array to look up.
      * @param[in] strict    True: throw exception if key is not found, otherwise just return "null";
+     * @param[in] unique    True: only return non-duplicate values for the given key.
      * @return the uninterpreted value stored under the given $key.
      */
-    public function recall($key, $strict=true)
+    public function recall($key, $strict=true, $unique=false)
     {
         $l = $this->logger;
 
@@ -250,7 +251,12 @@ class CIItem extends CIFolder
         }
         else // array key *does* exist:
         {
-            $value = $this->memory[$key];
+            if ($unique) {
+                // Throw out duplicate values:
+                $value = array_unique($this->memory[$key]);
+            } else {
+                $value = $this->memory[$key];
+            }
         }
 
         $l->logDebug(sprintf(
@@ -269,10 +275,10 @@ class CIItem extends CIFolder
      * way. Translating the unix time to a formatted date/time string, and
      * reformatting the information in a more "common" way.
      */
-    public function recallNice($key, $strict=true)
+    public function recallNice($key, $strict=true, $unique=false)
     {
         // Recall entry (array) with unix-time keys:
-        $entry = $this->recall($key, $strict);
+        $entry = $this->recall($key, $strict, $unique);
         $newEntries = array();   // Target array with "$new_key" format.
 
         foreach ($entry as $unixTime => $value)
@@ -1221,7 +1227,11 @@ class CIItem extends CIFolder
 
         $tokenData = array();
         $tokenData['itemId'] = $this->itemId;
-        $tokenData['targetFolders'] = $this->recallNice('targetFolders', $strict=false);
+        $tokenData['targetFolders'] = $this->recallNice(
+            'targetFolders', 
+            $strict=false,
+            $unique=true        // For the token, we don't want duplicate memories ;)
+        );
 
         $json = json_encode($tokenData, $flags);
 
