@@ -265,31 +265,30 @@ class CIItem extends CIFolder
 
 
     /**
-     * Same as recall(), but formats the unix-timestamp array key to contain a
-     * human-readable timestamp string, too.
+     * Same as recall(), but formats the stored data in a more human-readable
+     * way. Translating the unix time to a formatted date/time string, and
+     * reformatting the information in a more "common" way.
      */
     public function recall_TS($key, $strict=true)
     {
         // Recall entry (array) with unix-time keys:
         $entry = $this->recall($key, $strict);
-        $new_entry = array();   // Target array with "$new_key" format.
+        $new_entries = array();   // Target array with "$new_key" format.
 
         foreach ($entry as $unix_time => $value)
         {
             $timestamp = date(self::MEMORY_TS_FORMAT, $unix_time);
 
-            // Simply prepend the timestamp-string before the unix_time:
-            $new_key = sprintf(
-                '%s %s',
-                $timestamp,
-                $unix_time
-            );
+            $new_entry = array();   // This is going out.
+            // Populate it properly:
+            $new_entry['timestamp'] = $timestamp;
+            $new_entry['unix_time'] = $unix_time;
+            $new_entry['value'] = $value;
 
-            // Populate new target array:
-            $new_entry[$new_key] = $value;
+            $new_entries[] = $new_entry;
         }
 
-        return $new_entry;
+        return $new_entries;
     }
 
 
