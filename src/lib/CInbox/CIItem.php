@@ -273,22 +273,22 @@ class CIItem extends CIFolder
     {
         // Recall entry (array) with unix-time keys:
         $entry = $this->recall($key, $strict);
-        $new_entries = array();   // Target array with "$new_key" format.
+        $newEntries = array();   // Target array with "$new_key" format.
 
-        foreach ($entry as $unix_time => $value)
+        foreach ($entry as $unixTime => $value)
         {
-            $timestamp = date(self::MEMORY_TS_FORMAT, $unix_time);
+            $timestamp = date(self::MEMORY_TS_FORMAT, $unixTime);
 
-            $new_entry = array();   // This is going out.
+            $newEntry = array();   // This is going out.
             // Populate it properly:
-            $new_entry['timestamp'] = $timestamp;
-            $new_entry['unix_time'] = $unix_time;
-            $new_entry['value'] = $value;
+            $newEntry['timestamp'] = $timestamp;
+            $newEntry['unixTime'] = $unixTime;
+            $newEntry['value'] = $value;
 
-            $new_entries[] = $new_entry;
+            $newEntries[] = $newEntry;
         }
 
-        return $new_entries;
+        return $newEntries;
     }
 
 
