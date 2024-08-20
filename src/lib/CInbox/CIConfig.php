@@ -100,7 +100,7 @@ class CIConfig
      */
     public function initPlaceholders($arguments=null)
     {
-        $this->placeholders = array();                  // NOTE: This clears existing placeholder values
+        $this->placeholders = array();                  // NOTE: This clears existing placeholder values!
 
         $datetime = array(
                 __DATETIME__ => date('Ymd_His'),
@@ -109,8 +109,10 @@ class CIConfig
                 __DAY__ => date('d'),
                 __HOUR__ => date('H'),
                 __MINUTE__ => date('m'),
-                __SECOND__ => date('s'),
+                __SECOND__ => date('s')
+            );
 
+        $php_self = array(
                 // Information about the currently running script:
                 __PHP_SELF__ => $_SERVER['PHP_SELF'],
                 __PHP_SELF_DIR__ => dirname($_SERVER['PHP_SELF']),
@@ -120,12 +122,21 @@ class CIConfig
         if (is_array($arguments))
         {
             // Add values for additional placeholders here already:
-            $this->placeholders = array_merge($this->placeholders, $arguments, $datetime);
+            $this->placeholders = array_merge(
+                $this->placeholders,
+                $arguments,
+                $datetime,
+                $php_self
+            );
         }
         else
         {
             // Only merge existing placeholder values:
-            $this->placeholders = array_merge($this->placeholders, $datetime);
+            $this->placeholders = array_merge(
+                $this->placeholders,
+                $datetime,
+                $php_self
+            );
         }
     }
 
