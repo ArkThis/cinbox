@@ -182,8 +182,9 @@ class CIItem extends CIFolder
     /**
      * Add information (key/value) to the item's "memory" property.
      *
-     * @param[in] key   The key in the memory array to store the value in.
-     * @param[in] value The value to "remember".
+     * @param[in] key       The key in the memory array to store the value in.
+     * @param[in] value     The value to "remember".
+     * @param[in] append    True:Append $value as last item in array; False: Overwrite memory[$key]=$value.
      * @return True on success.
      */
     public function remember($key, $value, $append=false)
