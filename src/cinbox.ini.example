@@ -133,7 +133,7 @@ TARGET_STAGE = /home/avrd/archive/STAGE/part1/[@ITEM_ID@]
 TARGET_FOLDER = /home/avrd/archive/part1/video/[@BUCKET@]
 
 PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
-PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET@]
+PREPROCS2[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET@]
 
 MUST_EXIST[] = *.mpg
 HASH_SEARCH[] = *.md5
