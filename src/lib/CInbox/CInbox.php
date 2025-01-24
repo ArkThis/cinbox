@@ -1194,7 +1194,7 @@ class CInbox
     /**
      * Changes the state of an Item to a different target status.
      * Returns the target state folder on success.
-     * 'False' if a problem occurred.
+     * Throws exceptions on error.
      */
     public function switchStatus($item, $status)
     {
@@ -1217,6 +1217,7 @@ class CInbox
         catch (Exception $e)
         {
             $l->logException(sprintf(_("(%s): Could not move folder '%s' to '%s'."), $itemId, $folder, $targetFolder), $e);
+            throw($e);
         }
 
         // Write token to trigger external processes:
