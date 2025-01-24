@@ -166,7 +166,7 @@ abstract class TaskExec extends CITask
         $command = $this->resolveCmd($script);
 
         $l->logMsg($l->getHeadline());
-        $l->logDebug(sprintf(_("Executing command:\n%s"), $command));
+        $l->logInfo(sprintf(_("Executing command:\n'%s'"), $command));
         $exitCode = $this->exec->execute($command);
         $l->logNewline();
 

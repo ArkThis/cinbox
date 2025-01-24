@@ -135,7 +135,7 @@ class TaskPostProcs extends TaskExec
             $l->logMsg(sprintf(
                         _("Executing post-processor #%d: '%s'"),
                         $index+1,
-                        strtok($script, ' ')
+                        $script
                         ));
 
             $exitCode = $this->runScript($script);

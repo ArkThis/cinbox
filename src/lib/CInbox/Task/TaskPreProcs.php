@@ -134,7 +134,7 @@ class TaskPreProcs extends TaskExec
             $l->logMsg(sprintf(
                         _("Executing pre-processor #%d: '%s'"),
                         $index+1,
-                        strtok($script, ' ')
+                        $script
                         ));
 
             $exitCode = $this->runScript($script);
