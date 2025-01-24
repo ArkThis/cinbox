@@ -21,13 +21,13 @@ define('EXIT_ERROR_RUNTIME', 12);   // Unknown error during runtime.
  */
 function parseArgs()
 {
-    global $input, $output;
+    global $input, $folder;
 
     // Available commandline arguments (see showHelp() for details):
-    $shortOpts = "i:o:";
+    $shortOpts = "i:f:";
     $longOpts = array(
         'input ID',             // archive signature (input)
-        'output folder',        // output folder (where to create token)
+        'target folder',        // target folder to list in the token.
     );
 
     $options = getopt($shortOpts, $longOpts);
@@ -43,13 +43,13 @@ function parseArgs()
     if (isset($options['i']))
     {
         $input = $options['i'];
-        printf("Input: %s\n", $input);
+        #printf("Input: %s\n", $input);
     }
 
-    if (isset($options['o']))
+    if (isset($options['f']))
     {
-        $output = $options['o'];
-        printf("Output: %s\n", $output);
+        $folder = $options['f'];
+        #printf("Output: %s\n", $folder);
     }
 }
 
@@ -112,12 +112,12 @@ function getTokenData($flags=null, $itemId=null, $targetFolders=null)
 
 
 $input = null;
-$output = null;
+$folder = null;
 
 parseArgs();
 
 $targetFolders = array(
-    time() => $output
+    time() => $folder
 );
 
 $token = getTokenData(null, $input, $targetFolders);
