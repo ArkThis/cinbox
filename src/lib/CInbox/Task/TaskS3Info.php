@@ -32,14 +32,14 @@ use \RuntimeException as RuntimeException;
  * NOTE: Current implementation is limited to 1 .s3info file per Item only.
  *
  *
- * @author Peter Bubestinger-Steindl (pb@av-rd.com)
+ * @author Peter Bubestinger-Steindl (cinbox (at) ArkThis.com)
  * @copyright
  *  Copyright 2019 ArkThis AV-RD e.U.
  *  (License: <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (v3)</a>)
  *
  * @see
- *  - <a href="http://www.av-rd.com/products/cinbox/">CInbox product website</a>
- *  - <a href="http://www.av-rd.com/">AV-RD website</a>
+ *  - <a href="http://www.ArkThis.com/products/cinbox/">CInbox product website</a>
+ *  - <a href="http://www.ArkThis.com/">AV-RD website</a>
  *  - <a href="https://fsfe.org/about/basics/freesoftware.en.html">FSFE: What is Free Software?</a>
  *  - <a href="http://www.gnu.org/licenses/gpl.html">The GNU General Public License</a>
  */
