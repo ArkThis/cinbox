@@ -95,6 +95,10 @@ abstract class TaskFilesMatch extends CITask
         $matching = array();
         foreach ($patterns as $pattern)
         {
+            // This glob() call /is/ doing the actual pattern-matching.
+            // See: https://www.php.net/manual/en/function.glob
+            // TODO?:
+            // It may be useful/necessary to support handing over 'flags' to glob()?
             $result = glob($source . $pattern);
             $matching = array_merge($matching, $result);
         }
