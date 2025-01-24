@@ -32,14 +32,16 @@ BUCKET_SCRIPT = [@PHP_SELF_DIR@]/plugins/objid_to_path.sh
 TASKLIST[] = FilesWait
 TASKLIST[] = DirListCSV
 TASKLIST[] = CleanFilenames
-TASKLIST[] = PreProcs
-;TASKLIST[] = PreProcs2
 TASKLIST[] = FilesValid
 TASKLIST[] = FilesMustExist
 TASKLIST[] = HashGenerate
 TASKLIST[] = HashSearch
+; Use PreProcs to create TARGET_STAGE parent folders:
+TASKLIST[] = PreProcs
 TASKLIST[] = CopyToTarget
 TASKLIST[] = HashValidate
+; Use PreProcs2 to create final TARGET parent folders:
+TASKLIST[] = PreProcs2
 TASKLIST[] = RenameTarget
 TASKLIST[] = HashOutput
 TASKLIST[] = PostProcs
@@ -76,7 +78,7 @@ TARGET_FOLDER = /home/avrd/archive/part2/video/[@BUCKET@]
 
 ; plugins/mkparent.sh is used to prepare deeply nested folder structures:
 PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
-PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET@]
+PREPROCS2[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET@]
 
 ; Enable this to wait until unicorns appear:
 ;FILES_WAIT[] = '*.unicorn'
