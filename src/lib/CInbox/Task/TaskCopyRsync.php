@@ -37,6 +37,7 @@ use \Exception as Exception;
  *
  * @see
  *  - <a href="http://www.ArkThis.com/products/cinbox/">CInbox product website</a>
+ *  - <a href="https://github.com/ArkThis/cinbox/">CInbox source code</a>
  *  - <a href="http://rsync.samba.org/">rsync web page</a>
  *  - <a href="http://www.ArkThis.com/">ArkThis AV-RD website</a>
  *  - <a href="https://fsfe.org/about/basics/freesoftware.en.html">FSFE: What is Free Software?</a>
