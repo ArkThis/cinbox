@@ -47,9 +47,11 @@ var searchData=
   ['getname',['getName',['../classArkThis_1_1CInbox_1_1CInbox.html#a3cefcf49b39f6e94c45a0de43c3adf5e',1,'ArkThis\CInbox\CInbox\getName()'],['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a1c05f65e6404bad205f3d0177c7558da',1,'ArkThis\CInbox\Task\CITask\getName()']]],
   ['getnextitem',['getNextItem',['../classArkThis_1_1CInbox_1_1CInbox.html#a38eaaf677fbc2e5b38fc88b2831454d8',1,'ArkThis::CInbox::CInbox']]],
   ['getnonmatchingfiles',['getNonMatchingFiles',['../classArkThis_1_1CInbox_1_1Task_1_1TaskFilesMatch.html#aa42824dc1b1aaad9aee32ab02936e403',1,'ArkThis::CInbox::Task::TaskFilesMatch']]],
+  ['getparentitem',['getParentItem',['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#aa42b821507c02dda0d3551168959bfc9',1,'ArkThis::CInbox::Task::CITask']]],
   ['getpathname',['getPathname',['../classArkThis_1_1CInbox_1_1CIFolder.html#a61add3617d68f84d9506450ee2ae8957',1,'ArkThis::CInbox::CIFolder']]],
   ['getphpuser',['getPhpUser',['../classArkThis_1_1Helper.html#a1c396189aa79033b830cc128002b271e',1,'ArkThis::Helper']]],
   ['getplaceholders',['getPlaceholders',['../classArkThis_1_1CInbox_1_1CIConfig.html#a8b6c4c983e57b5a600e81eb3409a98bc',1,'ArkThis::CInbox::CIConfig']]],
+  ['getplaceholderstime',['getPlaceholdersTime',['../classArkThis_1_1CInbox_1_1CIConfig.html#abccc7c4b70ba232bd982941afd4bb0d6',1,'ArkThis::CInbox::CIConfig']]],
   ['getprefixlong',['getPrefixLong',['../classArkThis_1_1Logger.html#af4c1eafa099495f2654f17fa24e34b09',1,'ArkThis::Logger']]],
   ['getprefixmixed',['getPrefixMixed',['../classArkThis_1_1Logger.html#a9a8e03ffac003ad4d2bcf9270b388185',1,'ArkThis::Logger']]],
   ['getprefixscreen',['getPrefixScreen',['../classArkThis_1_1Logger.html#a912493feb878c583674dc0c1155abfac',1,'ArkThis::Logger']]],
@@ -74,6 +76,8 @@ var searchData=
   ['gettemphashforfilename',['getTempHashForFilename',['../classArkThis_1_1CInbox_1_1Task_1_1TaskHash.html#a41e75558c770fb7c2ba3dbb2f92582a5',1,'ArkThis::CInbox::Task::TaskHash']]],
   ['gettemphashforfolder',['getTempHashForFolder',['../classArkThis_1_1CInbox_1_1Task_1_1TaskHash.html#aaf986eea898fde735e477720101d3bf0',1,'ArkThis::CInbox::Task::TaskHash']]],
   ['gettimestamp',['getTimestamp',['../classArkThis_1_1Logger.html#a35f900ada717bf3ad01a6a3aa0ebb9ae',1,'ArkThis::Logger']]],
+  ['gettokendata',['getTokenData',['../classArkThis_1_1CInbox_1_1CIItem.html#abd997417d8b55b8bf573ec53da0ccf51',1,'ArkThis::CInbox::CIItem']]],
+  ['gettokenfilename',['getTokenFilename',['../classArkThis_1_1CInbox_1_1CIItem.html#a99830dbdea8939c0236742f14822ee2d',1,'ArkThis::CInbox::CIItem']]],
   ['getworktimes',['getWorkTimes',['../classArkThis_1_1CInbox_1_1CInbox.html#a840b60b8adfacb619ea3bcfc970695b8',1,'ArkThis::CInbox::CInbox']]],
   ['getyoungest',['getYoungest',['../classArkThis_1_1Helper.html#af340cb9520ba481e65749f9e3d365a59',1,'ArkThis::Helper']]]
 ];

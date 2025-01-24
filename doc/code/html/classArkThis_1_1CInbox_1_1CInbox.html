@@ -120,6 +120,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a38eaaf677fbc2e5b38fc88b2831454d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf138e1171a66f101a3952519aa78f7b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1CInbox_1_1CInbox.html#adf138e1171a66f101a3952519aa78f7b">processItem</a> ()</td></tr>
 <tr class="separator:adf138e1171a66f101a3952519aa78f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a6647551171891e49ab40145c872a71"><td class="memItemLeft" align="right" valign="top"><a id="a1a6647551171891e49ab40145c872a71"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>finalizeItem</b> ()</td></tr>
+<tr class="separator:a1a6647551171891e49ab40145c872a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b66d999a93612385eebc200ed61b902"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1CInbox_1_1CInbox.html#a8b66d999a93612385eebc200ed61b902">pause</a> ($seconds, $update=5)</td></tr>
 <tr class="separator:a8b66d999a93612385eebc200ed61b902"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1715f93aa1e0bba62dfcccf3c7d57a52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1CInbox_1_1CInbox.html#a1715f93aa1e0bba62dfcccf3c7d57a52">isDue</a> ($workTimes, $isLooped=true)</td></tr>
@@ -296,11 +299,11 @@ const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class represents the actual <a class="el" href="classArkThis_1_1CInbox_1_1CInbox.html">CInbox</a>. It takes care of handling and processing Items, as well as certain mechanisms and settings common to the <a class="el" href="classArkThis_1_1CInbox_1_1CInbox.html">CInbox</a>.</p>
-<dl class="section author"><dt>Author</dt><dd>Peter Bubestinger-Steindl (<a href="#" onclick="location.href='mai'+'lto:'+'pb@'+'av'+'-rd'+'.c'+'om'; return false;">pb@av<span style="display: none;">.nosp@m.</span>-rd.<span style="display: none;">.nosp@m.</span>com</a>) </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>Copyright 2023 ArkThis AV-RD e.U. (License: <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (v3)</a>)</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Peter Bubestinger-Steindl (cinbox (at) ArkThis.com) </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright 2025 ArkThis AV-RD e.U. (License: <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (v3)</a>)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><ul>
-<li><a href="http://www.av-rd.com/products/cinbox/">CInbox product website</a></li>
-<li><a href="http://www.av-rd.com/">AV-RD website</a></li>
+<li><a href="http://www.ArkThis.com/products/cinbox/">CInbox product website</a></li>
+<li><a href="http://www.ArkThis.com/">ArkThis AV-RD website</a></li>
 <li><a href="https://fsfe.org/about/basics/freesoftware.en.html">FSFE: What is Free Software?</a></li>
 <li><a href="http://www.gnu.org/licenses/gpl.html">The GNU General Public License</a> </li>
 </ul>
@@ -1001,7 +1004,7 @@ const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Changes the state of an Item to a different target status. Returns the target state folder on success. 'False' if a problem occurred. </p>
+<p>Changes the state of an Item to a different target status. Returns the target state folder on success. Throws exceptions on error. </p>
 
 </div>
 </div>
@@ -1055,7 +1058,7 @@ const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= array(</div><div class="line">            self::CONF_FOLDER_STATEKEEPING =&gt; <span class="charliteral">&#39;.&#39;</span>,</div><div class="line">            self::CONF_FOLDER_LOGS =&gt; <span class="stringliteral">&#39;log&#39;</span>,</div><div class="line">            self::CONF_FOLDER_TODO =&gt; <span class="stringliteral">&#39;todo&#39;</span>,</div><div class="line">            self::CONF_FOLDER_IN_PROGRESS =&gt; <span class="stringliteral">&#39;in_progress&#39;</span>,</div><div class="line">            self::CONF_FOLDER_DONE =&gt; <span class="stringliteral">&#39;done&#39;</span>,</div><div class="line">            self::CONF_FOLDER_ERROR =&gt; <span class="stringliteral">&#39;error&#39;</span>,</div><div class="line">            )</div></div><!-- fragment --><p>List of all processing folders and their default values </p>
+<b>Initial value:</b><div class="fragment"><div class="line">= array(</div><div class="line">        self::CONF_FOLDER_STATEKEEPING =&gt; <span class="charliteral">&#39;.&#39;</span>,</div><div class="line">        self::CONF_FOLDER_LOGS =&gt; <span class="stringliteral">&#39;log&#39;</span>,</div><div class="line">        self::CONF_FOLDER_TODO =&gt; <span class="stringliteral">&#39;todo&#39;</span>,</div><div class="line">        self::CONF_FOLDER_IN_PROGRESS =&gt; <span class="stringliteral">&#39;in_progress&#39;</span>,</div><div class="line">        self::CONF_FOLDER_DONE =&gt; <span class="stringliteral">&#39;done&#39;</span>,</div><div class="line">        self::CONF_FOLDER_ERROR =&gt; <span class="stringliteral">&#39;error&#39;</span>,</div><div class="line">    )</div></div><!-- fragment --><p>List of all processing folders and their default values </p>
 
 </div>
 </div>
@@ -1082,7 +1085,7 @@ const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 6 2024 10:24:24 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 24 2025 10:47:35 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

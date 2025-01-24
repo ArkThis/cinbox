@@ -22,7 +22,7 @@ var searchData=
   ['setoutputoption',['setOutputOption',['../classArkThis_1_1Logger.html#aa23beeac3c3fd6e3b8f6d73e121323cc',1,'ArkThis::Logger']]],
   ['setoverridelogfile',['setOverrideLogfile',['../classArkThis_1_1FileCV.html#a76f381e3ced294114378b087d3bf21b5',1,'ArkThis::FileCV']]],
   ['setparentfolder',['setParentFolder',['../classArkThis_1_1CInbox_1_1CIFolder.html#a2d51121aac3948b886af1c83dd076baf',1,'ArkThis::CInbox::CIFolder']]],
-  ['setparentitem',['setParentItem',['../classArkThis_1_1CInbox_1_1CIFolder.html#a6783e951945e70f077908492c5f48816',1,'ArkThis::CInbox::CIFolder']]],
+  ['setparentitem',['setParentItem',['../classArkThis_1_1CInbox_1_1CIFolder.html#a6783e951945e70f077908492c5f48816',1,'ArkThis\CInbox\CIFolder\setParentItem()'],['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a45ac3eede56eda394cf6f9a1ef2c40b3',1,'ArkThis\CInbox\Task\CITask\setParentItem()']]],
   ['setsettingsdefaults',['setSettingsDefaults',['../classArkThis_1_1CInbox_1_1CIConfig.html#a7cabf0faca57afed0b41126628dfac75',1,'ArkThis::CInbox::CIConfig']]],
   ['setsourcefolder',['setSourceFolder',['../classArkThis_1_1CInbox_1_1CInbox.html#aaa1212490b511dc914f32e596fbeaa97',1,'ArkThis::CInbox::CInbox']]],
   ['setstatus',['setStatus',['../classArkThis_1_1CInbox_1_1CIItem.html#a1c0775dc7f7b639bd9efe40b2c2070c0',1,'ArkThis\CInbox\CIItem\setStatus()'],['../classArkThis_1_1CInbox_1_1Task_1_1CITask.html#a6343fede10b6e3e097103212dcf6efa6',1,'ArkThis\CInbox\Task\CITask\setStatus()']]],
