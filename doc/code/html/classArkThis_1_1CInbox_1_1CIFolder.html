@@ -197,11 +197,12 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>This is a wrapper around a physical folder. It is used to provide common functionality required across folders of Items in <a class="el" href="classArkThis_1_1CInbox_1_1CInbox.html">CInbox</a>.</p>
 <p>It keeps track of folder hierarchies and applies them to handle the settings read from a configfile so that each folder inherits its settings properly.</p>
 <p>Since target folders for Item subfolders can be configured individually, respecting inheritance and relative paths, this class also takes care of putting together the actual target path.</p>
-<dl class="section author"><dt>Author</dt><dd>Peter Bubestinger-Steindl (<a href="#" onclick="location.href='mai'+'lto:'+'pb@'+'av'+'-rd'+'.c'+'om'; return false;">pb@av<span style="display: none;">.nosp@m.</span>-rd.<span style="display: none;">.nosp@m.</span>com</a>) </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>Copyright 2023 ArkThis AV-RD e.U. (License: <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (v3)</a>)</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Peter Bubestinger-Steindl (cinbox (at) ArkThis.com) </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright 2025 ArkThis AV-RD e.U. (License: <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (v3)</a>)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><ul>
-<li><a href="http://www.av-rd.com/products/cinbox/">CInbox product website</a></li>
-<li><a href="http://www.av-rd.com/">AV-RD website</a></li>
+<li><a href="http://www.ArkThis.com/products/cinbox/">CInbox product website</a></li>
+<li><a href="https://github.com/ArkThis/cinbox/">CInbox source code</a></li>
+<li><a href="http://www.ArkThis.com/">ArkThis AV-RD website</a></li>
 <li><a href="https://fsfe.org/about/basics/freesoftware.en.html">FSFE: What is Free Software?</a></li>
 <li><a href="http://www.gnu.org/licenses/gpl.html">The GNU General Public License</a> </li>
 </ul>
@@ -538,7 +539,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Writes a message in the logs that contains a greppable/parseable string containing the resolved target folder.</p>
 <p>$hasOwn = false: Only log if this folder has TARGET_FOLDER set in config file. $isAbsolute = true: Only log if the TARGET_FOLDER is an absolute path.</p>
-<dl class="section return"><dt>Returns</dt><dd>bool success True if line was logged, false if not (This is not an error). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The target folder (string) if it was logged, False if not. </dd></dl>
 
 </div>
 </div>
@@ -711,7 +712,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 6 2024 10:24:24 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 24 2025 11:29:51 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

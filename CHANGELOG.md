@@ -3,6 +3,53 @@
 (For style- and content-guidelines see [Common Changelog](https://common-changelog.org/))
 
 
+## v2.1.0 - 2025-01-24
+
+### Fixed
+
+  - Fixed [Issue #15: Empty item-id folder left after successful move to archive](https://github.com/ArkThis/cinbox/issues/15):
+  - Fixed [Issue #16: Staging folder won't work properly if lowest target folder ain't ITEM_ID](https://github.com/ArkThis/cinbox/issues/16)
+  - Fixed [Issue #17: Task name includes class-hierarchy](https://github.com/ArkThis/cinbox/issues/17)
+  - Fixed [Issue #18: Crash/exit when loading "CopyToTarget" task.](https://github.com/ArkThis/cinbox/issues/18)
+  - Fixed [Issue #20: Error: "Too many open files" when having ~1070 entries in "done" folder](https://github.com/ArkThis/cinbox/issues/20)
+  - Fixed [Issue #22: Exception 'not found' when INI config file not found](https://github.com/ArkThis/cinbox/issues/22)
+
+  - Fixed issue with false-positive hashcode-mismatch if files changed between item runs.
+    See: [Issue #24: Hashcode mismatch due to outdated hashcode from previous run](https://github.com/ArkThis/cinbox/issues/24)
+  - Fixed [Issue #26: Placeholder for time "SECOND" is "MINUTE"](https://github.com/ArkThis/cinbox/issues/24)
+  - Fixed [Issue #27: Token files: JSON encoded paths have slashes escaped](https://github.com/ArkThis/cinbox/issues/27)
+  - Fixed date/time placeholder variables: They update per-Item now.
+    See: [Issue #31: Values for date/time placeholders in config are frozen at start of CInbox](https://github.com/ArkThis/cinbox/issues/31)
+  - Fixed [Issue #35: If Item state cannot be moved from todo to in_progress folder, processing still starts](https://github.com/ArkThis/cinbox/issues/35)
+
+  - Minor code cleanups here and there.
+
+
+### Added
+
+  - Added Documentation for `WORK_TIMES` feature (introduced in v2.0.0)
+
+  - Improved code comments and style.
+
+  - Added simple script for generating Doxygen HTML code documenation.
+
+  - Added support for hidden files in `FILES_VALID` option.
+
+  - Added done/error state may create a "token" file (JSON format).
+    This can be used to trigger other processes, depending on an Item's CInbox processing status.
+    Token files contain unix-time and a human-readable timestamp.
+
+  - Added inter-task communication option (aka `Item memory`).
+    This allows future features where tasks can access information from other
+    tasks consistently throughout the processing of an Item.
+
+  - Added support laaaaarge number of items in one folder (>1024).
+
+  - Added logging of commandline arguments passed to plugin-scripts.
+    See [Issue #38: Lack of parameter-logging for PreProcs/PostProcs task](https://github.com/ArkThis/cinbox/issues/38)
+
+
+
 ## v2.0.0 - 2023-10-11
 
 > **NOTE:**

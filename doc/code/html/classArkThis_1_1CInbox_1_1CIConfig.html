@@ -81,6 +81,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0d02185b956e0383820b4a2becec044b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e8485b3ebea3c2bdce2f1d690db12e4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1CInbox_1_1CIConfig.html#a1e8485b3ebea3c2bdce2f1d690db12e4">initPlaceholders</a> ($arguments=null)</td></tr>
 <tr class="separator:a1e8485b3ebea3c2bdce2f1d690db12e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abccc7c4b70ba232bd982941afd4bb0d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1CInbox_1_1CIConfig.html#abccc7c4b70ba232bd982941afd4bb0d6">getPlaceholdersTime</a> ()</td></tr>
+<tr class="separator:abccc7c4b70ba232bd982941afd4bb0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a679be57dce60f204f1f2b5fd57beb2f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1CInbox_1_1CIConfig.html#a679be57dce60f204f1f2b5fd57beb2f4">addPlaceholder</a> ($name, $value)</td></tr>
 <tr class="separator:a679be57dce60f204f1f2b5fd57beb2f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b6c4c983e57b5a600e81eb3409a98bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArkThis_1_1CInbox_1_1CIConfig.html#a8b6c4c983e57b5a600e81eb3409a98bc">getPlaceholders</a> ()</td></tr>
@@ -187,11 +189,12 @@ Private Attributes</h2></td></tr>
 <li>Load config settings from INI section: <a class="el" href="classArkThis_1_1CInbox_1_1CIConfig.html#a4f6df55f5c5846636cd6c6f53d68ffcc">loadSettings()</a></li>
 <li>Use config settings: <a class="el" href="classArkThis_1_1CInbox_1_1CIConfig.html#a79a1033658fee48418ebab838acff751">get()</a></li>
 </ul>
-<dl class="section author"><dt>Author</dt><dd>Peter Bubestinger-Steindl (<a href="#" onclick="location.href='mai'+'lto:'+'pb@'+'av'+'-rd'+'.c'+'om'; return false;">pb@av<span style="display: none;">.nosp@m.</span>-rd.<span style="display: none;">.nosp@m.</span>com</a>) </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>Copyright 2023 ArkThis AV-RD e.U. (License: <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (v3)</a>)</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Peter Bubestinger-Steindl (cinbox (at) ArkThis.com) </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright 2025 ArkThis AV-RD e.U. (License: <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (v3)</a>)</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><ul>
-<li><a href="http://www.av-rd.com/products/cinbox/">CInbox product website</a></li>
-<li><a href="http://www.av-rd.com/">AV-RD website</a></li>
+<li><a href="http://www.ArkThis.com/products/cinbox/">CInbox product website</a></li>
+<li><a href="https://github.com/ArkThis/cinbox/">CInbox source code</a></li>
+<li><a href="http://www.ArkThis.com/">ArkThis AV-RD website</a></li>
 <li><a href="https://fsfe.org/about/basics/freesoftware.en.html">FSFE: What is Free Software?</a></li>
 <li><a href="http://www.gnu.org/licenses/gpl.html">The GNU General Public License</a> </li>
 </ul>
@@ -504,6 +507,24 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="abccc7c4b70ba232bd982941afd4bb0d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abccc7c4b70ba232bd982941afd4bb0d6">&#9670;&nbsp;</a></span>getPlaceholdersTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ArkThis\CInbox\CIConfig::getPlaceholdersTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns an array with placeholders for date/time. This allows consistent values across certain execution ranges. </p>
+
+</div>
+</div>
 <a id="abbbaef8e3a678c311e1ac45f21361efa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abbbaef8e3a678c311e1ac45f21361efa">&#9670;&nbsp;</a></span>getSettings()</h2>
 
@@ -555,7 +576,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Initializes values for common placeholders, such as date/time values. This allows consistent timestamps across certain execution ranges. </p>
+<p>Initializes values for common placeholders, such as: PHP_SELF, etc. </p>
 
 </div>
 </div>
@@ -816,7 +837,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 6 2024 10:24:24 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 24 2025 11:29:51 for CInbox (Common-Inbox) by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

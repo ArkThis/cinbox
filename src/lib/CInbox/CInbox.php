@@ -32,14 +32,15 @@ use \Exception as Exception;
  * and settings common to the CInbox.
  *
  *
- * @author Peter Bubestinger-Steindl (pb@av-rd.com)
+ * @author Peter Bubestinger-Steindl (cinbox (at) ArkThis.com)
  * @copyright
- *  Copyright 2023 ArkThis AV-RD e.U.
+ *  Copyright 2025 ArkThis AV-RD e.U.
  *  (License: <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (v3)</a>)
  *
  * @see
- *  - <a href="http://www.av-rd.com/products/cinbox/">CInbox product website</a>
- *  - <a href="http://www.av-rd.com/">AV-RD website</a>
+ *  - <a href="http://www.ArkThis.com/products/cinbox/">CInbox product website</a>
+ *  - <a href="https://github.com/ArkThis/cinbox/">CInbox source code</a>
+ *  - <a href="http://www.ArkThis.com/">ArkThis AV-RD website</a>
  *  - <a href="https://fsfe.org/about/basics/freesoftware.en.html">FSFE: What is Free Software?</a>
  *  - <a href="http://www.gnu.org/licenses/gpl.html">The GNU General Public License</a>
  */
@@ -1194,7 +1195,7 @@ class CInbox
     /**
      * Changes the state of an Item to a different target status.
      * Returns the target state folder on success.
-     * 'False' if a problem occurred.
+     * Throws exceptions on error.
      */
     public function switchStatus($item, $status)
     {
@@ -1217,6 +1218,7 @@ class CInbox
         catch (Exception $e)
         {
             $l->logException(sprintf(_("(%s): Could not move folder '%s' to '%s'."), $itemId, $folder, $targetFolder), $e);
+            throw($e);
         }
 
         // Write token to trigger external processes:
