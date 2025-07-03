@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Common Inbox (v1.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-11 18:22+0200\n"
-"PO-Revision-Date: 2023-10-11 18:42+0200\n"
+"POT-Creation-Date: 2025-07-03 17:57+0200\n"
+"PO-Revision-Date: 2025-07-03 18:09+0200\n"
 "Last-Translator: Peter B. <pb@av-rd.com>\n"
 "Language-Team: ArkThis AV-RD (Software) <software@ArkThis.com>\n"
 "Language: de_AT\n"
@@ -128,75 +128,75 @@ msgstr "Die Inbox konnte aufgrund von Fehlern nicht initialisiert werden:"
 msgid "Error during Inbox execution:"
 msgstr "Fehler während Inbox Ausführung:"
 
-#: lib/CInbox/CIConfig.php:144
+#: lib/CInbox/CIConfig.php:163
 msgid "addPlaceholder: No name given."
 msgstr "addPlaceholder: Es wurde kein Name angegeben."
 
-#: lib/CInbox/CIConfig.php:148
+#: lib/CInbox/CIConfig.php:167
 #, php-format
 msgid "Adding value for '%s = %s'."
 msgstr "Wert zugewiesen: '%s = %s'."
 
-#: lib/CInbox/CIConfig.php:226
+#: lib/CInbox/CIConfig.php:245
 #, php-format
 msgid "Getting config for INI section '%s'..."
 msgstr "Lade Konfiguration für INI-Sektion '%s'..."
 
-#: lib/CInbox/CIConfig.php:230
+#: lib/CInbox/CIConfig.php:249
 msgid "getConfigForSection: parameter $section cannot be empty."
 msgstr "getConfigForSection: Parameter $section darf nicht leer sein."
 
-#: lib/CInbox/CIConfig.php:315
+#: lib/CInbox/CIConfig.php:334
 msgid "Will not set configfile name to empty."
 msgstr "Der Name der Konfigurationsdatei kann nicht leer gesetzt werden."
 
-#: lib/CInbox/CIConfig.php:320
+#: lib/CInbox/CIConfig.php:339
 #, php-format
 msgid "Config file not found: %s"
 msgstr "Die Konfigurationsdatei ist: %s"
 
-#: lib/CInbox/CIConfig.php:325
+#: lib/CInbox/CIConfig.php:344
 #, php-format
 msgid "Invalid config file: %s"
 msgstr "Ungültige Konfigurationsdatei: %s"
 
-#: lib/CInbox/CIConfig.php:331
+#: lib/CInbox/CIConfig.php:350
 #, php-format
 msgid "Config file is empty or has invalid size: %s (%d bytes)"
 msgstr ""
 "Die Konfigurationsdatei ist leer oder hat eine ungültige Größe: %s (%d Bytes)"
 
-#: lib/CInbox/CIConfig.php:334
+#: lib/CInbox/CIConfig.php:353
 #, php-format
 msgid "Config file is: %s"
 msgstr "Die Konfigurationsdatei ist: %s"
 
-#: lib/CInbox/CIConfig.php:371
+#: lib/CInbox/CIConfig.php:390
 #, php-format
 msgid "Configfile does not exist: %s"
 msgstr "Konfigurationsdatei existiert nicht: %s"
 
-#: lib/CInbox/CIConfig.php:416
+#: lib/CInbox/CIConfig.php:435
 #, php-format
 msgid "configFileProps must be an array is of type '%s'."
 msgstr "configFileProps muss ein Array sein, ist aber vom Typ '%s'."
 
-#: lib/CInbox/CIConfig.php:451
+#: lib/CInbox/CIConfig.php:470
 #, php-format
 msgid "Loading config from file '%s'..."
 msgstr "Lade Konfiguration aus Datei '%s'..."
 
-#: lib/CInbox/CIConfig.php:455
+#: lib/CInbox/CIConfig.php:474
 msgid "Unable to load config from file: Config file not set."
 msgstr ""
 "Fehler beim Laden der Konfiguration: Konfigurationsdatei nicht angegeben."
 
-#: lib/CInbox/CIConfig.php:476
+#: lib/CInbox/CIConfig.php:495
 msgid "Unable to load config from string: Empty string given."
 msgstr ""
 "Fehler beim Laden der Konfiguration: Angegebene Variable (string) leer."
 
-#: lib/CInbox/CIConfig.php:483
+#: lib/CInbox/CIConfig.php:502
 #, php-format
 msgid ""
 "configRaw:\n"
@@ -205,39 +205,39 @@ msgstr ""
 "Konfiguration (roh):\n"
 "%s"
 
-#: lib/CInbox/CIConfig.php:508
+#: lib/CInbox/CIConfig.php:527
 msgid "Unable to parse config from string: Empty string given."
 msgstr ""
 "Kann Konfigurationsvariable (string) nicht lesen: Leere Variable (string) "
 "angegeben."
 
-#: lib/CInbox/CIConfig.php:516
+#: lib/CInbox/CIConfig.php:535
 msgid "Problem parsing INI contents"
 msgstr "Problem beim Lesen der INI Inhalte"
 
-#: lib/CInbox/CIConfig.php:517
+#: lib/CInbox/CIConfig.php:536
 msgid "Erroneous config string:"
 msgstr "Fehlerhafter Config-String:"
 
-#: lib/CInbox/CIConfig.php:521
+#: lib/CInbox/CIConfig.php:540
 msgid "Unable to parse config from string: Invalid config string (no array)."
 msgstr ""
 "Kann Konfigurationsvariable (string) nicht lesen: Ungültige Konfiguration "
 "(kein array)."
 
-#: lib/CInbox/CIConfig.php:538
+#: lib/CInbox/CIConfig.php:557
 msgid "Config placeholders not initialized."
 msgstr "Konfigurationsplatzhalter nicht initialisiert."
 
-#: lib/CInbox/CIConfig.php:573
+#: lib/CInbox/CIConfig.php:592
 msgid "Config is not an array."
 msgstr "Die Konfiguration ist kein array."
 
-#: lib/CInbox/CIConfig.php:608
+#: lib/CInbox/CIConfig.php:627
 msgid "Unable to load config: Empty config given."
 msgstr "Kann Konfiguration nicht laden: Leere Konfiguration angegeben."
 
-#: lib/CInbox/CIConfig.php:613
+#: lib/CInbox/CIConfig.php:632
 msgid "Unable to load config: Not an array."
 msgstr "Kann Konfiguration nicht laden: Ist kein array."
 
@@ -314,7 +314,7 @@ msgstr "Das Konfigurationsobjekt ist leer."
 msgid "Constructing config for folder '%s'"
 msgstr "Konstruiere Konfiguration für das Verzeichnis '%s'"
 
-#: lib/CInbox/CIFolder.php:349
+#: lib/CInbox/CIFolder.php:350
 #, php-format
 msgid ""
 "Config for '%s' is:\n"
@@ -323,33 +323,33 @@ msgstr ""
 "Die Konfiguration für '%s' ist:\n"
 "%s"
 
-#: lib/CInbox/CIFolder.php:371
+#: lib/CInbox/CIFolder.php:372
 msgid "Cannot get subdir: No base folder defined."
 msgstr ""
 "Kann Unterverzeichnisse nicht abfragen: Kein Basisverzeichnis definiert."
 
-#: lib/CInbox/CIFolder.php:376
+#: lib/CInbox/CIFolder.php:377
 #, php-format
 msgid "Cannot get subdir: Invalid base folder '%s'."
 msgstr ""
 "Kann Unterverzeichnisse nicht abfragen: Ungültiges Basisverzeichnis '%s'."
 
-#: lib/CInbox/CIFolder.php:397
+#: lib/CInbox/CIFolder.php:398
 msgid "getPathname failed: folderObj empty."
 msgstr "Fehler in getPathname: folderObj war leer."
 
-#: lib/CInbox/CIFolder.php:428
+#: lib/CInbox/CIFolder.php:429
 msgid "CIFolder: Refusing to set temp folder to empty string."
 msgstr "CIFolder: Kann Temporärverzeichnis nicht leer setzen."
 
-#: lib/CInbox/CIFolder.php:433
+#: lib/CInbox/CIFolder.php:434
 #, php-format
 msgid "CIFolder: Invalid temp folder given. '%s' is not a directory."
 msgstr ""
 "CIFolder: Ungültiges Temporärverzeichnis angegeben: '%s' ist kein "
 "Verzeichnis."
 
-#: lib/CInbox/CIFolder.php:438
+#: lib/CInbox/CIFolder.php:439
 #, php-format
 msgid ""
 "CIFolder: Invalid temp folder given. '%s' is not writable. Check access "
@@ -358,7 +358,7 @@ msgstr ""
 "ClFolder: Ungültiges Temporärverzeichnis angegeben: In '%s' kann nicht "
 "geschrieben werden. Zugriffsrechte prüfen?"
 
-#: lib/CInbox/CIFolder.php:511
+#: lib/CInbox/CIFolder.php:513
 msgid ""
 "Cannot query for absolute/relative target path: Property 'hasTargetFolder' "
 "has unknown/invalid value."
@@ -366,125 +366,159 @@ msgstr ""
 "Kann nicht prüfen ob Zielordner absolut/relativ ist: Eigenschaft "
 "'hasTargetFolder' hat unbekannten/ungültigen Wert."
 
-#: lib/CInbox/CIFolder.php:555
+#: lib/CInbox/CIFolder.php:557
 #, php-format
 msgid "Target path (%s) for '%s' is relative, but no parent folder is set."
 msgstr ""
 "Der Zielpfad (%s) für '%s' ist relativ, aber es ist kein Elternverzeichnis "
 "gesetzt."
 
-#: lib/CInbox/CIFolder.php:623
+#: lib/CInbox/CIFolder.php:634
 #, php-format
 msgid "%s='%s'\n"
 msgstr "%s='%s'\n"
 
-#: lib/CInbox/CIFolder.php:638
+#: lib/CInbox/CIFolder.php:650
 msgid "Cannot set changelog file: temp folder not valid/set?"
 msgstr ""
 "Kann Dateiname vom Änderungs-Log nicht setzen: Temporärordner nicht gültig/"
 "gesetzt?"
 
-#: lib/CInbox/CIItem.php:117
+#: lib/CInbox/CIItem.php:129
 #, php-format
 msgid "Item: %s"
 msgstr "Item: %s"
 
-#: lib/CInbox/CIItem.php:185
+#: lib/CInbox/CIItem.php:195
+#, php-format
+msgid "Item memory '%s': Remembering '%s' as '%s'.\n"
+msgstr "Item Memory '%s': Merke mir '%s' als '%s'.\n"
+
+#: lib/CInbox/CIItem.php:243
+#, php-format
+msgid "Item memory '%s': Unable to recall key '%s', because it's not set."
+msgstr ""
+"Item Memory '%s': Kann Schlüssel '%s' nicht aufrufen, weil er nicht gesetzt "
+"ist."
+
+#: lib/CInbox/CIItem.php:263
+#, php-format
+msgid "Item '%s': Recalling '%s' as '%s'.\n"
+msgstr "Item '%s': Rufe '%s' als '%s' auf.\n"
+
+#: lib/CInbox/CIItem.php:314
+#, php-format
+msgid "Item memory '%s': Cannot forget empty key value. 🤔️"
+msgstr "Item Memory '%s': Kann Wert von leerem Schlüssel nicht vergessen. 🤔️"
+
+#: lib/CInbox/CIItem.php:322
+#, php-format
+msgid "Item memory '%s': Asked to forget a key that wasn't remembered: '%s'?"
+msgstr ""
+"Item Memory '%s': Anfrage einen Schlüssel zu vergessen, der nie gesetzt "
+"wurde: '%s'?"
+
+#: lib/CInbox/CIItem.php:356
 msgid "Unable to validate ID: Item ID is empty."
 msgstr "Die ID konnte nicht validiert werden: Die Item ID ist leer."
 
-#: lib/CInbox/CIItem.php:191 lib/CInbox/CIItem.php:721
-#: lib/CInbox/Task/CITask.php:830
+#: lib/CInbox/CIItem.php:362 lib/CInbox/CIItem.php:993
+#: lib/CInbox/Task/CITask.php:874
 #, php-format
 msgid "Invalid configuration '%s': Must be an array. Maybe missing '[]'?"
 msgstr "Ungültige Einstellung %s: Muss ein Array sein. Fehlt vielleicht '[]'?"
 
-#: lib/CInbox/CIItem.php:201
+#: lib/CInbox/CIItem.php:372
 #, php-format
 msgid "preg_match failed for item ID '%s' and Regular Expression '%s'."
 msgstr "preg_match für Item ID '%s' und Regular Expression '%s' schlug fehl."
 
-#: lib/CInbox/CIItem.php:208
+#: lib/CInbox/CIItem.php:379
 #, php-format
 msgid "Item ID matches RegEx #%d: %s"
 msgstr "Item ID stimmt mit RegEx #%d überein: %s"
 
-#: lib/CInbox/CIItem.php:236
+#: lib/CInbox/CIItem.php:407
 msgid "Unable to init item: Item ID empty."
 msgstr "Das Item konnte nicht initialisiert werden: Die Item ID ist leer."
 
-#: lib/CInbox/CIItem.php:280
+#: lib/CInbox/CIItem.php:433
+#, php-format
+msgid "Item Token filenames: %s"
+msgstr "Item Token Dateinamen: %s"
+
+#: lib/CInbox/CIItem.php:467
 #, php-format
 msgid "Item ID '%s' is valid. Good!"
 msgstr "Die Item ID '%s' ist gültig. Gut!"
 
-#: lib/CInbox/CIItem.php:286
+#: lib/CInbox/CIItem.php:473
 #, php-format
 msgid "Invalid Item ID: '%s' does not match any of the RegEx patterns in %s"
 msgstr ""
 "Ungültige Item ID:  '%s' stimmt nicht mit einem der RegEx Muster in %s "
 "überein"
 
-#: lib/CInbox/CIItem.php:296
+#: lib/CInbox/CIItem.php:483
 #, php-format
 msgid "Bucket script returned error code %d."
 msgstr "Bucketscript lieferte Fehlercode %d."
 
-#: lib/CInbox/CIItem.php:300
+#: lib/CInbox/CIItem.php:487
 #, php-format
 msgid "Bucket script returned empty bucket."
 msgstr "Bucketscript lieferte leeren Bucket."
 
-#: lib/CInbox/CIItem.php:333
+#: lib/CInbox/CIItem.php:521
 #, php-format
 msgid "No bucket script given. NOTE: Placeholder '%s' will NOT be resolved."
 msgstr ""
 "Kein Bucketscript definiert. HINWEIS: Platzhalter '%s' wird NICHT aufgelöst "
 "werden."
 
-#: lib/CInbox/CIItem.php:340
+#: lib/CInbox/CIItem.php:530
 #, php-format
 msgid "Bucket script not found: '%s'"
 msgstr "Bucketscript nicht gefunden: '%s'"
 
-#: lib/CInbox/CIItem.php:351
+#: lib/CInbox/CIItem.php:541
 #, php-format
 msgid "Calling bucket script '%s' with item ID '%s'..."
 msgstr "Rufe Bucketscript '%s' mit Item ID '%s' auf..."
 
-#: lib/CInbox/CIItem.php:363
+#: lib/CInbox/CIItem.php:553
 #, php-format
 msgid "Bucket script returned '%s'."
 msgstr "Bucketscript lieferte '%s'."
 
-#: lib/CInbox/CIItem.php:420
+#: lib/CInbox/CIItem.php:612
 #, php-format
 msgid "Maximum recursion depth %d exceeded (%d)!"
 msgstr "Maximale Rekursionstiefe %d überschritten (%d)!"
 
-#: lib/CInbox/CIItem.php:458
+#: lib/CInbox/CIItem.php:653
 #, php-format
 msgid "Initializing Item subfolder: '%s' (=%s) / base: '%s'"
 msgstr "Initialisiere Item-Unterordner: '%s' (=%s) / Basis: '%s'"
 
-#: lib/CInbox/CIItem.php:501
+#: lib/CInbox/CIItem.php:705
 #, php-format
 msgid "Running task '%s' on folder: '%s'"
 msgstr "Führe Task '%s' auf Ordner '%s' aus"
 
-#: lib/CInbox/CIItem.php:528
+#: lib/CInbox/CIItem.php:736
 #, php-format
 msgid "Unable to process item '%s'. Item not initialized."
 msgstr ""
 "Das Item '%s' konnte nicht bearbeitet werden. Das Item ist nicht "
 "initialisiert."
 
-#: lib/CInbox/CIItem.php:530
+#: lib/CInbox/CIItem.php:740
 #, php-format
 msgid "Processing item '%s'..."
 msgstr "Bearbeite Item '%s'..."
 
-#: lib/CInbox/CIItem.php:542 lib/CInbox/CIItem.php:561
+#: lib/CInbox/CIItem.php:753 lib/CInbox/CIItem.php:780
 #, php-format
 msgid ""
 "Subfolder structure of '%s':\n"
@@ -493,22 +527,22 @@ msgstr ""
 "Unterordnerstruktur von '%s':\n"
 "%s"
 
-#: lib/CInbox/CIItem.php:559
+#: lib/CInbox/CIItem.php:774
 #, php-format
 msgid "(%s) Subfolder structure has changed. Loading it again."
 msgstr "(%s) Unterordnerstruktur hat sich geändert. Lade sie neu."
 
-#: lib/CInbox/CIItem.php:566
+#: lib/CInbox/CIItem.php:788
 #, php-format
 msgid "Executing task #%d: '%s'..."
 msgstr "Führe Task #%d: '%s' aus..."
 
-#: lib/CInbox/CIItem.php:577
+#: lib/CInbox/CIItem.php:806
 #, php-format
 msgid "(%s): Issue found in task '%s'. Aborting task list"
 msgstr "(%s): Problem im Task '%s' gefunden. Die Taskliste wird abgebrochen"
 
-#: lib/CInbox/CIItem.php:584
+#: lib/CInbox/CIItem.php:816
 #, php-format
 msgid ""
 "(%s): Problem with config setting found in task '%s'. Aborting task list"
@@ -516,7 +550,7 @@ msgstr ""
 "(%s): Problem mit Konfigurationseinstellung im Task '%s' gefunden. Die "
 "Taskliste wird abgebrochen"
 
-#: lib/CInbox/CIItem.php:591
+#: lib/CInbox/CIItem.php:826
 #, php-format
 msgid ""
 "(%s): Issue found in task '%s'. This Task may proceed, but tasklist will be "
@@ -525,58 +559,58 @@ msgstr ""
 "(%s): Problem im Task '%s' gefunden. Dieser Task darf noch weitermachen, "
 "aber die restliche Taskliste wird abgebrochen."
 
-#: lib/CInbox/CIItem.php:597
+#: lib/CInbox/CIItem.php:835
 #, php-format
 msgid "(%s): Issue found in task '%s'. Processing may still proceed..."
 msgstr ""
 "(%s): Problem im Task '%s' gefunden. Verarbeitung kann jedoch weitergeführt "
 "werden..."
 
-#: lib/CInbox/CIItem.php:602
+#: lib/CInbox/CIItem.php:843
 #, php-format
 msgid "(%s): Task '%s' okay for '%s'."
 msgstr "(%s): Task '%s' in Ordnung für '%s'."
 
-#: lib/CInbox/CIItem.php:606
+#: lib/CInbox/CIItem.php:850
 #, php-format
 msgid "(%s): Task '%s' skipped for '%s'."
 msgstr "(%s): Task '%s' übersprungen für '%s'."
 
-#: lib/CInbox/CIItem.php:610
+#: lib/CInbox/CIItem.php:857
 #, php-format
 msgid "(%s): Task '%s' triggered Item to wait. Resetting Item after this task."
 msgstr ""
 "(%s): Task '%s' markierte Item zum Warten. Item wird nach diesem Task "
 "zurückgesetzt."
 
-#: lib/CInbox/CIItem.php:617
+#: lib/CInbox/CIItem.php:867
 #, php-format
 msgid "(%s): Task '%s': Invalid task status '%s'."
 msgstr "(%s): Task '%s': Ungültiger Taskstatus '%s'."
 
-#: lib/CInbox/CIItem.php:626
+#: lib/CInbox/CIItem.php:879
 #, php-format
 msgid "Task '%s' is recursive itself. Applied only to '%s'."
 msgstr "Der Task '%s' ist rekursiv. Wurde nur auf '%s' angewandt."
 
-#: lib/CInbox/CIItem.php:631
+#: lib/CInbox/CIItem.php:887
 #, php-format
 msgid "Task '%s' is marked as 'once per Item'. Applied only to '%s'."
 msgstr ""
 "Der Task '%s' ist als 'einmal per Item' markiert. Wurde nur auf '%s' "
 "angewandt."
 
-#: lib/CInbox/CIItem.php:640
+#: lib/CInbox/CIItem.php:899
 #, php-format
 msgid "(%s): Task '%s' ran successfully."
 msgstr "(%s): Task '%s' lief erfolgreich."
 
-#: lib/CInbox/CIItem.php:646
+#: lib/CInbox/CIItem.php:907
 #, php-format
 msgid "(%s): Task '%s' ran with %d errors."
 msgstr "(%s): Task '%s' lief mit %d Fehlern."
 
-#: lib/CInbox/CIItem.php:664
+#: lib/CInbox/CIItem.php:925
 #, php-format
 msgid ""
 "Item '%s': %d/%d task(s) processed, but with %d errors. Please check the "
@@ -585,93 +619,112 @@ msgstr ""
 "Item '%s': %d/%d Task(s) verarbeitet, aber mit %d Fehlern. Überprüfen Sie "
 "bitte die Logfiles!"
 
-#: lib/CInbox/CIItem.php:671
+#: lib/CInbox/CIItem.php:932
 #, php-format
 msgid "%d task(s) had errors: %s"
 msgstr "%d Task(s) hatten Fehler: %s"
 
-#: lib/CInbox/CIItem.php:682
+#: lib/CInbox/CIItem.php:943
 #, php-format
 msgid "Item '%s': %d/%d task(s) processed successfully!"
 msgstr "Item '%s': %d/%d Task(s) wurden erfolgreich verarbeitet!"
 
-#: lib/CInbox/CIItem.php:711
+#: lib/CInbox/CIItem.php:962
+#, php-format
+msgid "Item memory (%s) on finalize: %s\n"
+msgstr "Item Memory (%s) Inhalt beim Finalisieren: %s\n"
+
+#: lib/CInbox/CIItem.php:981
 #, php-format
 msgid "Checking if item '%s' is ready for processing..."
 msgstr "Überprüfe ob Item '%s' bereit für die Verarbeitung ist..."
 
-#: lib/CInbox/CIItem.php:727
+#: lib/CInbox/CIItem.php:1000
 #, php-format
 msgid "Item age is: %d minutes (cooloff time: %d)"
 msgstr "Alter von Item ist: %d Minuten (Abkühlzeit: %d)"
 
-#: lib/CInbox/CIItem.php:731
+#: lib/CInbox/CIItem.php:1007
 #, php-format
 msgid "Item not ready for processing: Need to wait %d more minutes."
 msgstr "Item nicht bereit für die Verarbeitung: Muss noch %d Minuten warten."
 
-#: lib/CInbox/CIItem.php:744
+#: lib/CInbox/CIItem.php:1022
 msgid "Cannot set temp folder for Item: Must set ItemID first."
 msgstr ""
 "Kann kein Temporärverzeichnis für das Item anlegen: Die Item ID muss zuerst "
 "gesetzt sein."
 
-#: lib/CInbox/CIItem.php:749
+#: lib/CInbox/CIItem.php:1028
 #, php-format
 msgid "Invalid temp folder given. '%s' is not writable. Check access rights?"
 msgstr ""
 "Ungültiges Temporärverzeichnis angegeben: In '%s' kann nicht geschrieben "
 "warden. Zugriffsrechte prüfen?"
 
-#: lib/CInbox/CIItem.php:758
+#: lib/CInbox/CIItem.php:1040
 #, php-format
 msgid "Creating temp folder '%s' failed."
 msgstr "Temporärverzeichnis '%s' anlegen ist gescheitert."
 
-#: lib/CInbox/CIItem.php:763
+#: lib/CInbox/CIItem.php:1048
 #, php-format
 msgid "Set temp folder for '%s' to '%s'."
 msgstr "Setze Temporärverzeichnis für '%s' auf '%s'."
 
-#: lib/CInbox/CIItem.php:779 lib/CInbox/CInbox.php:201
+#: lib/CInbox/CIItem.php:1067 lib/CInbox/CInbox.php:202
 #, php-format
 msgid "Trying to remove temp folder '%s'..."
 msgstr "Versuche, das Temporärverzechnis  '%s' zu löschen..."
 
-#: lib/CInbox/CIItem.php:782 lib/CInbox/CInbox.php:204
+#: lib/CInbox/CIItem.php:1073 lib/CInbox/CInbox.php:207
 msgid "Removed temp folder."
 msgstr "Temporärverzeichnis gelöscht."
 
-#: lib/CInbox/CIItem.php:787
+#: lib/CInbox/CIItem.php:1079
 #, php-format
 msgid "Could not remove temp folder '%s'."
 msgstr "Konnte Temporärverzeichnis nicht löschen: '%s'."
 
-#: lib/CInbox/CIItem.php:813
+#: lib/CInbox/CIItem.php:1108
 #, php-format
 msgid "Unable to determine age of %s. Invalid return type: %s"
 msgstr "Kann Alter von %s nicht bestimmen. Ungültige Rückgabetype: %s"
 
-#: lib/CInbox/CIItem.php:867
+#: lib/CInbox/CIItem.php:1165
 #, php-format
 msgid "Updating changelog: %s"
 msgstr "Aktualisiere Änderungs-Log: %s"
 
-#: lib/CInbox/CIItem.php:871
+#: lib/CInbox/CIItem.php:1169
 #, php-format
 msgid "Could not write to changelog '%s'. Check access rights?"
 msgstr "Konnte das Änderungs-Log '%s' nicht erstellen. Zugriffsrechte prüfen?"
 
-#: lib/CInbox/CIItem.php:889
+#: lib/CInbox/CIItem.php:1188
 #, php-format
 msgid "Updating Item timestamp to: %s"
 msgstr "Aktualisierte Zeitstempel auf: %s"
+
+#: lib/CInbox/CIItem.php:1209
+#, php-format
+msgid "No token filename exists for given key '%s'."
+msgstr "Für angegebenen Schlüssel '%s' existiert kein Token-Dateiname."
+
+#: lib/CInbox/CIItem.php:1256
+msgid "Cannot write token file: Empty filename given."
+msgstr "Kann Token-Datei nicht schreiben: Kein Dateiname angegeben."
+
+#: lib/CInbox/CIItem.php:1266
+#, php-format
+msgid "Could not write to token file '%s'. Check access rights?"
+msgstr "Konnte das Änderungs-Log '%s' nicht erstellen. Zugriffsrechte prüfen?"
 
 #: lib/CInbox/CInbox.php:167
 msgid "Clean ending of Inbox..."
 msgstr "Sauberer Abschluss der Inbox..."
 
-#: lib/CInbox/CInbox.php:208
+#: lib/CInbox/CInbox.php:212
 #, php-format
 msgid ""
 "Could not remove temp folder '%s'. This is okay if some items are still in "
@@ -680,21 +733,21 @@ msgstr ""
 "Konnte das Temporärverzeichnis '%s' nicht löschen. Dies ist in Ordnung falls "
 "sich noch Items in den Verarbeitungsordnern befinden."
 
-#: lib/CInbox/CInbox.php:247
+#: lib/CInbox/CInbox.php:254
 msgid "Source folder name empty."
 msgstr "Quellverzeichnis: Leere Angabe."
 
-#: lib/CInbox/CInbox.php:251
+#: lib/CInbox/CInbox.php:259
 #, php-format
 msgid "Source folder does not exist: '%s'"
 msgstr "Quellverzeichnis '%s' existiert nicht."
 
-#: lib/CInbox/CInbox.php:255
+#: lib/CInbox/CInbox.php:266
 #, php-format
 msgid "Source folder is not a directory: '%s'"
 msgstr "Quellverzeichnis '%s' ist kein Verzeichnis."
 
-#: lib/CInbox/CInbox.php:288
+#: lib/CInbox/CInbox.php:302
 #, php-format
 msgid ""
 "Unable to set config filename to default '%s', because source folder is not "
@@ -703,15 +756,15 @@ msgstr ""
 "Kann den Standard für den Konfigurationsdateinamen ( '%s') nicht setzen, da "
 "kein Quellverzeichnis gesetzt wurde."
 
-#: lib/CInbox/CInbox.php:350
+#: lib/CInbox/CInbox.php:369
 msgid "Applying settings for inbox..."
 msgstr "Wende Einstellungen auf die Inbox an..."
 
-#: lib/CInbox/CInbox.php:358
+#: lib/CInbox/CInbox.php:377
 msgid "Initializing default settings for Inbox..."
 msgstr "Initialisiere die Standardeinstellungen für die Inbox..."
 
-#: lib/CInbox/CInbox.php:364
+#: lib/CInbox/CInbox.php:384
 #, php-format
 msgid ""
 "Settings for inbox:\n"
@@ -720,14 +773,14 @@ msgstr ""
 "Einstellungen für diese Inbox:\n"
 "%s"
 
-#: lib/CInbox/CInbox.php:370
+#: lib/CInbox/CInbox.php:393
 #, php-format
 msgid "No inbox name set in config option '%s'. Please set one."
 msgstr ""
 "Es wurde kein Inbox Name in der Konfigurationsoption '%s' gesetzt. Bitte "
 "einen Namen setzen."
 
-#: lib/CInbox/CInbox.php:378
+#: lib/CInbox/CInbox.php:404
 #, php-format
 msgid ""
 "Could not load settings for '%s': %s\n"
@@ -736,23 +789,23 @@ msgstr ""
 "Konnte die Einstellungen für '%s': %s nicht laden: \n"
 "%s"
 
-#: lib/CInbox/CInbox.php:382
+#: lib/CInbox/CInbox.php:412
 msgid "Inbox settings successfully applied."
 msgstr "Die Inbox-Einstellungen wurden erfolgreich übernommen."
 
-#: lib/CInbox/CInbox.php:397
+#: lib/CInbox/CInbox.php:428
 msgid "Unable to get Inbox name: Config not initialized."
 msgstr ""
 "Konnte den Inbox Namen nicht auslesen: Konfiguration nicht initialisiert."
 
-#: lib/CInbox/CInbox.php:427
+#: lib/CInbox/CInbox.php:459
 #, php-format
 msgid "No %s set. That's fine. We have nothing to wait for."
 msgstr ""
 "Kein %s gesetzt. Das ist in Ordnung. Wir haben also nichts auf das wir "
 "warten müssen."
 
-#: lib/CInbox/CInbox.php:436
+#: lib/CInbox/CInbox.php:468
 #, php-format
 msgid ""
 "Work times should be an array. Did you add '[]' after '%s' in the config?"
@@ -760,38 +813,38 @@ msgstr ""
 "Arbeitszeiten müssen ein Array sein. Haben Sie '[]' nach '%s' in der Config "
 "hinzugefügt?"
 
-#: lib/CInbox/CInbox.php:442 lib/CInbox/CInbox.php:465
+#: lib/CInbox/CInbox.php:475 lib/CInbox/CInbox.php:500
 #, php-format
 msgid "Work times set: %s"
 msgstr "Arbeitszeiten gesetzt: %s"
 
-#: lib/CInbox/CInbox.php:509
+#: lib/CInbox/CInbox.php:544
 #, php-format
 msgid "Listing item folders in '%s'..."
 msgstr "Auflisten der Item-Ordner in '%s'..."
 
-#: lib/CInbox/CInbox.php:515
+#: lib/CInbox/CInbox.php:550
 msgid "Cannot list items. Value for 'sourceFolder' is not set."
 msgstr "Kann keine Items auflisten: Kein Wert für 'sourceFolder' konfiguriert."
 
-#: lib/CInbox/CInbox.php:529
+#: lib/CInbox/CInbox.php:564
 #, php-format
 msgid "  - Item: '%s'"
 msgstr "  - Item: '%s'"
 
-#: lib/CInbox/CInbox.php:535
+#: lib/CInbox/CInbox.php:570
 #, php-format
 msgid "Inbox '%s' contains %d items."
 msgstr "Inbox  '%s' enthält %d Item(s)."
 
-#: lib/CInbox/CInbox.php:613
+#: lib/CInbox/CInbox.php:649
 msgid ""
 "Could not get operating system's temp folder. 'sys_get_temp_dir()' was empty."
 msgstr ""
 "Kann den Temporärverzeichnispfad des Systems nicht auslesen: Rückgabewert "
 "von 'sys_get_temp_dir()' war leer."
 
-#: lib/CInbox/CInbox.php:618
+#: lib/CInbox/CInbox.php:655
 #, php-format
 msgid ""
 "Problem getting operating system's temp folder. '%s' is not a directory."
@@ -799,23 +852,23 @@ msgstr ""
 "Kann den Temporärverzeichnispfad des Systems nicht auslesen: '%s' ist kein "
 "Verzeichnis."
 
-#: lib/CInbox/CInbox.php:643
+#: lib/CInbox/CInbox.php:680
 msgid "Initializing temp folder..."
 msgstr "Initialisiere Temporärverzeichnis..."
 
-#: lib/CInbox/CInbox.php:650
+#: lib/CInbox/CInbox.php:687
 #, php-format
 msgid "Invalid or empty temp folder root: '%s'. Check config variable '%s'?"
 msgstr ""
 "Konnte das Temporärverzeichnis '%s' nicht erstellen. Bitte die Config-Option "
 "'%s' überprüfen?"
 
-#: lib/CInbox/CInbox.php:662
+#: lib/CInbox/CInbox.php:699
 #, php-format
 msgid "Temporary folder: '%s'"
 msgstr "Temporärverzeichnis: '%s'"
 
-#: lib/CInbox/CInbox.php:667
+#: lib/CInbox/CInbox.php:704
 #, php-format
 msgid ""
 "Temp folder for Inbox '%s' already exists. Possible re-run. We'll be careful."
@@ -823,12 +876,12 @@ msgstr ""
 "Das Temporärverzeichnis für die Inbox '%s' existiert bereits. Eventuell  "
 "wird der Task erneut ausgeführt: Vorsichtiger Modus."
 
-#: lib/CInbox/CInbox.php:672
+#: lib/CInbox/CInbox.php:709
 #, php-format
 msgid "Creating temp folder: '%s'"
 msgstr "Erstelle Temporärverzeichnis: '%s'"
 
-#: lib/CInbox/CInbox.php:676
+#: lib/CInbox/CInbox.php:713
 #, php-format
 msgid ""
 "Could not create temp folder '%s'. Check access rights? Does parent folder "
@@ -837,50 +890,50 @@ msgstr ""
 "Konnte das Temporärverzeichnis '%s' nicht erstellen. Zugriffsrechte prüfen? "
 "Existiert das übergeordnete Verzeichnis?"
 
-#: lib/CInbox/CInbox.php:693
+#: lib/CInbox/CInbox.php:730
 msgid "Cannot init item: itemId not set."
 msgstr "Kann das Item nicht initialisieren: Keine ItemID gesetzt."
 
-#: lib/CInbox/CInbox.php:694
+#: lib/CInbox/CInbox.php:731
 #, php-format
 msgid "Initializing item '%s'..."
 msgstr "Initialisiere Item '%s'..."
 
-#: lib/CInbox/CInbox.php:748
+#: lib/CInbox/CInbox.php:785
 #, php-format
 msgid "Reached limit of %d items per run."
 msgstr "Limit von %d Items per Durchlauf erreicht."
 
-#: lib/CInbox/CInbox.php:761
+#: lib/CInbox/CInbox.php:798
 #, php-format
 msgid "Next Item: %d/%d (max %d)"
 msgstr "Nächstes Item: %d/%d (max %d)"
 
-#: lib/CInbox/CInbox.php:777 lib/CInbox/CInbox.php:930
+#: lib/CInbox/CInbox.php:814
 msgid "Could not process item"
 msgstr "Das Item konnte nicht verarbeitet werden"
 
-#: lib/CInbox/CInbox.php:781
+#: lib/CInbox/CInbox.php:820
 #, php-format
 msgid "Problems with '%s'"
 msgstr "Probleme mit '%s'"
 
-#: lib/CInbox/CInbox.php:812
+#: lib/CInbox/CInbox.php:863
 #, php-format
 msgid "Pausing %d seconds..."
 msgstr "Warte %d Sekunden..."
 
-#: lib/CInbox/CInbox.php:837
+#: lib/CInbox/CInbox.php:888
 #, php-format
 msgid "No %s set. Nothing to wait for."
 msgstr "Kein %s gesetzt. Kein Grund zu warten."
 
-#: lib/CInbox/CInbox.php:852
+#: lib/CInbox/CInbox.php:903
 #, php-format
 msgid "Next run date is: %s (%s)"
 msgstr "Nächster Ausführzeitpunkt: %s (%s)"
 
-#: lib/CInbox/CInbox.php:862
+#: lib/CInbox/CInbox.php:913
 #, php-format
 msgid ""
 "%s expression '%s' is now due!\n"
@@ -891,7 +944,7 @@ msgstr ""
 "Bereit zum Weitermachen.\n"
 "\n"
 
-#: lib/CInbox/CInbox.php:874
+#: lib/CInbox/CInbox.php:925
 #, php-format
 msgid ""
 "Current date/time '%s' is outside of working hours set in '%s'.\n"
@@ -901,219 +954,243 @@ msgstr ""
 "Arbeitszeiten.\n"
 "Ich warte. 😇️"
 
-#: lib/CInbox/CInbox.php:919
+#: lib/CInbox/CInbox.php:970
 #, php-format
 msgid "Config has changed while running. Please restart to load new settings!"
 msgstr ""
 "Konfiguration hat sich zur Laufzeit geändert. Bitte starten Sie das Programm "
 "neu um die Änderungen zu übernehmen!"
 
-#: lib/CInbox/CInbox.php:924
+#: lib/CInbox/CInbox.php:975
 #, php-format
 msgid "Next item to process: '%s'."
 msgstr "Das nächste Item zur Bearbeitung ist: '%s'."
 
-#: lib/CInbox/CInbox.php:938
+#: lib/CInbox/CInbox.php:982
+#, php-format
+msgid "Could not process item '%s'"
+msgstr "Folgnedes Item konnte nicht verarbeitet werden: '%s'"
+
+#: lib/CInbox/CInbox.php:987
+#, php-format
+msgid "Could not finalize item '%s'"
+msgstr "Folgendes Item konnte nicht initialisiert werden: '%s'"
+
+#: lib/CInbox/CInbox.php:997
 #, php-format
 msgid "Problem with Item"
 msgstr "Probleme mit Item"
 
-#: lib/CInbox/CInbox.php:953
+#: lib/CInbox/CInbox.php:1012
 msgid "Currently no items to process."
 msgstr "Aktuell sind keine Items zu verarbeiten."
 
-#: lib/CInbox/CInbox.php:966
+#: lib/CInbox/CInbox.php:1025
 #, php-format
 msgid "Config file has changed: %s"
 msgstr "Die Konfigurationsdatei hat sich geändert: %s"
 
-#: lib/CInbox/CInbox.php:982
+#: lib/CInbox/CInbox.php:1041
 #, php-format
 msgid "Item ID required"
 msgstr "Item ID benötigt"
 
-#: lib/CInbox/CInbox.php:984
+#: lib/CInbox/CInbox.php:1043
 #, php-format
 msgid "Invalid log folder: '%s'"
 msgstr "Ungültiger Log-Ordner: '%s'"
 
-#: lib/CInbox/CInbox.php:1006
+#: lib/CInbox/CInbox.php:1065
 #, php-format
 msgid "Status base folder invalid or not set: %s"
 msgstr "Status Basis-Ordner ungültig oder nicht gesetzt: %s"
 
-#: lib/CInbox/CInbox.php:1010
+#: lib/CInbox/CInbox.php:1069
 #, php-format
 msgid "No folder configured matching '%s'"
 msgstr "Keine Ordnerkonfiguration passend für '%s'"
 
-#: lib/CInbox/CInbox.php:1046
+#: lib/CInbox/CInbox.php:1105
 #, php-format
 msgid "State-keeping base folder does not exist or is not a folder: %s"
 msgstr "Status Basisordner existiert nicht oder ist kein Verzeichnis: %s"
 
-#: lib/CInbox/CInbox.php:1050
+#: lib/CInbox/CInbox.php:1109
 #, php-format
 msgid "State-keeping base folder is '%s'"
 msgstr "Status-Basisordner ist '%s'"
 
-#: lib/CInbox/CInbox.php:1076
+#: lib/CInbox/CInbox.php:1135
 #, php-format
 msgid "Processing folder for '%s' does not exist: %s"
 msgstr "Verarbeitungsordner für '%s' existiert nicht: %s"
 
-#: lib/CInbox/CInbox.php:1083
+#: lib/CInbox/CInbox.php:1142
 #, php-format
 msgid "Folder for '%s' is not a directory: %s"
 msgstr "Ordner für '%s' ist kein Verzeichnis: %s"
 
-#: lib/CInbox/CInbox.php:1090
+#: lib/CInbox/CInbox.php:1149
 #, php-format
 msgid "Cannot write to folder for '%s': '%s' - Check access rights?"
 msgstr "Kann in Ordner for '%s' nicht schreiben: '%s' - Zugriffsrechte prüfen?"
 
-#: lib/CInbox/CInbox.php:1098
+#: lib/CInbox/CInbox.php:1157
 #, php-format
 msgid "Processing folder for '%s' is: %s"
 msgstr "Verarbeitungsordner für '%s' ist: %s"
 
-#: lib/CInbox/CInbox.php:1104
+#: lib/CInbox/CInbox.php:1163
 #, php-format
 msgid "%d/%d processing folders are not valid."
 msgstr "%d/%d Verarbeitungsorder sind nicht gültig."
 
-#: lib/CInbox/CInbox.php:1122
+#: lib/CInbox/CInbox.php:1181
 #, php-format
 msgid "No state-keeping base folder set. Config option %s"
 msgstr "Kein Status-Basisordner gesetzt. Konfigurationsoption %s"
 
-#: lib/CInbox/CInbox.php:1149
+#: lib/CInbox/CInbox.php:1208
 #, php-format
 msgid "(%s): Current folder: %s"
 msgstr "(%s): Aktueller Ordner: %s"
 
-#: lib/CInbox/CInbox.php:1150
+#: lib/CInbox/CInbox.php:1209
 #, php-format
 msgid "(%s): Target folder: %s"
 msgstr "(%s): Zielordner: %s"
 
-#: lib/CInbox/CInbox.php:1156
+#: lib/CInbox/CInbox.php:1215
 #, php-format
 msgid "(%s): Changed status from '%s' to '%s'..."
 msgstr "(%s): Status von '%s' nach '%s' geändert..."
 
-#: lib/CInbox/CInbox.php:1161
+#: lib/CInbox/CInbox.php:1219
 #, php-format
 msgid "(%s): Could not move folder '%s' to '%s'."
 msgstr "(%s): Konnte Ordner nicht von '%s' nach '%s' verschieben."
 
-#: lib/CInbox/CInbox.php:1179
+#: lib/CInbox/CInbox.php:1235
+#, php-format
+msgid "Token '%s' written to: '%s'."
+msgstr "Token '%s' in '%s' geschrieben."
+
+#: lib/CInbox/CInbox.php:1259
 #, php-format
 msgid "Removing finished Items older than %d days..."
 msgstr "Entferne fertige Items die älter sind als %d Tage..."
 
-#: lib/CInbox/CInbox.php:1188
+#: lib/CInbox/CInbox.php:1269
 #, php-format
 msgid "Item: %s (%d days old)"
 msgstr "Item: %s (%d Tage alt)"
 
-#: lib/CInbox/CInbox.php:1193
+#: lib/CInbox/CInbox.php:1278
 #, php-format
 msgid "Deleting finished Item: %s"
 msgstr "Lösche fertige Items: %s"
 
-#: lib/CInbox/CInbox.php:1197
+#: lib/CInbox/CInbox.php:1284
 #, php-format
 msgid "Ignoring file '%s' (not an Item). Delete it manually if desired."
 msgstr ""
 "Ignoriere Datei '%s' (ist kein Item). Löschen Sie sie manuell, falls "
 "gewünscht."
 
-#: lib/CInbox/CInbox.php:1202
+#: lib/CInbox/CInbox.php:1289
 #, php-format
 msgid "Deleted %d items."
 msgstr "%d Items gelöscht."
 
-#: lib/CInbox/Task/CITask.php:174
+#: lib/CInbox/Task/CITask.php:183
 #, php-format
 msgid "Cannot instantiate task '%s': Invalid CIFolder object."
 msgstr "Kann den Task '%s' nicht instanzieren: Ungültiges CIFolder-Objekt."
 
-#: lib/CInbox/Task/CITask.php:304
-msgid "Invalid item subdirs: not an array."
-msgstr "Ungültige Item Unterordner: Kein Array."
+#: lib/CInbox/Task/CITask.php:272
+#, php-format
+msgid ""
+"Cannot set parent item for task '%s': item is not an instance of a CIItem "
+"class, but '%s'."
+msgstr ""
+"Kann Eltern-Item für Task '%s' nicht setzen: Item ist keine Instanz von "
+"CIItem Klasse, sondern '%s'."
 
-#: lib/CInbox/Task/CITask.php:326
+#: lib/CInbox/Task/CITask.php:347
+msgid "Invalid item subdirs variable: not an array."
+msgstr "Ungültige Item Unterordner Variable: Kein Array."
+
+#: lib/CInbox/Task/CITask.php:371
 msgid "Loading task settings..."
 msgstr "Task-Einstellungen warden geladen..."
 
-#: lib/CInbox/Task/CITask.php:333
+#: lib/CInbox/Task/CITask.php:378
 #, php-format
 msgid "Copy exclude: %s"
 msgstr "Nicht mitkopieren: %s"
 
-#: lib/CInbox/Task/CITask.php:351
+#: lib/CInbox/Task/CITask.php:396
 #, php-format
 msgid "Task '%s' init."
 msgstr "Task '%s' Initialisierung."
 
-#: lib/CInbox/Task/CITask.php:354
+#: lib/CInbox/Task/CITask.php:399
 #, php-format
 msgid "Failed to load settings for task '%s'."
 msgstr "Konnte die Einstellungen für Task '%s' nicht laden."
 
-#: lib/CInbox/Task/CITask.php:365
+#: lib/CInbox/Task/CITask.php:410
 #, php-format
 msgid "Target folder for '%s' resolves to: '%s'"
 msgstr "Zielordner für '%s' wird aufgelöst zu: '%s'"
 
-#: lib/CInbox/Task/CITask.php:670
+#: lib/CInbox/Task/CITask.php:714
 msgid "Cannot create task: No taskname given."
 msgstr "Kann den Task nicht erzeugen: Kein Taskname gesetzt."
 
-#: lib/CInbox/Task/CITask.php:677
+#: lib/CInbox/Task/CITask.php:721
 #, php-format
 msgid "Cannot create object: Invalid task name '%s'."
 msgstr "Kann das Objekt nicht erzeugen: Ungültiger Taskname '%s'."
 
-#: lib/CInbox/Task/CITask.php:682
+#: lib/CInbox/Task/CITask.php:726
 #, php-format
 msgid "Cannot create object: Cannot find class '%s'."
 msgstr "Kann das Objekt nicht erzeugen: Klasse nicht gefunden '%s'."
 
-#: lib/CInbox/Task/CITask.php:733
+#: lib/CInbox/Task/CITask.php:777
 #, php-format
 msgid "%s: Temp folder is not set or invalid."
 msgstr "%s: Kein oder ungültiges Temporärverzeichnis gesetzt."
 
-#: lib/CInbox/Task/CITask.php:738
+#: lib/CInbox/Task/CITask.php:782
 #, php-format
 msgid "Task '%s': temp folder is '%s'."
 msgstr "Task '%s': Temporärverzeichnis ist '%s'."
 
-#: lib/CInbox/Task/CITask.php:743
+#: lib/CInbox/Task/CITask.php:787
 #, php-format
 msgid "%s: Temp folder '%s' is not writable by user '%s'. Check permissions?"
 msgstr ""
 "%s: Ungültiges Temporärverzeichnis angegeben: In '%s' kann von '%s' nicht "
 "geschrieben werden. Zugriffsrechte prüfen?"
 
-#: lib/CInbox/Task/CITask.php:800
+#: lib/CInbox/Task/CITask.php:844
 #, php-format
 msgid "Parameter 'excludePatterns' must be an array, but is: %s"
 msgstr "Parameter 'excludePatterns' muss ein Array sein, ist aber: %s"
 
-#: lib/CInbox/Task/CITask.php:805
+#: lib/CInbox/Task/CITask.php:849
 msgid "Filename must not be empty"
 msgstr "Dateiname darf nicht leer sein"
 
-#: lib/CInbox/Task/CITask.php:854
+#: lib/CInbox/Task/CITask.php:898
 #, php-format
 msgid "Target folder (staging) for '%s' could not be resolved properly."
 msgstr ""
 "Zielordner (staging) für '%s' konnte nicht ordnungsgemäß aufgelöst werden."
 
-#: lib/CInbox/Task/CITask.php:860
+#: lib/CInbox/Task/CITask.php:904
 #, php-format
 msgid "Target folder (staging) for '%s' resolves to: '%s'"
 msgstr "Zielordner (staging) für '%s' wird aufgelöst zu: '%s'"
@@ -1789,7 +1866,7 @@ msgid "Generating hashcodes for files in '%s'..."
 msgstr "Erzeuge Hashcodes für Dateien in '%s'..."
 
 #: lib/CInbox/Task/TaskHashGenerate.php:150
-#: lib/CInbox/Task/TaskHashGenerate.php:245
+#: lib/CInbox/Task/TaskHashGenerate.php:321
 #, php-format
 msgid "Hash file for '%s': %s"
 msgstr "Prüfsummendatei für '%s' ist: %s"
@@ -1847,23 +1924,48 @@ msgstr "Es gab %d Problem(e) bei der Prüfsummenberechnung (%s)."
 msgid "%d problems encountered while saving hashcodes to file."
 msgstr "Es gab %d Problem(e) beim Speichern der Prüfsummen in Dateien."
 
-#: lib/CInbox/Task/TaskHashGenerate.php:252
+#: lib/CInbox/Task/TaskHashGenerate.php:259
 #, php-format
-msgid "Skipping file. Hashfile already exists (%s)."
-msgstr "Überspringe Datei: Prüfsumme existiert bereits (%s)."
+msgid "Hashfile does NOT exist yet. Good. (%s)"
+msgstr "Prüfsummendatei existiert noch NICHT. Gut. (%s)"
 
-#: lib/CInbox/Task/TaskHashGenerate.php:256
+#: lib/CInbox/Task/TaskHashGenerate.php:269
+#, php-format
+msgid "Hashfile already exists (%s)."
+msgstr "Prüfsummendatei existiert bereits (%s)."
+
+#: lib/CInbox/Task/TaskHashGenerate.php:277
+#, php-format
+msgid "Hashfile is empty."
+msgstr "Prüfsummendatei ist leer."
+
+#: lib/CInbox/Task/TaskHashGenerate.php:288
+#, php-format
+msgid ""
+"Hashcode is possibly outdated: data file is newer or has changed?\n"
+" hash time = %s / data time = %s)"
+msgstr ""
+"Prüfsumme is möglicherweise nicht mehr aktuell: Ist Bezugsfile neuer oder "
+"hat sich seitdem geändert?\n"
+"(hash time = %s / data time = %s)"
+
+#: lib/CInbox/Task/TaskHashGenerate.php:326
+#, php-format
+msgid "Allowed to skip hashcode creation for '%s' :)"
+msgstr "Überspringen der Prüfsummenerzeugung für '%s' erlaubt. :)"
+
+#: lib/CInbox/Task/TaskHashGenerate.php:334
 #, php-format
 msgid "Hashing '%s'..."
 msgstr "Berechne Prüfsumme für '%s'..."
 
-#: lib/CInbox/Task/TaskHashGenerate.php:261
+#: lib/CInbox/Task/TaskHashGenerate.php:339
 #: lib/CInbox/Task/TaskHashValidate.php:175
 #, php-format
 msgid "hash_file failed: Could not create hash (%s) for '%s'."
 msgstr "hash_file Fehler: Konnte die Prüfsumme (%s) für '%s' nicht erzeugen."
 
-#: lib/CInbox/Task/TaskHashGenerate.php:266
+#: lib/CInbox/Task/TaskHashGenerate.php:344
 #, php-format
 msgid "Hashcode (%s) for '%s' = %s"
 msgstr "Prüfsumme (%s) für '%s' = %s"
@@ -2145,17 +2247,39 @@ msgstr "Führe %d Vorbereitungs-Skript(s) im Verzeichnis '%s' aus ..."
 msgid "Executing pre-processor #%d: '%s'"
 msgstr "Führe Vorbereitungs-Skript #%d aus: '%s'"
 
-#: lib/CInbox/Task/TaskRenameTarget.php:97
+#: lib/CInbox/Task/TaskRenameTarget.php:110
 #, php-format
 msgid "Temp folder does not exist anymore: '%s'"
 msgstr "Temporärordner existiert nicht mehr: '%s'"
 
 #: lib/CInbox/Task/TaskRenameTarget.php:145
 #, php-format
+msgid "Staging folders to remove: %s"
+msgstr "Staging-Ordner zu löschen: %s"
+
+#: lib/CInbox/Task/TaskRenameTarget.php:153
+#, php-format
+msgid "Cleaning up %d empty staging folder structures:"
+msgstr "Räume %d leere Staging-Ordnerstrukturen auf:"
+
+#: lib/CInbox/Task/TaskRenameTarget.php:160
+#, php-format
+msgid "Removing empty stage folder '%s'..."
+msgstr "Entferne leere Stage-Ordner '%s'..."
+
+#: lib/CInbox/Task/TaskRenameTarget.php:171
+msgid ""
+"Some folders in staging were not empty when trying to remove them. Not clean."
+msgstr ""
+"Einige Ordner in Staging waren nicht leer beim Versuch sie zu entfernen. "
+"Nicht sauber."
+
+#: lib/CInbox/Task/TaskRenameTarget.php:191
+#, php-format
 msgid "Merging files from '%s' into '%s'..."
 msgstr "Zusammenlegen von Dateien in '%s' mit '%s'..."
 
-#: lib/CInbox/Task/TaskRenameTarget.php:165
+#: lib/CInbox/Task/TaskRenameTarget.php:211
 #, php-format
 msgid "%d of %d files had errors."
 msgstr "%d von %d Dateien hatten Fehler."
@@ -2196,113 +2320,131 @@ msgstr "Es wurden keine Werte übergeben um die Platzhalter-Variablen zu füllen
 msgid "Parameter $argument is not an array"
 msgstr "Der Parameter $argument ist kein array"
 
-#: lib/Helper.php:115
+#: lib/Helper.php:116
 #, php-format
 msgid "touchFile: Could not create subfolder: '%s'."
 msgstr "touchFile: Das Unterverzeichnis '%s' konnte nicht erstellt werden."
 
-#: lib/Helper.php:132
+#: lib/Helper.php:135
 msgid "isAbsolutePath: Empty pathname given."
 msgstr "isAbsolutePath: Pfadname ist leer."
 
-#: lib/Helper.php:154
+#: lib/Helper.php:157
 msgid "Unable to determine PHP username."
 msgstr "Konnte PHP-Benutzername nicht bestimmen."
 
-#: lib/Helper.php:170
+#: lib/Helper.php:173
 #, php-format
 msgid "Can't create subfolder array: Invalid folder '%s' (not a directory?)."
 msgstr ""
 "Kann Unterordner-Array nicht erstellen: Ungültiger Ordner '%s' (kein "
 "Verzeichnis?)."
 
-#: lib/Helper.php:177
+#: lib/Helper.php:180
 #, php-format
 msgid "getSubFolderArray: Maximum recursion depth %d exceeded (%d)!"
 msgstr "getSubFolderArray: Maximale Rekursionstiefe %d überschritten (%d)!"
 
-#: lib/Helper.php:205
+#: lib/Helper.php:210
 #, php-format
-msgid "removeEmptySubfolders: Invalid folder '%s' (not a directory?)."
-msgstr "removeEmptySubfolders: Ungültiger Ordner '%s' (kein Verzeichnis?)."
+msgid "removeEmptySubfolders: Invalid folder '%s' (not a directory?)"
+msgstr "removeEmptySubfolders: Ungültiger Ordner '%s' (kein Verzeichnis?)"
 
-#: lib/Helper.php:358 lib/Helper.php:382 lib/Helper.php:410
+#: lib/Helper.php:366 lib/Helper.php:390 lib/Helper.php:413 lib/Helper.php:468
 msgid "Foldername must not be empty"
 msgstr "Ordnername darf nicht leer sein"
 
-#: lib/Helper.php:443
+#: lib/Helper.php:435
+msgid "Parameter must be an instance of an SplFileInfo class."
+msgstr "Parameter muss eine Instanz einer SplFileInfo Klasse sein."
+
+#: lib/Helper.php:501
 msgid "Directory listing must not be empty"
 msgstr "Verzeichnis-Listing darf nicht leer sein"
 
-#: lib/Helper.php:444
+#: lib/Helper.php:502
 msgid "Directory listing must be an array"
 msgstr "Verzeichnis-Listing muss ein Array sein"
 
-#: lib/Helper.php:459
+#: lib/Helper.php:517
 #, php-format
 msgid "filter_keys must be an array, but is of type %s"
 msgstr "filter_keys muss ein Array sein, ist aber vom Typ %s"
 
-#: lib/Helper.php:479 lib/Helper.php:529
+#: lib/Helper.php:537 lib/Helper.php:587
 #, php-format
 msgid "stat() call failed for %s"
 msgstr "Aufruf von stat() fehlgeschlagen für %s"
 
-#: lib/Helper.php:585
+#: lib/Helper.php:643
 #, php-format
 msgid "Unable to resolve absolute path. Folder does not exist: '%s'"
 msgstr "Konnte absoluten Pfad nicht auflösen. Ordner existiert nicht: '%s'"
 
-#: lib/Logger.php:165
+#: lib/Helper.php:664
+#, php-format
+msgid "isFileOlderThan: Invalid file '%s'. Does it exist and is a file?"
+msgstr ""
+"isFileOderThan: Ungültige Datei '%s'. Existiert sie und ist eine Datei?"
+
+#: lib/Helper.php:672
+#, php-format
+msgid ""
+"isFileOlderThan: Invalid reference file '%s'. Does it exist and is a file?"
+msgstr ""
+"isFileOlderThan: Ungültige Referenzdatei '%s'. Existiert sie und ist eine "
+"Datei?"
+
+#: lib/Logger.php:214
 #, php-format
 msgid "Invalid logstyle: '%s'. Valid options are: %s"
 msgstr "Ungültiger Logstyle: '%s'. Gültige Optionen sind: %s"
 
-#: lib/Logger.php:306
+#: lib/Logger.php:359
 #, php-format
 msgid "Invalid logfile name: Not a string: %s"
 msgstr "Ungültiger Logfile-Dateiname: Kein String: %s"
 
-#: lib/Logger.php:312
+#: lib/Logger.php:365
 #, php-format
 msgid "Logfile '%s' is not writable. Check permissions?"
 msgstr "Logfile '%s' ist nicht beschreibbar. Zugriffsrechte überprüfen?"
 
-#: lib/Logger.php:506
+#: lib/Logger.php:564
 #, php-format
 msgid "Could not write to logfile '%s'."
 msgstr "Konnte nicht in Logfile '%s' schreiben."
 
-#: lib/Logger.php:622
+#: lib/Logger.php:681
 #, php-format
 msgid "Exception was in '%s'(%d)"
 msgstr "Ausnahmefehler war in '%s'(%d)"
 
-#: lib/Logger.php:623
+#: lib/Logger.php:682
 #, php-format
 msgid "Stack trace: %s"
 msgstr "Ablaufverfolgung (Stacktrace): %s"
 
-#: lib/Logger.php:706
+#: lib/Logger.php:765
 #, php-format
 msgid "Loglevel must be numeric, but is: %s"
 msgstr "Loglevel muss numerisch sein, ist aber: %s"
 
-#: lib/Logger.php:709
+#: lib/Logger.php:768
 #, php-format
 msgid "Invalid loglevel: %d"
 msgstr "Ungültiges loglevel: %d"
 
-#: lib/Logger.php:730
+#: lib/Logger.php:789
 msgid "Cannot move logfile: No logfile name set yet"
 msgstr "Kann Logfile nicht verschieben: Logfile hat noch keinen Namen"
 
-#: lib/Logger.php:745
+#: lib/Logger.php:804
 #, php-format
 msgid "Cannot move logfile: target already exists: '%s'"
 msgstr "Kann Logfile nicht verschieben. Ziel existiert bereits: '%s'"
 
-#: lib/Logger.php:751
+#: lib/Logger.php:810
 #, php-format
 msgid "Could not move logfile '%s' to '%s'."
 msgstr "Konnte Logfile '%s' nicht nach '%s' verschieben."
@@ -2433,9 +2575,6 @@ msgstr "Konnte Logfile '%s' nicht nach '%s' verschieben."
 
 #~ msgid "Init failed."
 #~ msgstr "Init fehlgeschlagen."
-
-#~ msgid "Could not initialize item."
-#~ msgstr "Das Item konnte nicht initialisiert werden."
 
 #~ msgid "Config loaded from string (raw)."
 #~ msgstr "Die Konfiguration wurde aus Variable (string) geladen (roh)."
