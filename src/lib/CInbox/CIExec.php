@@ -74,12 +74,30 @@ class CIExec
 
     /**
      * Return the output of the last command (as array).
+     * @see: this->executeExec()
      */
     public function getLastOutput()
     {
         return $this->lastOutput;
     }
 
+
+    /**
+     * Return the output of the last command (as multi-line string)
+     */
+    public function getLastOutputStr()
+    {
+        $output = implode("\n", $this->lastOutput);
+        return $output;
+    }
+
+    /**
+     * Clears the output buffer from previous execute() runs.
+     */
+    public function resetLastOutput()
+    {
+        $this->lastOutput = null;
+    }
 
     /**
      * Returns the commandline string that was last executed.
@@ -129,10 +147,23 @@ class CIExec
 
     /**
      * Wrapper to default-execution method.
+     * @param $showOutput bool show $command's shell output.
+     * @see: $this->lastOutput
      */
-    public function execute($command)
+    public function execute($command, $showOutput=true)
     {
-        return $this->executeExec($command);
+        $this->resetLastOutput();
+        $result = $this->executeExec($command);
+
+        if ($showOutput)
+        {
+            // Show command output in the terminal:
+            printf("\n---------------------[ external code ]----------------------");
+            print_r($this->getLastOutputStr());
+            printf("---------------------[ ************* ]----------------------\n");
+        }
+
+        return $result;
     }
 
 
