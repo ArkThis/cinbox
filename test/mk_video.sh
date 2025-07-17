@@ -22,7 +22,7 @@ if [ -z "$ITEMID" ]; then
     exit 1
 fi
 
-echo "Creating folders..."
+echo "Creating Item folders..."
 mkdir -v $ITEMID            # One parent folder per-id
 mkdir -v $DIR_HIRES         # archival copy
 mkdir -v $DIR_LOWRES        # access copy
