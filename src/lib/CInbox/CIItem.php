@@ -559,7 +559,7 @@ class CIItem extends CIFolder
                     $this->getPathname()));
 
         $exec = new \ArkThis\CInbox\CIExec();
-        $exitCode = $exec->execute2($command);
+        $exitCode = $exec->executeExec($command);
 
         if ($exitCode != CIExec::EC_OK) return $exitCode;
 

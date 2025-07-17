@@ -116,7 +116,7 @@ class CIExec
      * It populates $this->lastOutput with the output of the call, and returns
      * the exit value and stores it in $this->exitCode accordingly.
      */
-    public function execute2($command)
+    public function executeExec($command)
     {
         $this->exitCode = null;     // Reset to avoid leftovers.
         $this->lastCmd = $command;
@@ -132,7 +132,7 @@ class CIExec
      */
     public function execute($command)
     {
-        return $this->executeBlindly($command);
+        return $this->executeExec($command);
     }
 
 
