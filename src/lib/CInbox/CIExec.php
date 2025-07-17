@@ -49,13 +49,18 @@ class CIExec
 
     protected $exitCode = null;                 // Exit code of process
     protected $lastCmd = null;                  // Last command executed
-    protected $lastOutput = null;               // Output of last command
+    protected $lastOutput = null;               // Output of last command (array of lines)
 
 
 
     /* ========================================
      * METHODS
      * ======================================= */
+
+    function __construct()
+    {
+        // Use this to initialize properties, etc.
+    }
 
 
     /**
@@ -86,6 +91,8 @@ class CIExec
 
 
     /**
+     * This uses "passthru()" to run $command.
+     *
      * This is a quick-n-dirty solution for calling an external command,
      * but without wanting to handle its output/feedback/etc.
      *
@@ -104,7 +111,10 @@ class CIExec
 
 
     /**
-     * This uses "exec()" to call $command.
+     * This uses "exec()" to run $command.
+     *
+     * It populates $this->lastOutput with the output of the call, and returns
+     * the exit value and stores it in $this->exitCode accordingly.
      */
     public function execute2($command)
     {
