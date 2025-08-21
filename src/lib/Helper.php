@@ -408,13 +408,17 @@ class Helper
      * filesystem entries open.
      *
      * Uses FilesystemIterator instead of DirectoryIterator.
+     * SKIPS_DOTS applied by default to skip "." and ".." folders.
      */
     public static function getFolderListing3($folder)
     {
         if (empty($folder)) throw new \InvalidArgumentException(_("Foldername must not be empty"));
 
         $list = array();
-        $di = new \FilesystemIterator($folder, \FilesystemIterator::NEW_CURRENT_AND_KEY);
+        $di = new \FilesystemIterator(
+            $folder,
+            \FilesystemIterator::NEW_CURRENT_AND_KEY | \FilesystemIterator::SKIP_DOTS
+        );
         foreach ($di as $key=>$entry) {
             $list[$key] = self::stringCopyFileInfo($entry);
         }
