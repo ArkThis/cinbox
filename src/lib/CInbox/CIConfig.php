@@ -118,21 +118,22 @@ class CIConfig
 
         // Information about the currently running script:
         $myself = $_SERVER['PHP_SELF'];
-        $php_self = array(
-            __PHP_SELF__ => $myself,
-            __PHP_SELF_DIR__ => dirname($myself),
-            __PHP_SELF_NAME__ => basename($myself)
-        );
-
         // If PHP_SELF is called through a symlink, offer the REAL target, as
         // absolute path (not relative) too:
         $myself_real = realpath($myself);
 
-        $php_self_real = array(
-            __PHP_SELF_REAL__ => $myself_real,
-            __PHP_SELF_DIR_REAL__ => dirname($myself_real),
-            __PHP_SELF_NAME_REAL__ => basename($myself_real)
+        $php_self = array(
+            __PHP_SELF__ => $myself_real,
+            __PHP_SELF_DIR__ => dirname($myself_real),
+            __PHP_SELF_NAME__ => basename($myself_real)
         );
+
+        $php_self_orig = array(
+            __PHP_SELF_ORIG__ => $myself,
+            __PHP_SELF_DIR_ORIG__ => dirname($myself),
+            __PHP_SELF_NAME_ORIG__ => basename($myself)
+        );
+
         // -----------------------------------------------------
 
         if (!is_array($arguments)) { $arguments = array(); }
@@ -141,7 +142,7 @@ class CIConfig
         // so we don't have to use more if-then-else code below.
         $arguments = array_merge(
             $arguments,                         // provided as function param
-            $more, $php_self, $php_self_real    // above, new placeholder values
+            $more, $php_self, $php_self_orig    // above, new placeholder values
         );
 
         // Merge with existing placeholder values:
