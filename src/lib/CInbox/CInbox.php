@@ -123,7 +123,7 @@ class CInbox
     //@{
     protected $firstInit;                                 ///< Trigger initial first-run setup steps. @see: setFirstInit();
     protected $sourceFolder;                              ///< Base folder where data for this inbox is located
-    //protected $statusBase;                                ///< The base folder for the state-keeping subfolders of the Inbox. TODO: uncomment me to fix issue
+    protected $statusBase;                                ///< The base folder for the state-keeping subfolders of the Inbox.
     //@}
 
     /**
