@@ -97,6 +97,8 @@ class CIConfig
     /**
      * Initializes values for common placeholders, such as:
      * PHP_SELF, etc.
+     *
+     * @param[in]   array   $arguments      key/value array of placeholder strings.
      */
     public function initPlaceholders($arguments=null)
     {
@@ -122,9 +124,9 @@ class CIConfig
             __PHP_SELF_NAME__ => basename($myself)
         );
 
-        // If PHP_SELF is called through a symlink, offer the REAL target, too.
-        // (And if it's NOT a symlink, use realpath to straighten things out if necessary)
-        $myself_real = is_link($myself) ? readlink($myself) : realpath($myself);
+        // If PHP_SELF is called through a symlink, offer the REAL target, as
+        // absolute path (not relative) too:
+        $myself_real = realpath($myself);
 
         $php_self_real = array(
             __PHP_SELF_REAL__ => $myself_real,
@@ -133,23 +135,20 @@ class CIConfig
         );
         // -----------------------------------------------------
 
-        if (is_array($arguments))
-        {
-            // Add values for additional placeholders here already:
-            $this->placeholders = array_merge(
-                $this->placeholders,
-                $arguments,
-                $more, $php_self, $php_self_real
-            );
-        }
-        else
-        {
-            // Only merge existing placeholder values:
-            $this->placeholders = array_merge(
-                $this->placeholders,
-                $php_self
-            );
-        }
+        if (!is_array($arguments)) { $arguments = array(); }
+
+        // Add values for additional placeholders here already,
+        // so we don't have to use more if-then-else code below.
+        $arguments = array_merge(
+            $arguments,                         // provided as function param
+            $more, $php_self, $php_self_real    // above, new placeholder values
+        );
+
+        // Merge with existing placeholder values:
+        $this->placeholders = array_merge(
+            $this->placeholders,
+            $arguments                  // this now contains all new placeholders.
+        );
     }
 
 
