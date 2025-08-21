@@ -80,6 +80,8 @@ class CInbox
     const CONF_FOLDER_ERROR = 'DIR_ERROR';              ///< Foldername for items that have errors
 
     /** List of all processing folders and their default values */
+    // TODO: Maybe add the DIR_TEMP here, too?
+    // This would make sense and allow '--init' to create it, if it didn't exist...
     public static $processingFolders = array(
         self::CONF_FOLDER_STATEKEEPING => '.',
         self::CONF_FOLDER_LOGS => 'log',
@@ -119,7 +121,9 @@ class CInbox
      * @name Folder handling
      */
     //@{
+    protected $firstInit;                                 ///< Trigger initial first-run setup steps. @see: setFirstInit();
     protected $sourceFolder;                              ///< Base folder where data for this inbox is located
+    //protected $statusBase;                                ///< The base folder for the state-keeping subfolders of the Inbox. TODO: uncomment me to fix issue
     //@}
 
     /**
@@ -156,7 +160,10 @@ class CInbox
         $this->config = new \ArkThis\CInbox\CIConfig($logger);
 
         // Initialize properties:
-        $this->resetItemList();                        // We start empty, but expect more to come ;)
+        $this->resetItemList();                         // We start empty, but expect more to come ;)
+
+        // It's almost never the first run:
+        $this->firstInit = false;                       // Use setFirstInit() to toggle this.
     }
 
 
@@ -242,6 +249,22 @@ class CInbox
         $this->itemList = array();
         $this->itemCount = 0;
         reset($this->itemList);
+    }
+
+
+    /**
+     * Sets a flag for a very first run, which allows auto-creation of things
+     * (eg folders), which is needed only once after an initial installation.
+     */
+    public function setFirstInit($firstInit=false)
+    {
+        // yes, it's a simple as that:
+        $this->firstInit = $firstInit;
+    }
+
+    public function getFirstInit()
+    {
+        return $this->firstInit;
     }
 
 
@@ -341,6 +364,9 @@ class CInbox
      */
     public function loadConfig()
     {
+        $l = $this->logger;
+
+        $l->logDebug(sprintf(_("Loading config...")));
         $config = $this->config;
 
         $config->loadConfigFromFile();
@@ -638,7 +664,11 @@ class CInbox
 
 
     /**
+     * Uses 'sys_get_temp_dir()' to get the name/path of the operating system's
+     * temporary folder, and checks if it's available.
      *
+     * @retval string
+     *   Returns the name of the system's temporary folder.
      */
     public function getSysTempFolder()
     {
@@ -1113,6 +1143,78 @@ class CInbox
 
 
     /**
+     * Iterate through all processing folders, provided in the array $processingFolders.
+     * This is usually done by handing over `static::processingFolders` as argument.
+     *
+     * @param[in]   array  $processingFolders  Same layout expected as self::processingFolders.
+     * @see self::initProcessingFolders()
+     */
+    public function createProcessingFolders($processingFolders)
+    {
+        $l = $this->logger;
+
+        $errors = 0;
+        $count = 0;
+
+        foreach ($processingFolders as $key=>$entry)
+        {
+            $processingFolder = $this->getProcessingFolder($key);
+
+            if (is_dir($processingFolder))
+            {
+                // Folder exists = nothing to do here. Next!
+                continue;
+            }
+
+            $l->logMsg(sprintf(
+                _("Creating processing folder: '%s'"), 
+                $processingFolder
+            ));
+
+            // Let's try to create the folder and mark an error if we couldn't:
+            if (!mkdir($processingFolder))
+            {
+                $error++;
+                $l->logError(sprintf(
+                    _("Could not create processing folder '%s'. Check access rights? Does parent folder exist?"),
+                    $processingFolder
+                ));
+
+                // Intentionally do NOT abort here, but try to create all other
+                // folders first.  Otherwise it may be necessary to restart
+                // again for each folder failing, to find out which ones can be
+                // created.  Would be cumbersome and unnecessary.  After
+                // iterating through all processingFolders, an exception will
+                // be thrown anyways :)
+                continue;
+            }
+
+            $count++;       // Only count the folders actually created here.
+        }
+
+        if ($errors > 0)
+        {
+            throw new FileNotFoundError(sprintf(
+                _("%d/%d processing folders are not valid."), 
+                $errors, $count
+            ));
+        }
+
+        // If folders had to be created, let us know:
+        if ($count > 0)
+        {
+            $l->logHeader2(sprintf(
+                _("Newly created %d processing folders. Have fun!"),
+                $count
+            ));
+        }
+
+        // If we have reached this, there is no error:
+        return true;
+    }
+
+
+    /**
      * Make sure that all processing folders are in place and have the right access rights, etc.
      *
      * This method is designed to be called between execution loops to intercept errors caused by
@@ -1125,15 +1227,25 @@ class CInbox
 
         $errors = 0;
         $count = 0;
+
         foreach ($processingFolders as $key=>$entry)
         {
             $processingFolder = $this->getProcessingFolder($key);
             $count++;
 
+            // If not all folders exist yet, run 'createProcessingFolders()' first.
+            // Should be done automatically in 'initProcessingFolders()' if
+            // CInbox is started with the firstInit flag.
             if (!file_exists($processingFolder))
             {
-                // TODO: Add option to create these folders. But don't do it automatically!
-                $l->logError(sprintf(_("Processing folder for '%s' does not exist: %s"), $key, $processingFolder));
+                $l->logError(sprintf(
+                    _("Processing folder [%d] for '%s' does not exist: %s."),
+                    $count,
+                    $key, 
+                    $processingFolder
+                ));
+
+                // If we're NOT in 'INIT' mode, this is a problem/error:
                 $errors++;
                 continue;
             }
@@ -1155,12 +1267,21 @@ class CInbox
             // Allow suppressing output for "okay" to avoid cluttering the logs:
             if (!$quiet)
             {
-                $l->logInfo(sprintf(_("Processing folder for '%s' is: %s"), $key, $processingFolder));
+                $l->logInfo(sprintf(
+                    _("Processing folder [%d] for '%s' is: %s"),
+                    $count,
+                    $key,
+                    $processingFolder
+                ));
             }
         }
 
         if ($errors > 0)
         {
+            $l->logHeader(sprintf(
+                _("If any processing folders were missing,\nplease run CInbox with '--init' once to create them.")
+            ));
+            $l->logNewline();
             throw new Exception(sprintf(_("%d/%d processing folders are not valid."), $errors, $count));
         }
 
@@ -1183,10 +1304,18 @@ class CInbox
         }
         if (!$this->setStatusBaseFolder($baseFolder)) return false;
 
+        if ($this->firstInit)
+        {
+            if (!$this->createProcessingFolders(
+                static::$processingFolders
+            )) return false;
+        }
+
         // Check if each processing folder is okay:
         $this->validateProcessingFolders(
             static::$processingFolders,
-            $quiet=false);
+            $quiet=false
+        );
 
         return true;
     }
