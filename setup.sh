@@ -8,7 +8,7 @@
 # Required packages:
 
 
-PACKAGES="git php-cli composer"
+PACKAGES="git php-cli composer rsync"
 sudo apt install $PACKAGES
 
 # These programs need to be run to prepare composer autoload and dependency handling:
