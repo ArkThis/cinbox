@@ -64,7 +64,7 @@ UPDATE_FILES = create
 COPY_EXCLUDE[] = *.md5
 
 ; Copy and rename logfile after successful processing:
-LOG_COPY_DIR = /home/avrd/archive/part2/video/[@BUCKET@]
+LOG_COPY_DIR = [@DIR_HOME@]/archive/part2/video/[@BUCKET@]
 LOG_COPY_NAME = [@ITEM_ID_LC@].cv
 
 
@@ -73,8 +73,8 @@ LOG_COPY_NAME = [@ITEM_ID_LC@].cv
 
 
 [.]
-TARGET_STAGE = /home/avrd/archive/STAGE/part2/[@ITEM_ID@]
-TARGET_FOLDER = /home/avrd/archive/part2/video/[@BUCKET@]
+TARGET_STAGE = [@DIR_HOME@]/archive/STAGE/part2/[@ITEM_ID@]
+TARGET_FOLDER = [@DIR_HOME@]/archive/part2/video/[@BUCKET@]
 
 ; plugins/mkparent.sh is used to prepare deeply nested folder structures:
 PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
@@ -129,8 +129,8 @@ FILES_INVALID[] = *.docx
 
 
 [lowres]
-TARGET_STAGE = /home/avrd/archive/STAGE/part1/[@ITEM_ID@]
-TARGET_FOLDER = /home/avrd/archive/part1/video/[@BUCKET@]
+TARGET_STAGE = [@DIR_HOME@]/archive/STAGE/part1/[@ITEM_ID@]
+TARGET_FOLDER = [@DIR_HOME@]/archive/part1/video/[@BUCKET@]
 
 PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
 PREPROCS2[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET@]
