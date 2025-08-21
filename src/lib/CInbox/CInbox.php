@@ -817,16 +817,25 @@ class CInbox
             return false;
         }
 
-        // itemList must be populated here already.
-        $nextItem = each($this->itemList);
-        if ($nextItem === false) return false;
+        // NOTE: `itemList` must be populated here already.
+        // (`current()` + `next()` = replaces `each()` - deprecated in PHP8)
+        // Reference: https://www.php.net/manual/en/function.current.php
+        $nextItem = current($this->itemList);   // Read current VALUE from array pointer in itemList
+        $nextItemId = key($this->itemList);     // Read current KEY from array pointer
 
-        $nextItemId = $nextItem['key'];
+        if ($nextItem === false) return false;
+        next($this->itemList);                  // Advance array-pointer to next in itemList
 
         $this->itemId = $nextItemId;
         $this->itemCount++;
 
-        $l->logMsg(sprintf(_("Next Item: %d/%d (max %d)"), $this->itemCount, $this->getItemCount(), $limit)); //delme
+        $l->logMsg(sprintf(
+            _("Next Item: %d/%d (max %d)"),
+            $this->itemCount,
+            $this->getItemCount(),
+            $limit
+        )); //delme
+
         return $nextItemId;
     }
 
