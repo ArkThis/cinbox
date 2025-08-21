@@ -100,14 +100,38 @@ class CIConfig
      */
     public function initPlaceholders($arguments=null)
     {
-        $this->placeholders = array();                  // NOTE: This clears existing placeholder values!
+        $this->placeholders = array();               // NOTE: This clears existing placeholder values!
 
+        // --------------------------------------------------------------------
+        // All placeholders here are only resolved ONCE during CInbox start.
+        // So if they change during runtime, you may be out of luck.
+        //
+        // However, the ones chosen here are very very unlikely to change,
+        // so you should be fine... ;)
+        // --------------------------------------------------------------------
+        $more = array(
+            // It's always good to know where $HOME is...
+            __DIR_HOME__ => $_SERVER['HOME']
+        );
+
+        // Information about the currently running script:
+        $myself = $_SERVER['PHP_SELF'];
         $php_self = array(
-                // Information about the currently running script:
-                __PHP_SELF__ => $_SERVER['PHP_SELF'],
-                __PHP_SELF_DIR__ => dirname($_SERVER['PHP_SELF']),
-                __PHP_SELF_NAME__ => basename($_SERVER['PHP_SELF'])
-                );
+            __PHP_SELF__ => $myself,
+            __PHP_SELF_DIR__ => dirname($myself),
+            __PHP_SELF_NAME__ => basename($myself)
+        );
+
+        // If PHP_SELF is called through a symlink, offer the REAL target, too.
+        // (And if it's NOT a symlink, use realpath to straighten things out if necessary)
+        $myself_real = is_link($myself) ? readlink($myself) : realpath($myself);
+
+        $php_self_real = array(
+            __PHP_SELF_REAL__ => $myself_real,
+            __PHP_SELF_DIR_REAL__ => dirname($myself_real),
+            __PHP_SELF_NAME_REAL__ => basename($myself_real)
+        );
+        // -----------------------------------------------------
 
         if (is_array($arguments))
         {
@@ -115,7 +139,7 @@ class CIConfig
             $this->placeholders = array_merge(
                 $this->placeholders,
                 $arguments,
-                $php_self
+                $more, $php_self, $php_self_real
             );
         }
         else
