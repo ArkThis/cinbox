@@ -328,8 +328,14 @@ TODO: Idea!
     /**
      * Use this to mark this task as "to be skipped".
      */
-    public function skipIt()
+    public function skipIt($msg=null)
     {
+        if (!empty($msg))
+        {
+            $l = $this->logger;
+            $l->logInfo(sprintf(_("Reason to skip: %s"), $msg));
+        }
+
         $this->skip = true;
         $this->setStatusSkipped();
         return true;
