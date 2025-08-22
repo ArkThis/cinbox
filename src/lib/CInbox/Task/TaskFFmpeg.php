@@ -53,7 +53,7 @@ class TaskFFmpeg extends TaskExec
      * CONSTANTS
      * ======================================= */
 
-    const TASK_LABEL = 'Execute FFmpeg for media conversion';   ///< Human readable task name/label.
+    const TASK_LABEL = 'Run FFmpeg for media conversion';   ///< Human readable task name/label.
 
     /**
      * @name Task Settings
@@ -71,10 +71,10 @@ class TaskFFmpeg extends TaskExec
      * @name Array keys To-Do List
      */
     //@{
-    const TODO_RECIPE = 'recipe';                       ///< Array key for recipe in $todoList.
+    const TODO_RECIPES = 'recipe';                       ///< Array key for recipe in $todoList.
     const TODO_IN = 'in';                               ///< Array key for input files in $todoList.
     const TODO_OUT = 'out';                             ///< Array key for output files in $todoList.
-    const TODO_VALIDATE = 'validate';                   ///< Array key for flag "to validate or not".
+    const TODO_VALIDATES = 'validate';                   ///< Array key for flag "to validate or not".
     //@}
 
     /**
@@ -103,13 +103,13 @@ class TaskFFmpeg extends TaskExec
      * For storing settings read from the config file:
      */
     //@{
-    private $sources;                                   ///< @see #CONF_SOURCES
-    private $targets;                                   ///< @see #CONF_TARGETS
-    private $recipes;                                   ///< @see #CONF_RECIPES
+    protected $sources;                                 ///< @see #CONF_SOURCES
+    protected $targets;                                 ///< @see #CONF_TARGETS
+    protected $recipes;                                 ///< @see #CONF_RECIPES
     private $validates;                                 ///< @see #CONF_VALIDATES
 
     private $hashTypesAllowed;                          ///< List of which content hash algorithms/types are available.
-    protected $hashType;                                ///< Selected content hash algorith/type.
+    private $hashType;                                  ///< Selected content hash algorithm/type.
     //@}
 
     /**
@@ -119,8 +119,8 @@ class TaskFFmpeg extends TaskExec
      */
     //@{
     private $todoList;                                  ///< Array with all information to start transcoding call.
-    private $filesIn;                                   ///< @see resolveInOut()
-    private $filesOut;                                  ///< @see resolveInOut()
+    protected $filesIn;                                   ///< @see resolveInOut()
+    protected $filesOut;                                  ///< @see resolveInOut()
     //@}
 
 
@@ -219,6 +219,27 @@ class TaskFFmpeg extends TaskExec
         return true;
     }
 
+    /**
+     * Resolve source/target file mask patterns to to-do lists, containing the
+     * resolved filenames.
+     * This is here separately and pretty unspecific to the $inputs.
+     * Resolving of placeholders happens in createTodoList(), so there are
+     * must-have array keys defined to work properly. (such as self::TODO_IN,
+     * etc)
+     *
+     */
+    public function populateTodoList($inputs)
+    {
+        // Resolve actual/final FFmpeg commandline strings from recipe+files_in+files_out:
+        $this->todoList = $this->createTodoList($inputs);
+
+        if ($this->todoList === false)
+        {
+            $this->setStatusConfigError();
+            return false;
+        }
+    } 
+
 
     /**
      * Prepare everything so it's ready for processing.
@@ -236,7 +257,7 @@ class TaskFFmpeg extends TaskExec
         if (!$this->checkTempFolder()) return false;
 
 
-        // INFO: The check if FFmpeg binary (extract from recipe) exists and is
+        // TODO: The check if required binaries (extract from recipe) exists and is
         //       valid is done before executing each command/recipe in run().
 
         // Check if config-tuples are complete:
@@ -245,8 +266,8 @@ class TaskFFmpeg extends TaskExec
             $this->checkArrayKeysMatch2(array(
                         self::TODO_IN => $this->sources,
                         self::TODO_OUT => $this->targets,
-                        self::TODO_RECIPE => $this->recipes,
-                        self::TODO_VALIDATE => $this->validates
+                        self::TODO_RECIPES => $this->recipes,
+                        self::TODO_VALIDATES => $this->validates
                         ));
         }
         catch (Exception $e)
@@ -256,15 +277,15 @@ class TaskFFmpeg extends TaskExec
             return false;
         }
 
-        // Resolve actual/final FFmpeg commandline strings from recipe+files_in+files_out:
-        $this->todoList = $this->createTodoList(
-                $this->sources, $this->targets, $this->recipes, $this->validates
-                );
-        if ($this->todoList === false)
-        {
-            $this->setStatusConfigError();
-            return false;
-        }
+        // Map config setting placeholder-using config strings:
+        $this->populateTodoList(
+            array(
+                self::TODO_IN => $this->sources,
+                self::TODO_OUT => $this->targets,
+                self::TODO_RECIPES => $this->recipes,
+                self::TODO_VALIDATES => $this->validates
+            )
+        );
 
         // Must return true on success:
         return true;
@@ -301,10 +322,10 @@ class TaskFFmpeg extends TaskExec
 
         foreach ($this->todoList as $todo)
         {
-            $recipe = $todo[self::TODO_RECIPE];
+            $recipe = $todo[self::TODO_RECIPES];
             $filesIn = $todo[self::TODO_IN];
             $filesOut = $todo[self::TODO_OUT];
-            $validate = $todo[self::TODO_VALIDATE];
+            $validate = $todo[self::TODO_VALIDATES];
 
             foreach ($filesIn as $key=>$fileIn)
             {
@@ -671,33 +692,71 @@ print_r($arguments); //DELME
      * Aligns recipes with resolved sources and targets ( @see resolveInOut() ).
      * Output is a 'to-do list' where each recipe has its list of files to
      * read and generate in a ready-to-use way for passing it to convertFile().
+     *
+     * The following /hardcoded/ array keys are vitally necessary and
+     * *that MUST be set* to function properly:
+     *
+     * self::TODO_RECIPES => self::CONF_RECIPES
+     * self::TODO_IN => self::CONF_SOURCES
+     * self::TODO_OUT => self::CONF_TARGETS
+     *
+     * This is still pretty generic and useful for calling other programs, too.
+     * (example: MediaConch or MediaInfo)
+     * Other, task-specific array keys must be resolved separately.
+     * This allows this method to be reused by object child classes.
+     *
+     * @param[in] array of arrays   $inputs An array with named keys (See 'TODO_' const's).
      */
-    protected function createTodoList($sources, $targets, $recipes, $validates)
+    protected function createTodoList($inputs)
     {
+        if (empty($inputs) or (!is_array($inputs)))
+        {
+            throw new InvalidArgumentException(_("inputs were empty or not an array. Expected are INI-file config variables with file-patterns/names"));
+        }
+
+        // Extract to local variables, for easier handling and shorter code:
+        $recipes = $inputs[self::TODO_RECIPES];
+        $sources = $inputs[self::TODO_IN];
+        $targets = $inputs[self::TODO_OUT];
+        // NOTE: Not checking them here if(empty()) or not. FIXME?
+
         $todoList = array();                // Clean and fresh start.
 
+        // Resolve in/out file patterns for each **recipe**.
+        // This allows to execute multiple ffmpeg calls in sequence.
+        // Possibly even daisy-chaining outputs from one as input to the next.
         foreach ($recipes as $key=>$recipe)
         {
             // All keys of $sources, $targets, $recipes, etc must be aligned
             // for this to work properly:
             $source = $sources[$key];
             $target = $targets[$key];
-            $validate = $validates[$key] == 1 ? true : false; // It's a bool! ;)
+
+            // task-specific parameters, must be resolved separately. Sorry.
+            #$validate = $validates[$key] == 1 ? true : false; // It's a bool! ;)
 
             // Get the actual filenames for source and target files:
-            if (!$this->resolveInOut($source, $target)) return false;
+            if (!$this->resolveInOut($source, $target))
+            {
+                throw new RuntimeException(sprintf(
+                    _("Something went wrong with resolving filename patterns of source/target settings.\nCheck source='%s'\n\nand target='%s'\n\n",
+                    print_r($source, true),
+                    print_r($target, true))
+                ));
+            }
 
             // Nothing to do, but it's okay.
             if (empty($this->filesIn) or empty($this->filesOut)) continue;
 
             // Go to error if any target file already exists:
-            if (!$this->checkTargetExists($this->filesOut)) return false;
+            // DISABLED. Reason: Should be up to the user. use ffmpeg option "-n".
+            #if (!$this->checkTargetExists($this->filesOut)) return false;
 
+            // Put the resolved command tuples ready for further batch-processing:
             $todoList[] = array(
-                    self::TODO_RECIPE => $recipe,
+                    self::TODO_RECIPES => $recipe,
                     self::TODO_IN => $this->filesIn,
                     self::TODO_OUT => $this->filesOut,
-                    self::TODO_VALIDATE => $validate,
                     );
         }
 
