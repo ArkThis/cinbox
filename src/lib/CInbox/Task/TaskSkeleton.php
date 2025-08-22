@@ -20,6 +20,10 @@ namespace ArkThis\CInbox\Task;
 
 use \ArkThis\CInbox\CIFolder;
 
+# Quite often, you'll need these too:
+#use \ArkThis\Helper;
+#use \Exception as Exception;
+
 
 /**
  * Skeleton to use when creating a new task.
