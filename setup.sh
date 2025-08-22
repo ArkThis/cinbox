@@ -5,10 +5,12 @@
 #   Install and handle pre-requisites and installed packages for CInbox to
 #   setup and function correctly.
 
+
 # Required packages:
-
-
-PACKAGES="git php-cli composer rsync"
+# =======================
+# coreutils is needed for `cut` command. Should be present out-of-the-box,
+# mostly. ;) Thx GNU!
+PACKAGES="git php-cli composer coreutils"
 sudo apt install $PACKAGES
 
 # These programs need to be run to prepare composer autoload and dependency handling:
