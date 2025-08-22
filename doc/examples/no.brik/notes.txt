@@ -1,0 +1,83 @@
+FFmpeg recipes for MP4 and MXF (2020-09-02)
+==============================================
+
+For validating correct behavior with different number of audio channels.
+
+For a list of short (=as small as possible) testfiles, see:
+AV-RD/nextcloud/2019/Jobs/Brik/Source_infos/MP4_MXF_Testfiles-Multichannel-202008.ods
+
+
+## MP4
+
+
+## MXF
+
+
+
+
+eMail from Bertin (2020-02-06)
+====================================
+
+
+
+Hi Peter
+Then we have finished the quality checks of the CRF-settings from last
+year, and also done a lot of new testing to be sure we have choosen the
+right settings.
+We have tested different types of DV - files (.mov, .avi and .dv), some
+with a lot of camera movements, and some with stable camera and environment
+i.e.
+
+*CRF settings: *
+
+   - Mezzanine: CRF 14
+   - Access: CRF 20
+
+Comment:
+
+   - Mezzanine: This setting (CRF 14) gave file sizes of approx. 30-40% of
+   original file size, but visually looks the same as the original file. NB:
+   We could also have choosen CRF 15, 16 or 17, and obtained a visually as
+   good file as the original file, as well as received file sizes of 22-25%.
+   But the reason we chose CRF 14 is that you can actually transcode the
+   mezzanine file to new variants, and still retain the visually the same
+   quality as the original file. I assume this will be a good thing for the
+   customer.
+   - Access: This setting (CRF 20) gave file sizes about 10-15% of the
+   original file size. If you play the video at the correct resolution, it is
+   difficult to see the difference between the access file and the original
+   file. But, if you inflate the file artificially on a large screen, you can
+   see the difference if you look for it. But, most users of the access file
+   will probably not notice any particular difference.
+
+Does this sound logical for you, Peter?
+
+*Question regarding the access files: *
+Shall we make the *access* files
+
+   - deinterlaced?
+   - square pixel?
+   - variable bitrate?
+
+*My FFMPEG - recipies*
+For your information, here is the settings I have used to generate files
+for testing. I hope they look correct 
+
+*DV – DV:*
+
+FFMPEG -i “F:\Dropbox\1. BRIK SERVER\11. Video prosjekter\1. ARBEIDSOMRÅDE\Norsk senter for folkemusikk og folkedans - KVALITETSSJEKK\DV - Til Ivar\DV\clip-2011-06-30 10;44;15.dv" -c:a aac -b:a 192k -c:v libx264 -crf 14 -profile:v baseline -level 3.0 -map 0 -flags +ildct+ilme -x264-params bff=1 "F:\Dropbox\1. BRIK SERVER\11. Video prosjekter\1. ARBEIDSOMRÅDE\Norsk senter for folkemusikk og folkedans - KVALITETSSJEKK\DV - Til Ivar\DV\clip-2011-06-30 10;44;15.mp4“ 
+
+
+*DV – AVI: *
+
+FFMPEG -i “F:\Dropbox\1. BRIK SERVER\11. Video prosjekter\1. ARBEIDSOMRÅDE\Norsk senter for folkemusikk og folkedans - KVALITETSSJEKK\DV - Til Ivar\AVI\2006-06-28_GruppespillHfJr - Clip 014.avi" -c:a aac -b:a 192k -c:v libx264 -crf 14 -profile:v baseline -level 3.0 -map 0 -flags +ildct+ilme -x264-params bff=1 "F:\Dropbox\1. BRIK SERVER\11. Video prosjekter\1. ARBEIDSOMRÅDE\Norsk senter for folkemusikk og folkedans - KVALITETSSJEKK\DV - Til Ivar\AVI\2006-06-28_GruppespillHfJr - Clip 014.mp4"
+
+
+
+*DV – MOV: *
+
+FFMPEG -i “F:\Dropbox\1. BRIK SERVER\11. Video prosjekter\1. ARBEIDSOMRÅDE\Norsk senter for folkemusikk og folkedans - KVALITETSSJEKK\DV - Til Ivar\MOV\2001-11-11_PolsdansTodalenSkule_07.mov“ -c:a aac -b:a 192k -c:v libx264 -crf 14 -profile:v baseline -level 3.0 -write_tmcd auto -flags +ildct+ilme -x264-params bff=1 “F:\Dropbox\1. BRIK SERVER\11. Video prosjekter\1. ARBEIDSOMRÅDE\Norsk senter for folkemusikk og folkedans - KVALITETSSJEKK\DV - Til Ivar\MOV\2001-11-11_PolsdansTodalenSkule_07.mp4“
+
+
+Cheers,
+Bertin
