@@ -725,6 +725,44 @@ class Logger
 
 
     /**
+     * Write a line using $char character.
+     * Like '===============' ($char='=').
+     * Used for visual spacing between entries.
+     */
+    public function logLine($length=42, $char='-')
+    {
+        $this->logAlways(str_repeat($char, $length)."\n");
+    }
+
+
+    /**
+     * Alias for drawing a headline level 1
+     */
+    public function logLineH1($length)
+    {
+        $this->logLine($length, '🌈️');
+    }
+
+
+    /**
+     * Alias for drawing a headline level 2
+     */
+    public function logLineH2($length)
+    {
+        $this->logLine($length, '🍆️');
+    }
+
+
+    /**
+     * Alias for drawing a dotted line.
+     */
+    public function logLineDots($length)
+    {
+        $this->logLine($length, '🔯️');
+    }
+
+
+    /**
      * Logs a pre-formatted block that makes it possible to indicate
      * a new logging session.
      */
