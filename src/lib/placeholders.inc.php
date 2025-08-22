@@ -26,10 +26,20 @@ define('__SECOND__', '[@SECOND@]');
 
 define('__DATETIME__', '[@DATETIME@]');
 
+define('__DIR_HOME__', '[@DIR_HOME@]');             // Value of $_SERVER['HOME'].
 
+// Information about the CInbox executable's location itself.
+// This is useful for relative paths, like 'plugins' etc..
+// If PHP_SELF is called through a symlink, these point to the `realpath()` final target.
 define('__PHP_SELF__', '[@PHP_SELF@]');             // Value of $_SERVER['PHP_SELF']. See: https://www.php.net/manual/en/reserved.variables.server.php
 define('__PHP_SELF_DIR__', '[@PHP_SELF_DIR@]');     // Path of PHP_SELF.
 define('__PHP_SELF_NAME__', '[@PHP_SELF_NAME@]');   // Filename of PHP_SELF.
+
+// These contain the values of the untouched, original `PHP_SELF` values:
+define('__PHP_SELF_ORIG__', '[@PHP_SELF_ORIG@]');
+define('__PHP_SELF_DIR_ORIG__', '[@PHP_SELF_DIR_ORIG@]');
+define('__PHP_SELF_NAME_ORIG__', '[@PHP_SELF_NAME_ORIG@]');
+
 
 define('__DIR_IN__', '[@DIR_IN@]');                 // Path of input file
 define('__FILE_IN__', '[@FILE_IN@]');               // A filename (in/source)

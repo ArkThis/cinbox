@@ -278,9 +278,23 @@ class CIItem extends CIFolder
      */
     public function recallNice($key, $strict=true, $unique=false)
     {
+        $l = $this->logger;
+
         // Recall entry (array) with unix-time keys:
         $entry = $this->recall($key, $strict, $unique);
         $newEntries = array();   // Target array with "$new_key" format.
+
+        if (empty($entry) or !is_array($entry))
+        {
+            $l->logInfo(sprintf(
+                _("Recalled empty key (%s) from CIItem memory. Strict = %d"),
+                $key,
+                $strict
+            ));
+
+            // This will be an empty array:
+            return $newEntries;
+        }
 
         foreach ($entry as $unixTime => $value)
         {

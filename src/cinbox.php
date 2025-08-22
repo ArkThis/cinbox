@@ -42,6 +42,7 @@ define('OPT_LANGUAGE', 'language');
 define('OPT_LOGFILE', 'logfile');
 define('OPT_FOREVER', 'forever');
 define('OPT_LOGSTYLE', 'logstyle');
+define('OPT_FIRST_INIT', 'first_init');
 
 // Exit codes:
 define('EXIT_OK', 0);
@@ -78,6 +79,7 @@ function parseArgs()
     $shortOpts = "i:p:c:n:w:hv";
     $longOpts = array(
             'debug',                    // logLevel = DEBUG
+            'init',                     // Enable first-run initialization.
             'logstyle:',                // Set output format of Item log
             'lang:',                    // Set language. Syntax is same as in config file: de_DE, en_GB, etc...
             'log:',                     // Set logfile for inbox (items will have their own)
@@ -122,6 +124,12 @@ function parseArgs()
         $l->setLogLevel(Logger::OUT_SCREEN, Logger::LEVEL_DEBUG);
         $l->setLogLevel(Logger::OUT_TEXTFILE, Logger::LEVEL_DEBUG);
         $l->logDebug(print_r($options, true));
+    }
+
+    if (isset($options['init']))
+    {
+        $l->logMsg(_("Enabling first-run initialization."));
+        $config->set(OPT_FIRST_INIT, true);
     }
 
     if (isset($options['logstyle']))
@@ -196,6 +204,8 @@ Optional arguments:
   -p                         Processing folder (contains logs, etc)
   -v                         Verbose mode (logLevel = INFO)
   --debug                    Debug mode (logLevel = DEBUG)
+  --init                     Initialize whatever is necessary when being run for the first time.
+                             This includes creating processing sub-folders in the source folder given with '-i'.
   --logstyle STYLE           Set output format of Item log
                              STYLE can be: 'classic' or 'cv'
   --lang                     Set language. Syntax is same as in config file: de_DE, en_GB, etc.
@@ -268,12 +278,15 @@ function setLanguage($language)
 
 
 /**
+ * This method makes sure that all prerequisites for a successful run of CInbox
+ * is provided.
  *
  */
 function initInbox()
 {
     global $logger, $config, $cinbox;
     $l = $logger;
+    $result = false;
 
     $l->logMsg(_("Initializing Inbox..."));
     $l->logNewline();
@@ -288,9 +301,13 @@ function initInbox()
     $cinbox = new \ArkThis\CInbox\CInbox($logger);
     $cinbox->setLogfile($config->get(OPT_LOGFILE));
 
+    // Set environment options from CLI arguments:
     $cinbox->setSourceFolder($config->get(OPT_SOURCE_FOLDER));
     $cinbox->setConfigFile($config->get(OPT_CONFIG_FILE));
     $cinbox->setItemLogstyle($config->get(OPT_LOGSTYLE));
+    $cinbox->setFirstInit($config->get(OPT_FIRST_INIT));
+
+    // Go initializie the engine:
     $result = $cinbox->initInbox();
 
     return $result;
@@ -308,6 +325,7 @@ $l = $logger;                           // Alias as shortcut.
 
 $config = new \ArkThis\CInbox\CIConfig($logger);
 $config->set(OPT_FOREVER, false);       // Don't continue forever by default.
+$config->set(OPT_FIRST_INIT, false);    // Assume normal run by default (=NOT first-run init)
 
 // Parse commandline arguments:
 if (!parseArgs()) exit(EXIT_ERROR_ARGS);
@@ -320,6 +338,17 @@ if (!parseArgs()) exit(EXIT_ERROR_ARGS);
 try
 {
     if (!initInbox()) throw new \Exception();
+
+    // If we were running in `firstInit` mode, stop here and request a restart
+    // without the `OPT_FIRST_INIT` flag:
+    if ($cinbox->getFirstInit())
+    {
+        $l->logHeader2(sprintf(
+            _("First-run Initialization complete.\nPlease remove the `%s` commandline parameter and restart. Have fun!"),
+            'init'
+        ));
+        exit(EXIT_OK);
+    }
 }
 catch(Exception $e)
 {

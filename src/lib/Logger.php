@@ -739,6 +739,21 @@ class Logger
 
 
     /**
+     * Logs a pre-formatted block that visually stands apart.
+     * Similar to logHeader(), but with a newline after and without a
+     * timestamp.
+     */
+    public function logHeader2($msg)
+    {
+        $this->logNewline(2);
+        $this->logAlways($this->getHeadline());
+        $this->logAlways($msg);
+        $this->logAlways($this->getHeadline());
+        $this->logNewline();
+    }
+
+
+    /**
      * Returns a horizontal line consisting of '=' characters.
      * Can be used for markdown-style headlines.
      */

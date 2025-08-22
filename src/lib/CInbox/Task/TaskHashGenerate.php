@@ -309,8 +309,10 @@ class TaskHashGenerate extends TaskHash
      * The hashcode algorithm type is defined in '$this->hashType' and therefore
      * ignored, but the function declaration must match:
      * TaskHash::generateHashcode($hashType, $fileName).
+     *
+     * So simply call this method with `$hashType=null`.
      */
-    protected function generateHashcode($hashType=null, $fileName)
+    protected function generateHashcode($hashType, $fileName)
     {
         $l = $this->logger;
         $folder = $this->CIFolder;

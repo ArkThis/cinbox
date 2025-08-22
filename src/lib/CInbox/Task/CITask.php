@@ -109,6 +109,7 @@ abstract class CITask
      */
     //@{
     protected $logger;                      ///< Logging handler.
+    protected $config;                      ///< Configuration handler.
     protected $name;                        ///< Class name of this task.
     protected $label;                       ///< Human readable Task label.
     protected $description;                 ///< Human readable description of Task's purpose/actions.

@@ -97,35 +97,59 @@ class CIConfig
     /**
      * Initializes values for common placeholders, such as:
      * PHP_SELF, etc.
+     *
+     * @param[in]   array   $arguments      key/value array of placeholder strings.
      */
     public function initPlaceholders($arguments=null)
     {
-        $this->placeholders = array();                  // NOTE: This clears existing placeholder values!
+        $this->placeholders = array();               // NOTE: This clears existing placeholder values!
+
+        // --------------------------------------------------------------------
+        // All placeholders here are only resolved ONCE during CInbox start.
+        // So if they change during runtime, you may be out of luck.
+        //
+        // However, the ones chosen here are very very unlikely to change,
+        // so you should be fine... ;)
+        // --------------------------------------------------------------------
+        $more = array(
+            // It's always good to know where $HOME is...
+            __DIR_HOME__ => $_SERVER['HOME']
+        );
+
+        // Information about the currently running script:
+        $myself = $_SERVER['PHP_SELF'];
+        // If PHP_SELF is called through a symlink, offer the REAL target, as
+        // absolute path (not relative) too:
+        $myself_real = realpath($myself);
 
         $php_self = array(
-                // Information about the currently running script:
-                __PHP_SELF__ => $_SERVER['PHP_SELF'],
-                __PHP_SELF_DIR__ => dirname($_SERVER['PHP_SELF']),
-                __PHP_SELF_NAME__ => basename($_SERVER['PHP_SELF'])
-                );
+            __PHP_SELF__ => $myself_real,
+            __PHP_SELF_DIR__ => dirname($myself_real),
+            __PHP_SELF_NAME__ => basename($myself_real)
+        );
 
-        if (is_array($arguments))
-        {
-            // Add values for additional placeholders here already:
-            $this->placeholders = array_merge(
-                $this->placeholders,
-                $arguments,
-                $php_self
-            );
-        }
-        else
-        {
-            // Only merge existing placeholder values:
-            $this->placeholders = array_merge(
-                $this->placeholders,
-                $php_self
-            );
-        }
+        $php_self_orig = array(
+            __PHP_SELF_ORIG__ => $myself,
+            __PHP_SELF_DIR_ORIG__ => dirname($myself),
+            __PHP_SELF_NAME_ORIG__ => basename($myself)
+        );
+
+        // -----------------------------------------------------
+
+        if (!is_array($arguments)) { $arguments = array(); }
+
+        // Add values for additional placeholders here already,
+        // so we don't have to use more if-then-else code below.
+        $arguments = array_merge(
+            $arguments,                         // provided as function param
+            $more, $php_self, $php_self_orig    // above, new placeholder values
+        );
+
+        // Merge with existing placeholder values:
+        $this->placeholders = array_merge(
+            $this->placeholders,
+            $arguments                  // this now contains all new placeholders.
+        );
     }
 
 

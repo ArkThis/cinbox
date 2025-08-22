@@ -62,6 +62,7 @@ abstract class TaskHash extends CITask
     // Class properties are defined here.
     private $hashTypesAllowed;
     protected $hashType;
+    protected $hashCodes;
 
 
 
