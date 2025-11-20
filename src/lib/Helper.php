@@ -619,12 +619,15 @@ class Helper
      * Resolves a given path relative to a given base, and returns the absolute
      * path (+filename if given).
      *
-     * It's merely a call to realpath(), but works if the file doesn't exist
+     * It's merely a fancy call to realpath(), but works if the file doesn't exist
      * (yet).
-     * BUT: The path must already exist!
+     * BUT: The $base path must already exist!
      *
      * @param $filename     [string]    Path or path+filename.
-     * @param $base         [string]    Folder to consider as base for relative $filename.
+     * @param $base=null    [string]    Folder to consider as base for relative $filename.
+     *                                  This may be empty, which still resolves
+     *                                  relative parts in an absolute string,
+     *                                  like '/my/dir/is/../almost_absolute'.
      */
     public static function getAbsoluteName($filename, $base=null)
     {
@@ -635,17 +638,17 @@ class Helper
             $filename = $base . DIRECTORY_SEPARATOR . $filename;
         }
 
+        // The $filename doesn't have to exist, or may even be a glob-pattern
+        // 😉️, so we split the path from "filename"...
         $pathinfo = pathinfo($filename);
-
-        // If it exists, we're happy to use realpath as-is:
-        if (file_exists($filename)) return realpath($filename);
-
-        $basename = $pathinfo['basename'];
         $dir = $pathinfo['dirname'];
+        $basename = $pathinfo['basename'];
 
+        // ... and apply realpath only to the folder part.
+        // (This resolves things like '$dir/../relative/../../other' to absolute paths)
         $realDir = realpath($dir);
-        if ($realDir === false) throw new \RuntimeException(
-                sprintf(_("Unable to resolve absolute path. Folder does not exist: '%s'"),
+        if ($realDir === false) throw new \RuntimeException(sprintf(
+                    _("Unable to resolve absolute path for '%s'. Does that folder exist?"),
                     $dir
                     ));
 
