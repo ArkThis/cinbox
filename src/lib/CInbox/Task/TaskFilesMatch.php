@@ -101,8 +101,8 @@ abstract class TaskFilesMatch extends CITask
         if (empty($patterns)) return array();
 
         $base_dir = $CIFolder->getPathname();
-        $l->logInfo(sprintf(
-                    _("Matching patterns (with no absolute-path) relative to this folder: '%s'\n"),
+        $l->logDebug(sprintf(
+                    _("Matching patterns relative to this folder: '%s'\n"),
                     $base_dir
                     ));
 
@@ -136,12 +136,15 @@ abstract class TaskFilesMatch extends CITask
             $result = glob($source);
             $matching = array_merge($matching, $result);
 
-            $l->logDebug(sprintf(
-                        _("Resolved %d files/folders, matching '%s':\n%s\n"),
-                        count($result),
-                        $source,
-                        print_r($result, true)
-                        ));
+            if (!empty($result))
+            {
+                $l->logDebug(sprintf(
+                            _("Resolved %d files/folders, matching '%s':\n%s\n"),
+                            count($result),
+                            $source,
+                            print_r($result, true)
+                            ));
+            }
         }
 
         return $matching;

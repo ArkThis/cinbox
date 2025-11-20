@@ -177,7 +177,12 @@ class TaskHashGenerate extends TaskHash
                 }
                 $hashCodes[$fileName] = $hashCode;
 
-                $l->logMsg(sprintf(_("Writing hash file '%s'..."), $hashFile));
+                $l->logMsg(sprintf(
+                    _("Writing hash file '%s' in '%s'..."),
+                    basename($hashFile),
+                    dirname($hashFile)
+                ));
+
                 if ($this->saveHashToFile($hashFile, $hashCode))
                 {
                     $l->logDebug(sprintf(_("Wrote hash file '%s'."), $hashFile));

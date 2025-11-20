@@ -252,18 +252,30 @@ class TaskHashSearch extends TaskHash
             $hashSources = array_merge($hashSources, $matching);
         }
 
-        $l->logDebug(sprintf(_("Files matching search patterns:\n%s"), print_r($hashSources, true)));
+        $l->logDebug(sprintf(_("%d files to search for hashcodes:\n%s"), count($hashSources), print_r($hashSources, true)));
 
         // Check for hash collisions/duplicates is done in TaskHashGenerate - not here.
         foreach ($hashSources as $fileName)
         {
+            // Write the checked manifest filename only once, improves readability of
+            // log output
+            $l->logInfo(sprintf(
+                _("Looking for hashcodes in: '%s'"),
+                $fileName
+            ));
+
             if (is_file($fileName))
             {
                 $linesMatch = $this->findHashInFile($fileName, $hashCode);
                 if (!empty($linesMatch) && is_array($linesMatch))
                 {
                     $hashFoundFiles[$fileName] = $linesMatch;
-                    $l->logInfo(sprintf(_("Lines containing hash match in '%s':\n%s"), $fileName, print_r($linesMatch, true)));
+                    $l->logInfo(sprintf(
+                        _("%d line(s) containing hash match in '%s':\n%s"),
+                        count($linesMatch),
+                        basename($fileName),
+                        print_r($linesMatch, true)
+                    ));
                 }
             }
         }
