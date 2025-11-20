@@ -19,6 +19,7 @@
 namespace ArkThis\CInbox\Task;
 
 use \ArkThis\CInbox\Task\CITask;
+use \ArkThis\Helper;
 use \Exception as Exception;
 
 
@@ -84,24 +85,63 @@ abstract class TaskFilesMatch extends CITask
     /**
      * Returns array with files/folders within the folder that match
      * the glob patterns in '$patterns'.
+     *
+     * @param[in] CInbox/CIFolder $CIFolder Mainly used to find item's current
+     *                                      folder to relate paths to.
+     * @param[in] array $patterns           An array of file glob-patterns.
+     *                                      May contain folder-paths
+     *                                      (relative + absolute).
      */
     protected function getMatchingFiles($CIFolder, $patterns)
     {
         $l = $this->logger;
 
+        // If there's no patterns, there's nothing to do here. Fine. Returning
+        // no results, but also no errors:
         if (empty($patterns)) return array();
 
-        $source = $CIFolder->getPathname() . DIRECTORY_SEPARATOR;
+        $base_dir = $CIFolder->getPathname();
+        $l->logInfo(sprintf(
+                    _("Matching patterns (with no absolute-path) relative to this folder: '%s'\n"),
+                    $base_dir
+                    ));
 
         $matching = array();
         foreach ($patterns as $pattern)
         {
+            // This allows using absolute paths in patterns.
+            // Very handy to point to things "outside" an item's folder tree.
+            $source = $pattern;
+
+            // If $pattern does NOT start with a DIRECTORY_SEPARATOR
+            // character, it's considered relative to the current
+            // CIFolder's path:
+            if (!Helper::isAbsolutePath(dirname($pattern)))
+            {
+                // To allow using relative-to-basedir paths in patterns (like
+                $source = Helper::getAbsoluteName($pattern, $base_dir);
+
+                $l->logDebug(sprintf(
+                _("Pattern: '%s' resolved to: '%s'\n"),
+                $pattern,
+                $source
+                ));
+            }
+
             // This glob() call /is/ doing the actual pattern-matching.
             // See: https://www.php.net/manual/en/function.glob
             // TODO?:
             // It may be useful/necessary to support handing over 'flags' to glob()?
-            $result = glob($source . $pattern);
+
+            $result = glob($source);
             $matching = array_merge($matching, $result);
+
+            $l->logDebug(sprintf(
+                        _("Resolved %d files/folders, matching '%s':\n%s\n"),
+                        count($result),
+                        $source,
+                        print_r($result, true)
+                        ));
         }
 
         return $matching;
