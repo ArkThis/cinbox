@@ -26,5 +26,5 @@ Features
 
 # Links
 
-  * [CInbox official user manual documentation](http://www.av-rd.com/products/cinbox/cinbox_manual-en.html)
+  * [CInbox official user manual documentation](http://www.ArkThis.com/products/cinbox/cinbox_manual-en.html)
 
