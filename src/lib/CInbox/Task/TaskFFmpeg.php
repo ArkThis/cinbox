@@ -243,7 +243,7 @@ class TaskFFmpeg extends TaskExec
             $this->setStatusConfigError();
             return false;
         }
-    } 
+    }
 
 
     /**
@@ -415,9 +415,16 @@ class TaskFFmpeg extends TaskExec
      */
     protected function checkArrayKeysMatch($arrays, &$sizes)
     {
+        $l = $this->logger;
+
         // For logging shortest array:
         $sizes = array();
         $mismatch = 0;
+
+        $l->logDebug(sprintf(
+            _("Matching keys for arrays: %s\n"),
+            print_r($arrays, true)
+        ));
 
         $keys1 = null; // Previous array's keys to compare with.
         foreach ($arrays as $name=>$a)
@@ -506,7 +513,7 @@ print_r($arguments); //DELME
         // Makes sense to store the command to the logfile, in case something goes wrong:
         // Writing it /before/ execution so it's logged even in case of a complete crash.
         $this->writeToCmdLogfile(sprintf(
-            _("Command line and complete, uncut console output:\n\n%s\n\n"), 
+            _("Command line and complete, uncut console output:\n\n%s\n\n"),
             $command),
         $logFile
         );
@@ -722,6 +729,8 @@ print_r($arguments); //DELME
      */
     protected function createTodoList($inputs)
     {
+        $l = $this->logger;
+
         if (empty($inputs) or (!is_array($inputs)))
         {
             throw new InvalidArgumentException(
@@ -735,6 +744,20 @@ print_r($arguments); //DELME
         $targets = $inputs[self::TODO_OUT];
         // NOTE: Not checking them here if(empty()) or not. FIXME?
 
+        // Plain debug info:
+        $l->logDebug(sprintf(
+            _("FFmpeg recipes: %s\n"),
+            print_r($recipes, true)
+        ));
+        $l->logDebug(sprintf(
+            _("FFmpeg sources: %s\n"),
+            print_r($sources, true)
+        ));
+        $l->logDebug(sprintf(
+            _("FFmpeg targets: %s\n"),
+            print_r($targets, true)
+        ));
+
         $todoList = array();                // Clean and fresh start.
 
         // Resolve in/out file patterns for each **recipe**.
@@ -746,6 +769,14 @@ print_r($arguments); //DELME
             // for this to work properly:
             $source = $sources[$key];
             $target = $targets[$key];
+
+            $l->logInfo(sprintf(
+                _("Resolving in/out patterns for recipe %s:\n%s\nSource: %s\nTarget: %s\n\n"),
+                $key,
+                $recipe,
+                $source,
+                $target
+            ));
 
             // task-specific parameters, must be resolved separately. Sorry.
             #$validate = $validates[$key] == 1 ? true : false; // It's a bool! ;)
@@ -773,6 +804,11 @@ print_r($arguments); //DELME
                     self::TODO_IN => $this->filesIn,
                     self::TODO_OUT => $this->filesOut,
                     );
+
+            $l->logDebug(sprintf(
+                _("FFmpeg TODO list: %s\n"),
+                print_r($todoList, true)
+            ));
         }
 
         return $todoList;
@@ -788,7 +824,7 @@ print_r($arguments); //DELME
         $hashType = $this->hashType;
         $hashFiles = $this->getHashTempFilenames(
                 $fileName, $this->CIFolder, $hashType);
- 
+
         $recipes = array(
                 self::HASH_VIDEO => sprintf(self::HASH_RECIPEMASK_V,
                     $hashType,
