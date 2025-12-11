@@ -335,7 +335,7 @@ class TaskFFmpeg extends TaskExec
             $recipe = $todo[self::TODO_RECIPES];
             $filesIn = $todo[self::TODO_IN];
             $filesOut = $todo[self::TODO_OUT];
-            $validate = $todo[self::TODO_VALIDATES];
+            //$validate = $todo[self::TODO_VALIDATES];
 
             foreach ($filesIn as $key=>$fileIn)
             {
@@ -498,8 +498,8 @@ class TaskFFmpeg extends TaskExec
                 __DIR_IN__=> dirname($sourceFile),
                 __DIR_OUT__=> dirname($targetFile),
                 __LOGFILE__ => $logFile,
-                __FF_HASH_V__ => $hashRecipes[self::HASH_VIDEO],
-                __FF_HASH_A__ => $hashRecipes[self::HASH_AUDIO],
+                //__FF_HASH_V__ => $hashRecipes[self::HASH_VIDEO],
+                //__FF_HASH_A__ => $hashRecipes[self::HASH_AUDIO],
                 );
 
 print_r($arguments); //DELME
