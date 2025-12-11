@@ -276,7 +276,9 @@ class TaskFFmpeg extends TaskExec
         }
         catch (Exception $e)
         {
-            $l->logException(sprintf(_("Not all FFmpeg config options are configured. Please check config file!")), $e);
+            $l->logException(sprintf(
+                _("Not all FFmpeg config options are configured. Please check config file!")
+            ), $e);
             $this->setStatusConfigError();
             return false;
         }
@@ -502,9 +504,11 @@ print_r($arguments); //DELME
         // -------------------
         // Makes sense to store the command to the logfile, in case something goes wrong:
         // Writing it /before/ execution so it's logged even in case of a complete crash.
-        $this->writeToCmdLogfile(
-                sprintf(_("Command line and complete, uncut console output:\n\n%s\n\n"), $command),
-                $logFile);
+        $this->writeToCmdLogfile(sprintf(
+            _("Command line and complete, uncut console output:\n\n%s\n\n"), 
+            $command),
+        $logFile
+        );
 
         // This is where the command actually gets executed!
         $exitCode = $this->exec->execute($command);
@@ -522,9 +526,10 @@ print_r($arguments); //DELME
 
             $l->logNewline();
             $l->logError(sprintf(
-                        _("FFmpeg command returned exit code '%d'.\nFor details see logfile: '%s'"),
-                        $exitCode,
-                        $logFile));
+                _("FFmpeg command returned exit code '%d'.\nFor details see logfile: '%s'"),
+                $exitCode,
+                $logFile
+            ));
         }
 
         return $exitCode;
@@ -595,10 +600,12 @@ print_r($arguments); //DELME
             // It's not an error, so we return okay:
             return true;
         }
+
         $l->logMsg(sprintf(
             _("Found %d source files matching '%s'."),
             count($filesIn),
-            $source));
+            $source
+        ));
 
         foreach ($filesIn as $key=>$fileIn)
         {
@@ -618,7 +625,8 @@ print_r($arguments); //DELME
             $l->logDebug(sprintf(
                 _("Source file: '%s' => Target file: '%s'\n"),
                 $fileIn,
-                $fileOut));
+                $fileOut
+            ));
         }
 
         // Check if all sources have received matching targets and
@@ -638,7 +646,7 @@ print_r($arguments); //DELME
                 _("Not all input files have matching output files:\n%s\n%s\n"),
                 print_r($filesIn, true),
                 print_r($filesOut, true)
-                ));
+            ));
             $this->setStatusConfigError();
             return false;
         }
@@ -657,10 +665,10 @@ print_r($arguments); //DELME
 
         if (!is_array($targets))
         {
-            throw new \Exception(
-                    sprintf(_("Unable to check if targets exist: file list is not an array, but of type '%s'"),
-                    gettype($targets)
-                        ));
+            throw new \Exception(sprintf(
+                _("Unable to check if targets exist: file list is not an array, but of type '%s'"),
+                gettype($targets)
+            ));
             return false;
         }
 
@@ -671,9 +679,9 @@ print_r($arguments); //DELME
             {
                 $count++;
                 $l->logError(sprintf(
-                            _("Target file already exists: '%s'. Remove it first."),
-                            $target
-                            ));
+                    _("Target file already exists: '%s'. Remove it first."),
+                    $target
+                ));
             }
         }
 
@@ -846,9 +854,10 @@ print_r($arguments); //DELME
         if (!in_array($hashType, $this->hashTypesAllowed))
         {
             throw new \Exception(sprintf(
-                        _("Hash type '%s' is invalid, not supported by FFmpeg or not known to this Task.\nValid types are: %s"),
-                        $hashType,
-                        implode(' ', $this->hashTypesAllowed)));
+                _("Hash type '%s' is invalid, not supported by FFmpeg or not known to this Task.\nValid types are: %s"),
+                $hashType,
+                implode(' ', $this->hashTypesAllowed)
+            ));
         }
 
         return true;
