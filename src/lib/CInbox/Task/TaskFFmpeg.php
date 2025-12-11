@@ -211,6 +211,8 @@ class TaskFFmpeg extends TaskExec
                     ));
 
         // -------
+        /* This is currently NOT IMPLEMENTED YET.
+         * And should definitely not be mandatory.
         $this->validates = $config->get(self::CONF_VALIDATES);
         // Task is optional, therefore it is skipped if one setting is empty:
         if(empty($this->validates)) return $this->skipIt();
@@ -219,6 +221,7 @@ class TaskFFmpeg extends TaskExec
                     _("Rewrap/transcoding Hash validate enabled: %s"),
                     implode(', ', $this->validates)
                     ));
+         */
 
         // Must return true on success:
         return true;
@@ -272,7 +275,7 @@ class TaskFFmpeg extends TaskExec
                         self::TODO_IN => $this->sources,
                         self::TODO_OUT => $this->targets,
                         self::TODO_RECIPES => $this->recipes,
-                        self::TODO_VALIDATES => $this->validates
+                        //self::TODO_VALIDATES => $this->validates      # NOT YET IMPLEMENTED
                         ));
         }
         catch (Exception $e)
@@ -290,7 +293,7 @@ class TaskFFmpeg extends TaskExec
                 self::TODO_IN => $this->sources,
                 self::TODO_OUT => $this->targets,
                 self::TODO_RECIPES => $this->recipes,
-                self::TODO_VALIDATES => $this->validates
+                //self::TODO_VALIDATES => $this->validates      # NOT YET IMPLEMENTED
             )
         );
 
