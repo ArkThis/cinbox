@@ -170,6 +170,10 @@ class TaskFFmpeg extends TaskExec
         $hashType = strtolower($config->get(self::CONF_HASH_TYPE));
         $l->logDebug(sprintf(_("Content hashcode type (algorithm): %s"), $hashType));
 
+        //TODO: This is declaring a default. This should be done differently,
+        //and possibly somewhere else...?
+        if (empty($hashType)) $hashType = 'md5';
+
         // Check if provided hashcode algorithm type is supported:
         if (!$this->hashTypeIsAllowed($hashType)) return false;
         $this->hashType = $hashType;
