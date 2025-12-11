@@ -723,7 +723,9 @@ print_r($arguments); //DELME
     {
         if (empty($inputs) or (!is_array($inputs)))
         {
-            throw new InvalidArgumentException(_("inputs were empty or not an array. Expected are INI-file config variables with file-patterns/names"));
+            throw new InvalidArgumentException(
+                _("inputs were empty or not an array. Expected are INI-file config variables with file-patterns/names"
+                ));
         }
 
         // Extract to local variables, for easier handling and shorter code:
