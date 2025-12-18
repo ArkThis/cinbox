@@ -329,7 +329,21 @@ abstract class AbstractTaskExecFF extends TaskExec
     {
         $l = $this->logger;
 
-        if (empty($patterns)) return array();
+        $l->logDebug(sprintf(
+            _("searching files matching [%s] in folder '%s'..."),
+            implode(', ', $patterns),
+            $folder
+        ));
+
+        if (empty($patterns)) {
+            $l->logInfo(sprintf(
+                _("NO files matching [%s] in folder '%s'."),
+                implode(', ', $patterns),
+                $folder
+            ));
+            // We have nothing, so return an empty array:
+            return array();
+        }
 
         $source = Helper::getAbsoluteName($folder) . DIRECTORY_SEPARATOR;
 
@@ -339,6 +353,11 @@ abstract class AbstractTaskExecFF extends TaskExec
             $result = glob($source . $pattern);
             $matching = array_merge($matching, $result);
         }
+
+        $l->logDebug(sprintf(
+            _("Found matches: [%s]"),
+            implode(', ', $matching),
+        ));
 
         return $matching;
     }
@@ -364,7 +383,7 @@ abstract class AbstractTaskExecFF extends TaskExec
         $l = $this->logger;
         $config = $this->config;
 
-        // Avoid leftovers:
+        // Avoid leftovers from previous runs:
         $this->filesIn = array();
         $this->filesOut = array();
         $filesIn = array();
@@ -387,6 +406,8 @@ abstract class AbstractTaskExecFF extends TaskExec
             $source
         ));
 
+        // Resolving ONE output file ($fileOut) per input file ($fileIn), in a
+        // key-sync array:
         foreach ($filesIn as $key=>$fileIn)
         {
             $arguments = array(
@@ -395,9 +416,13 @@ abstract class AbstractTaskExecFF extends TaskExec
                     );
 
             $fileOut = $config->resolveString($target, $arguments);
-            // Resolve relative filepaths to their absolute location relative
-            // to the current sourceFolder:
-            $fileOut = Helper::getAbsoluteName($fileOut, $this->sourceFolder);
+
+            // Resolve relative paths to their absolute location relative to
+            // the current sourceFolder (unless it's already absolute):
+            if (!Helper::isAbsolutePath($fileOut))
+            {
+                $fileOut = Helper::getAbsoluteName($fileOut, $this->sourceFolder);
+            }
 
             // Explicitely using $key to make sure $filesIn stay sync with $filesOut:
             $filesOut[$key] = $fileOut;
@@ -413,6 +438,12 @@ abstract class AbstractTaskExecFF extends TaskExec
         // report an error otherwise:
         try
         {
+            $l->logInfo(sprintf(
+                _("Making sure each (%d) INput file has matching (%d) OUTput file..."),
+                count($this->filesIn),
+                count($this->filesOut)
+            ));
+
             if ($this->checkArrayKeysMatch2(array($filesIn, $filesOut)))
             {
                 $this->filesIn = $filesIn;
@@ -423,7 +454,7 @@ abstract class AbstractTaskExecFF extends TaskExec
         catch (Exception $e)
         {
             $l->logError(sprintf(
-                _("Not all input files have matching output files:\n%s\n%s\n"),
+                _("Not all INput files have matching OUTput files:\n%s\n%s\n"),
                 print_r($filesIn, true),
                 print_r($filesOut, true)
             ));
