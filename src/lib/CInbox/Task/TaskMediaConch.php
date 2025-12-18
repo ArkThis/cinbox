@@ -20,7 +20,7 @@ namespace ArkThis\CInbox\Task;
 
 use \ArkThis\CInbox\CIFolder;
 use \ArkThis\CInbox\CIExec;         // for running external commands
-#use \ArkThis\Helper;
+use \ArkThis\Helper;
 #use \Exception as Exception;
 
 
@@ -54,9 +54,9 @@ class TaskMediaConch extends TaskFFmpeg
     // `match + policy = target (in target-format) => triggering reaction based on result`
     const CONF_SOURCES = "MCONCH_IN";         ///< Glob patterns to match (media source files)
     const CONF_TARGETS = "MCONCH_OUT";        ///< Target output filenames (per match)
-    const CONF_RECIPES = "MCONCH_RECIPES";    ///< Commandline to call
+    const CONF_RECIPES = "MCONCH_RECIPE";     ///< Commandline to call
 
-    const CONF_REACTIONS = "MCONCH_REACTIONS";  ///< What do to on which policy result?
+    const CONF_REACTIONS = "MCONCH_REACTION";  ///< What do to on which policy result?
     //@}
 
 
@@ -66,7 +66,7 @@ class TaskMediaConch extends TaskFFmpeg
 
     // Class properties are defined here.
     // Basic ones like $recipes, $sources and $targets are inherited.
-    private $reactions;                                 ///< @see #CONF_REACTIONS
+    #private $reactions;                                 ///< @see #CONF_REACTIONS
 
     private $targetFormatsAllowed;                      ///< List of MediaConch output format options.
     private $reactionsAllowed;                          ///< List of what happens if...?
@@ -170,7 +170,8 @@ class TaskMediaConch extends TaskFFmpeg
         // TODO: do some checking on the patterns?
         $this->reactions = $config->get(self::CONF_REACTIONS);
         // Task is optional, therefore it is skipped if one setting is empty:
-        if(empty($this->reactions)) return $this->skipIt("reactions empty");
+        #if(empty($this->reactions)) return $this->skipIt("reactions empty");
+        if(empty($this->reactions)) $this->reactions = Array();
         // TODO: throw InvalidArgumentException?
         if (!$this->optionIsArray($this->reactions, self::CONF_REACTIONS)) return false;
         $l->logDebug(sprintf(
@@ -187,55 +188,6 @@ class TaskMediaConch extends TaskFFmpeg
 
 
     /**
-     * Prepare everything so it's ready for processing.
-     * For commandline recipes it resolves input glob patterns and creates
-     * matching output filenames for each source/target pair.
-     *
-     * Afterwards, $this->todoList should be properly populated with
-     * commandline calls ready to run.
-     *
-     * @retval boolean
-     *  True if task shall proceed. False if not.
-     */
-    public function init()
-    {
-        // DISABLED: ffmpeg parent's code too task-specific.
-        #if (!parent::init()) return false;
-
-        // TODO: The check if required binaries (extract from recipe) exists and is
-        //       valid is done before executing each command/recipe in run().
-
-        // Check if config-tuples are complete:
-        try
-        {
-            $this->checkArrayKeysMatch2(array(
-                        self::TODO_IN => $this->sources,
-                        self::TODO_OUT => $this->targets,
-                        self::TODO_RECIPES => $this->recipes,
-                        ));
-        }
-        catch (Exception $e)
-        {
-            $l->logException(sprintf(_("Not all FFmpeg config options are configured. Please check config file!")), $e);
-            $this->setStatusConfigError();
-            return false;
-        }
-
-        // Map config setting placeholder-using config strings:
-        $this->populateTodoList(
-            array(
-                self::TODO_IN => $this->sources,
-                self::TODO_OUT => $this->targets,
-                self::TODO_RECIPES => $this->recipes,
-            )
-        );
-
-        // Must return true on success:
-        return true;
-    }
-
-
-    /**
      * Perform the actual steps of this task.
      *
      * @retval boolean
@@ -244,7 +196,54 @@ class TaskMediaConch extends TaskFFmpeg
     public function run()
     {
         if (!parent::run()) return false;
+
+        $l = $this->logger;
+
         // TODO: Add here what the task is supposed to do.
+        //   * Execute MediaConch calls
+        //   * Handle !=0 exit codes
+
+        $count = 0;
+        $error = 0;
+
+        if (empty($this->todoList))
+        {
+            // Nothing to do, but it's okay.
+            $l->logMsg(sprintf(_("No files found. Nothing done. That's okay.")));
+            $this->setStatusDone();
+            return true;
+        }
+
+        foreach ($this->todoList as $todo)
+        {
+            $recipe = $todo[self::TODO_RECIPES];
+            $filesIn = $todo[self::TODO_IN];
+            $filesOut = $todo[self::TODO_OUT];
+
+            foreach ($filesIn as $key=>$fileIn)
+            {
+                $fileOut = $filesOut[$key];
+                $count++;
+
+                if ($this->convertFile($recipe, $fileIn, $fileOut) != CIExec::EC_OK) $error++;
+
+                // TODO: Evaluate content hashes...
+            }
+        }
+
+        if ($count > 0)
+        {
+            $l->logMsg(sprintf(_("Processed %d files."), $count));
+            $l->logNewline();
+        }
+
+        if ($error > 0)
+        {
+            $this->setStatusPBCT();
+            $l->logError(sprintf(_("Error processing %d files."), $error));
+            $l->logNewline();
+            return false;
+        }
 
         // Must return true on success:
         $this->setStatusDone();
@@ -280,6 +279,69 @@ class TaskMediaConch extends TaskFFmpeg
 
     // TODO: Add your methods here.
     // Default type is 'protected'. Use 'public' functions only where necessary.
+    
+    protected function convertFile($recipe, $sourceFile, $targetFile)
+    {
+        $l = $this->logger;
+
+        $logFile = $this->getCmdLogfile();
+
+        // TODO: Idea! Add method that resolves flavors of filename
+        // (with/without suffix, path, etc) and returns it as ready-to-use
+        // $arguments array?
+        $arguments = array(
+                __FILE_IN__ => $sourceFile,
+                __FILE_OUT__ => $targetFile,
+                __FILE_IN_NOEXT__ => Helper::getBasename($sourceFile, $suffix=false),
+                __FILE_OUT_NOEXT__ => Helper::getBasename($targetFile, $suffix=false),
+                __DIR_IN__=> dirname($sourceFile),
+                __DIR_OUT__=> dirname($targetFile),
+                __LOGFILE__ => $logFile,
+                );
+
+print_r($arguments); //DELME
+        $command = $this->resolveCmd($recipe, $arguments);
+
+        // Bail out if command string seems invalid:
+        if (!$this->isCmdValid($command)) return false;
+
+        $l->logNewline();
+        $l->logMsg(sprintf(_("MediaConch processing '%s'..."), $sourceFile));
+        $l->logInfo(sprintf(_("MediaConch command: %s"), $command));
+
+        // -------------------
+        // Makes sense to store the command to the logfile, in case something goes wrong:
+        // Writing it /before/ execution so it's logged even in case of a complete crash.
+        $this->writeToCmdLogfile(sprintf(
+            _("Command line and complete, uncut console output:\n\n%s\n\n"),
+            $command),
+        $logFile
+        );
+
+        // This is where the command actually gets executed!
+        $exitCode = $this->exec->execute($command);
+        // -------------------
+
+        if ($exitCode == CIExec::EC_OK)
+        {
+            // Things went fine, let's remove the logfile:
+            // TODO: re-enable $this->removeCmdLogfile($logFile);
+        }
+        else
+        {
+            $this->setStatusPBCT();
+            // TODO: If this happens, the target file should be deleted to avoid leftovers.
+
+            $l->logNewline();
+            $l->logError(sprintf(
+                _("MediaConch command returned exit code '%d'.\nFor details see logfile: '%s'"),
+                $exitCode,
+                $logFile
+            ));
+        }
+
+        return $exitCode;
+    }
 
     //@}
 
