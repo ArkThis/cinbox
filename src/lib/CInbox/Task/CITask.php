@@ -330,10 +330,15 @@ TODO: Idea!
      */
     public function skipIt($msg=null)
     {
+        $l = $this->logger;
+        $l->logMsg(sprintf(
+            _("Skipping task '%s'"),
+            $this->getName()
+        ));
+
         if (!empty($msg))
         {
-            $l = $this->logger;
-            $l->logInfo(sprintf(_("Reason to skip: %s"), $msg));
+            $l->logMsg(sprintf(_("Reason to skip: %s"), $msg));
         }
 
         $this->skip = true;
