@@ -193,7 +193,7 @@ class TaskFFmpeg extends AbstractTaskExecFF
         // TODO: Add here what the task is supposed to do.
         //   * Execute FFmpeg calls
         //   * Handle !=0 exit codes
-        //   * Iterate convertFile() call with values from resolveInOut().
+        //   * Iterate runRecipes() call with values from resolveInOut().
 
         $count = 0;
         $error = 0;
@@ -220,7 +220,7 @@ class TaskFFmpeg extends AbstractTaskExecFF
                 // TODO: Add hash generating code to recipe:
                 // if ($validate) $recipe = prepareValidation($recipe);
 
-                if ($this->convertFile($recipe, $fileIn, $fileOut) != CIExec::EC_OK) $error++;
+                if ($this->runRecipes($recipe, $fileIn, $fileOut) != CIExec::EC_OK) $error++;
 
                 // TODO: Evaluate content hashes...
             }
@@ -284,7 +284,7 @@ class TaskFFmpeg extends AbstractTaskExecFF
      *  Exit code (integer) of executed FFmpeg command (derived from recipe).
      *  'False' if any other error occurred.
      */
-    protected function convertFile($recipe, $sourceFile, $targetFile)
+    protected function runRecipes($recipe, $sourceFile, $targetFile)
     {
         $l = $this->logger;
 
