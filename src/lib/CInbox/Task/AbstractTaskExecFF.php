@@ -438,16 +438,17 @@ abstract class AbstractTaskExecFF extends TaskExec
         // report an error otherwise:
         try
         {
-            $l->logInfo(sprintf(
-                _("Making sure each (%d) INput file has matching (%d) OUTput file..."),
-                count($this->filesIn),
-                count($this->filesOut)
-            ));
-
             if ($this->checkArrayKeysMatch2(array($filesIn, $filesOut)))
             {
                 $this->filesIn = $filesIn;
                 $this->filesOut = $filesOut;
+
+                $l->logInfo(sprintf(
+                    _("Made sure each (%d) INput file has matching (%d) OUTput file."),
+                    count($this->filesIn),
+                    count($this->filesOut)
+                ));
+
                 return true;
             }
         }
@@ -514,7 +515,7 @@ abstract class AbstractTaskExecFF extends TaskExec
     /**
      * Aligns recipes with resolved sources and targets ( @see resolveInOut() ).
      * Output is a 'to-do list' where each recipe has its list of files to
-     * read and generate in a ready-to-use way for passing it to convertFile().
+     * read and generate in a ready-to-use way for passing it to runRecipes().
      *
      * The following /hardcoded/ array keys are vitally necessary and
      * *that MUST be set* to function properly:
