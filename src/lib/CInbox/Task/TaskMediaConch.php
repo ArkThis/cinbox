@@ -63,6 +63,8 @@ class TaskMediaConch extends AbstractTaskExecFF
     // Constants used within this class.
     const MC_FAILPASS_OPTION = "--Output-Simple=%s";                    ///< Output option for FailPass report
     const MC_FAILPASS_FILE = "[@DIR_TEMP@]/mediaconch_failpass.txt";    ///< Filename for FailPass report
+    const MC_FAIL = 'fail';                 ///< String in report if a policy FAILED.
+    const MC_PASS = 'pass';                 ///< String in report if a policy PASSED.
     //@}
 
     /* ========================================
@@ -447,7 +449,7 @@ class TaskMediaConch extends AbstractTaskExecFF
         if ($exitCode == CIExec::EC_OK)
         {
             $l->logMsg(sprintf(
-                _("Command ran well. See logfile for details: %s"),
+                _("Command ran well (logfile was: %s)"),
                 $logFile
             ));
 
@@ -455,7 +457,18 @@ class TaskMediaConch extends AbstractTaskExecFF
             // TODO: re-enable $this->removeCmdLogfile($logFile);
             // Or rather handle this by CInbox's item-garbage collection?
 
-            $this->hasPassedPolicy($failPassFile, $sourceFile);
+            if (!$this->hasPassedPolicy($failPassFile, $sourceFile))
+            {
+                $this->setStatusError();
+
+                $l->logNewline();
+                $l->logError(sprintf(
+                    _("Source file '%s' FAILED MediaConch policy checks. See report for details: %s"),
+                    $sourceFile,
+                    $targetFile
+                ));
+
+            }
         }
         else
         {
@@ -484,14 +497,58 @@ class TaskMediaConch extends AbstractTaskExecFF
     {
         $l = $this->logger;
 
-        $l->logMsg(sprintf(
+        $l->logInfo(sprintf(
             _("Checking if source file '%s' has passed policy..."),
             $sourceFile
         ));
 
-        // TODO:
-        // Check failPassFile.
-        return true;
+        if (!file_exists($failPassFile))
+        {
+            throw new RuntimeException(sprintf(
+                _("MediaConch report output failPassFile does NOT EXIST: '%s'. This is odd!"),
+                $failPassFile
+            ));
+        }
+
+        $report = file_get_contents($failPassFile);
+        if (empty($report))
+        {
+            throw new RuntimeException(
+                _("MediaConch failPassFile report is empty"),
+            );
+        }
+
+        $l->logDebug(sprintf(
+            _("MediaConch failPassFile report:\n%s\n"),
+            $report
+        ));
+
+        // Check failPassFile:
+        // The idea is, that if the word 'FAIL' exists in the report, we don't
+        // need to look or check any further, but consider it failed.
+
+        $failCount = substr_count(
+            strtolower($report),
+            strtolower(self::MC_FAIL)
+        );
+
+        if ($failCount == 0)
+        {
+            $l->logMsg(sprintf(
+                _("Source file '%s' has PASSED policy checks!"),
+                basename($sourceFile)
+            ));
+            return true;   // = PASS
+        }
+
+        $l->logError(sprintf(
+            _("Source file '%s' FAILED %d policy rules:\n%s\n"),
+            basename($sourceFile),
+            $failCount -1,      // The 1st line in the report doesn't count ;)
+            $report
+        ));
+
+        return false;                       // = FAIL
     }
 
     //@}
