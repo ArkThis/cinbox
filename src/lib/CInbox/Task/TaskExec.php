@@ -201,14 +201,14 @@ abstract class TaskExec extends CITask
     * Takes the name of a shell-script (or any other command), and executes it
     * after resolving placeholders e.g. as arguments.
     */
-    protected function runScript($script)
+    protected function runRecipe($recipe)
     {
         $l = $this->logger;
 
         // Resolve placeholders:
-        $command = $this->resolveCmd($script);
+        $command = $this->resolveCmd($recipe);
         // Bail out on first sign of error:
-        if (!$this->isCmdValid($script)) return false;
+        if (!$this->isCmdValid($recipe)) return false;
 
         $l->logMsg($l->getHeadline());
         $l->logInfo(sprintf(_("Executing command:\n'%s'"), $command));

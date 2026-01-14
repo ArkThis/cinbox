@@ -137,7 +137,7 @@ class TaskPreProcs extends TaskExec
                         $script
                         ));
 
-            $exitCode = $this->runScript($script);
+            $exitCode = $this->runRecipe($script);
             $this->setStatusByExitcode($exitCode);
 
             if ($exitCode > static::EXIT_STATUS_DONE)
