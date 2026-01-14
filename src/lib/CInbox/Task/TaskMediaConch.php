@@ -21,7 +21,8 @@ namespace ArkThis\CInbox\Task;
 use \ArkThis\CInbox\CIFolder;
 use \ArkThis\CInbox\CIExec;         // for running external commands
 use \ArkThis\Helper;
-#use \Exception as Exception;
+use \Exception as Exception;
+use \ArkThis\CInbox\Task\AbstractTaskExecFF;
 
 
 /**
@@ -36,8 +37,7 @@ use \ArkThis\Helper;
  *  - <a href="https://fsfe.org/about/basics/freesoftware.en.html">FSFE: What is Free Software?</a>
  *  - <a href="http://www.gnu.org/licenses/gpl.html">The GNU General Public License</a>
  */
-// TODO: Change the class name to match your case:
-class TaskMediaConch extends TaskFFmpeg
+class TaskMediaConch extends AbstractTaskExecFF
 {
     /* ========================================
      * CONSTANTS
@@ -59,6 +59,11 @@ class TaskMediaConch extends TaskFFmpeg
     const CONF_REACTIONS = "MCONCH_REACTION";  ///< What do to on which policy result?
     //@}
 
+    //@{
+    // Constants used within this class.
+    const MC_FAILPASS_OPTION = "--Output-Simple=%s";                    ///< Output option for FailPass report
+    const MC_FAILPASS_FILE = "[@DIR_TEMP@]/mediaconch_failpass.txt";    ///< Filename for FailPass report
+    //@}
 
     /* ========================================
      * PROPERTIES
@@ -66,7 +71,7 @@ class TaskMediaConch extends TaskFFmpeg
 
     // Class properties are defined here.
     // Basic ones like $recipes, $sources and $targets are inherited.
-    #private $reactions;                                 ///< @see #CONF_REACTIONS
+    private $reactions;                                 ///< @see #CONF_REACTIONS
 
     private $targetFormatsAllowed;                      ///< List of MediaConch output format options.
     private $reactionsAllowed;                          ///< List of what happens if...?
@@ -85,6 +90,8 @@ class TaskMediaConch extends TaskFFmpeg
 
         // See manpage for details on output options:
         // https://manpages.debian.org/unstable/mediaconch/mediaconch.1.en.html
+        // TODO: this is currently NOT USED, and handled by editing the
+        // commandline recipe directly.
         $this->targetFormatsAllowed = array(
             'text',     // -ft
             'xml',      // -fx
@@ -98,6 +105,8 @@ class TaskMediaConch extends TaskFFmpeg
             'warning',      // on fail, throw warning - but continue (aka "pbc"?)
             'abort',        // on fail, throw error and abort
         );
+
+        printf("Temp folder: %s\n", $this->tempFolder); //DELME
     }
 
 
@@ -225,10 +234,11 @@ class TaskMediaConch extends TaskFFmpeg
                 $fileOut = $filesOut[$key];
                 $count++;
 
-                if ($this->convertFile($recipe, $fileIn, $fileOut) != CIExec::EC_OK) $error++;
-
-                // TODO: Evaluate content hashes...
+                if ($this->runRecipes($recipe, $fileIn, $fileOut) != CIExec::EC_OK) $error++;
+                // TODO:
+                // Handle MediaConch policy FAIL:
             }
+            $l->logNewline();
         }
 
         if ($count > 0)
@@ -280,7 +290,50 @@ class TaskMediaConch extends TaskFFmpeg
     // TODO: Add your methods here.
     // Default type is 'protected'. Use 'public' functions only where necessary.
     
-    protected function convertFile($recipe, $sourceFile, $targetFile)
+    /**
+     * Inserts an option to mediaconch commandline recipe that writes if a
+     * policy was FAIL or PASS into an internal temp-file.  This file is
+     * required to evaluate fail/pass status when calling mediaconch.
+     *
+     * It MUST be called /before/ resolving $recipe to $command, in order to
+     * support placeholders in inserted parts.
+     *
+     * Returns the $recipe with the inserted output parameter.
+     *
+     * @see self::MC_FAILPASS_OPTION
+     * @see self::MC_FAILPASS_FILE
+     */
+    protected function insertFailPassOutput($recipe)
+    {
+        $l = $this->logger;
+
+        $parts = $this->splitCmd($recipe);
+        $insert = sprintf(self::MC_FAILPASS_OPTION, self::MC_FAILPASS_FILE);
+
+        $l->logInfo(sprintf(
+            _("Inserting fail/pass output option '%s' into mediaconch recipe."),
+            $insert
+            ));
+
+        // Insert parameter right after the program-call = at position 2:
+        array_splice($parts, 1, 0, array($insert));
+        
+        $l->logDebug(sprintf(
+            _("Recipe parts after insert:\n%s"),
+            print_r($parts, true)
+        ));
+
+        $fixedRecipe = implode(' ', $parts);
+
+        return $fixedRecipe;
+    }
+
+
+    /**
+     * Iterate over all recipes and source/target file arrays and run each one
+     * of them.
+     */
+    protected function runRecipes($recipe, $sourceFile, $targetFile)
     {
         $l = $this->logger;
 
@@ -298,8 +351,9 @@ class TaskMediaConch extends TaskFFmpeg
                 __DIR_OUT__=> dirname($targetFile),
                 __LOGFILE__ => $logFile,
                 );
+        #print_r($arguments); //DELME
 
-print_r($arguments); //DELME
+        $recipe = $this->insertFailPassOutput($recipe);
         $command = $this->resolveCmd($recipe, $arguments);
 
         // Bail out if command string seems invalid:
@@ -320,12 +374,21 @@ print_r($arguments); //DELME
 
         // This is where the command actually gets executed!
         $exitCode = $this->exec->execute($command);
+        // NOTE: This currently only checks the exit-code of $command, but NOT
+        // the PASS/FAIL status of MediaConch policies. This happens /after/
+        // this execution call of $command (=mediaconch).
         // -------------------
 
         if ($exitCode == CIExec::EC_OK)
         {
-            // Things went fine, let's remove the logfile:
+            $l->logMsg(sprintf(
+                _("Command ran well. See logfile for details: %s"),
+                $logFile
+            ));
+
+            // If things went fine, shall we remove the logfile?
             // TODO: re-enable $this->removeCmdLogfile($logFile);
+            // Or rather handle this by CInbox's item-garbage collection?
         }
         else
         {
