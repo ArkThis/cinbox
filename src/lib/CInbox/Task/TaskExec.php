@@ -205,9 +205,10 @@ abstract class TaskExec extends CITask
     {
         $l = $this->logger;
 
+        // Resolve placeholders:
+        $command = $this->resolveCmd($script);
         // Bail out on first sign of error:
         if (!$this->isCmdValid($script)) return false;
-        $command = $this->resolveCmd($script);
 
         $l->logMsg($l->getHeadline());
         $l->logInfo(sprintf(_("Executing command:\n'%s'"), $command));
