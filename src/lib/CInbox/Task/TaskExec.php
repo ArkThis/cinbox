@@ -206,7 +206,10 @@ abstract class TaskExec extends CITask
         $l = $this->logger;
 
         // Resolve placeholders:
+        // TODO/FIXME/NOTE: Currently, this only resolves arguments already
+        // present/set in $this->config.
         $command = $this->resolveCmd($recipe);
+
         // Bail out on first sign of error:
         if (!$this->isCmdValid($command)) return false;
 
