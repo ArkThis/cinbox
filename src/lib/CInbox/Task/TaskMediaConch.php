@@ -309,10 +309,17 @@ class TaskMediaConch extends AbstractTaskExecFF
 
     /**
      * Returns the filename of the failpass file.
+     *
+     * @param bool $resolved If true, any placeholders will be resolved, otherwise the original string is returned.
      */
-    protected function getFailPassFile()
+    protected function getFailPassFile($resolved=true)
     {
-        return $this->failPassFile;
+        $config = $this->config;
+
+        $failPassFile = $this->failPassFile;
+        $failPassFile = $resolved ? $config->resolveString($failPassFile) : $failPassFile;
+
+        return $failPassFile;
     }
 
 
@@ -349,7 +356,7 @@ class TaskMediaConch extends AbstractTaskExecFF
             $insert
             ));
 
-        // Insert parameter right after the program-call = at position 2:
+        // Insert failpass-output parameter right after the program-call = at position 1:
         array_splice($parts, 1, 0, array($insert));
         
         $l->logDebug(sprintf(
@@ -387,7 +394,8 @@ class TaskMediaConch extends AbstractTaskExecFF
                 );
         #print_r($arguments); //DELME
 
-        $recipe = $this->insertFailPassOutput($recipe);
+        $failPassFile = $this->getFailPassFile($resolved=true);
+        $recipe = $this->insertFailPassOutput($recipe, $failPassFile);
         $command = $this->resolveCmd($recipe, $arguments);
 
         // Bail out if command string seems invalid:
@@ -409,8 +417,8 @@ class TaskMediaConch extends AbstractTaskExecFF
         // This is where the command actually gets executed!
         $exitCode = $this->exec->execute($command);
         // NOTE: This currently only checks the exit-code of $command, but NOT
-        // the PASS/FAIL status of MediaConch policies. This happens /after/
-        // this execution call of $command (=mediaconch).
+        // the PASS/FAIL status of MediaConch policies. This must happen
+        // *after* this execution call of $command (=mediaconch).
         // -------------------
 
         if ($exitCode == CIExec::EC_OK)
@@ -423,6 +431,8 @@ class TaskMediaConch extends AbstractTaskExecFF
             // If things went fine, shall we remove the logfile?
             // TODO: re-enable $this->removeCmdLogfile($logFile);
             // Or rather handle this by CInbox's item-garbage collection?
+
+            //$this->checkFailPass($failPassFile, $sourceFile)
         }
         else
         {
