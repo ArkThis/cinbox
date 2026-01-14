@@ -294,32 +294,59 @@ class TaskMediaConch extends AbstractTaskExecFF
     // Default type is 'protected'. Use 'public' functions only where necessary.
     
     /**
-     * Returns the filename of the failpass file.
-     * By default, the unresolved filename (=including placeholders) is set
-     * within the constructor of this class.
-     *
-     * @see self::MC_FAILPASS_OPTION
-     * @see self::MC_FAILPASS_FILE
+     * Returns the absolute path+filename of the failpass file.
      */
-    protected function setFailPassFile($filename)
+    protected function getFailPassFile()
     {
-        $this->failPassFile = $filename;
+        return $this->failPassFile;
+    }
+
+
+    /**
+     * Deletes the failPassFile set in $this->failPassFile.
+     */
+    protected function deleteFailPassFile()
+    {
+        $failPassFile = $this->failPassFile;
+
+        if (empty($failPassFile))
+        {
+            throw new RuntimeException(sprintf(
+                _("failPassFile not set. Cannot delete it.")
+            ));
+        }
+
+        if (file_exists($failPassFile))
+        {
+            if (!unlink($failPassFile))
+            {
+                throw new RuntimeException(sprintf(
+                    _("Could not delete failPassFile '%s'. Check permissions?"),
+                    $failPassFile
+                ));
+            }
+        }
+        # If we made it here, the file's either not there, or everything's fine:
         return true;
     }
 
+
     /**
-     * Returns the filename of the failpass file.
-     *
-     * @param bool $resolved If true, any placeholders will be resolved, otherwise the original string is returned.
+     * Sets the property "$this->failPassFile" to $filename, and makes sure the
+     * file can be used/written, and deletes it if already existing.
      */
-    protected function getFailPassFile($resolved=true)
+    protected function resetFailPassFile($filename)
     {
-        $config = $this->config;
-
-        $failPassFile = $this->failPassFile;
-        $failPassFile = $resolved ? $config->resolveString($failPassFile) : $failPassFile;
-
-        return $failPassFile;
+        if (!touch($filename))              // Check write permissions
+        {
+            throw new RuntimeException(sprintf(
+                _("Could not create or touch failPassFile '%s'. Check write permissions?"),
+                $filename
+            ));
+        }
+        $this->failPassFile = $filename;    // Remember the filename
+        $this->deleteFailPassFile();        // Delete it for a clean start
+        return true;
     }
 
 
@@ -328,28 +355,22 @@ class TaskMediaConch extends AbstractTaskExecFF
      * policy was FAIL or PASS into an internal temp-file.  This file is
      * required to evaluate fail/pass status when calling mediaconch.
      *
-     * It MUST be called /before/ resolving $recipe to $command, in order to
-     * support placeholders in inserted parts.
-     *
      * Returns the $recipe with the inserted output parameter.
      *
      * @see self::MC_FAILPASS_OPTION
      * @see self::MC_FAILPASS_FILE
      */
-    protected function insertFailPassOutput($recipe, $failPassFile=null)
+    protected function insertFailPassOutput($recipe, $failPassFile)
     {
         $l = $this->logger;
 
-        $parts = $this->splitCmd($recipe);
-        $insert = (!empty($failPassFile)) ? $failPassFile : $this->getFailPassFile();
-
-        if (empty($insert))
+        if (empty($failPassFile))
         {
-            throw new Exception(sprintf(
-                _("FailPassFile not set. Check constructor of class '%s'!"),
-                get_class($this)
-            ));
+            throw new Exception(_("No failPassFile given to insert!"));
         }
+
+        $parts = $this->splitCmd($recipe);
+        $insert = sprintf(self::MC_FAILPASS_OPTION, $failPassFile);
 
         $l->logInfo(sprintf(
             _("Inserting fail/pass output option '%s' into mediaconch recipe."),
@@ -377,6 +398,7 @@ class TaskMediaConch extends AbstractTaskExecFF
     protected function runRecipes($recipe, $sourceFile, $targetFile)
     {
         $l = $this->logger;
+        $config = $this->config;
 
         $logFile = $this->getCmdLogfile();
 
@@ -394,7 +416,8 @@ class TaskMediaConch extends AbstractTaskExecFF
                 );
         #print_r($arguments); //DELME
 
-        $failPassFile = $this->getFailPassFile($resolved=true);
+        $failPassFile = $config->resolveString(self::MC_FAILPASS_FILE, $arguments);
+        $this->resetFailPassFile($failPassFile);
         $recipe = $this->insertFailPassOutput($recipe, $failPassFile);
         $command = $this->resolveCmd($recipe, $arguments);
 
@@ -432,7 +455,7 @@ class TaskMediaConch extends AbstractTaskExecFF
             // TODO: re-enable $this->removeCmdLogfile($logFile);
             // Or rather handle this by CInbox's item-garbage collection?
 
-            //$this->checkFailPass($failPassFile, $sourceFile)
+            $this->hasPassedPolicy($failPassFile, $sourceFile);
         }
         else
         {
@@ -448,6 +471,27 @@ class TaskMediaConch extends AbstractTaskExecFF
         }
 
         return $exitCode;
+    }
+
+
+    /**
+     * Parses the MediaConch failPassFile, and checks if the result for $sourceFile was FAIL or 
+     * PASS.
+     *
+     * Returns true=PASS, false=FAIL.
+     */
+    protected function hasPassedPolicy($failPassFile, $sourceFile)
+    {
+        $l = $this->logger;
+
+        $l->logMsg(sprintf(
+            _("Checking if source file '%s' has passed policy..."),
+            $sourceFile
+        ));
+
+        // TODO:
+        // Check failPassFile.
+        return true;
     }
 
     //@}
