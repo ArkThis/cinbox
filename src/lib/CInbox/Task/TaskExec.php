@@ -84,7 +84,8 @@ abstract class TaskExec extends CITask
      * PROPERTIES
      * ======================================= */
 
-    protected $exec;
+    protected $exec;                            ///< The program-execution handling class (usually CIExec)
+
 
     /**
      * $logFile: Contains filename for output of external command execution.
@@ -106,6 +107,7 @@ abstract class TaskExec extends CITask
 
         // Initialize handler for executing external commands:
         $this->exec = new CIExec();
+        $this->command = null;
     }
 
 
@@ -117,18 +119,16 @@ abstract class TaskExec extends CITask
     /**
      * Takes a commandline string consisting of program and arguments
      * and checks if the program file exists and is executable.
+     *
+     * @throws Exception if $command is empty.
+     * @throws Exception if $program does not exist.
+     * @throws Exception if $program is not executable.
      */
     protected function isCmdValid($command)
     {
-        if (empty($command))
-        {
-            throw new \Exception(_("Commandline empty."));
-        }
+        $parts = $this->splitCmd($command);
 
-        // NOTE: This might go wrong with spaces in arguments or program name!
-        $pieces = explode(" ", $command);
-
-        $program = $pieces[0];      // Program to call should be the string before first space
+        $program = $parts[0];      // Program to call should be the string before first space
 
         if (!file_exists($program))
         {
@@ -142,6 +142,30 @@ abstract class TaskExec extends CITask
 
         // Must return true on success:
         return true;
+    }
+
+
+    /**
+     * Take the whole commandline $command, and split it into its space-separated parts.
+     *
+     * $part[0] = "program" to run (aka "binary" or "program" or "script")
+     * $part[1] = first argument
+     * $part[2] = 2nd argument
+     * ...and so on.
+     *
+     * @throws Exception if $command is empty.
+     */
+    public static function splitCmd($command)
+    {
+        if (empty($command))
+        {
+            throw new \Exception(_("Commandline empty."));
+        }
+
+        // NOTE: This might go wrong with spaces in arguments or program name!
+        $parts = explode(" ", $command);
+
+        return $parts;
     }
 
 
