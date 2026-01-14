@@ -208,7 +208,7 @@ abstract class TaskExec extends CITask
         // Resolve placeholders:
         $command = $this->resolveCmd($recipe);
         // Bail out on first sign of error:
-        if (!$this->isCmdValid($recipe)) return false;
+        if (!$this->isCmdValid($command)) return false;
 
         $l->logMsg($l->getHeadline());
         $l->logInfo(sprintf(_("Executing command:\n'%s'"), $command));
