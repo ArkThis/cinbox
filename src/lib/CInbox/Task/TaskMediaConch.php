@@ -76,6 +76,8 @@ class TaskMediaConch extends AbstractTaskExecFF
     private $targetFormatsAllowed;                      ///< List of MediaConch output format options.
     private $reactionsAllowed;                          ///< List of what happens if...?
 
+    private $failPassFile;                              ///< filename of last failpass file.
+
 
     /* ========================================
      * METHODS
@@ -106,7 +108,8 @@ class TaskMediaConch extends AbstractTaskExecFF
             'abort',        // on fail, throw error and abort
         );
 
-        printf("Temp folder: %s\n", $this->tempFolder); //DELME
+        // This is set during execution of runRecipes():
+        $this->failPassFile = sprintf(self::MC_FAILPASS_OPTION, self::MC_FAILPASS_FILE);
     }
 
 
@@ -291,6 +294,29 @@ class TaskMediaConch extends AbstractTaskExecFF
     // Default type is 'protected'. Use 'public' functions only where necessary.
     
     /**
+     * Returns the filename of the failpass file.
+     * By default, the unresolved filename (=including placeholders) is set
+     * within the constructor of this class.
+     *
+     * @see self::MC_FAILPASS_OPTION
+     * @see self::MC_FAILPASS_FILE
+     */
+    protected function setFailPassFile($filename)
+    {
+        $this->failPassFile = $filename;
+        return true;
+    }
+
+    /**
+     * Returns the filename of the failpass file.
+     */
+    protected function getFailPassFile()
+    {
+        return $this->failPassFile;
+    }
+
+
+    /**
      * Inserts an option to mediaconch commandline recipe that writes if a
      * policy was FAIL or PASS into an internal temp-file.  This file is
      * required to evaluate fail/pass status when calling mediaconch.
@@ -303,12 +329,20 @@ class TaskMediaConch extends AbstractTaskExecFF
      * @see self::MC_FAILPASS_OPTION
      * @see self::MC_FAILPASS_FILE
      */
-    protected function insertFailPassOutput($recipe)
+    protected function insertFailPassOutput($recipe, $failPassFile=null)
     {
         $l = $this->logger;
 
         $parts = $this->splitCmd($recipe);
-        $insert = sprintf(self::MC_FAILPASS_OPTION, self::MC_FAILPASS_FILE);
+        $insert = (!empty($failPassFile)) ? $failPassFile : $this->getFailPassFile();
+
+        if (empty($insert))
+        {
+            throw new Exception(sprintf(
+                _("FailPassFile not set. Check constructor of class '%s'!"),
+                get_class($this)
+            ));
+        }
 
         $l->logInfo(sprintf(
             _("Inserting fail/pass output option '%s' into mediaconch recipe."),
@@ -323,8 +357,8 @@ class TaskMediaConch extends AbstractTaskExecFF
             print_r($parts, true)
         ));
 
+        // Put the commandline parts back from array to string (delimiter=space):
         $fixedRecipe = implode(' ', $parts);
-
         return $fixedRecipe;
     }
 
