@@ -85,6 +85,7 @@ abstract class TaskExec extends CITask
      * ======================================= */
 
     protected $exec;                            ///< The program-execution handling class (usually CIExec)
+    protected $command;                         ///< Contains the commandline to execute
 
 
     /**
@@ -115,6 +116,23 @@ abstract class TaskExec extends CITask
     // --------------------------------------------
     // Task-specific methods
     // --------------------------------------------
+
+    /**
+     * Stores the commandline $command to run in the object's property $this->command.
+     */
+    protected function setCmd($command)
+    {
+        $this->command = $command;
+    }
+
+    /**
+     * Returns the currently stored commandline $this->command.
+     */
+    protected function getCmd()
+    {
+        return $this->command;
+    }
+
 
     /**
      * Takes a commandline string consisting of program and arguments
