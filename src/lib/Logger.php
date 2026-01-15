@@ -100,9 +100,11 @@ class Logger
      * This is used to highlight certain messages/blocks.
      */
     //@{
-    const HEADLINE_CHAR1 = '=';             ///< Default character used to draw a head-"line".
-    const HEADLINE_CHAR2 = '-';             ///< Another option.
-    const HEADLINE_CHAR3 = '+';             ///< Another option.
+    const HEADLINE_CHAR1 = '=';             ///< Default char for (markdown-compatible) H1
+    const HEADLINE_CHAR2 = '-';             ///< Default char for (markdown-compatible) H2
+    const HEADLINE_PLUS = '+';              ///< Another option.
+    const HEADLINE_DOTS = '.';              ///< Another option.
+    const HEADLINE_STAR = '🌟️ ';            ///< Another option.
     const HEADLINE_CHAR = self::HEADLINE_CHAR1; ///< Default style.
 
     const HEADLINE_LENGTH = 60;             ///< Number of HEADLINE_CHARs to print.
@@ -729,36 +731,42 @@ class Logger
      * Like '===============' ($char='=').
      * Used for visual spacing between entries.
      */
-    public function logLine($length=42, $char='-')
+    public function logLine($length=self::HEADLINE_LENGTH, $char=self::HEADLINE_CHAR)
     {
-        $this->logAlways(str_repeat($char, $length)."\n");
+        // If $char is more than 1 character, calculate how often to actually
+        // repeat it to get the same length as $length:
+        // 'grapheme_' is necessary to support unicode/emojis, too ;)
+        $charLength = grapheme_strlen($char);
+        $repeat = intdiv($length, $charLength) +1;
+
+        $this->logAlways(str_repeat($char, $repeat)."\n");
     }
 
 
     /**
      * Alias for drawing a headline level 1
      */
-    public function logLineH1($length)
+    public function logLineH1($length=self::HEADLINE_LENGTH)
     {
-        $this->logLine($length, '🌈️');
+        $this->logLine($length, self::HEADLINE_CHAR1);
     }
 
 
     /**
      * Alias for drawing a headline level 2
      */
-    public function logLineH2($length)
+    public function logLineH2($length=self::HEADLINE_LENGTH)
     {
-        $this->logLine($length, '🍆️');
+        $this->logLine($length, self::HEADLINE_CHAR2);
     }
 
 
     /**
      * Alias for drawing a dotted line.
      */
-    public function logLineDots($length)
+    public function logLineDots($length=self::HEADLINE_LENGTH)
     {
-        $this->logLine($length, '🔯️');
+        $this->logLine($length, self::HEADLINE_DOTS);
     }
 
 
