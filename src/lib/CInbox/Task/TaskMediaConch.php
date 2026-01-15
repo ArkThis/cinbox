@@ -51,12 +51,9 @@ class TaskMediaConch extends AbstractTaskExecFF
      */
     //@{
     // The following arrays must have identical entries, that are related to each other.
-    // `match + policy = target (in target-format) => triggering reaction based on result`
     const CONF_SOURCES = "MCONCH_IN";         ///< Glob patterns to match (media source files)
     const CONF_TARGETS = "MCONCH_OUT";        ///< Target output filenames (per match)
     const CONF_RECIPES = "MCONCH_RECIPE";     ///< Commandline to call
-
-    const CONF_REACTIONS = "MCONCH_REACTION";  ///< What do to on which policy result?
     //@}
 
     //@{
@@ -73,11 +70,7 @@ class TaskMediaConch extends AbstractTaskExecFF
 
     // Class properties are defined here.
     // Basic ones like $recipes, $sources and $targets are inherited.
-    private $reactions;                                 ///< @see #CONF_REACTIONS
-
     private $targetFormatsAllowed;                      ///< List of MediaConch output format options.
-    private $reactionsAllowed;                          ///< List of what happens if...?
-
     private $failPassFile;                              ///< filename of last failpass file.
 
 
@@ -96,6 +89,7 @@ class TaskMediaConch extends AbstractTaskExecFF
         // https://manpages.debian.org/unstable/mediaconch/mediaconch.1.en.html
         // TODO: this is currently NOT USED, and handled by editing the
         // commandline recipe directly.
+        /*
         $this->targetFormatsAllowed = array(
             'text',     // -ft
             'xml',      // -fx
@@ -103,12 +97,7 @@ class TaskMediaConch extends AbstractTaskExecFF
             'html',     // -fh
             'failpass'  // -fs
         );
-
-        // TODO: This is not completely obvious yet which return states exist here...
-        $this->reactionsAllowed = array(
-            'warning',      // on fail, throw warning - but continue (aka "pbc"?)
-            'abort',        // on fail, throw error and abort
-        );
+         */
 
         // This is set during execution of runRecipes():
         $this->failPassFile = sprintf(self::MC_FAILPASS_OPTION, self::MC_FAILPASS_FILE);
@@ -135,8 +124,6 @@ class TaskMediaConch extends AbstractTaskExecFF
 
         $l = $this->logger;
         $config = $this->config;
-
-        $l->logLineH1(32);
 
         // -------
         // Load media source list:
@@ -176,19 +163,6 @@ class TaskMediaConch extends AbstractTaskExecFF
                     ));
 
         // -------
-        // Load reaction list:
-        // TODO: do some checking on the patterns?
-        $this->reactions = $config->get(self::CONF_REACTIONS);
-        // Task is optional, therefore it is skipped if one setting is empty:
-        #if(empty($this->reactions)) return $this->skipIt("reactions empty");
-        if(empty($this->reactions)) $this->reactions = Array();
-        // TODO: throw InvalidArgumentException?
-        if (!$this->optionIsArray($this->reactions, self::CONF_REACTIONS)) return false;
-        $l->logDebug(sprintf(
-                    _("List of MediaConch reactions: %s"),
-                    implode(', ', $this->reactions)
-                    ));
-
         // Must return true on success:
         return true;
     }
