@@ -151,8 +151,6 @@ class TaskMediaConch extends AbstractTaskExecFF
                     implode(', ', $this->sources)
                     ));
 
-        printf("one\n");//DELME
-
         // -------
         // Load target list:
         $this->targets = $config->get(self::CONF_TARGETS);
@@ -164,7 +162,6 @@ class TaskMediaConch extends AbstractTaskExecFF
                     _("List of MediaConch targets (output): %s"),
                     implode(', ', $this->targets)
                     ));
-        printf("two\n");//DELME
 
         // -------
         // Load recipe list:
@@ -177,7 +174,6 @@ class TaskMediaConch extends AbstractTaskExecFF
                     _("List of MediaConch recipes: %s"),
                     implode(', ', $this->recipes)
                     ));
-        printf("three\n");//DELME
 
         // -------
         // Load reaction list:
@@ -192,9 +188,6 @@ class TaskMediaConch extends AbstractTaskExecFF
                     _("List of MediaConch reactions: %s"),
                     implode(', ', $this->reactions)
                     ));
-        printf("four\n");//DELME
-
-        $l->logHeader2("blip!\n\n"); //DELME
 
         // Must return true on success:
         return true;
@@ -416,7 +409,7 @@ class TaskMediaConch extends AbstractTaskExecFF
                 __DIR_OUT__=> dirname($targetFile),
                 __LOGFILE__ => $logFile,
                 );
-        #print_r($arguments); //DELME
+        #print_r($arguments); //DEBUG
 
         $failPassFile = $config->resolveString(self::MC_FAILPASS_FILE, $arguments);
         $this->resetFailPassFile($failPassFile);
