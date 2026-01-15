@@ -1,0 +1,30 @@
+# Initialize my CInbox development environment
+startup_message off
+
+sessionname cinbox-dev-pb
+echo "=== Welcome to CInbox Development ==="
+
+setenv CINBOX_DATA "$HOME/cinbox-data/"
+setenv CINBOX_CODE "/opt/cinbox"
+
+# Open and initialize the usual windows:
+
+# === CODE
+chdir $CINBOX_CODE
+screen -t Code 1
+stuff "pwd\n"
+
+# === CONFIG
+chdir $CINBOX_DATA
+screen -t Config 3
+stuff pwd\n
+stuff "vim -p cinbox.ini $CINBOX_CODE/src/lib/placeholders.inc.php"
+
+# === RUN
+chdir $CINBOX_DATA
+screen -t RUN 3 bash -c 'printf "Use this command to RUN Cinbox:\n  $CINBOX_CODE/src/cinbox.php -i ~/cinbox-data -v\n\n"; exec bash'
+
+# === DATA Folders
+chdir $CINBOX_DATA
+screen -t Data_Folders 4
+
