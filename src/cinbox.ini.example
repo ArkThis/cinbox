@@ -34,10 +34,13 @@ TASKLIST[] = DirListCSV
 TASKLIST[] = CleanFilenames
 TASKLIST[] = FilesValid
 TASKLIST[] = FilesMustExist
+; ------------------------
+;TASKLIST[] = FFmpeg
+TASKLIST[] = MediaConch
+TASKLIST[] = MediaInfo
+; ------------------------
 TASKLIST[] = HashGenerate
 TASKLIST[] = HashSearch
-; Use PreProcs to create TARGET_STAGE parent folders:
-TASKLIST[] = PreProcs
 TASKLIST[] = CopyToTarget
 TASKLIST[] = HashValidate
 ; Use PreProcs2 to create final TARGET parent folders:
@@ -113,6 +116,22 @@ FILES_VALID[] = *.xxx
 ;FILES_INVALID[] = .[!.]*
 
 MUST_EXIST[] = *.avi
+
+# FFmpeg Task:
+;FFMPEG_IN[] = *.avi
+;FFMPEG_OUT[] = [@FILE_IN_NOEXT@].mkv
+;FFMPEG_RECIPE[] = /usr/bin/ffmpeg -i [@FILE_IN@] -c copy -map 0 [@FILE_OUT@] 2>>[@LOGFILE@]
+
+# MediaConch Profile checks
+MEDIACONCH_IN[] = *.mkv
+MEDIACONCH_OUT[] = [@FILE_IN@]-mediaconch_report.txt
+MEDIACONCH_RECIPE[] = /usr/bin/mediaconch -mc -p [@DIR_HOME@]/cinbox-data/_assets/policy/mkv_policy.xml --Output-Text=[@FILE_OUT@] --Output-Json=[@FILE_OUT_NOEXT@].json --policyVerbosity=0 [@FILE_IN@]
+
+
+MEDIAINFO_IN[] = *.mkv
+MEDIAINFO_OUT[] = [@FILE_IN@]-mediainfo.json
+MEDIAINFO_RECIPE[] = /usr/bin/mediainfo -f --Language=raw --Logfile=[@FILE_OUT@] [@FILE_IN@] > /dev/null
+
 
 ; The "plugins/postproc.sh" script is identical to "preproc.sh".
 ;POSTPROCS[] = [@PHP_SELF_DIR@]/plugins/postproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@] [@YEAR@]
