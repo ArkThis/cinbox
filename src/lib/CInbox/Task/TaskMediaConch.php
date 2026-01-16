@@ -51,9 +51,9 @@ class TaskMediaConch extends AbstractTaskExecFF
      */
     //@{
     // The following arrays must have identical entries, that are related to each other.
-    const CONF_SOURCES = "MCONCH_IN";         ///< Glob patterns to match (media source files)
-    const CONF_TARGETS = "MCONCH_OUT";        ///< Target output filenames (per match)
-    const CONF_RECIPES = "MCONCH_RECIPE";     ///< Commandline to call
+    const CONF_SOURCES = "MEDIACONCH_IN";         ///< Glob patterns to match (media source files)
+    const CONF_TARGETS = "MEDIACONCH_OUT";        ///< Target output filenames (per match)
+    const CONF_RECIPES = "MEDIACONCH_RECIPE";     ///< Commandline to call
     //@}
 
     //@{

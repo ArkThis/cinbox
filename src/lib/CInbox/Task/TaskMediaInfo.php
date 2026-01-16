@@ -54,9 +54,9 @@ class TaskMediaInfo extends AbstractTaskExecFF
      */
     //@{
     // The following arrays must have identical entries, that are related to each other.
-    const CONF_SOURCES = "MINFO_IN";         ///< Glob patterns to match (media source files)
-    const CONF_TARGETS = "MINFO_OUT";        ///< Target output filenames (per match)
-    const CONF_RECIPES = "MINFO_RECIPE";     ///< Commandline to call
+    const CONF_SOURCES = "MEDIAINFO_IN";         ///< Glob patterns to match (media source files)
+    const CONF_TARGETS = "MEDIAINFO_OUT";        ///< Target output filenames (per match)
+    const CONF_RECIPES = "MEDIAINFO_RECIPE";     ///< Commandline to call
     //@}
 
     //@{
