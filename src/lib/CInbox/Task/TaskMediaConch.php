@@ -428,11 +428,12 @@ class TaskMediaConch extends AbstractTaskExecFF
             {
                 $this->setStatusError();
 
+                $itemDir = $this->CIFolder->getBaseFolder();
                 $l->logNewline();
                 $l->logError(sprintf(
                     _("Source file '%s' FAILED MediaConch policy checks. See report for details: %s"),
-                    $sourceFile,
-                    $targetFile
+                    Helper::getAsRelativePath($sourceFile, $itemDir),
+                    Helper::getAsRelativePath($targetFile, $itemDir)
                 ));
 
             }
@@ -502,14 +503,14 @@ class TaskMediaConch extends AbstractTaskExecFF
         if ($failCount == 0)
         {
             $l->logMsg(sprintf(
-                _("Source file '%s' has PASSED policy checks!"),
+                _("☑️  Source file '%s' has PASSED policy checks."),
                 basename($sourceFile)
             ));
             return true;   // = PASS
         }
 
         $l->logError(sprintf(
-            _("Source file '%s' FAILED %d policy rules:\n%s\n"),
+            _("❎️ Source file '%s' FAILED %d policy rules:\n%s\n"),
             basename($sourceFile),
             $failCount -1,      // The 1st line in the report doesn't count ;)
             $report
