@@ -263,7 +263,15 @@ class TaskHashSearch extends TaskHash
         $hashSources = array();
         foreach ($hashSearch as $pattern)
         {
-            $matching = glob($sourceFolder . DIRECTORY_SEPARATOR . $pattern);
+            if (!Helper::isAbsolutePath($pattern))
+            {
+                // If no absolute path is given, match it relative to the
+                // item's current $sourceFolder:
+                $pattern = $sourceFolder . DIRECTORY_SEPARATOR . $pattern;
+                // ...and otherwise, resolve the pattern as-is.
+            }
+
+            $matching = glob($pattern);
             sort($matching);
             $hashSources = array_merge($hashSources, $matching);
         }
