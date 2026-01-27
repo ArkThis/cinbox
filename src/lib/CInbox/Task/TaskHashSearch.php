@@ -181,7 +181,10 @@ class TaskHashSearch extends TaskHash
         if (empty($this->hashType))
         {
             // If no hashing algorithm/type is set, we can't find anything. No good.
-            throw new Exception(sprintf(_("findHashes: hashType (%s) is not configured."), self::CONF_HASH_TYPE));
+            throw new Exception(sprintf(
+                _("findHashes: hashType (%s) is not configured."),
+                self::CONF_HASH_TYPE
+            ));
         }
 
         // Remove trailing slash, if existing:
@@ -204,7 +207,10 @@ class TaskHashSearch extends TaskHash
                 if (empty($hashCode))
                 {
                     // TODO: decide how to handle this situation. Is it critical? Should this be just a warning message?
-                    $l->logError(sprintf(_("No temp hash existing for '%s'. This is odd. Task 'TaskHashGenerate' must have been run before this one."), $fileName));
+                    $l->logError(sprintf(
+                        _("No temp hash existing for '%s'. This is odd. Task 'TaskHashGenerate' must have been run before this one."),
+                        $fileName
+                    ));
                     $this->setStatusPBCT();
                     continue;
                 }
@@ -212,7 +218,13 @@ class TaskHashSearch extends TaskHash
                 $matches = $this->searchHashCode($sourceFolder, $hashCode);
                 if (!empty($matches))
                 {
-                    $l->logMsg(sprintf(_("%d files containing hash code match for '%s' found (%s = %s)"), count($matches), $filenameRelative, $hashType, $hashCode));
+                    $l->logMsg(sprintf(
+                        _("%d files containing hash code match for '%s' found (%s = %s)"),
+                        count($matches),
+                        $filenameRelative,
+                        $hashType,
+                        $hashCode
+                    ));
                     $filesMatched[] = $fileName;
                 }
             }
@@ -239,7 +251,11 @@ class TaskHashSearch extends TaskHash
             return false;
         }
 
-        $l->logInfo(sprintf(_("Searching hashcode '%s' in '%s'..."), $hashCode, implode(', ', $hashSearch)));
+        $l->logInfo(sprintf(
+            _("Searching hashcode '%s' in '%s'..."),
+            $hashCode,
+            implode(', ', $hashSearch)
+        ));
 
         $hashFoundFiles = null;
 
@@ -252,7 +268,11 @@ class TaskHashSearch extends TaskHash
             $hashSources = array_merge($hashSources, $matching);
         }
 
-        $l->logDebug(sprintf(_("%d files to search for hashcodes:\n%s"), count($hashSources), print_r($hashSources, true)));
+        $l->logDebug(sprintf(
+            _("%d files to search for hashcodes:\n%s"),
+            count($hashSources),
+            print_r($hashSources, true)
+        ));
 
         // Check for hash collisions/duplicates is done in TaskHashGenerate - not here.
         foreach ($hashSources as $fileName)
@@ -296,7 +316,10 @@ class TaskHashSearch extends TaskHash
     {
         if (!file_exists($fileName) || !is_readable($fileName))
         {
-            throw new Exception(sprintf(_("File does not exist or is not readable: '%s'"), $fileName));
+            throw new Exception(sprintf(
+                _("File does not exist or is not readable: '%s'"),
+                $fileName
+            ));
         }
 
         // We don't force upper/lower case here to allow case-sensitivity in the future (if needed).
@@ -310,7 +333,10 @@ class TaskHashSearch extends TaskHash
 
         if ($lines === false)
         {
-            throw new Exception(sprintf(_("Could not read file '%s'."), $fileName));
+            throw new Exception(sprintf(
+                _("Could not read file '%s'."),
+                $fileName
+            ));
         }
 
         // If file to search hashcode in is empty, there's no need to proceed:
@@ -361,7 +387,11 @@ class TaskHashSearch extends TaskHash
             if (empty($mustExist))
             {
                 // Only existing files need a matching hashcode. So this is not an error:
-                $l->logInfo(sprintf(_("No files matching '%s = %s'. That's okay."), self::CONF_HASH_MUST_EXIST, $pattern));
+                $l->logInfo(sprintf(
+                    _("No files matching '%s = %s'. That's okay."),
+                    self::CONF_HASH_MUST_EXIST,
+                    $pattern
+                ));
                 continue;
             }
 
@@ -370,7 +400,12 @@ class TaskHashSearch extends TaskHash
 
             if (!empty($diff))
             {
-                $l->logError(sprintf(_("Existing hashcode missing for %d files (%s):\n%s"), count($diff), $pattern, print_r($diff, true)));
+                $l->logError(sprintf(
+                    _("Existing hashcode missing for %d files (%s):\n%s"),
+                    count($diff),
+                    $pattern,
+                    print_r($diff, true)
+                ));
                 $this->setStatusPBCT();
                 $missing += count($diff);
 
@@ -379,7 +414,10 @@ class TaskHashSearch extends TaskHash
                 // and the Item reset from Error to To-Do.
                 foreach ($diff as $filename)
                 {
-                    $l->logMsg(sprintf(_("File is probably corrupt: '%s'. Removing its temp hashfile..."), $filename));
+                    $l->logMsg(sprintf(
+                        _("File is probably corrupt: '%s'. Removing its temp hashfile..."),
+                        $filename
+                    ));
                     $this->removeHashTempFile($filename, $this->CIFolder, $this->hashType);
                 }
             }
@@ -390,7 +428,11 @@ class TaskHashSearch extends TaskHash
         if ($missing == 0)
         {
             // Everything found as desired.
-            $l->logMsg(sprintf(_("Existing hashcodes found for all %d files matching: %s"), $counter, implode(', ', $hashMustExist)));
+            $l->logMsg(sprintf(
+                _("Existing hashcodes found for all %d files matching: %s"),
+                $counter,
+                implode(', ', $hashMustExist)
+            ));
             return true;
         }
 
