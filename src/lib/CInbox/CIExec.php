@@ -150,17 +150,18 @@ class CIExec
      * @param $showOutput bool show $command's shell output.
      * @see: $this->lastOutput
      */
-    public function execute($command, $showOutput=true)
+    public function execute($command, $showOutput=true, $reset=true)
     {
-        $this->resetLastOutput();
+        if ($reset) {
+            $this->resetLastOutput();   // Clear output from previous calls.
+        }
+
+        // Run the command:
         $result = $this->executeExec($command);
 
-        if ($showOutput)
-        {
-            // Show command output in the terminal:
-            printf("\n---------------------[ external code ]----------------------");
+        // Show command output in the terminal:
+        if ($showOutput) {
             print_r($this->getLastOutputStr());
-            printf("---------------------[ ************* ]----------------------\n");
         }
 
         return $result;
