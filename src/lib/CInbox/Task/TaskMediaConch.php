@@ -366,14 +366,15 @@ class TaskMediaConch extends AbstractTaskExecFF
      */
     protected function runRecipes($recipe, $sourceFile, $targetFile)
     {
+        // TODO ----------------- Move all of this to common ancestor class! [BEGIN]
         $l = $this->logger;
         $config = $this->config;
 
         $logFile = $this->createCmdLogFilename();
 
-        // TODO: Idea! Add method that resolves flavors of filename
+        // IDEA: Add method that resolves flavors of filename
         // (with/without suffix, path, etc) and returns it as ready-to-use
-        // $arguments array?
+        // $arguments array? Instead of doing it here.
         $arguments = array(
                 __FILE_IN__ => $sourceFile,
                 __FILE_OUT__ => $targetFile,
@@ -385,39 +386,17 @@ class TaskMediaConch extends AbstractTaskExecFF
                 );
         #print_r($arguments); //DEBUG
         $config->addPlaceholders($arguments);
+        // TODO ----------------- Move all of this to common ancestor class! [END]
 
+        // FIXME: resolveString() is only used to get the cinbox temp folder.
+        // This seems overkill and less reliable then use the internal
+        // temp-foldername variable here directly?
         $failPassFile = $config->resolveString(self::MC_FAILPASS_FILE, $arguments);
         $this->resetFailPassFile($failPassFile);
         $recipe = $this->insertFailPassOutput($recipe, $failPassFile);
 
         // Here's where the recipe is called to life!
         $exitCode = $this->runRecipe($recipe);
-
-        /*
-        // --------------
-        $command = $this->resolveCmd($recipe, $arguments);
-
-        // Bail out if command string seems invalid:
-        if (!$this->isCmdValid($command)) return false;
-
-        $l->logNewline();
-        $l->logMsg(sprintf(_("MediaConch processing '%s'..."), $sourceFile));
-        $l->logInfo(sprintf(_("MediaConch command: %s"), $command));
-
-        // -------------------
-        // Makes sense to store the command to the logfile, in case something goes wrong:
-        // Writing it /before/ execution so it's logged even in case of a complete crash.
-        $this->writeToCmdLogfile(sprintf(
-            _("Command line and complete, uncut console output:\n\n%s\n\n"),
-            $command),
-        $logFile
-        );
-
-        // This is where the command actually gets executed!
-        $exitCode = $this->exec->execute($command);
-        // --------------
-         */
-
 
         // -------------------
         // NOTE: This currently only checks the exit-code of $command, but NOT

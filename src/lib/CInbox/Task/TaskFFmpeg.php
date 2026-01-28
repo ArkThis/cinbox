@@ -305,29 +305,12 @@ class TaskFFmpeg extends AbstractTaskExecFF
                 //__FF_HASH_V__ => $hashRecipes[self::HASH_VIDEO],
                 //__FF_HASH_A__ => $hashRecipes[self::HASH_AUDIO],
                 );
+        #print_r($arguments); //DEBUG
+        $config->addPlaceholders($arguments);
+        // TODO ----------------- Move all of this to common ancestor class! [END]
 
-print_r($arguments); //DELME
-        $command = $this->resolveCmd($recipe, $arguments);
-
-        // Bail out if command string seems invalid:
-        if (!$this->isCmdValid($command)) return false;
-
-        $l->logNewline();
-        $l->logMsg(sprintf(_("FFmpeg processing '%s'..."), $sourceFile));
-        $l->logInfo(sprintf(_("FFmpeg command: %s"), $command));
-
-        // -------------------
-        // Makes sense to store the command to the logfile, in case something goes wrong:
-        // Writing it /before/ execution so it's logged even in case of a complete crash.
-        $this->writeToCmdLogfile(sprintf(
-            _("Command line and complete, uncut console output:\n\n%s\n\n"),
-            $command),
-        $logFile
-        );
-
-        // This is where the command actually gets executed!
-        $exitCode = $this->exec->execute($command);
-        // -------------------
+        // Here's where the recipe is called to life!
+        $exitCode = $this->runRecipe($recipe);
 
         if ($exitCode == CIExec::EC_OK)
         {
