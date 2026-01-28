@@ -199,6 +199,43 @@ class CIConfig
     }
 
     /**
+     * Merges an array of key=value pairs to existing placeholder list.
+     * Returns "null" if $arguments was empty, and number of effectively added
+     * entries to $this->placeholders.
+     *
+     * @param $arguments array of key/value pairs of config-placeholders (eg "[@ITEM_ID@]=00815").
+     * @see: this->addPlaceholder()
+     */
+    public function addPlaceholders($arguments)
+    {
+        $l = $this->logger;
+
+        if (empty($arguments))
+        {
+            return null;
+        }
+
+        // Just for debug/logging:
+        $added = count($arguments);
+        $before = count($this->placeholders);
+
+        $placeholders = array_merge($this->placeholders, $arguments);
+        $this->placeholders = $placeholders;
+        $after = count($this->placeholders);
+
+        $l->logDebug(sprintf(
+            _("Added %d new key/value pairs to %d existing = %d current placeholder entries"),
+            $added,
+            $before,
+            $after
+        ));
+
+        // The actual number of entries added:
+        // (would differ from $added, if keys were overwritten/merged)
+        return ($after-$before);
+    }
+
+    /**
      * Returns the current placeholders array as-is.
      */
     public function getPlaceholders()
