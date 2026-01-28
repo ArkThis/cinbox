@@ -49,13 +49,18 @@ class CIExec
 
     protected $exitCode = null;                 // Exit code of process
     protected $lastCmd = null;                  // Last command executed
-    protected $lastOutput = null;               // Output of last command
+    protected $lastOutput = null;               // Output of last command (array of lines)
 
 
 
     /* ========================================
      * METHODS
      * ======================================= */
+
+    function __construct()
+    {
+        // Use this to initialize properties, etc.
+    }
 
 
     /**
@@ -69,12 +74,30 @@ class CIExec
 
     /**
      * Return the output of the last command (as array).
+     * @see: this->executeExec()
      */
     public function getLastOutput()
     {
         return $this->lastOutput;
     }
 
+
+    /**
+     * Return the output of the last command (as multi-line string)
+     */
+    public function getLastOutputStr()
+    {
+        $output = implode("\n", $this->lastOutput);
+        return $output;
+    }
+
+    /**
+     * Clears the output buffer from previous execute() runs.
+     */
+    public function resetLastOutput()
+    {
+        $this->lastOutput = null;
+    }
 
     /**
      * Returns the commandline string that was last executed.
@@ -86,6 +109,8 @@ class CIExec
 
 
     /**
+     * This uses "passthru()" to run $command.
+     *
      * This is a quick-n-dirty solution for calling an external command,
      * but without wanting to handle its output/feedback/etc.
      *
@@ -104,9 +129,12 @@ class CIExec
 
 
     /**
-     * This uses "exec()" to call $command.
+     * This uses "exec()" to run $command.
+     *
+     * It populates $this->lastOutput with the output of the call, and returns
+     * the exit value and stores it in $this->exitCode accordingly.
      */
-    public function execute2($command)
+    public function executeExec($command)
     {
         $this->exitCode = null;     // Reset to avoid leftovers.
         $this->lastCmd = $command;
@@ -119,10 +147,23 @@ class CIExec
 
     /**
      * Wrapper to default-execution method.
+     * @param $showOutput bool show $command's shell output.
+     * @see: $this->lastOutput
      */
-    public function execute($command)
+    public function execute($command, $showOutput=true)
     {
-        return $this->executeBlindly($command);
+        $this->resetLastOutput();
+        $result = $this->executeExec($command);
+
+        if ($showOutput)
+        {
+            // Show command output in the terminal:
+            printf("\n---------------------[ external code ]----------------------");
+            print_r($this->getLastOutputStr());
+            printf("---------------------[ ************* ]----------------------\n");
+        }
+
+        return $result;
     }
 
 

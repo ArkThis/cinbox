@@ -1876,7 +1876,7 @@ All Tasks for the Item were successful, the process is complete.
 
 ## Support
 
-Below,  find a collection of the most common issues and how to solve them. For  further help, feature/plug-in/task requests or bug reports, please  initially contact support@av-rd.com for login credentials for the [AV-RD support page](http://support.av-rd.com). Once you have access to the support portal, all bug reports and help requests will be handled there.  
+Below,  find a collection of the most common issues and how to solve them. For  further help, feature/plug-in/task requests or bug reports, please  initially contact support@ArkThis.com for login credentials for the [AV-RD support page](http://support.ArkThis.com). Once you have access to the support portal, all bug reports and help requests will be handled there.  
 
 
 

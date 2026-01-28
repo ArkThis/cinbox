@@ -1,72 +1,72 @@
 commit ff09bf803590b63355d2ef7da2485e3702ee0311
-Author: Peter B <pb@das-werkstatt.com>
+Author: Peter B <@ArkThis.com>
 Date:   Sun Mar 20 14:54:45 2022 +0100
 
     Added variant of mkparent.sh with option to define subfolder levels.
 
 commit af37ba421b736e133e329af977183012a8fd412a
-Author: Peter B <pb@das-werkstatt.com>
+Author: Peter B <@ArkThis.com>
 Date:   Sun Mar 20 14:45:47 2022 +0100
 
     Added temp-folder config option to INI example.
 
 commit 36aacbcad0933841ee5e2be95fc2c85dc92de580
-Author: Peter B <pb@das-werkstatt.com>
+Author: Peter B <@ArkThis.com>
 Date:   Sun Mar 20 12:57:00 2022 +0100
 
     Added new known issues to list.
 
 commit f81a19fc5a44f36dd3493eab74a4a7f1e3afc8a6
-Author: Peter B <pb@das-werkstatt.com>
+Author: Peter B <@ArkThis.com>
 Date:   Sun Mar 20 12:55:48 2022 +0100
 
     Added "DIR_TEMP" parameter to define location of temporary folder.
     Changed default from "/tmp" to "/var/cinbox".
 
 commit 1ec01f485ab0cff192f43cc8c0a24297c3651576
-Author: Peter Bubestinger-Steindl <pb@das-werkstatt.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Feb 2 16:02:33 2022 +0100
 
     CInbox: Added information about known issues and git-handling
 
 commit 0d8644c8a75683cd5f21686bfca2eebed044dc94
-Author: Peter B <pb@das-werkstatt.com>
+Author: Peter B <@ArkThis.com>
 Date:   Mon May 31 22:54:19 2021 +0200
 
     Added BRIK to version string, to better identify this production stable release :)
 
 commit 8f7c8cce56539631db261d04713d0990510a4eb3
-Author: Peter B <pb@das-werkstatt.com>
+Author: Peter B <@ArkThis.com>
 Date:   Mon May 31 22:06:32 2021 +0200
 
     Updated version to v1.3.0
 
 commit 6f11cdc0be6c0dda9a452162102d22ec0031f527
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Feb 3 18:32:37 2020 +0100
 
     Fixed abstract-function header mismatch (PHP7).
 
 commit e5754490328a7ba093b6531bf72b13600ff5165b
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Aug 2 20:51:59 2019 +0200
 
     Added first part for content hash validation (FFmpeg task).
 
 commit 7a885142cd983517e52c4f8a2ead2fbd615b98da
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Aug 2 20:45:05 2019 +0200
 
     Fixed typo "hash type x is".
 
 commit be9fc60070e1bf69f3f2c39f5a3e25e2d99f9718
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Aug 2 13:30:32 2019 +0200
 
     Added check and report if FFmpeg config options are incomplete.
 
 commit 27961af2a439c182c555001153f29c623b54067d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 30 22:49:50 2019 +0200
 
     Forgot to add new Doxygen output files.
@@ -78,259 +78,259 @@ Date:   Tue Jul 30 20:50:04 2019 +0200
     Updated translation (de_AT).
 
 commit 4e03d02cd363fc99e23da4d89dce7012789459d0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 30 20:48:03 2019 +0200
 
     Fixed typo in linebreak.
 
 commit ea66a66e4b7dccbb98a0299fdef623618d4ea01c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 30 20:36:52 2019 +0200
 
     Updated Doxygen docs.
 
 commit 33418100f98247a6a3542e7f71c4189155007022
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 30 20:36:20 2019 +0200
 
     Fixed and improved Doxygen comments in FFmpeg task.
 
 commit 19d34334cae9ff808a52dbc72838bd4d218b18eb
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 30 19:56:36 2019 +0200
 
     Updated TODO comment.
 
 commit faff8c5ad1888d23c89a0bef5da8da00fe3817f4
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 30 13:59:12 2019 +0200
 
     Bumped version to 1.3.0-trunk to avoid confusion (NO RELEASE!)
 
 commit 7154fb049e6034ae8368f25635c57a2c648bbd68
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 30 13:56:32 2019 +0200
 
     Fixed premature skipping of FFmpeg recipes if not all have matching source files.
 
 commit 68f788753f40216f4ff6befb6c8dc1694873e79e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 30 13:14:37 2019 +0200
 
     Added support for DIR_BASE/DIR_SOURCE placeholders in TARGET_FOLDER.
 
 commit ac0e82fa92b61f6a30fdc1bd1bb05b1141241b76
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jul 29 18:32:05 2019 +0200
 
     Moved target-file/folder check methods from CopyToTarget to general Copy class.
 
 commit 8552c60d380e66fb04e0286b7289f83527c2f721
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jul 29 17:39:56 2019 +0200
 
     Added custom script for renaming (Brik, s3info).
 
 commit 69aee0307c3769a54652c2fdfe614e0be18426af
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jul 29 17:39:32 2019 +0200
 
     Fixed case typo: logFile => logfile
 
 commit 7fbecba6cf2d2c3b6187818f2a67647872e91ec0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jul 29 16:08:37 2019 +0200
 
     Added providing Item path to Bucket script.
 
 commit 9448ee1e50cc4f5d3b6b8e5d3999ac65b9dba107
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jul 29 16:07:44 2019 +0200
 
     Added test script for debugging arguments passed to external programs.
 
 commit 4c72be090ef724b1c266761b668c6fa2806d7eed
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jul 29 15:57:29 2019 +0200
 
     Changed S3OutRename to task interface for using .s3info files.
 
 commit b466518df0aa3a8a6b9b1d6ebd52973a4a872ca6
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jul 29 13:32:30 2019 +0200
 
     Added loading of .s3info file.
 
 commit 91e534b6325690bc9adc78b2672c3786af56974c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jul 29 12:44:53 2019 +0200
 
     Added skeleton for S3 output renaming (based on .s3info files).
 
 commit 099d8918fca8f39db252d0f74a238d8e9a8766e4
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jul 29 12:28:27 2019 +0200
 
     Added Doxygen grouping of class properties (FFmpeg task).
 
 commit 81e51079c39f9113e9ca2cbdc105630a7d13e56d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jul 27 22:06:34 2019 +0200
 
     Started adding option for hash validation in FFmpeg task.
 
 commit 70573e6189231840f3c76611123b778697828aee
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jul 27 21:41:30 2019 +0200
 
     Added logging of FFmpeg command to execution logfile (for quicker debugging)
 
 commit be9b2c7216b657d2c2d2e9e5105a734b34bd6343
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jul 27 21:06:53 2019 +0200
 
     Added support for writing FFmpeg output to logfile.
 
 commit 5cb1435e2680beb2fbc36b5a85b07f8a89d639f1
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jul 27 21:06:05 2019 +0200
 
     Added command-logfile resolve and deletion methods (from TaskCopy).
 
 commit 9145ed0cee97f2b5ac6473312743ca3c3e475f41
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jul 27 20:59:40 2019 +0200
 
     Fixed wrong reference to class property instead of local variable ($logFile).
 
 commit 9de711ee0449abd36cc473a7edc26e0d8b44f35d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jul 26 20:38:07 2019 +0200
 
     Added dir in/out placeholders for source/target files.
 
 commit 6ee48deddfaa15a2e6d057400cc91f2042f2041e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jul 26 19:48:28 2019 +0200
 
     Added check for existing targets in FFmpeg task.
 
 commit 0ee5fbf8c9c14b6fbd2b451d183219b71e0f04ef
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jul 26 17:06:23 2019 +0200
 
     Added support for relative paths in FFmpeg targets.
 
 commit dc09772445ca7726d6fd93d9a54860d5d05de7c9
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jul 26 17:03:32 2019 +0200
 
     Added method for resolving relative pathnames even if target doesn't exist yet.
 
 commit 223f3036c30fe5add6bddf1aed638c2a6dbfaa13
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jul 26 14:36:53 2019 +0200
 
     Handling of "no matching input files found" in FFmpeg task.
 
 commit e73187008e2e66bb06a00fc197b1835257278cb2
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jul 26 14:21:46 2019 +0200
 
     Added multi-recipe support for FFmpeg task.
 
 commit 989aaac53a9b02f9da527715c054000bf0ba3cc5
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jul 26 12:32:27 2019 +0200
 
     Fixed typo.
 
 commit 88a48780e56a9da25d393158de63448745613433
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jul 26 12:31:58 2019 +0200
 
     Preparing multi-recipe support in FFmpeg task.
 
 commit ed5c514d9f5248cee256bb413e8b7af66326d6e0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jul 25 20:51:20 2019 +0200
 
     Added resolveInOut and basic config + functionality of FFmpeg task (not usable yet!)
 
 commit 1f8ef2402102b357c14ec640a5ba661254847efd
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jul 25 20:50:55 2019 +0200
 
     Added placeholder for FILE_OUT without suffix.
 
 commit 54e6a39f4a4b73f15e573f296c2c4d7ce447ad62
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jul 25 20:48:46 2019 +0200
 
     Remove file-exists check for getBasename to allow preparation of filenames.
 
 commit caea3e45d38c4ba0113a5bdfb87474686e99a9c5
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jul 25 19:26:58 2019 +0200
 
     Added placeholder for input file without extension/suffix.
 
 commit 9afc924abcd968db45851450de4ffd022841903f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jul 25 19:26:11 2019 +0200
 
     Added get-method for accessing placeholders in config.
 
 commit c602acbc2947b4639ae91cf63e08c2cbda751a99
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jul 25 15:54:23 2019 +0200
 
     Added FFmpeg task for transcoding (not usable yet!)
 
 commit 64a0369d143b8264c7be03669ebcf27b3977a94c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jul 25 14:20:22 2019 +0200
 
     Added method for getting basename (with+without extension).
 
 commit d6bff0e79106835141e0c4bbe07e09df0674a2a2
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jul 25 14:13:35 2019 +0200
 
     Fixed missing "abstract" in CopyRsync task class.
 
 commit 8b129fc668498734b2c5184c7e50070867b7eb5d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jul 25 13:02:56 2019 +0200
 
     Improved comments for Doxygen.
 
 commit 6265f115467d3ef4da55efe39710ecb648f301eb
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jul 24 13:26:45 2019 +0200
 
     Improved hint positioning and text for classname and task label in skeleton.
 
 commit 4947ba210fb5d46c608f499ecb1ff907eed5e81f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jul 24 13:17:05 2019 +0200
 
     Fixed note for finalize() in skeleton.
 
 commit 20f93739b6f9bd52206c899dc40330a9affd983a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jul 24 12:19:11 2019 +0200
 
     Improved hint text for declaring CONF settings in skeleton.
 
 commit c82d3c54402eb9af8e2f8539b9a1bab132467c69
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jul 24 12:14:23 2019 +0200
 
     Added note about possible change to placeholder declarations.
 
 commit d08d783451b0fd60d2ca0d872b09d019b7551a8e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jul 24 12:13:55 2019 +0200
 
     Added TODO hint for changing class name in skeleton.
@@ -378,25 +378,25 @@ Date:   Mon Sep 10 13:49:12 2018 +0200
     Updated copyright and added product website link.
 
 commit 5ce2ae6a4f24b58865b95271ec7d7c5aeaaa7509
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Sep 3 10:00:29 2018 +0200
 
     Fixed setting logstyle by name (regression)
 
 commit 598a62c4d39d429faabf8cb753507c94cece5d60
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Aug 30 11:45:25 2018 +0200
 
     Updated version number
 
 commit f5e70fda8c241c0cd2a8573d62e549cd13aec75e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Aug 30 11:42:04 2018 +0200
 
     Changed logstyle to string (and fixed sanity check)
 
 commit 867f2ebdb43993bcead61d3ebb6da5c0d918eda4
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Aug 30 11:15:24 2018 +0200
 
     Fixed blocker: Bracket-Typo
@@ -408,43 +408,43 @@ Date:   Tue Aug 28 21:28:48 2018 +0200
     Added translation of help text.
 
 commit b65e22896be81f1e6f31bd416f95b226a2a93444
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Aug 28 21:10:50 2018 +0200
 
     Updated doxygen docs.
 
 commit 6e6376843c9cdb7ee146bd27ffdc56aa6db72c12
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Aug 28 21:09:29 2018 +0200
 
     Updated doxygen docs.
 
 commit 3f9c33e81cc015b8a9e7b43498d89b8505399822
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Aug 28 21:08:59 2018 +0200
 
     Enabled documentation of private/static members (Doxygen)
 
 commit dded60c1a0f0a78d1af51755de16df5deb4d2315
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Aug 28 21:08:03 2018 +0200
 
     Fixed syntax of comments for Doxygen.
 
 commit fcdb2f1b8ea1ff045d972539a3172768bf04b340
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Aug 28 20:40:39 2018 +0200
 
     Added TODO-note about log-writing in CV mode.
 
 commit f1931c5b71786c9946b1a149b82ffc14bd8130aa
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Aug 28 20:27:05 2018 +0200
 
     Added setting logstyle for Items (Fixes exception with '--logstyle 1' + '--log')
 
 commit e15c170b17014c0be6c59c1fa1a690ce75b8447e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Aug 28 19:42:56 2018 +0200
 
     Added sanity check for logstyle parameter.
@@ -456,37 +456,37 @@ Date:   Mon Aug 13 18:52:13 2018 +0200
     Added CInbox manual (markdown).
 
 commit 37670e734f5607ce1d60a9c01583d86f22202a98
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Aug 13 18:46:28 2018 +0200
 
     Updated version number (after bugfixes)
 
 commit bda3f3567d7a86f404933e86aa3456d692228233
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Aug 13 18:44:23 2018 +0200
 
     Fixed CV-logging of multiline- and empty-messages.
 
 commit eb28e860506117ee86555e1e84da0249fa006c81
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Aug 13 18:33:16 2018 +0200
 
     Fixed logging item-path instead of item-ID.
 
 commit 54a36f40364ff938e5ef4db47676f447a213362f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Aug 13 18:16:05 2018 +0200
 
     Fixed typo.
 
 commit 985db5b4298487d30e3893d31c08af39b50e48ed
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Aug 13 18:12:42 2018 +0200
 
     Changed '/' to DIRECTORY_SEPARATOR for OS-independency.
 
 commit 086dfcf958a574ec71cea8dbfebd4a7e51428077
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Aug 13 18:05:34 2018 +0200
 
     Marked hardcoded dlp-storage path as "todo: configure".
@@ -504,61 +504,61 @@ Date:   Tue Jul 17 12:15:58 2018 +0200
     Updated translation.
 
 commit 902e564d23d37784b25ed0143abf4369b580bad7
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 17 12:13:18 2018 +0200
 
     Added translation wrapper for LogfileCopy strings.
 
 commit dab1573c58697da6d570a6981643c5b5d38cf353
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 17 12:08:50 2018 +0200
 
     Removed task-skeleton leftovers.
 
 commit 294da1e0739d934b8448fd420cc3f88ad1e1cc14
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 17 11:55:19 2018 +0200
 
     Added task to make a logfile copy (Required for CV)
 
 commit 446c730d055cd51d9f23928cad0b28e6c9405a60
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 17 11:53:20 2018 +0200
 
     Added method to retrieve current logfilename.
 
 commit 80a436564afa901d9786e7fb46d1d8b38957e390
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 17 11:52:41 2018 +0200
 
     Added uppercase/lowercase placeholder for ITEM_ID.
 
 commit 62da3a50e09b513cab5f4b6cbf41f02299f91502
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jul 17 10:08:09 2018 +0200
 
     Logging TARGET_FOLDER plain for better parsing.
 
 commit ff75408889bfe04b92f59740758477337fcf7304
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jun 7 10:12:38 2018 +0200
 
     Added "logstyle" argument for switching logfile format (classic/filecv).
 
 commit 8a10eaf5fc412826a2bd3551a9ad50f650769ae6
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jun 6 19:30:27 2018 +0200
 
     Added logging final TARGET_FOLDER in RenameTarget Task.
 
 commit 8dab31c753e06f49e9eaa156ccfd9e9f83d0a77c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jun 6 19:28:15 2018 +0200
 
     Added method "logTargetFolder" (resolved path to logs).
 
 commit 1253d2e801a78472f77b35758c9f04cde931bf09
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jun 6 19:26:00 2018 +0200
 
     Set execute permissions to plugin scripts.
@@ -608,1362 +608,1362 @@ Date:   Mon Mar 26 15:58:26 2018 +0200
     Updated translation.
 
 commit 4b94a3ce0fe420d7c098c6a06ff6651b7fec34a3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 26 15:26:33 2018 +0200
 
     Initialized "age=0" to avoid undefined variable.
 
 commit 3fa430d544c1a0fe4c9126d50ec36c7d1ebfab8b
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 26 13:58:09 2018 +0200
 
     Updated version number.
 
 commit c01a024f1c360d9447a42ea482ad5372c095f5eb
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 26 13:54:59 2018 +0200
 
     Fixed "Not a directory" message in item garbage collection.
 
 commit beed97acaddbfb285d45f7ade20599e7e078ef18
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 26 13:53:35 2018 +0200
 
     Marked main PHP file with executable flag.
 
 commit facbe9d410e3aa47cbb1b7d1a068638f59764b58
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Aug 17 12:14:01 2017 +0200
 
     Updated file rights from 755 to 644.
 
 commit f7ddcb359ba6f9f182f8520a6590a73b54b3ec7d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Mar 16 20:15:49 2017 +0100
 
     Added packaging as PHAR (.gz)
 
 commit a83df10051a024fc49e9d880dbcf88f62ee4c3f5
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Mar 16 19:14:59 2017 +0100
 
     Switched to calling PHP using "env" in Shebang.
 
 commit e679aff3362302fd6852a031a4382fe9b2ce4f31
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Mar 16 13:19:36 2017 +0100
 
     Updated Doxygen docs.
 
 commit 12c30c765c62e01866c09392c7376178d5ee3ef6
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Mar 16 13:19:21 2017 +0100
 
     Updated translation de_AT.
 
 commit ec8e4c97e0ae643a3e87027d4fbbd8824ace5e2f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Mar 16 13:17:01 2017 +0100
 
     Updated version.
 
 commit 525b639470fe11a40ce57dfe3030b44e206a990d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Mar 16 13:14:52 2017 +0100
 
     Removing temp-hashfiles for non-matching HASH_MUST_EXIST files.
 
 commit c5f942b00ab58fb4a98875315cb1efe3f6cd0aa8
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Mar 16 13:14:22 2017 +0100
 
     Added method for removing temp-hashfiles.
 
 commit 340eb881427dd2eed7bdcf6cced351abbe2b08f1
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Mar 16 12:38:54 2017 +0100
 
     Removed duplicate comments.
 
 commit b66f73633ca68dbf249bbfd43cfac34ace69ab6e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 15 11:33:53 2017 +0100
 
     Updated version information (RC10)
 
 commit 2a37f8ef1895fd7f4625674b55bbb50ce0ba9673
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Mar 15 11:31:15 2017 +0100
 
     Updated Doxygen docs.
 
 commit 0859f81e6cea54af16cd9580c514364f1ead41a3
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Mar 15 11:30:48 2017 +0100
 
     Updated translation de_AT.
 
 commit 95d4613226ec82be70e92409e5f0867f7f0a12d0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 15 11:27:46 2017 +0100
 
     Enabled moveFolder as default behavior for CInbox.
 
 commit 98163df9f592a9714fb1ba51f853a3ba59ffd09c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 15 11:27:17 2017 +0100
 
     Disabled moveFolder for CIFolder class by default.
 
 commit 22ec91beeb9d3758e341602f5ddf3fd78b09a5ce
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 15 11:20:10 2017 +0100
 
     Added option to move logfiles according to their Item's status.
 
 commit 262d74cec20cc4662f151327db6c9a594b5dbbae
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 15 11:18:38 2017 +0100
 
     Fixed wrong function call/behavior for getting Item logfile name
 
 commit 108188271cd1c7d85adf1b54a99b9c726358e370
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 15 11:04:29 2017 +0100
 
     Preserving itemID-case in logfile name.
 
 commit 5cffb780acbb416cae9a00993e02935e89c99024
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 15 10:57:10 2017 +0100
 
     Added method to relocate logfile position/name.
 
 commit 8185eb443c68dbf35b3f70b2dc4e74662bffbc24
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 15 10:56:20 2017 +0100
 
     InstanceID should have never been static.
 
 commit f5b1734d6c24a503445ab33f1b5a41c4af2981c4
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 13 15:53:22 2017 +0100
 
     Fixed 'too many open files' for Task RenameTarget.
 
 commit d0e64e94c79976abaa60722357b7537c83f3d5a0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 13 15:50:10 2017 +0100
 
     Fixed 'too many open files' for Task HashValidate.
 
 commit 481feb9fc6e4d3cac49199cb30ca6d423f1c13b2
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 13 14:44:00 2017 +0100
 
     Fixed 'too many open files' for Task CopyToTarget.
 
 commit f29296c39e8746db9f859f9a4af36fb28f1a2ba8
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 13 14:40:12 2017 +0100
 
     Fixed 'too many open files' for Task HashGenerate.
 
 commit 6104c3205c331766051a4e1e18a34e551d581517
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 13 14:35:44 2017 +0100
 
     Added folder listing method that doesn't keep files open.
 
 commit a6828799561cdca23bd0a930b6a2b0dcdeadd0b9
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 13 14:34:40 2017 +0100
 
     Added wrapper for stat().
 
 commit 845fbe44aad60c79381eb2155b3815fd536cefa4
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 13 14:24:31 2017 +0100
 
     Removed "isDot" check since getFolderListing() already filters them.
 
 commit ea166d6d491cf6d622a1ddc8605d36b5462ffe83
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 13 11:41:43 2017 +0100
 
     Added output of PHP error messages when logging exceptions.
 
 commit 68d6e92eb7f55150c8ee139314c2d08fdb0e16db
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Mar 13 11:06:56 2017 +0100
 
     Changed temp-clean message to match new cooloff-algorithm behavior.
 
 commit acea12bd390e2d0cfbdd2f96b91d1a5b83e83ec7
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Mar 3 19:37:32 2017 +0100
 
     Updated version number to RC9.
 
 commit 49e940e885406adb13be9303682ed016468bef22
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Mar 3 19:35:46 2017 +0100
 
     Updated Doxygen docs.
 
 commit 2db52ba5a151a1f9f82411f5f01eda0d07e872e4
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Mar 3 19:35:29 2017 +0100
 
     Improved Doxygen comments.
 
 commit ea938f98eb63d90951d711caae56c321e102024a
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Mar 3 19:26:37 2017 +0100
 
     Added warning regarding swapped taskorder Rename/Validate in RC8.
 
 commit aad2967a73e6810c12d2aebd87bcfbb357fcd7a6
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Mar 3 19:26:15 2017 +0100
 
     Updated translation de_AT.
 
 commit 83e823541b844bf7540f5914e66c6c885c0c4a26
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Mar 3 19:09:22 2017 +0100
 
     Added COOLOFF_FILTERS to exclude stat values from cooloff check.
 
 commit ac24dea15cbaa8b462f5ced44ef86054e6cb6e61
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Mar 3 18:44:54 2017 +0100
 
     Added filter option for stat values in dirlistToText().
 
 commit c7ecb5a8f0da6dedd0258942e78ab5c2f6fad123
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Mar 3 17:33:54 2017 +0100
 
     Added check to catch stat() call failure.
 
 commit adc6277e1dce2cddfc0e634a1d4e34ade2f9e297
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Mar 2 16:39:15 2017 +0100
 
     Updated known issues.
 
 commit 18c2096f4d89921a1276fe397ff162a9b9ce9d98
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Mar 2 15:58:33 2017 +0100
 
     Updated version to v1.0-RC8.
 
 commit ba57d32a4d64ff385c7fc12f0192757127f897ee
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Mar 2 15:57:34 2017 +0100
 
     Update Doxygen docs.
 
 commit 506de09cef5c09dcb263e0f0a8940062e36afbe3
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Mar 2 15:55:59 2017 +0100
 
     Update translation de_AT.
 
 commit 617d48658f94b297f6daff77b4bec6d606667e1d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Mar 2 15:53:44 2017 +0100
 
     Changed file properties from 755 to 644.
 
 commit 87564e5a338f3b3e5496170b5f3a904cbbc2debe
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Mar 2 14:00:27 2017 +0100
 
     Changed HashSearch evaluation to catch empty hashcode files.
 
 commit 2d8bbeb77fee6abc0057d24cfe9bc5ef2928151c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Mar 2 13:59:47 2017 +0100
 
     Cosmetic change.
 
 commit d66ee88a3b376eb7e015b3067d2c67085eb0c921
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Mar 2 13:58:41 2017 +0100
 
     Replaced invalid 'continue' with NULL return (fixes PHP7 incompatibility).
 
 commit 7cdba45b86b6823c9491bbac3639e3de96977313
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Mar 2 13:56:43 2017 +0100
 
     Removed superfluous function name in Exception msg.
 
 commit 430a78c1c5b5cfe55ee09eaeb7162d48a6129c3c
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Mar 1 16:26:52 2017 +0100
 
     Updated translation de_AT.
 
 commit 692856ce4dcca42080ab15446dbe9acd08b81a81
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Mar 1 16:19:32 2017 +0100
 
     Added plugin-examples.
 
 commit cb5a184ef78b7241e5a84db9b0695315ce9175c8
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Mar 1 16:18:00 2017 +0100
 
     Updated Doxygen docs.
 
 commit cc1304cf096d817b7001b81cdd700bc2954fcff4
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 1 16:12:03 2017 +0100
 
     Changed cooloff detection to monitored folder-changes.
 
 commit c58264746c283c22e0b1cb0f63ad50fc6ac72b27
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 1 15:10:01 2017 +0100
 
     Added conversion function for dirlist to text (for monitoring folder changes).
 
 commit 05a4d6ecee01764e3224d3ed0ce5e7832da3b3e3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 1 15:08:26 2017 +0100
 
     Removed trailing whitespace.
 
 commit bd008a6926f9c41ba42a62e142cadf00d52b9712
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 1 15:07:35 2017 +0100
 
     Fixed warning in Helper due to missing variable initialization.
 
 commit b5e0ae0846cd6149ae96356165440e332a55f216
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 1 13:30:59 2017 +0100
 
     Changed Doxygen comment tags to start with '@'.
 
 commit bb0e3811f5e0e18b448979ad1364d6dc9bec499a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 1 13:29:40 2017 +0100
 
     Improved Doxygen comments.
 
 commit 1fed1202cf4ff99856fb61609be8f1cbf2b78bf7
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 1 13:27:52 2017 +0100
 
     Changed logfile msg prefixes to contain ERROR + WARNING as words
 
 commit 698e23a3566a718bf012026992b866d7b0382958
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Mar 1 13:27:33 2017 +0100
 
     Remove trailing whitespace.
 
 commit 17a0a0f7c247d38bb0ff70ca46f3733d2fe4884b
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Feb 23 17:59:30 2017 +0100
 
     Moved Task HashValidate before RenameTarget.
 
 commit f093e9fe6bebb0c2281c7a5ae71a33e1a042402c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Feb 23 17:58:36 2017 +0100
 
     Moved resolving targetFolderTemp name to CITask so non-copy tasks can access it too.
 
 commit 88498f44f4ce85ce3471c7f5e9487d1559e2b5f2
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Feb 23 16:59:28 2017 +0100
 
     Fixed missing check if HASH_SEARCH config is array.
 
 commit 9a10f480064f7c0925eb83440f5a2c28ea9ca88e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Feb 6 17:57:15 2017 +0100
 
     Split Reelbox list handling into check+add.
 
 commit 5722f739b6e21a27f5e527f7336836f63abd396c
 Merge: 92f096e 1e069c9
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Feb 6 15:55:25 2017 +0100
 
     Merge branch 'master' of shadow:/home/avrd/repos/avrd
 
 commit 92f096e619625ebbf35f2f703ce645e1ac4451bd
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Feb 6 15:54:41 2017 +0100
 
     Added missing showVersion.
 
 commit 1e069c9bf84ab21e2cd14a62238e5bd53c91002a
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Mon Feb 6 15:42:47 2017 +0100
 
     Added warning about runtime-changes to INI config.
 
 commit 346ff329dfea1e20adaa4e25598ade29c9493455
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Mon Feb 6 15:38:59 2017 +0100
 
     Added mail-notification shell example plugin.
 
 commit d077c7cea9c0121319773b2912c70071d9ad109a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Feb 6 15:32:53 2017 +0100
 
     Updated version number to RC7.
 
 commit 7858354d9764edbae1084a92bfa6858b58040f3a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Feb 6 15:29:44 2017 +0100
 
     Showing version number and exit values in help.
 
 commit f936129dda6adfa016d90fabded7c1bfd38c6c4b
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Feb 6 15:05:09 2017 +0100
 
     Added check if config file has changed during runtime loop.
 
 commit 6640cfa6a4a0193d1ac66e5b123ad93830d162f1
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Feb 6 15:04:37 2017 +0100
 
     Added mechanism to monitor if config file has changed.
 
 commit 4231762d98565aa3e19b7e8e1091f6acce8e2477
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Feb 6 11:27:05 2017 +0100
 
     Added error handling of uncaught exceptions during run().
 
 commit cdf3121d17a7b45a9fdda91c7cab1e6e94b12fe0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Feb 6 11:26:34 2017 +0100
 
     Added method to validate processing folders during runtime too.
 
 commit ff9d61a819c73dae37fa05e1bdd2fbd9150c5dcb
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Feb 6 11:00:57 2017 +0100
 
     Improved log messages for HASH_MUST_EXIST to make non-errors clearer.
 
 commit 25d4ce1ffdaeac9c83d150bd18132fdf35bd76b6
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Tue Jan 31 13:34:30 2017 +0100
 
     Updated RadioRec INI to support MP3 too.
 
 commit 5ee699de0b2471f4b71cc9fcec0a03071211ec8a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jan 31 11:31:52 2017 +0100
 
     Updated INI example: RadioRec (Mediathek)
 
 commit 5ad3a3b2a12cacbf3914c11f115c1a3738e5793c
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Mon Jan 30 18:19:02 2017 +0100
 
     Added CInbox INI example (Radio Recordings Mediathek)
 
 commit 83651cebc4c524af9e95c0b4fad41a421b5b21a2
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Mon Jan 30 18:17:52 2017 +0100
 
     Updated known issues in README.
 
 commit 9513b54bbc392c667590664cfb6ea28546e733c7
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 20 20:01:50 2017 +0100
 
     Fixed regression due to AC3 in Reelbox import.
 
 commit 40aed22f0ee08f0fb0b19e2deb459256da8daaf7
 Merge: 3306338 2cc0e9e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 20 19:53:53 2017 +0100
 
     Merge branch 'master' of shadow:/home/avrd/repos/avrd
 
 commit cebf6fab6dcd32ccaa00bf7a420d4e84819c790e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 20 19:52:57 2017 +0100
 
     Added "ac3" as additional file option in Reelbox audio example (Mediathek)
 
 commit 33130fdb478eef67abfbe82b34578d5aac76e33f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 20 19:51:39 2017 +0100
 
     Added example INI for Reelbox video (Mediathek)
 
 commit 2cc0e9eef9852c369590322c1de43bc245eb1704
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Jan 20 09:19:51 2017 +0100
 
     Updated Doxygen docs.
 
 commit 6b83f31b2ca4a1f5e29128d435beb001c968735e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 20 09:17:32 2017 +0100
 
     Finished Reelbox files-found handling (Mediathek)
 
 commit 2b273b6ab653c807667ef3d4f0be919bd91e7b6e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 20 09:15:30 2017 +0100
 
     Changed charset of CleanFilenames. Removed "ugly" and "bad"
 
 commit a41ff9366982b136e176c5d31d094de22d5b49fb
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 19 18:15:03 2017 +0100
 
     Added more restrictive char replacement in Reelbox INI.
 
 commit b879a84f89d93e79329532f0c7dd2c16ec1b8779
 Merge: d3e47f9 280a883
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 19 18:14:43 2017 +0100
 
     Merge branch 'master' of shadow:/home/avrd/repos/avrd
 
 commit d3e47f999644c03ed95ed086a8cdbfd5e1168601
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 19 18:14:16 2017 +0100
 
     Removed "." from picky chars list: corrupted the filenames
 
 commit 280a8838dd8f820734eb2015f22ee1af8f5eb8a5
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 19 18:05:02 2017 +0100
 
     Updated Doxygen docs.
 
 commit aadec9687836a60bd6eceafe878f3735a557762c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 19 18:04:01 2017 +0100
 
     Added example plugins/ini for Reelbox (Mediathek)
 
 commit 3d509f5a72ca4fac4ccde2b4d5a10b3e6bbed4a0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 19 17:43:34 2017 +0100
 
     Added support for temp-folder as placeholder in all tasks.
 
 commit 962f59d77745a82e6dc586f26f244690acb235e5
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 19 14:27:43 2017 +0100
 
     Updated translation de_AT.
 
 commit 48de3569b0a03cc9e8c07fdcbe2a4a6981182d1d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 19 14:25:59 2017 +0100
 
     Now changes of item subfolders by task execution are possible.
 
 commit 1bfa6736a8c492a0ebfa1f65decd5d5129b436ee
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 19 14:22:18 2017 +0100
 
     Added array-diff that works with empty arrays.
 
 commit e7d0bb103779983b505b87be46eed2d74d003686
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 19 14:21:55 2017 +0100
 
     Added method for retrieving recursive dir listing as array.
 
 commit 09f5b2d8f2620c63af655c4a10f25bf9f2d8ad5b
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 19 11:17:04 2017 +0100
 
     Added 2 more PreProcessing Tasks.
     This allows user-defined script execution at up to 4 points (3 pre, 1 post).
 
 commit 9275e30fa2465f05850382096ab7cab02fb055e6
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 19 11:12:55 2017 +0100
 
     Made it possible to easily add new Pre/PostProc classes with less code.
 
 commit ad6de6c29b975cac2f2b187c062cd03236885d34
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 19 10:57:39 2017 +0100
 
     Added error-checking when loading parent class' settings.
 
 commit b9b62b62e592082cefd7ffffd59fed4be1874e6f
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 18 15:01:07 2017 +0100
 
     Updated doxygen docs.
 
 commit 22a41b3bbf6bec692803119bdcbc751182efad2e
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 18 15:00:59 2017 +0100
 
     Updated translation de_AT.
 
 commit 9c478c834b8f1d9635995561c61253e012edc47d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 18 14:57:52 2017 +0100
 
     Removed fixed known issues from README.
 
 commit b9c19b653bcc252094e4f4551bb3ca5369291306
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 18 14:56:54 2017 +0100
 
     Changed file-iterations to be sorted alphabetically.
 
 commit fec7c59123b6a511df2a79dbb42e1bc763e45b25
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 18 14:32:00 2017 +0100
 
     Added method for getting dir listing as array (for sorting).
 
 commit 99f020e4556a761794698442b7d5c707361f3a4a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 18 13:38:37 2017 +0100
 
     Added preliminary example for Reelbox configuration (Mediathek)
 
 commit 1674ff5a16bc89cbbba10b7ff4f2059ee780bef3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jan 16 21:26:03 2017 +0100
 
     Added remark about known-issue with some unlogged exceptions.
 
 commit f41d0039129f2f8fe65a125ca87fec6a8665dbf3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jan 16 21:12:08 2017 +0100
 
     Added exception handling during inbox-init.
 
 commit 461408446d274e0550e8f334330cc8ca5393ee4d
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Mon Jan 16 20:16:15 2017 +0100
 
     Updated doxygen docs.
 
 commit c2171bc0d4b0f548cf1e52713f1e2e90f027c28b
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Mon Jan 16 20:15:57 2017 +0100
 
     Added and improved doxygen comments.
 
 commit d66a8664246f9caaa27beea66a1ce68ad01a9968
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Mon Jan 16 20:00:58 2017 +0100
 
     Updated translation de_AT.
 
 commit c183a94e474f071608990278cea57e8d3b30e0b5
 Merge: 670428c ec12c92
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jan 16 19:56:06 2017 +0100
 
     Merge branch 'master' of shadow:/home/avrd/repos/avrd
 
 commit 670428c4d84adf240841c6eb727f3624e4e3d4ff
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jan 16 19:55:16 2017 +0100
 
     Added proper check of processing folders.
     This replaces check of status folders.
 
 commit a8d946f7bb0239ceaadfa9a1c67f6d186e452da0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Mon Jan 16 19:54:38 2017 +0100
 
     Fixed indenting.
 
 commit ec12c925f9d31f9805d18feb0e02f1dfff014856
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 23:04:49 2017 +0100
 
     Updated example INI file for audio (Mediathek)
 
 commit aea2acfbdf7b02fb8e147b6d72d1364daa493845
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 23:02:05 2017 +0100
 
     Added missing gettext around some strings.
 
 commit de308c80b4d771c665a0fd047163479370e2394b
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 22:53:28 2017 +0100
 
     Unified format of some output messages.
 
 commit 6c50352c8bff5a82f473f50638691d1b98c80a09
 Merge: 858344e a019621
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 22:42:08 2017 +0100
 
     Merge branch 'master' of shadow:/home/avrd/repos/avrd
 
 commit 858344e55a18f79a5909c82b9d4bc516711d6f38
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 22:41:40 2017 +0100
 
     Fixed false-positive issue with HashSearch on non-existing files.
 
 commit a01962123db49ecf5cf582d1694c43cb1f16f053
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 21:38:47 2017 +0100
 
     Updated example for video inbox (Mediathek)
 
 commit 5d8bbee7265316cc09a872cf71cbb92a0889ce35
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 21:28:45 2017 +0100
 
     Moved Doxygen configfile to doc folder.
 
 commit 4c9ebe010cd0dcb8d1c8405d274bbae01ed1d27d
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 21:28:22 2017 +0100
 
     Removed known-issue hashcode-sort (fixed it).
 
 commit 78ac69354ea3aa568afb21d218749e0f4e0b8a2d
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 20:40:44 2017 +0100
 
     Updated Doxygen docs.
 
 commit 94cf2af63ff6f2ec98887674eed02b5059ab0f25
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 20:40:31 2017 +0100
 
     Updated translation (de_AT)
 
 commit 211d71bfa86e43e79bcd944e17e7c73a42084d86
 Merge: 423beb0 753ad51
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 20:38:42 2017 +0100
 
     Merge branch 'master' of denny:/home/avrd/repos/avrd
 
 commit 753ad51491784beaa108e91068f69566bd0fb9a3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 20:38:07 2017 +0100
 
     Formatting fixes in log output.
 
 commit 423beb03f5291ace38ee07566dbae4e69e12f368
 Merge: 3602c6d 9e96ffe
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 20:36:02 2017 +0100
 
     Merge branch 'master' of denny:/home/avrd/repos/avrd
 
 commit 9e96ffe1aa0c684be4732bd77e07db94deafb149
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 20:34:55 2017 +0100
 
     Improved error output in task execution
 
 commit 3602c6dd318efc44ab58c9a0f633097bdeb60016
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 19:59:35 2017 +0100
 
     Updated Doxygen docs.
 
 commit beaaae0ec2f161dbd24c3ac054c38e7c0ed8ed51
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 19:59:15 2017 +0100
 
     Updated translation (de_AT).
 
 commit c28926ff498e5ae3b094fef58cc22d1affaa8ccd
 Merge: 25de88f 904f82f
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 19:53:42 2017 +0100
 
     Merge branch 'master' of denny:/home/avrd/repos/avrd
 
 commit 904f82f2962f97da39ec1df02a79d737528a986c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 19:53:00 2017 +0100
 
     Added missing license header + boilerplate (doxygen)
 
 commit ed743159a02176112c2313953a307aa6ecc1bb53
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 19:44:43 2017 +0100
 
     Unified error message for config missing [].
 
 commit 25de88f76484ce8a2325b2367737bc040e25d38e
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 18:46:53 2017 +0100
 
     Updated Doxygen docs.
 
 commit 2dd6905ba26ce35b6970e24f117bc4202c8604f7
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Jan 14 18:46:36 2017 +0100
 
     Added README file.
 
 commit d77650048264fd0d6daa3448946cb5aa9ea58e49
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 18:41:54 2017 +0100
 
     Added: Sorting hashcode output file by filename
 
 commit 3ee698a0c0358c51670cd1daf198c85698ce01ba
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 18:29:39 2017 +0100
 
     Cleaned example config file.
 
 commit 918b5b78d34429766b980a6a1bd283c6eba25a7f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 18:29:25 2017 +0100
 
     Added "FilesWait" to default tasklist
 
 commit 3e7c9aa3989b299ac8296d77559292f05246d8d2
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 18:28:11 2017 +0100
 
     Re-unified PostProcs with PreProcs and cleaned them.
 
 commit 33057977a7f0b45f137d3a462c66809a5d2732d4
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 18:25:06 2017 +0100
 
     Added logging of executed commandline.
 
 commit 842f0bb563c69c0050320819bc7281f7eae657b2
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 17:29:34 2017 +0100
 
     Added example placeholders as preproc arguments.
 
 commit 875524db0841c8635dc76e975155f10e81943495
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Jan 14 17:26:22 2017 +0100
 
     Moved some text output to more verbose loglevel
 
 commit 48f3d91f6cca501d0dd87b28aa26ef64cdb0e943
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Jan 13 21:45:18 2017 +0100
 
     Updated translation (de_AT).
 
 commit 2c61a861a5dc18095b0bafd233303506e7f05186
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Jan 13 21:45:01 2017 +0100
 
     Updated doxygen docs.
 
 commit 115dd2e257364aaa59e3ccee83ca63c60fa8a026
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 21:09:36 2017 +0100
 
     Improved and cleaned hash-generate.
 
 commit e4b71812dcd3829165cad4076db3b988d88c693a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 21:08:51 2017 +0100
 
     Changed task-skipping to be per-folder (instead of whole task).
 
 commit 0365736bf002940c931911abe3a0f3ba99072641
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 21:07:38 2017 +0100
 
     Fixed regression due to change in TaskFilesMatch.
 
 commit 026683d4cf38375475ccc9892bf6e8a99bc6bd3d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 20:51:58 2017 +0100
 
     Removed trailing whitespace
 
 commit 89e0bfa7c7af16158b03b29e2a3617b94829082d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 20:49:56 2017 +0100
 
     Removed trailing whitespace.
 
 commit 38da66ff9bda79dc3ef38c362f9592755524a468
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 20:49:30 2017 +0100
 
     Improved and cleaned file matching/validating tasks.
 
 commit 3a3365ebc9c929fef87e5fa314af0fa648f29f5b
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 20:48:01 2017 +0100
 
     Replaced missing-files method by the one in TaskFilesMatch.
 
 commit b9f06a25dabeeb1a6f8f805e48042f6305dd412f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 20:23:27 2017 +0100
 
     Moved missing-files check method to TaskFilesMatch.
 
 commit 41700154428d43435dd44087199953c62bd5f431
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 20:20:03 2017 +0100
 
     Added Task (and config) to wait for files.
 
 commit 44089e52ae5b482aaec13ee70a292f0e26625450
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 20:19:27 2017 +0100
 
     Marked comment for todo-check in hash search.
 
 commit 4778d1faa18085d63c9fa6c0600fa82433112263
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 20:18:54 2017 +0100
 
     Fixed and improved Task FilesMustExist.
 
 commit 247ea4d1020cd79dbd5a0be1cfd042c2ca40fd5e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 19:58:51 2017 +0100
 
     Improved doc comments and empty-setting handling.
 
 commit a58ff42a334efdc88df4c1bf3c0d8abccf2f4b67
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 19:56:57 2017 +0100
 
     Updated doc comment on retvals.
 
 commit f0a118cf45e4b1d2abdb954b3e833aa5d934ea9d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 19:56:09 2017 +0100
 
     Fixed doc comment on init/run retval.
 
 commit e20f777a80e1c66c9fa7fc1b9f2d73eb6697eb62
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 19:43:19 2017 +0100
 
     Improved logging output.
 
 commit a52c52d956d7f9269733bfda8a8655dd13cd81cc
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 19:18:28 2017 +0100
 
     Improved doc comments in task.
 
 commit 600cd583186a6bebf35d07dae265b57bf80c5fbc
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 19:17:50 2017 +0100
 
     Improved doc comments in task skeleton.
 
 commit 818494e2b70190d0f24abe681ec8d2bdf528d7c2
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 19:10:43 2017 +0100
 
     Updated structure and documentation in skeleton task.
 
 commit c6e826de4f14ecf549e587375dca1808f1aebe87
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 19:05:03 2017 +0100
 
     Added example plugin-script for triggering task-reset.
 
 commit 5b56fd000ff30b3e78743697c71be02c5f86ecdf
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 19:04:32 2017 +0100
 
     Cleaned and improved dummy pre/postproc scripts.
 
 commit 55b8004776463897f473c6435c31f917fa713978
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 19:03:07 2017 +0100
 
     Changed handling of exitcode to trigger task-status.
 
 commit 98955895b94e5e94f30674b62a99331c2709b339
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 19:02:05 2017 +0100
 
     Changed status message to report number of tasks actually done.
 
 commit af3767591a7893534b105e44882192b836fd593e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 18:11:35 2017 +0100
 
     Added functionality to reset Item to "try again".
     Necessary for task status: wait.
 
 commit f04aabf674c4d9d471a7fbdd92e47442d4c69001
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 17:47:55 2017 +0100
 
     Moved Item states from CInbox to CIItem class.
 
 commit 90c305dc7ebb51f301d6606c7f679e3268ba0f50
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 17:29:29 2017 +0100
 
     Fixed: Accidentially disabled default tasklist!
 
 commit ab9d4a5a41741fff4c1d45f05490ee58a12d345a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 17:05:31 2017 +0100
 
     Adding new task status: "wait" (undone)
 
 commit a387fb1a10966906df81dda986d024f25346326b
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Jan 13 10:43:40 2017 +0100
 
     Fixed doxygen comments in CITask
 
 commit bc63e97995dd98e9adc7841d55c093a3bf055e80
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Jan 13 10:34:35 2017 +0100
 
     Added missing doxygen HTML files
 
 commit 9bcb459e1318613a02aaeb247b19d710a142a8ba
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Jan 13 10:33:46 2017 +0100
 
     Updated example INI files (Mediathek)
 
 commit 1f3337a216184f249f96ed60e893dd92c1b19ac2
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Jan 13 10:14:57 2017 +0100
 
     Updated doxygen docs
 
 commit 9987cb4d129213cdf0502572565ee18f00a43960
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Fri Jan 13 10:14:45 2017 +0100
 
     Updated messages (de_AT).
 
 commit 0b5d0ddf7d2777524baad2640825eca25a3b90ce
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 10:12:17 2017 +0100
 
     Added support for multiple regex in ITEM_ID_VALID
 
 commit 45e1de83d798655da6ff27fd41258656bf124c18
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 10:11:39 2017 +0100
 
     Moved exception stack-trace to debug log output.
 
 commit a14fc7598ba5f7fd95c847f6ad466ecbe09a514a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 08:49:44 2017 +0100
 
     Improved doxygen comments.
 
 commit eabf01a7b5e1aa0dfb0160dd42c42da924e8ed85
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 08:45:01 2017 +0100
 
     Improved comments on getAge().
 
 commit 1f0003a19c33497b2153eb047ecb35051c22fc74
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 08:44:45 2017 +0100
 
     Added function to check if a folder is empty.
 
 commit d4ff54ed576e91ea2cf9ed1bf706886de270e5c0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 08:30:36 2017 +0100
 
     Removed obsolete class properties.
 
 commit 08ef5ac2515bf2996936d6e1d9f01d99e0057522
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Jan 13 08:29:04 2017 +0100
 
     Changed CIItem private class entities to protected.
 
 commit fecde5d3d1eb6dbedb9e7ff025e562b2a1d776b8
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 12 19:39:57 2017 +0100
 
     Updated doxygen docs.
 
 commit e90d59d3913f85a6afd800151f4a6670af0cabb4
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 12 19:38:52 2017 +0100
 
     Renamed variable copyPatterns to excludePatterns.
 
 commit e45af546d8d0076e86613f3fb017897e4fc1df43
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 12 19:37:37 2017 +0100
 
     Changed CInbox private class members to protected.
 
 commit 7d099a848f8699c609373d0cdd6a6b27af693212
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 12 19:34:28 2017 +0100
 
     Updated doxygen comments for CInbox + CITask.
 
 commit 55ada3991dc0c9c361801f2c8cb8754d1cd04f9d
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 12 19:20:18 2017 +0100
 
     Fixed and augmented doxygen docs for CITask.
 
 commit 5b11c6927080bf67e1f500def9ebfc593ca5bed2
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 12 17:46:14 2017 +0100
 
     Updated messages (de_AT).
 
 commit c9e07afb3efb30f261a5c08ca373138e75903cb0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 12 17:42:33 2017 +0100
 
     Updated Doxygen docs.
 
 commit f5dc5f6dcb0e5f02e6e7d3de72ad9c1eb7158850
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 12 13:03:57 2017 +0100
 
     Added garbage collection for items (KEEP_FINISHED).
 
 commit 843575025b840baba75716c8eaba70c8d1a4c0c8
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 12 13:03:34 2017 +0100
 
     Removed method for deleting old files. Unnecessary as library.
 
 commit b8579436a7fac3880a4b3c56213612d084cfa03b
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 12 12:22:51 2017 +0100
 
     Added method for removing old files/folders.
 
 commit 8d47c52a05a0d64ba7e496b30629fc2e2220dd71
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 12 12:05:02 2017 +0100
 
     Added: Updating item timestamp when DONE.
     Required for later garbage collection.
 
 commit a42329db08c6ea3b5f749e5076ac7d4354cf4da6
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 12 11:08:27 2017 +0100
 
     Changed exception logging for better readability.
 
 commit 1dc8f5c67911d2e983fd953381713301044bf3db
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 12 11:05:39 2017 +0100
 
     Fixed wrong path in example config (src is bin)
 
 commit f6312f972ee0d4e38965fb50e612898c9cd51f3a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 12 11:03:18 2017 +0100
 
     Added "forever" mode to wait for items to appear.
 
 commit 1a3ebb568a89f5ec17a3569933a52a53dd2a1454
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Jan 12 10:27:14 2017 +0100
 
     Renamed "src" to "bin", since there's no compiler.
 
 commit d35ff600c264ff4a4c5048ca7ae9334c0666dd92
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 11 19:24:43 2017 +0100
 
     Updated Doxygen docs + messages (DE_AT).
 
 commit 37499802dec97faf062815d6420af1d2f427fcb4
 Merge: 2d8422a 0c1c799
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 11 19:15:01 2017 +0100
 
     Merge branch 'master' of denny:/home/avrd/repos/avrd
 
 commit 2d8422a0af80f182c4745900b27dab5183576087
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 11 19:14:14 2017 +0100
 
     Added example configuration: Mediathek Video Inbox.
     Configuration (not paths) taken from actual setup.
 
 commit 0c1c799ffcc7e1e2924ec202b5287fc206a532c5
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 19:03:53 2017 +0100
 
     Fixed non-matching exclude patterns.
 
 commit d7fe3f4c8580e03dc94ea309d16cf7d302efb9b4
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 18:47:21 2017 +0100
 
     Fixed: tasklist was not aborting properly.
 
 commit 3e5dfd6bd69fea007f69ab86c87fc6c402bc9624
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 18:20:57 2017 +0100
 
     Added check method for config arrays.
 
 commit 66b4af8ded0093fb65fed2f52ed9588474100b21
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 18:20:27 2017 +0100
 
     Fixed not-aborting tasklist on non-critical errors (PBC/PBCT).
 
 commit 347b35378b0532b3742b8f86fbafb5e645dcc9cd
 Merge: 35744ea cbbf8e8
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 17:31:20 2017 +0100
 
     Merge branch 'master' of shadow:/home/avrd/repos/avrd
 
 commit 35744ea7f103c598e1ab4fbe753117da9fbad635
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 17:30:53 2017 +0100
 
     Removed overfluous '' in messages.
 
 commit cbbf8e81d2cbc0921df1799202eb280a39e01c4b
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 11 16:49:21 2017 +0100
 
     Updated Doxygen docs.
 
 commit ad83c0c738ed47d969f0478d645de8db29f9019d
 Merge: 4619ac7 496c1f5
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 16:45:11 2017 +0100
 
     Merge branch 'master' of shadow:/home/avrd/repos/avrd
 
 commit 4619ac78e16698b09d82ec2ea2917f43044a28bc
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 16:44:45 2017 +0100
 
     Moved tasklist-configuration to config file. Hooray!
 
 commit b0ab53e441db21c5b32d86af8bd2d442f018fc7c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 16:33:08 2017 +0100
 
     Changed ITEMS_AT_ONCE=0 to disable the limit.
 
 commit 496c1f5b47aebad1ff11d08ee83b85907e54bdfd
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 11 14:29:31 2017 +0100
 
     Updated Doxygen docs.
 
 commit 7f78ae02ae3f82a4e23b5d31352b8568f772ae14
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 12:51:43 2017 +0100
 
     Made other tasks aware of exclude-option (to avoid false-positives).
 
 commit 8457d199e9f0ef85fd3cdf3e3635e1c038cf5e03
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 12:44:48 2017 +0100
 
     Moved copy-exclude option to general task, because its other tasks must consider it too.
 
 commit 6a0c67ee0293df5021b6b44cacdb15e03c04e99e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 11 12:31:29 2017 +0100
 
     Added option to exclude files from copying.
     NOTE: Currently causes hash validation to fail (due to excluded files considered missing) :(
 
 commit aaca4772428a878a8bc12341f57f672d73f81599
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 15:48:48 2017 +0100
 
     Fixed hash-must-exist regression.
 
 commit c585e60e7b5d4ab4ee2b66180f31ec0fa9602e19
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 15:26:17 2017 +0100
 
     Added example script for creating target parent folders.
 
 commit f162204c0fc600f4cd8571c46db0f827439ab416
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 15:17:17 2017 +0100
 
     Changed script arguments to placeholders for pre/post processing.
 
 commit c13face0c3975c259c56e1dc2a480ce59d1534f2
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 15:16:18 2017 +0100
 
     Added more placeholders and resolving to parent Task.
 
 commit f1dee6bb7766ecd51e6e262000a428ca4a66b43a
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 15:09:24 2017 +0100
 
     Improved argument output in debug/dummy preproc shellscript.
 
 commit d36398a5b50bba0fe3fb7d045b0dc2f49ff2b958
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 15:08:28 2017 +0100
 
     Added method to Config to allow global placeholder resolving.
 
 commit 1d7bc8928cd83f123a03d0b331e8c982c1d0bf5d
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 14:33:58 2017 +0100
 
     Fixed regression with itemID regex and raw-ini parsing.
 
 commit 874d82ad0c16b65e7fcdee6f9894edb026190c59
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 14:15:28 2017 +0100
 
     Removed debug message.
 
 commit 2bf1be7940fc7a40e3bc670f143bf6fe9d051baf
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 14:13:46 2017 +0100
 
     Fixed age-detection and added type-check.
 
 commit ec5cc62996040b4bcd5388434ea59115e5bc9dbe
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 14:08:01 2017 +0100
 
     Added bucket script for Mediathek RadioRecordings.
 
 commit b4eb4122d14cbedf1a9adcdfaf91d9aea129688a
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 13:42:31 2017 +0100
 
     Revert "Escaping shell commands prior to execution."
@@ -1971,909 +1971,909 @@ Date:   Thu Jan 5 13:42:31 2017 +0100
     This reverts commit 9148dee17f793a21a59e4a8e80623babdee72769.
 
 commit 861651881ecc0fe4d6a55bfd9070ef963c2ebdab
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 12:27:45 2017 +0100
 
     Improved/harmonized log output for item task execution.
 
 commit f03101c1cc4192a55909a47b227d434c175ec5bf
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 12:21:31 2017 +0100
 
     Made task for DirListings optional/skippable.
 
 commit 677b279e3327b1682425e1db10fa858ff2eca6d1
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 12:21:19 2017 +0100
 
     Added option to skip a task.
 
 commit edad66a8459b247adcc91cb6e33057f347e4fa14
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 12:06:26 2017 +0100
 
     Fixed issue with spaces in filenames during copy.
 
 commit 9148dee17f793a21a59e4a8e80623babdee72769
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 12:06:07 2017 +0100
 
     Escaping shell commands prior to execution.
 
 commit fd167d6e499da6dab452fe921ccad725061193bc
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 11:53:40 2017 +0100
 
     Changed INI parsing to RAW and added logging of parsed ini-string.
 
 commit b2a3b80ed671a14e727f84658e5aa5c776d72e85
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 11:33:58 2017 +0100
 
     Fixed debug logging.
 
 commit 2cf539c93890179cbda2eb9430331c016122edb4
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Thu Jan 5 11:31:36 2017 +0100
 
     Minor changes to be (more) compatible with PHP 5.3
 
 commit 443478b5b4a6b669150f979a5f0d00854b014b48
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 4 20:49:41 2017 +0100
 
     Fixed error logging and other things.
 
 commit f9bb181409b9ad707a4fc85fa7843849d34964ab
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 4 20:49:05 2017 +0100
 
     Made Dirlisting tasks optional (=empty setting is okay).
 
 commit edcc9be51e2a8001aefeec2d35eeeaca9536673c
 Merge: c5e42dd 4d1cfe4
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 4 19:18:01 2017 +0100
 
     Merge branch 'master' of denny:/home/avrd/repos/avrd
 
 commit 4d1cfe44c4476c820cb63c9e73f7c37471ac6712
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 19:17:16 2017 +0100
 
     Forgot to re-enable tasklist. Sorry ;)
 
 commit c5e42dd3f1b51f32ad9dd6916a84695cdcd7ae4a
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 4 19:07:50 2017 +0100
 
     Updated doxygen html.
 
 commit 722163fd7b00e2b4b148a1ea2e31eab33ddcad0f
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 4 19:07:32 2017 +0100
 
     Updated language file (de_AT).
 
 commit 319061e26e27cac0ce296c9c21335e2ae4b09eb2
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 19:03:26 2017 +0100
 
     Changed default values in config example (for faster testing)
 
 commit 7b5d587936ec8790f765db0060a8925b13513203
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 19:03:01 2017 +0100
 
     Implemented cooloff functionality.
 
 commit 95ac85d5623c3c619af7d432c19d9db5297b2ae0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 18:27:28 2017 +0100
 
     Added item "age" detection.
 
 commit 650f2697f9eae1f42732a85f49f4ef4afb3d4fd7
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 18:24:55 2017 +0100
 
     Minor changes. Mostly cosmetic or textual.
 
 commit 2c3ced47832ec5a4c90ebbf1c9a86f5856539ad3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 17:52:59 2017 +0100
 
     Removed leftover/obsolete setting in config example.
 
 commit 99fc6530355895254a127f206a5eccbe4dfc25dc
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 17:48:02 2017 +0100
 
     Added pause-between-items functionality.
 
 commit f9cc050200b97d07eb2e4e68a122b6cb0c55dcb1
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 17:24:34 2017 +0100
 
     Added max-items-per-run functionality.
 
 commit c752be0add498b9dc4cfb4c77f8fd608229117ad
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 17:16:19 2017 +0100
 
     Moved definition of what's the item ID to CInbox.
 
 commit 16ed24b02312b2d80d05157bb4ee2c14b4262c51
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 17:08:07 2017 +0100
 
     Fixed typo.
 
 commit d156a9cef0371350b9449de56ebf3c8e53a0e5b7
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 17:00:55 2017 +0100
 
     Added license/copyright header.
 
 commit 56ee9b70750153c7950113803cc27c675e007bad
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 16:56:30 2017 +0100
 
     Added copyright/license header and descriptions.
 
 commit 543ace8864516d8087e3c7918028d219fee1fe5b
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 4 14:28:20 2017 +0100
 
     Updated Doxygen HTML output.
 
 commit 3556f62186684126667f774d8a756d628654d005
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Wed Jan 4 14:27:38 2017 +0100
 
     Updated translation (de_AT).
 
 commit 4c848978b9f9293961f931b0e6ae77815830762c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 13:51:30 2017 +0100
 
     Added commandline argument for inbox logfile.
 
 commit 5a389f02afa096cc7bf1ec1bead7689bbec993f1
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 13:50:32 2017 +0100
 
     Trimming string config values (safer)
 
 commit 087eec4842188a3d37fe25c522b50c56fda970f2
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 13:21:33 2017 +0100
 
     Fixed weird readout of inbox name.
 
 commit 7d2de757cf20832ac15e8e7154d8d4736571ebb1
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Jan 4 13:15:50 2017 +0100
 
     Added per-item logfile and improved/fixed logging.
 
 commit ca70763d2cebd8bb36936a52039410907f645449
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jan 3 13:50:39 2017 +0100
 
     Improved exceptions. Using more precise ones from SPL.
 
 commit 902a9a86c940b016725162208609cd1cb39fdd0b
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jan 3 13:41:22 2017 +0100
 
     Added separate logger instance per Item.
 
 commit d54771779f32f0e0a688889b3021ae9b02f79d77
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jan 3 13:40:15 2017 +0100
 
     Fixed timestamp/instanceid display for multiple output targets.
 
 commit b1d8a8ebdcc9229a911df009bd883405ca4528b3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jan 3 13:21:14 2017 +0100
 
     Properly removing temp folders now.
 
 commit 6bb64262f0bec54438f00bcc7323a5f831145f75
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jan 3 13:20:31 2017 +0100
 
     Fixed wrong exit/abort in main loop.
 
 commit 4e82b71837a4dc1aa0b92aeb1d97489decfa7013
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jan 3 13:20:02 2017 +0100
 
     Added method for recursively deleting folders+files.
 
 commit 94ce8e1c64a61ec8c57f4fb9449700bc2e59c692
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jan 3 11:15:31 2017 +0100
 
     Finished state-keeping of items in inbox.
 
 commit 6efb1c6dde3b1b3dd5e7e85dc86727bfe30b8aa3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Jan 3 11:14:52 2017 +0100
 
     Added method to relocate CIFolder objects.
 
 commit abaa0d979282f44a66bc21311b753312f5207769
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 30 03:06:39 2016 +0100
 
     Added ability to "move" CIFolder.
 
 commit 2ee4473f11eda1973dc746fb0e2a135058c8c6c5
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 30 02:47:21 2016 +0100
 
     Proceeded state-handling.
 
 commit fc48d6bd5e6a4f7290b8b7d0fc52dde7c0c44c06
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 30 02:46:26 2016 +0100
 
     Catching item-init errors in main routine.
 
 commit f1c42fb2ef3416e5cabce74ece45c990d309a3b6
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 30 02:10:34 2016 +0100
 
     Added base for state-keeping folder handling.
 
 commit 1545b080aa27a611b5ec8f947ee5056113bf3d45
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 30 02:10:01 2016 +0100
 
     Swapped bucket/id-verification order to avoid false-positives.
 
 commit af2470b8e7077cef32047a18967180848e151f4a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 30 02:09:10 2016 +0100
 
     Replace logfile argument with processing folder (logs will be there).
 
 commit 1b4de006bb49385124aa3c6acebd4eb7bcb59698
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 30 00:21:47 2016 +0100
 
     Fixed stringmask output issue in Logger.
 
 commit d3843e7aae1ec2ecb24c76107b4798f98de59162
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Mon Jan 2 15:47:58 2017 +0100
 
     Added Austrian translation
 
 commit 1066815e87855a82e364445cccfc4876cf9f69d1
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 22:43:33 2016 +0100
 
     Changed Logger to support different formats per output.
 
 commit 67165a7eaeda78b6538032a1cda6b1f5c6f1f9b2
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 21:29:52 2016 +0100
 
     Added logging to file.
 
 commit 54dc111e4da67b074bc973f945ed590937211ee5
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 19:22:12 2016 +0100
 
     Added handling of multi-line messages.
 
 commit cfcedbc961fa9b4d57435b3dcf47eeff192ad513
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 18:09:44 2016 +0100
 
     Preparing Logger to support multiple output targets.
 
 commit 8649d086cb37c02e0af60cf844bfd3f22655993a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 17:39:21 2016 +0100
 
     Added bucket-script handling.
 
 commit 209a777bdc5ed6e4a35238201635fab822324d53
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 17:38:30 2016 +0100
 
     Added execute method that stores (stdout)-output.
 
 commit d8967d8a7aeca26bb57b5b8e5820980d237b03f1
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 17:12:18 2016 +0100
 
     Removed old prototype. Should be obsolete by now.
 
 commit f6039b4aee2e57f2c4490e8f6b0c35d3c97725cd
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 16:26:29 2016 +0100
 
     Fixed whitespace and indenting.
 
 commit 425c728dce3410ba372a3bba953a7e1cc8c7534d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 16:20:47 2016 +0100
 
     Fixed HashOutput task to be (a) optional and (b) per-folder configurable.
 
 commit a2b43c73523c0f7a74f8abddaaa184e5e8cc20bf
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 13:19:12 2016 +0100
 
     Removed obsolete method.
 
 commit 4e11720424f2d62b61e1ee3c8e0f2944b924e30c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 13:13:14 2016 +0100
 
     Continued work on Task HashOutput (unfinished).
 
 commit bf53054b81cae8bc42f14329d234cef9df01bd97
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 10:37:12 2016 +0100
 
     Moved source/target folder property to CITask class.
 
 commit 11a7dac96810445328a4279fd18fba54193695bd
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 10:27:37 2016 +0100
 
     Added comment to cinbox config example.
 
 commit da321bf439323a2fb363a89593768c7edc182830
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 09:29:28 2016 +0100
 
     Fixed calling wrong function in RenameTarget Task.
 
 commit a274f8f91b9c051a50045fc5d6fdc73c5f13e5aa
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 09:25:54 2016 +0100
 
     Added Task HashValidate.
 
 commit bfc5c6119c7f255286a6d88016b9c343f0dfda72
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 09:25:18 2016 +0100
 
     Added setting task status DONE in Skeleton.
 
 commit 67d8bbaadb201a58231fbb8b3177fba75ffd7d8e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 09:10:28 2016 +0100
 
     Fixed typo and added generic GenerateHashcode().
 
 commit f3279a16bccdf7132fbb6b91ed376824b6654f3a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 09:09:46 2016 +0100
 
     Cleaned file-iteration loop.
 
 commit b98d43d30e78b3a81de33a7988eb79a72c852b6f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 09:08:57 2016 +0100
 
     Moved getAsRelativePath() to Helper class.
 
 commit 6ba2862cb95634401a8d3595509158730a745e35
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 08:28:48 2016 +0100
 
     Normalized and cleaned code.
 
 commit 173bf8115ce4dc82b7b195186a5656a19a7e25f6
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 08:27:52 2016 +0100
 
     Moved getTargetFilename to Helper class.
 
 commit 2a49b83d1ec2ac2d4baacd77a571350ac3eb51af
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 08:05:41 2016 +0100
 
     Added RenameTarget Task.
 
 commit e36db8e43c1c7cb6db805847ffdb3f6e913b99e8
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 08:05:04 2016 +0100
 
     Added ItemSubDirs to Task for access to config during self-recursion.
 
 commit c357c7e82313eabdb3e8d6248ca58245089bc8d3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 03:06:47 2016 +0100
 
     Transferred more common functions to TaskCopy class.
 
 commit 621be44ffcdefb38ce66d22d78541a6d7cfa9417
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 02:52:35 2016 +0100
 
     Refactorized TaskCopyToTarget into parent classes for reusability.
 
 commit a6445ef6a3984188d50252d70eec9cb0d173b4a8
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 02:52:09 2016 +0100
 
     Added Task method "finalize()".
 
 commit e059775eb1f3e813782994831786356436435de6
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 29 02:29:22 2016 +0100
 
     Updated TaskSkeleton to new standards.
 
 commit 14cbef62fc30392ccb6e39f44c441fe2f723d096
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Dec 28 21:51:49 2016 +0100
 
     Finished Task CopyToTarget.
 
 commit 251f0f06ff1f391bf3c39583729f831038e79dff
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Dec 28 21:19:19 2016 +0100
 
     Added handling for no or invalid arguments.
 
 commit 04a81fa9e381f55b6f598bcb5dcb27ece37a74ef
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Dec 28 15:36:10 2016 +0100
 
     Fixed wrong date/time format: Minutes were months.
 
 commit fecf5a758542ee2d75cdfb34476564bf306f44ed
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Dec 27 18:41:00 2016 +0100
 
     Added rules for target files/folders.
 
 commit b3ec0f5a2b737160e8e5252ed6701915b8916866
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Dec 27 18:40:43 2016 +0100
 
     Added log method for PHP errors.
 
 commit a5a1807293c28eda55fe4a802bc579d8f0897d9e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Dec 27 16:02:40 2016 +0100
 
     Fixed false-positive error in isAbsolutePath() method.
 
 commit e746ef8b37bf78fbb722f13f0b1c2a90575e672e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Dec 24 01:00:05 2016 +0100
 
     Fixed/improved Task parent init/loadSettings return values.
 
 commit 115acdeba6de18ec7af8186fc15e13890aba1c0c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Dec 24 00:59:30 2016 +0100
 
     Improved log/error messages for Task "FilesValid".
 
 commit 1061ba711a2f786f158e673d6f16454697667576
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 23 23:33:34 2016 +0100
 
     Changed all tasks to set their status, and added "problem but continue".
 
 commit 13c68b5fa2a170101df5cb8b6e8fcee5f761636e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 23 17:35:55 2016 +0100
 
     Replaced CIItem::doFolder() by a ordered subfolder structure to have control over recursion order.
 
 commit 7e8507fa96134c840c5dc3c66cf13e6d51d4fd92
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 23 01:35:58 2016 +0100
 
     Planning to change main CIItem task-calling loop.
 
 commit b9dc82c06ff56239a8038170153b1a860298b90f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 23 01:35:00 2016 +0100
 
     Added method to get flat subfolder structure of a folder.
 
 commit 447ef9b090b704a8e75653ede9df127ec53ad6d4
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Dec 23 00:55:11 2016 +0100
 
     Continued work on Task CopyToTarget.
 
 commit c7f05b7af0353cabab1fec22727b2fd654935f84
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 22 23:07:12 2016 +0100
 
     Added function to get PHP user the process is running as.
 
 commit 2137d9e6acd4817188c356befa0d68a947ee21ac
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 22 21:49:38 2016 +0100
 
     Continued work on Task CopyToTarget.
 
 commit c772c90867c93121f8c4aab56825cf8c80433ace
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 22 20:59:58 2016 +0100
 
     Removed leftover TODO comment.
 
 commit 898584fdee5750640374615efd3ca4ad1ecdcb8f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 20:34:14 2016 +0100
 
     Added method for resolving actual target folder to copy source to.
 
 commit f14419bee639a6dfde336ec7e5370d934b43afd5
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 20:32:09 2016 +0100
 
     Added missing placeholder arguments for CIConfig::getFromArray().
     Added methods to easily access settings in DEFAULT and UNDEFINED sections.
 
 commit 228eb320c2be35f08615215f00896e0562ead071
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 15:38:22 2016 +0100
 
     Minor improvements of language handling.
 
 commit 6aa9aa5ed725e9a428f7ff21a01d0ef9897d2367
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 15:37:48 2016 +0100
 
     Added logWarning().
 
 commit d61dbe16d65469508e3202a23dda8a96b16f7921
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Tue Dec 6 13:55:17 2016 +0100
 
     Added basic translation support (de_AT).
 
 commit 5c76a249fcc9d4e0058e846dc635ad2982a58ac8
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 12:53:23 2016 +0100
 
     Added postprocessing option in folder with parent (for testing).
 
 commit c38d6ec3a2b4e62c39d76a56bef1e0794c7817be
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 12:53:00 2016 +0100
 
     Normalized indenting/whitespace.
 
 commit 616b942f3f58a1e5384a7b4dfc314adaf3575a2f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 12:50:54 2016 +0100
 
     Changed parameter for PostProc script from sourceFolder to targetFolder.
 
 commit 7cd1c64fcd8bfa4b3cd3471feffaff26d627a1c5
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 12:50:03 2016 +0100
 
     Added object-references to parent item/folder in CIFolder class.
 
 commit 9a20123142a1368615c45e98638fbc6416da8e0f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 10:44:13 2016 +0100
 
     Implemented pre/post processing tasks.
 
 commit d72e145dc118c2bbcee32a8061bc03fee12da401
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 10:43:14 2016 +0100
 
     Added way of writing horizontal lines to log output for readability.
 
 commit 8795902490ae2be6c5a84cc5853fba3baab57d58
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 10:42:43 2016 +0100
 
     Added basic handler class for external program execution.
 
 commit 57e131eec506cdd4843bf5bf876e9873270f62db
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 04:12:26 2016 +0100
 
     Added task for searching existing hashcodes.
 
 commit c2d78e258b199518d789ad9ff47870c37125401c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Dec 1 04:11:53 2016 +0100
 
     Extracted common hash-handling task functions to 'TaskHash' abstract class.
 
 commit 8bcac04b2f0329d0c1d88934bab90b781fa9d11b
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Nov 30 22:50:49 2016 +0100
 
     Moved temp-folder check to CITask class. Others need it too :)
 
 commit 2964e34a3522e6fdbec73dd4b983d5679fedf3c3
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Dec 3 21:56:54 2016 +0100
 
     Finished implementing task HashGenerate.
 
 commit 0cfc115a29f002cea90acf1df1dc64ec487da36c
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Sat Dec 3 21:55:03 2016 +0100
 
     Added Doxygen configuration file.
 
 commit 3b0eac23b1c3e39c02df9bca133a01b5946b306d
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Nov 30 18:02:00 2016 +0100
 
     Added task for generating Hashcodes (not finished yet!).
 
 commit 748814a30c696b3cdcdb62f87b447264810bd7de
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Nov 30 16:11:44 2016 +0100
 
     Added tempfolder handling in CIFolder/CIItem class.
 
 commit 5d3b3dafafd94dc5607b3577dc65945b89eeb957
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Nov 29 19:57:50 2016 +0100
 
     Removed empty line to conform with rest of inline-doc formatting.
 
 commit 6d7416a04cb4e99dba95e7e73ff54090f1238d1a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Nov 29 17:50:33 2016 +0100
 
     Changed dirlist file suffix to be set by task, not by config.
 
 commit 6caf8a1c1e13f7dbb0e2bc2bd37f67c0bfa772d4
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sun Nov 27 04:10:13 2016 +0100
 
     Split DirListing in 2 tasks, for better code reusability.
 
 commit 1a5fe86be28f952f6b6823fb849d4703c418ec41
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sun Nov 27 03:54:38 2016 +0100
 
     Forgot to add actual code for DirListing task ;)
 
 commit 70ac1b05ad9e13ff5b9cd67d00daee74e18e1968
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sun Nov 27 03:21:37 2016 +0100
 
     Added task for creating directory listing.
 
 commit 8d0b11cebd8149c729475830bd5e7ea4e4ba39ee
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sun Nov 27 03:19:41 2016 +0100
 
     Added option for tasks to be recursive or once-per-item.
 
 commit 4ac99608c214b9e31080d77da368981bdbb571ff
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 22:57:50 2016 +0100
 
     Added description field for task parent class.
 
 commit 6c406880f482a4bfe63469d2347596d0fb2a1b18
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 22:49:57 2016 +0100
 
     Normalized code indent (vim gg=G).
 
 commit 8207cd26b70be5e90916b4972767bd24aa56a602
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 22:35:26 2016 +0100
 
     Added init of temp folder on Inbox level.
 
 commit df893418efb6931ed14d026f4455e0baf2d0f5e3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 18:09:30 2016 +0100
 
     Fixed whitespace.
 
 commit 9fb02363d729ebe97ede0a923cf82c939d41facb
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 18:09:08 2016 +0100
 
     Fixed issue with must-exist check.
 
 commit 9bb5cc6eb52d2c92a8f062339513b7967ce88ef5
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 17:51:29 2016 +0100
 
     Implemented Task for cleaning filenames.
 
 commit 23584971279d14b2eef7dbaf65e5b406f9dea1dd
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 16:57:32 2016 +0100
 
     Removed method-stubs that are implemented as tasks now.
 
 commit dba63eaf8d676f1a6dac71162b9d2826f2c61ba8
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 16:17:36 2016 +0100
 
     Changed TaskFilesMatch to support files *and* folders. Added MustExist task.
 
 commit 81dd3d8f605e2aa128cb23a6cd5a59c7d3dca4b5
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 16:16:35 2016 +0100
 
     Disabled timestamp in logging output for testing.
 
 commit e79aca5e92b9018f9b4c10e38a23b95fb79d3106
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 15:49:21 2016 +0100
 
     Refactored task FilesValid task to FileMatch for code reusability.
 
 commit acf066f541d420bf235836f95efe2941a3a9360a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 15:35:05 2016 +0100
 
     Added include paths and autoload of class files.
 
 commit 010f02a276f4e8beb4d228c75a7a42929f6a459f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 15:31:34 2016 +0100
 
     Renamed ValidFiles task to FilesValid for cleaner inheritance naming.
 
 commit 383316ae0d40e0926a9aaf3d134420bb8f3af09e
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 14:09:36 2016 +0100
 
     Added mechanism for handling tasks per item folder.
 
 commit 82737cc76b158f3dedf8ccd12b62b3ff0171b1ba
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 14:08:19 2016 +0100
 
     Added abstract Task class + first implementation.
 
 commit c6ab5e751d0fc1e5a2f700abeb765104036a2335
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 09:18:19 2016 +0100
 
     Implemented foundation for item processing recursion.
 
 commit a8e504255b443887d72d03b6a6e91574f56e501f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 09:17:28 2016 +0100
 
     Implemented method to return active config for current folder.
 
 commit 3a89eeae21170bd3bb392fd0f4521a20174be330
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 09:14:52 2016 +0100
 
     Cleaned loadConfigFromFile() and loadConfigFromString() to avoid redundancy.
 
 commit 5513ad8b42770ce4d98b1299dc4253b2677bda4f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 07:57:09 2016 +0100
 
     Item initialization seems good. Folder recursion work in progress.
 
 commit 4aba8b6c98d0371cf313a21cd40103c903618f7f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 05:27:46 2016 +0100
 
     Added logging of exceptions to Logger class.
 
 commit 450ffad9dcb0e59b2e1fb4e22d5e1794d6ee14c9
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Sat Nov 26 02:35:13 2016 +0100
 
     Implemented functionality until listing of items.
 
 commit a27cf636b426077a3ac9009d7301ec57a7948a41
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Nov 25 21:48:55 2016 +0100
 
     Merged almost all valuable code from prototype1 and implemented lots of mockup-code in real.
 
 commit 7b76924ceb96b20b2ef6aaff25bfb904611a0e06
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Nov 25 12:42:40 2016 +0100
 
     Renamed mockup to new source (src).
 
 commit b01c3ac4f7eb6eaa0a807720575e085eeea9f74a
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Fri Nov 25 12:42:17 2016 +0100
 
     Renamed old source to "prototype1".
 
 commit f2ebac04f4641105f1dc44920e412caeec1fce95
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Thu Nov 17 02:44:22 2016 +0100
 
     Added CIConfig class. And other stuff.
 
 commit 2645c8e0d9f6a810e7bf0cf9d89f3da9b9b16f73
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Nov 16 19:42:56 2016 +0100
 
     - Continued mockup code: more functions for inbox-tasks in CIFolder.
 
 commit fa9c327ef0af275d34d6865d223064455852eb07
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Wed Nov 16 09:28:16 2016 +0100
 
     Added "mockup" folder to draft code structure using pseudo-code.
 
 commit b068961b4c7ecece32dfea9cffacc382990b16bc
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Nov 15 22:21:52 2016 +0100
 
     Improved logging. Added function for preprocessing.
 
 commit 5f74ea4e6528492869851f18478a1fe03cb3ca68
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Nov 15 09:28:11 2016 +0100
 
     Added loading of config by subdir.
 
 commit 61fa9c3da84ce9810605a7f8d15da635d10110c3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Nov 15 09:27:13 2016 +0100
 
     Checking if cinbox object can be initialized before proceeding.
 
 commit 24b1e9013f33a5553f3944d2d2e3d575cdd9f463
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Nov 15 09:26:15 2016 +0100
 
     Removed hash-algorithm in config example as it breaks parse_ini_file().
 
 commit b10002193a01e07084097e467096f1537ce209f0
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Nov 15 07:48:09 2016 +0100
 
     Added support for relative subfolder names.
 
 commit a1f0b3666687dd7ac984ed05e325421cfafa5391
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Nov 15 07:46:39 2016 +0100
 
     Added MUST_EXIST, FILES_VALID to config example.
 
 commit 4a93371b071018520ccfd460acddcb2e0846272f
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Nov 15 06:46:45 2016 +0100
 
     CInbox: Introduction of CIFolder class.
 
 commit 1fce883f96e6520045ac86f7f18e6374d472ae2c
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Nov 15 01:17:02 2016 +0100
 
     CInbox: Added logging and filename cleaning.
 
 commit 1c53c6dc47a7a512c7a22828e23e2fead5b1c7b7
-Author: Peter <pb@avrd.com>
+Author: Peter <@ArkThis.com>
 Date:   Tue Nov 8 15:09:11 2016 +0100
 
     Added CIExec class for external application execution.
 
 commit c3c88717696a76bee1449f6c84af2fb8952deab3
-Author: Peter Bubestinger-Steindl <pb@avrd.com>
+Author: Peter Bubestinger-Steindl <@ArkThis.com>
 Date:   Tue Nov 8 10:04:22 2016 +0100
 
     Added basic PHP template.

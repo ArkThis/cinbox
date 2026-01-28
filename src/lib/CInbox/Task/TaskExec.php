@@ -215,7 +215,17 @@ abstract class TaskExec extends CITask
 
         $l->logMsg($l->getHeadline());
         $l->logInfo(sprintf(_("Executing command:\n'%s'"), $command));
-        $exitCode = $this->exec->execute($command);
+        $exitCode = $this->exec->execute($command, $showOutput=true);
+        $output = $this->exec->getLastOutputStr();
+
+        # Log $output of the $command call:
+        if (!empty($output))
+        {
+            $l->logLine();
+            $l->logInfo($output);
+            $l->logLine();
+        }
+
         $l->logNewline();
 
         return $exitCode;
