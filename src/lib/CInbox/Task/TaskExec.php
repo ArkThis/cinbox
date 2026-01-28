@@ -323,10 +323,11 @@ abstract class TaskExec extends CITask
 
         if (empty($prefix)) $prefix = $this->name;
 
-        $logFile = Helper::resolveString(
-                $this->tempFolder . DIRECTORY_SEPARATOR . $prefix . __DATETIME__ . '.log',
-                array(__DATETIME__ => date('Ymd_His'))
-                );
+        $logFile = sprintf("%s".DIRECTORY_SEPARATOR."%s-%s.log",
+            $this->tempFolder,
+            $prefix,
+            date('Ymd_His')
+        );
 
         return $logFile;
     }
