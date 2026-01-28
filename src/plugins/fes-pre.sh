@@ -12,6 +12,7 @@ echo "-------------------------------"
 echo ""
 echo "- Removing unwanted files (Thumbs.db, etc)."
 echo "- including 'common' files outside of Item dir for processing."
+echo "- Creating subfolders."
 echo ""
 
 
@@ -62,12 +63,29 @@ if [ $RESULT -ne 0 ]; then
 fi
 
 
-# TODO (optional):
-# Create common subfolders for an item?
+# Create common subfolders for an item
 # --------------------------------------------
-# mkdir $DIR_BASE/{metadata,access}
-# RESULT=$?
+mkdir -v $DIR_BASE/{Archivmaster,Derivate,Metadaten,Objektdokumentation}
+RESULT=$?
 
+if [ $RESULT -ne 0 ]; then
+    echo "ERROR: Creating subfolders in '$DIR_BASE' failed with exit code '$RESULT'."
+    exit $RESULT
+fi
+
+
+# Move filetypes to subfolders:
+# Create common subfolders for an item
+# --------------------------------------------
+mv -v $DIR_BASE/*-dirlist.csv $DIR_BASE/Objektdokumentation/
+mv -v $DIR_BASE/*.{jpg,pdf} $DIR_BASE/Objektdokumentation/
+mv -v $DIR_BASE/*.{wav,mkv} $DIR_BASE/Archivmaster/
+mv -v $DIR_BASE/*.{mp3,mp4} $DIR_BASE/Derivate/
+mv -v $DIR_BASE/*.{xml,json,csv} $DIR_BASE/Metadaten/
+
+
+
+# --------------------------------------------
 echo "FES general preproc: All good."
 EXIT_CODE=0
 
