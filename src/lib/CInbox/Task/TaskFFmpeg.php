@@ -288,7 +288,7 @@ class TaskFFmpeg extends AbstractTaskExecFF
     {
         $l = $this->logger;
 
-        $logFile = $this->getCmdLogfile();
+        $logFile = $this->createCmdLogFilename();
         $hashRecipes = $this->getHashRecipes($sourceFile);
 
         // TODO: Idea! Add method that resolves flavors of filename

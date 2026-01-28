@@ -261,7 +261,7 @@ class TaskMediaConch extends AbstractTaskExecFF
 
     // TODO: Add your methods here.
     // Default type is 'protected'. Use 'public' functions only where necessary.
-    
+
     /**
      * Returns the absolute path+filename of the failpass file.
      */
@@ -348,7 +348,7 @@ class TaskMediaConch extends AbstractTaskExecFF
 
         // Insert failpass-output parameter right after the program-call = at position 1:
         array_splice($parts, 1, 0, array($insert));
-        
+
         $l->logDebug(sprintf(
             _("Recipe parts after insert:\n%s"),
             print_r($parts, true)
@@ -369,7 +369,7 @@ class TaskMediaConch extends AbstractTaskExecFF
         $l = $this->logger;
         $config = $this->config;
 
-        $logFile = $this->getCmdLogfile();
+        $logFile = $this->createCmdLogFilename();
 
         // TODO: Idea! Add method that resolves flavors of filename
         // (with/without suffix, path, etc) and returns it as ready-to-use
@@ -384,10 +384,17 @@ class TaskMediaConch extends AbstractTaskExecFF
                 __LOGFILE__ => $logFile,
                 );
         #print_r($arguments); //DEBUG
+        $config->addPlaceholders($arguments);
 
         $failPassFile = $config->resolveString(self::MC_FAILPASS_FILE, $arguments);
         $this->resetFailPassFile($failPassFile);
         $recipe = $this->insertFailPassOutput($recipe, $failPassFile);
+
+        // Here's where the recipe is called to life!
+        $exitCode = $this->runRecipe($recipe);
+
+        /*
+        // --------------
         $command = $this->resolveCmd($recipe, $arguments);
 
         // Bail out if command string seems invalid:
@@ -408,11 +415,14 @@ class TaskMediaConch extends AbstractTaskExecFF
 
         // This is where the command actually gets executed!
         $exitCode = $this->exec->execute($command);
+        // --------------
+         */
+
+
+        // -------------------
         // NOTE: This currently only checks the exit-code of $command, but NOT
         // the PASS/FAIL status of MediaConch policies. This must happen
         // *after* this execution call of $command (=mediaconch).
-        // -------------------
-
         if ($exitCode == CIExec::EC_OK)
         {
             $l->logMsg(sprintf(
@@ -456,7 +466,7 @@ class TaskMediaConch extends AbstractTaskExecFF
 
 
     /**
-     * Parses the MediaConch failPassFile, and checks if the result for $sourceFile was FAIL or 
+     * Parses the MediaConch failPassFile, and checks if the result for $sourceFile was FAIL or
      * PASS.
      *
      * Returns true=PASS, false=FAIL.

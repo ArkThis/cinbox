@@ -255,7 +255,7 @@ class TaskMediaInfo extends AbstractTaskExecFF
         $l = $this->logger;
         $config = $this->config;
 
-        $logFile = $this->getCmdLogfile();
+        $logFile = $this->createCmdLogFilename();
 
         // TODO: Idea! Add method that resolves flavors of filename
         // (with/without suffix, path, etc) and returns it as ready-to-use
