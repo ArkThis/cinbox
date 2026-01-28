@@ -109,6 +109,9 @@ abstract class TaskExec extends CITask
         // Initialize handler for executing external commands:
         $this->exec = new CIExec();
         $this->command = null;
+
+        // Feel free to adjust the logfilename within your class and use-case later.
+        $this->logFile = $this->createCmdLogFilename();
     }
 
 
@@ -214,7 +217,15 @@ abstract class TaskExec extends CITask
         if (!$this->isCmdValid($command)) return false;
 
         $l->logMsg($l->getHeadline());
-        $l->logInfo(sprintf(_("Executing command:\n'%s'"), $command));
+        $logCommand = sprintf(
+            _("📑️ Complete uncut commandline and console output:\n'%s'\n"),
+            $command
+        );
+
+        # It also makes sense to log the commandline in the output log:
+        $l->logInfo($logCommand);
+        $this->writeToCmdLogfile($logCommand);
+
         $exitCode = $this->exec->execute($command, $showOutput=true);
         $output = $this->exec->getLastOutputStr();
 
@@ -223,6 +234,7 @@ abstract class TaskExec extends CITask
         {
             $l->logLine();
             $l->logInfo($output);
+            $this->writeToCmdLogfile($output);
             $l->logLine();
         }
 
@@ -271,11 +283,32 @@ abstract class TaskExec extends CITask
         }
     }
 
+    /**
+     * Set $this->logFile.
+     */
+    public function setCmdLogFile($logFile)
+    {
+        $this->logFile = $logFile;
+        // TODO: Shall we want to do some checks here?
+        // Like write-permissions?
+        return true;
+    }
+
 
     /**
-     * Get filename of logfile to use for external command execution.
-     * Filename is "$prefix + DATEIME" (TIME precision: seconds).
-     * If $prefix is empty, the task name will be used.
+     * Return the current filename of logfile to use for external command
+     * execution.
+     */
+    public function getCmdLogFile($prefix=null)
+    {
+        return $this->logFile;
+    }
+
+
+    /**
+     * Generate log filename:
+     * "$prefix + DATEIME" (TIME precision: seconds).
+     * If $prefix is empty, the $this->name of the current Task will be used.
      *
      * NOTE: Assumes $this->tempFolder to be set and initialized.
      *
@@ -283,7 +316,7 @@ abstract class TaskExec extends CITask
      *
      * @See: self::checkTempFolder()
      */
-    protected function getCmdLogfile($prefix=null)
+    public function createCmdLogFilename($prefix=null)
     {
         // Check if we have a proper temp folder:
         if (!$this->checkTempFolder()) return false;
@@ -362,6 +395,7 @@ abstract class TaskExec extends CITask
 
         // If no filename is given, use the task's property:
         if (empty($logFile)) $logFile = $this->logFile;
+        $l->logInfo(sprintf(_("Writing to command-logfile '%s'"), $logFile));
 
         if (!file_exists($logFile)) touch($logFile);
 
