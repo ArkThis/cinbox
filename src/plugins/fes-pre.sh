@@ -65,7 +65,8 @@ fi
 
 # Create common subfolders for an item
 # --------------------------------------------
-mkdir -v $DIR_BASE/{Archivmaster,Derivate,Metadaten,Objektdokumentation}
+#mkdir -v $DIR_BASE/{Archivmaster,Derivate,Metadaten,Objektdokumentation}
+mkdir -v $DIR_BASE/{Archivmaster,Derivate,Objektdokumentation}
 RESULT=$?
 
 if [ $RESULT -ne 0 ]; then
@@ -77,11 +78,12 @@ fi
 # Move filetypes to subfolders:
 # Create common subfolders for an item
 # --------------------------------------------
-mv -v $DIR_BASE/*-dirlist.csv $DIR_BASE/Objektdokumentation/
-mv -v $DIR_BASE/*.{jpg,pdf} $DIR_BASE/Objektdokumentation/
 mv -v $DIR_BASE/*.{wav,mkv} $DIR_BASE/Archivmaster/
-mv -v $DIR_BASE/*.{mp3,mp4} $DIR_BASE/Derivate/
-mv -v $DIR_BASE/*.{xml,json,csv} $DIR_BASE/Metadaten/
+mv -v $DIR_BASE/*.{mp3,mp4,mxf} $DIR_BASE/Derivate/
+mv -v $DIR_BASE/*-dirlist.csv $DIR_BASE/Objektdokumentation/
+mv -v $DIR_BASE/*.{jpg,JPG,pdf,PDF} $DIR_BASE/Objektdokumentation/
+mv -v $DIR_BASE/TIFF $DIR_BASE/Archivmaster/
+#mv -v $DIR_BASE/*.{xml,json,csv} $DIR_BASE/Metadaten/
 
 
 
