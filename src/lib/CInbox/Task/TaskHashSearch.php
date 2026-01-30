@@ -193,7 +193,7 @@ class TaskHashSearch extends TaskHash
         $l->logInfo(sprintf(_("searchHashCode: Hashtype is '%s'."), $hashType));
 
         // get a list of all files in folder:
-        $all = glob($sourceFolder . DIRECTORY_SEPARATOR . '*');
+        $all = glob($sourceFolder . DIRECTORY_SEPARATOR . '*', GLOB_BRACE);
         sort($all);
 
         $filesMatched = array();
