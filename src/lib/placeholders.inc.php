@@ -44,10 +44,12 @@ define('__PHP_SELF_NAME_ORIG__', '[@PHP_SELF_NAME_ORIG@]');
 define('__DIR_IN__', '[@DIR_IN@]');                 // Path of input file
 define('__FILE_IN__', '[@FILE_IN@]');               // A filename (in/source)
 define('__FILE_IN_NOEXT__', '[@FILE_IN_NOEXT@]');   // FILE_IN without its suffix/extension
+define('__FULL_IN_NOEXT__', '[@FULL_IN_NOEXT@]');   // Full path+filename without extension
 
 define('__DIR_OUT__', '[@DIR_OUT@]');               // Path of output file
 define('__FILE_OUT__', '[@FILE_OUT@]');             // A filename (out/target)
 define('__FILE_OUT_NOEXT__', '[@FILE_OUT_NOEXT@]'); // FILE_OUT without its suffix/extension
+define('__FULL_OUT_NOEXT__', '[@FULL_OUT_NOEXT@]');   // Full path+filename without extension
 
 define('__LOGFILE__', '[@LOGFILE@]');               // Name of a logfile
 
