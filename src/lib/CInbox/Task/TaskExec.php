@@ -226,6 +226,7 @@ abstract class TaskExec extends CITask
         $l->logInfo($logCommand);
         $this->writeToCmdLogfile($logCommand);
 
+        $l->logDebug(sprintf(_("Current working directory: %s"), getcwd()));
         $exitCode = $this->exec->execute($command, $showOutput=true);
         $output = $this->exec->getLastOutputStr();
 
