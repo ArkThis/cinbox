@@ -351,7 +351,7 @@ abstract class AbstractTaskExecFF extends TaskExec
         $matching = array();
         foreach ($patterns as $pattern)
         {
-            $result = glob($source . $pattern);
+            $result = glob($source . $pattern, GLOB_BRACE);
             $matching = array_merge($matching, $result);
         }
 
@@ -394,7 +394,18 @@ abstract class AbstractTaskExecFF extends TaskExec
         if (Helper::isInQuotes($source))
         {
             // Use as-is. Make sure the $target INI makes sense too. (MEDIACONCH_OUT)
-            $filesIn = array($source);
+            // Don't forget to unquote them when passing them on.
+            $filesIn = Helper::unQuote($source);
+            // NOTE: $source still stays quoted, so you can still check at any
+            // later point if glob shall be resolved or not :)
+
+            if (!Helper::isAbsolutePath($filesIn))
+            {
+                $filesIn = Helper::getAbsoluteName($filesIn, $this->sourceFolder);
+            }
+
+            # Wrap it in an array, as later code assumes one:
+            $filesIn = array($filesIn);
         }
         else
         {
