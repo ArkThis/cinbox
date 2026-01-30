@@ -271,7 +271,7 @@ class TaskHashSearch extends TaskHash
                 // ...and otherwise, resolve the pattern as-is.
             }
 
-            $matching = glob($pattern);
+            $matching = glob($pattern, GLOB_BRACE);
             sort($matching);
             $hashSources = array_merge($hashSources, $matching);
         }
@@ -391,7 +391,7 @@ class TaskHashSearch extends TaskHash
         $counter = 0;
         foreach ($hashMustExist as $pattern)
         {
-            $mustExist = glob($sourceFolder . DIRECTORY_SEPARATOR . $pattern);
+            $mustExist = glob($sourceFolder . DIRECTORY_SEPARATOR . $pattern, GLOB_BRACE);
             if (empty($mustExist))
             {
                 // Only existing files need a matching hashcode. So this is not an error:
