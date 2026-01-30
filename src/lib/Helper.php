@@ -123,6 +123,39 @@ class Helper
         return true;
     }
 
+    /**
+     * Check if given $string is possibly a glob pattern, by checking if it
+     * contains wildcard characters ? and *.
+     *
+     * @param $string String to check.
+     * @Returns true or false
+     */
+    public static function isGlobPattern($string)
+    {
+        // Just in case:
+        if (empty($string)) return null;
+
+        // If string contains wildcards, it's a glob pattern:
+        if (str_contains($string, array('?', '*')))
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    public static function isInQuotes($string)
+    {
+        $first = $string[0];
+        $last = mb_substr($string, -1);
+        #printf("first: %s, last: %s\n", $first, $last); #DEBUG
+
+        if (substr_compare($first.$last, '""', 0) == 0) { return true; }
+        if (substr_compare($first.$last, "''", 0) == 0) { return true; }
+
+        return false;
+    }
+
 
     /**
      * Checks if the given path name is an absolute or relative path,
