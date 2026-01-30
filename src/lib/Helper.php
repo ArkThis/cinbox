@@ -135,8 +135,14 @@ class Helper
         // Just in case:
         if (empty($string)) return null;
 
+        // NOTE: This *will* produce false-positives on escaped versions of
+        //       these characters.
+        $globs = array(
+            '?', '*', '{', '}', '[', ']'
+        );
+
         // If string contains wildcards, it's a glob pattern:
-        if (str_contains($string, array('?', '*')))
+        if (str_contains($string, $globs))
         {
             return true;
         }
@@ -154,6 +160,18 @@ class Helper
         if (substr_compare($first.$last, "''", 0) == 0) { return true; }
 
         return false;
+    }
+
+    /**
+     * Removes quotes from begin/end of string.
+     * Supportes characters are: " and '.
+     */
+    public static function unQuote($string)
+    {
+        $out = preg_replace("/^\"(.*)\"$/", "$1", $string);
+        $string= preg_replace("/^'(.*)'$/", "$1", $out);
+
+        return $string;
     }
 
 
