@@ -133,7 +133,7 @@ abstract class TaskFilesMatch extends CITask
             // TODO?:
             // It may be useful/necessary to support handing over 'flags' to glob()?
 
-            $result = glob($source);
+            $result = glob($source, GLOB_BRACE);
             $matching = array_merge($matching, $result);
 
             if (!empty($result))
