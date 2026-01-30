@@ -345,6 +345,7 @@ abstract class AbstractTaskExecFF extends TaskExec
             return array();
         }
 
+        # Resolve absolute path, so the command can easily be "replayed" from logs (eg for debugging):
         $source = Helper::getAbsoluteName($folder) . DIRECTORY_SEPARATOR;
 
         $matching = array();
@@ -389,22 +390,32 @@ abstract class AbstractTaskExecFF extends TaskExec
         $filesIn = array();
         $filesOut = array();
 
-        // getMatchingFiles() expects an array, so we wrap '$source' as one:
-        $filesIn = $this->getMatchingFiles($this->sourceFolder, array($source));
-        if (empty($filesIn))
+        // If $source is wrapped in quotes, do NOT resolve it, but use it literally:
+        if (Helper::isInQuotes($source))
         {
-            $l->logMsg(sprintf(
-                        _("No files matching '%s'. That's okay."),
-                        $source));
-            // It's not an error, so we return okay:
-            return true;
+            // Use as-is. Make sure the $target INI makes sense too. (MEDIACONCH_OUT)
+            $filesIn = array($source);
         }
+        else
+        {
+            // getMatchingFiles() expects an array, so we wrap '$source' as one:
+            $filesIn = $this->getMatchingFiles($this->sourceFolder, array($source));
 
-        $l->logMsg(sprintf(
-            _("Found %d source files matching '%s'."),
-            count($filesIn),
-            $source
-        ));
+            if (empty($filesIn))
+            {
+                $l->logMsg(sprintf(
+                    _("No files matching '%s'. That's okay."),
+                    $source));
+                // It's not an error, so we return okay:
+                return true;
+            }
+
+            $l->logMsg(sprintf(
+                _("Found %d source files matching '%s'."),
+                count($filesIn),
+                $source
+            ));
+        }
 
         // Resolving ONE output file ($fileOut) per input file ($fileIn), in a
         // key-sync array:
@@ -434,8 +445,18 @@ abstract class AbstractTaskExecFF extends TaskExec
             ));
         }
 
-        // Check if all sources have received matching targets and
-        // report an error otherwise:
+        return $this->checkIfSourceTargetMatch($filesIn, $filesOut);
+    }
+
+
+    /**
+     * Check if all sources have received matching targets and
+     * report an error otherwise.
+     */
+    protected function checkIfSourceTargetMatch($filesIn, $filesOut)
+    {
+        $l = $this->logger;
+
         try
         {
             if ($this->checkArrayKeysMatch2(array($filesIn, $filesOut)))
