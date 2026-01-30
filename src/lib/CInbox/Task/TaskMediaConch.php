@@ -371,15 +371,17 @@ class TaskMediaConch extends AbstractTaskExecFF
         $config = $this->config;
 
         $logFile = $this->createCmdLogFilename();
+        $sourceBasename = Helper::getBasename($sourceFile, $suffix=false);
+        $targetBasename = Helper::getBasename($targetFile, $suffix=false);
 
-        // IDEA: Add method that resolves flavors of filename
-        // (with/without suffix, path, etc) and returns it as ready-to-use
-        // $arguments array? Instead of doing it here.
+        // Instead of doing it here.
         $arguments = array(
                 __FILE_IN__ => $sourceFile,
                 __FILE_OUT__ => $targetFile,
-                __FILE_IN_NOEXT__ => Helper::getBasename($sourceFile, $suffix=false),
-                __FILE_OUT_NOEXT__ => Helper::getBasename($targetFile, $suffix=false),
+                __FILE_IN_NOEXT__ => $sourceBasename,
+                __FILE_OUT_NOEXT__ => $targetBasename,
+                __FULL_IN_NOEXT__ => dirname($sourceFile).DIRECTORY_SEPARATOR.$sourceBasename,
+                __FULL_OUT_NOEXT__ => dirname($targetFile).DIRECTORY_SEPARATOR.$targetBasename,
                 __DIR_IN__=> dirname($sourceFile),
                 __DIR_OUT__=> dirname($targetFile),
                 __LOGFILE__ => $logFile,
