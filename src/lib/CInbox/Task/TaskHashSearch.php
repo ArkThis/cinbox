@@ -57,7 +57,7 @@ class TaskHashSearch extends TaskHash
     // Names of config settings used by a task must be defined here.
     const CONF_HASH_SEARCH = 'HASH_SEARCH';             // Glob-pattern where to find hashcodes
     const CONF_HASH_MUST_EXIST = 'HASH_MUST_EXIST';     // Glob-pattern for which files hash must be present
-    const CONF_HASH_USE_CACHE = 'HASH_USE_CACHE';       // True: use existing hashcode; False: re-calculate hash *always*. @see: getTempHashForFilename($fileName);
+    const CONF_HASH_SEARCH_CACHE = 'HASH_SEARCH_CACHE'; // True: use existing hashcode; False: re-calculate hash *always*. @see: getTempHashForFilename($fileName);
 
 
 
@@ -68,7 +68,7 @@ class TaskHashSearch extends TaskHash
     // Class properties are defined here.
     protected $hashSearch;
     protected $hashMustExist;
-    protected $hashUseCache;
+    protected $hashSearchCache;
 
 
 
@@ -81,7 +81,7 @@ class TaskHashSearch extends TaskHash
         parent::__construct($CIFolder, self::TASK_LABEL);
 
         // Default: Use existing temp hashcodes (from HashGenerate Task) to speed things up:
-        $this->hashUseCache = true;
+        $this->hashSearchCache = true;
     }
 
 
@@ -164,14 +164,14 @@ class TaskHashSearch extends TaskHash
                         ));
         }
 
-        $setting = $config->get(self::CONF_HASH_USE_CACHE);
+        $setting = $config->get(self::CONF_HASH_SEARCH_CACHE);
         // This check is optional, so setting can be empty.
         if(!empty($setting))
         {
-            $this->hashUseCache = filter_var($setting, FILTER_VALIDATE_BOOLEAN); // true
+            $this->hashSearchCache = filter_var($setting, FILTER_VALIDATE_BOOLEAN); // true
             $l->logDebug(sprintf(
                         _("Hashcode search uses cache: %s"),
-                        $this->hashUseCache
+                        $this->hashSearchCache
                         ));
         }
 
@@ -222,7 +222,7 @@ class TaskHashSearch extends TaskHash
                 $filenameRelative = Helper::getAsRelativePath($fileName, $this->CIFolder->getBaseFolder());
                 $hashCode = null; //avoid loop leftovers.
 
-                if ($this->hashUseCache)
+                if ($this->hashSearchCache)
                 {
                     try
                     {
@@ -233,32 +233,31 @@ class TaskHashSearch extends TaskHash
                     {
                         // No temp-hash (cache) has been found for this file.
 
-                        // If we prefer to use the cache/temp hashcodes, let's mark this as warning...
+                        // Since here we prefer to use the cache/temp hashcodes, let's mark this as warning...
                         // as it's faster to re-generate the hashcodes, than to
                         // complain and bother the operator to reset and re-run?
-                        if ($this->hashUseCache)
-                        {
-                            $l->logWarning(sprintf(
-                                _("No temp hash existing for '%s'. This is odd. Did Task 'TaskHashGenerate' run before this one to populate the cache?"),
-                                $fileName
-                            ));
-                            //$this->setStatusPBCT();
-                            //continue;
-                        }
+                        $l->logWarning(sprintf(
+                            _("No temp hash existing for '%s'. This is odd. Did Task 'TaskHashGenerate' run before this one to populate the cache?"),
+                            $fileName
+                        ));
+                        //$this->setStatusPBCT();
+                        //continue;
                     }
                 }
 
                 // NOTE: Currently this *always* calculates a hashcode if none is found.
-                // - even if hashUseCache is True.
+                // - even if hashSearchCache is True.
                 if (empty($hashCode))
                 {
                     $l->logMsg(sprintf(
-                        _("Generating hashcode (%s) for '%s'..."),
+                        _("Newly generating hashcode (%s) for '%s'..."),
                         $hashType,
                         $fileName
                     ));
                     $hashCode = $this->generateHashcode($hashType, $fileName);
-                    // TODO: Must populate TempHashForFilename cache file, because it's used for HashValidate after MoveToArchive
+
+                    // NOTE: This hashcode is NOT saved to a tempfile anymore!
+                    //       HashGenerate must be run /before/ HashValidate.
                 }
 
                 $matches = $this->searchHashCode($sourceFolder, $hashCode);
