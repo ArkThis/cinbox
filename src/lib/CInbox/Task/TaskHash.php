@@ -137,7 +137,10 @@ abstract class TaskHash extends CITask
 
         if (!file_exists($fileName))
         {
-            throw new RuntimeException(sprintf(_("loadHashFromFile: Hashcode file '%s' does not exist."), $fileName));
+            throw new RuntimeException(sprintf(
+                _("loadHashFromFile: Hashcode file '%s' does not exist."),
+                $fileName
+            ));
         }
 
         $contents = file_get_contents($fileName);
@@ -190,7 +193,11 @@ abstract class TaskHash extends CITask
             $hashCode = $this->getTempHashForFilename($sourceFile);
             if (empty($hashCode))
             {
-                $l->logError(sprintf(_("Could not get temp-hash (%s) for '%s'."), $hashType, $sourceFile));
+                $l->logError(sprintf(
+                    _("Could not get temp-hash (%s) for '%s'."),
+                    $hashType,
+                    $sourceFile
+                ));
                 $errors++;
                 continue;
             }
@@ -234,7 +241,10 @@ abstract class TaskHash extends CITask
 
         if (!unlink($hashFile))
         {
-            throw new Exception(sprintf(_("Could not delete temp hashfile '%s'"), $hashFile));
+            throw new Exception(sprintf(
+                _("Could not delete temp hashfile '%s'"),
+                $hashFile
+            ));
         }
         return true;
     }
@@ -259,7 +269,11 @@ abstract class TaskHash extends CITask
 
         if (!in_array($hashType, $this->hashTypesAllowed))
         {
-            throw new Exception(sprintf(_("Hash type '%s' is invalid or not supported by this PHP version.\nValid types are: %s"), $hashType, implode(' ', $this->hashTypesAllowed)));
+            throw new Exception(sprintf(
+                _("Hash type '%s' is invalid or not supported by this PHP version.\nValid types are: %s"),
+                $hashType,
+                implode(' ', $this->hashTypesAllowed)
+            ));
         }
 
         return true;
