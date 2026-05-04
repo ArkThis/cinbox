@@ -21,6 +21,7 @@ namespace ArkThis\CInbox\Task;
 use \ArkThis\CInbox\CIFolder;
 use \ArkThis\Helper;
 use \Exception as Exception;
+use \RuntimeException as RuntimeException;
 
 
 /**
@@ -136,7 +137,7 @@ abstract class TaskHash extends CITask
 
         if (!file_exists($fileName))
         {
-            throw new Exception(sprintf(_("loadHashFromFile: Hashcode file '%s' does not exist."), $fileName));
+            throw new RuntimeException(sprintf(_("loadHashFromFile: Hashcode file '%s' does not exist."), $fileName));
         }
 
         $contents = file_get_contents($fileName);

@@ -21,6 +21,7 @@ namespace ArkThis\CInbox\Task;
 use \ArkThis\CInbox\CIFolder;
 use \ArkThis\Helper;
 use \Exception as Exception;
+use \RuntimeException as RuntimeException;
 
 
 /**
@@ -56,6 +57,7 @@ class TaskHashSearch extends TaskHash
     // Names of config settings used by a task must be defined here.
     const CONF_HASH_SEARCH = 'HASH_SEARCH';             // Glob-pattern where to find hashcodes
     const CONF_HASH_MUST_EXIST = 'HASH_MUST_EXIST';     // Glob-pattern for which files hash must be present
+    const CONF_HASH_USE_CACHE = 'HASH_USE_CACHE';       // True: use existing hashcode; False: re-calculate hash *always*. @see: getTempHashForFilename($fileName);
 
 
 
@@ -66,6 +68,7 @@ class TaskHashSearch extends TaskHash
     // Class properties are defined here.
     protected $hashSearch;
     protected $hashMustExist;
+    protected $hashUseCache;
 
 
 
@@ -76,6 +79,9 @@ class TaskHashSearch extends TaskHash
     function __construct(&$CIFolder)
     {
         parent::__construct($CIFolder, self::TASK_LABEL);
+
+        // Default: Use existing temp hashcodes (from HashGenerate Task) to speed things up:
+        $this->hashUseCache = true;
     }
 
 
@@ -134,6 +140,7 @@ class TaskHashSearch extends TaskHash
 
         $l = $this->logger;
         $config = $this->config;
+        $setting = null;            // Local variable to preprocess config setting.
 
         $this->hashSearch = $config->get(self::CONF_HASH_SEARCH);
         // This check is optional, so setting can be empty.
@@ -154,6 +161,17 @@ class TaskHashSearch extends TaskHash
             $l->logDebug(sprintf(
                         _("Hashcodes must exist for: %s"),
                         implode(', ', $this->hashMustExist)
+                        ));
+        }
+
+        $setting = $config->get(self::CONF_HASH_USE_CACHE);
+        // This check is optional, so setting can be empty.
+        if(!empty($setting))
+        {
+            $this->hashUseCache = filter_var($setting, FILTER_VALIDATE_BOOLEAN); // true
+            $l->logDebug(sprintf(
+                        _("Hashcode search uses cache: %s"),
+                        $this->hashUseCache
                         ));
         }
 
@@ -202,17 +220,45 @@ class TaskHashSearch extends TaskHash
             if (is_file($fileName))
             {
                 $filenameRelative = Helper::getAsRelativePath($fileName, $this->CIFolder->getBaseFolder());
+                $hashCode = null; //avoid loop leftovers.
 
-                $hashCode = $this->getTempHashForFilename($fileName);
+                if ($this->hashUseCache)
+                {
+                    try
+                    {
+                        // If cache enabled, look for temp hashfile from TaskHashGenerate:
+                        $hashCode = $this->getTempHashForFilename($fileName);
+                    }
+                    catch (RuntimeException $e)
+                    {
+                        // No temp-hash (cache) has been found for this file.
+
+                        // If we prefer to use the cache/temp hashcodes, let's mark this as warning...
+                        // as it's faster to re-generate the hashcodes, than to
+                        // complain and bother the operator to reset and re-run?
+                        if ($this->hashUseCache)
+                        {
+                            $l->logWarning(sprintf(
+                                _("No temp hash existing for '%s'. This is odd. Did Task 'TaskHashGenerate' run before this one to populate the cache?"),
+                                $fileName
+                            ));
+                            //$this->setStatusPBCT();
+                            //continue;
+                        }
+                    }
+                }
+
+                // NOTE: Currently this *always* calculates a hashcode if none is found.
+                // - even if hashUseCache is True.
                 if (empty($hashCode))
                 {
-                    // TODO: decide how to handle this situation. Is it critical? Should this be just a warning message?
-                    $l->logError(sprintf(
-                        _("No temp hash existing for '%s'. This is odd. Task 'TaskHashGenerate' must have been run before this one."),
+                    $l->logMsg(sprintf(
+                        _("Generating hashcode (%s) for '%s'..."),
+                        $hashType,
                         $fileName
                     ));
-                    $this->setStatusPBCT();
-                    continue;
+                    $hashCode = $this->generateHashcode($hashType, $fileName);
+                    // TODO: Must populate TempHashForFilename cache file, because it's used for HashValidate after MoveToArchive
                 }
 
                 $matches = $this->searchHashCode($sourceFolder, $hashCode);
