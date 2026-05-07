@@ -288,7 +288,7 @@ class TaskFixNameCase extends TaskFilesMatch
         foreach ($all as $file)
         {
             $fileInfo = pathinfo($file);    // Get filename components the easy way :)
-            print_r($fileInfo); //DELME
+            //print_r($fileInfo); //DELME
 
             // This is the part where any string-transformation function is called
             // by string ($userFunc):
