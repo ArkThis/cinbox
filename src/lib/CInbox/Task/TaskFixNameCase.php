@@ -157,6 +157,15 @@ class TaskFixNameCase extends TaskFilesMatch
             $this->nc_lower_suffix = $setting;
         }
 
+        if (empty($this->nc_upper) &&
+            empty($this->nc_lower) &&
+            empty($this->nc_upper_suffix) &&
+            empty($this->nc_lower_suffix))
+        {
+            // Nothing to check:
+            $this->skipIt();
+        }
+
         // Must return true on success:
         return true;
     }
@@ -347,7 +356,7 @@ class TaskFixNameCase extends TaskFilesMatch
 
         return true;
     }
-        
+
     //@}
 
 }
