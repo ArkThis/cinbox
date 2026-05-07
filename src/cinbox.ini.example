@@ -118,6 +118,12 @@ FILES_VALID[] = *.xxx
 
 MUST_EXIST[] = *.avi
 
+; Force filename cases:
+;NAMECASE_UPPER = md5sums
+;NAMECASE_LOWER = *.*
+;NAMECASE_UPPER_SUFFIX = *.xxx
+;NAMECASE_LOWER_SUFFIX = *.MD5
+
 # FFmpeg Task:
 ;FFMPEG_IN[] = *.avi
 ;FFMPEG_OUT[] = [@FILE_IN_NOEXT@].mkv
