@@ -24,11 +24,11 @@ use \Exception as Exception;
 
 
 /**
- * Checks if entries in this folder (files/subfolders) exist, according
- * to a given glob pattern.
+ * Checks if entries in this folder (files/subfolders) match given glob
+ * patterns.
  *
  * This class is abstract and should be used as parent class for tasks
- * that require checking existence of certain files.
+ * that require checking/handling certain files by glob-patterns.
  *
  *
  * @author Peter Bubestinger-Steindl (cinbox (at) ArkThis.com)
@@ -98,7 +98,11 @@ abstract class TaskFilesMatch extends CITask
 
         // If there's no patterns, there's nothing to do here. Fine. Returning
         // no results, but also no errors:
-        if (empty($patterns)) return array();
+        if (empty($patterns))
+        {
+            $l->logDebug(_("getMatchingFiles: empty match-pattern given. Nothing to do?"));
+            return array();
+        }
 
         $base_dir = $CIFolder->getPathname();
         $l->logDebug(sprintf(
