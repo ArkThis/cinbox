@@ -50,9 +50,12 @@ class TaskFilesValid extends TaskFilesMatch
     const TASK_LABEL = 'Valid filetypes';
 
     // Names of config settings used by a task:
-    const CONF_FILES_VALID = 'FILES_VALID';
-    const CONF_FILES_INVALID = 'FILES_INVALID';
+    //@{
+    const CONF_FILES_VALID = 'FILES_VALID';         ///< file/folder patterns/names allowed
+    const CONF_FILES_INVALID = 'FILES_INVALID';     ///< file/folder patterns/names not allowed
 
+    const CONF_FILES_ZERO_SIZE = 'FILES_ZERO_SIZE'; ///< allow those to have 0-Byte payload
+    //@}
 
 
     /* ========================================
@@ -61,6 +64,7 @@ class TaskFilesValid extends TaskFilesMatch
 
     private $patternsValid;
     private $patternsInvalid;
+    private $patternsZeroSize;
 
 
 
@@ -71,6 +75,9 @@ class TaskFilesValid extends TaskFilesMatch
     function __construct(&$CIFolder)
     {
         parent::__construct($CIFolder, self::TASK_LABEL);
+
+        // By default, nothing may be empty here:
+        $this->patternsZeroSize = null;
     }
 
 
@@ -90,6 +97,9 @@ class TaskFilesValid extends TaskFilesMatch
 
         // Test non-valid files pattern:
         if ($this->hasNonValidFiles($this->CIFolder, $this->patternsValid)) return false;
+
+        // Test for 0-byte filesize:
+        if ($this->hasZeroSizeFiles($this->CIFolder, $this->patternsZeroSize)) return false;
 
         $this->setStatusDone();
         return true;
@@ -127,7 +137,20 @@ class TaskFilesValid extends TaskFilesMatch
                         ));
         }
 
-        if (empty($this->patternsValid) && empty($this->patternsInvalid))
+        $this->patternsZeroSize = $config->get(self::CONF_FILES_ZERO_SIZE);
+        // This check is optional, so setting can be empty.
+        if (!empty($this->patternsZeroSize))
+        {
+            if (!$this->optionIsArray($this->patternsZeroSize, self::CONF_FILES_ZERO_SIZE)) return false;
+            $l->logDebug(sprintf(
+                        _("Patterns for allowed zero-size files: %s"),
+                        implode(', ', $this->patternsZeroSize)
+                        ));
+        }
+
+        if (empty($this->patternsValid) &&
+            empty($this->patternsInvalid) &&
+            empty($this->patternsZeroSize))
         {
             // Nothing to check:
             $this->skipIt();
@@ -213,6 +236,82 @@ class TaskFilesValid extends TaskFilesMatch
                     implode(', ', $patterns)
                     ));
         return false;
+    }
+
+
+    /**
+     * Returns True if folder contains files that do NOT match the patterns in 'FILES_ZERO_SIZE',
+     * but are 0-Byte in size - and False if not.
+     */
+    protected function hasZeroSizeFiles($CIFolder, $patterns)
+    {
+        $l = $this->logger;
+
+        if (empty($patterns))
+        {
+            $l->logInfo(_("No zero-size files allowed."));
+        }
+
+        // Make a list of all files (!) in this folder:
+        $all = $this->getMatchingFiles($CIFolder, array('*', '.[!.]*', '..?'));
+        // Make a list of files that MAY HAVE 0-byte in size:
+        $matching = $this->getMatchingFiles($CIFolder, $patterns);
+
+        $count = 0;
+        $valid = 0;
+        $files = array();
+
+        // Now check each one of them...
+        foreach ($all as $file)
+        {
+            // If file is empty...
+            if (0 == filesize($file))
+            {
+                $count++;
+                $l->logDebug(sprintf(
+                    _("File is empty: '%s'"),
+                    $file
+                ));
+
+                // Empty, but allowed in CONF_FILES_ZERO_SIZE:
+                if (in_array($file, $matching))
+                {
+                    $valid++;
+                    $l->logInfo(sprintf(
+                        _("Empty file ALLOWED: '%s'"),
+                        $file
+                    ));
+                }
+                else // ERROR.
+                {
+                    // Add to list of "bad files":
+                    $files[] = $file;
+                    $l->logError(sprintf(
+                        _("Empty file found: '%s' !"),
+                        $file
+                    ));
+                }
+            }
+        }
+
+        if (!empty($files))
+        {
+            $l->logError(sprintf(
+                        _("Found %d of %d zero-size file(s) not allowed in '%s':\n%s"),
+                        $count,
+                        count($files),
+                        $CIFolder->getSubDir(),
+                        print_r($files, true)
+                        ));
+            $this->setStatusError();
+            return true;
+        }
+
+        // If all found files are valid: GOOD!
+        if ($count == $valid) return false;
+
+        // Otherwise: We found unwanted 0-byte-size files:
+        return true;
     }
 
 }
