@@ -27,14 +27,15 @@ for PATTERN in $PATTERNS; do
 
     if [ $RESULT -eq 0 ]; then
         echo "Found $COUNT matches for '$PATTERN'."
-        #echo "$LIST" # DEBUG
 
         if [ $COUNT -gt $LIMIT ]; then
-            echo "ERROR: Found ($COUNT) exceeds limit ($LIMIT)."
+            echo "ERROR: Found ($COUNT) exceeds limit ($LIMIT):"
+            echo "$LIST"
+            #echo "Matching: $LIST"
             EXIT_CODE=1
         fi
     else
-        echo "No match for '$PATTERN'"
+        echo "No match for '$PATTERN'. Good."
     fi
     echo ""
 done
