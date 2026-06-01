@@ -54,6 +54,8 @@ TASKLIST[] = LogfileCopy
 [__DEFAULT__]
 CLEAN_SOURCE[] = illegal
 CLEAN_SOURCE[] = umlauts
+; Load external PHP snippet for custom character mappings:
+CLEAN_CUSTOM[] = [@PHP_SELF_DIR@]/plugins/CleanFilenames_custom.php
 
 HASH_TYPE = md5
 HASH_OUTPUT = folder

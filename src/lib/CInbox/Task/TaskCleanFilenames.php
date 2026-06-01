@@ -20,6 +20,7 @@ namespace ArkThis\CInbox\Task;
 
 use \ArkThis\CInbox\CIFolder;
 use \Exception as Exception;
+use \RuntimeException as RuntimeException;
 
 
 /**
@@ -49,6 +50,7 @@ class TaskCleanFilenames extends TaskFilesMatch
 
     // Names of config settings used by a task must be defined here.
     const CONF_CLEAN_SOURCE = 'CLEAN_SOURCE';
+    const CONF_CLEAN_CUSTOM = 'CLEAN_CUSTOM';
 
     // Mapping of characters to escape them in a meaningful way:
     // Umlauts:
@@ -129,8 +131,10 @@ class TaskCleanFilenames extends TaskFilesMatch
      * ======================================= */
 
     private $charMappings;
+    private $charMappingsCustom;
     private $charMapping;
     protected $cleanSource;
+    protected $cleanCustom;
 
 
 
@@ -142,6 +146,10 @@ class TaskCleanFilenames extends TaskFilesMatch
     {
         parent::__construct($CIFolder, self::TASK_LABEL);
 
+        // By default, we don't expect or use external mappings:
+        $this->charMappingsCustom = null;
+
+        // Define the default lists:
         $this->charMappings = array(
                 'illegal' => self::$CHARS_ILLEGAL,
                 'whitespace' => self::$CHARS_WHITESPACE,
@@ -169,6 +177,9 @@ class TaskCleanFilenames extends TaskFilesMatch
 
         // Construct correct character mapping based on config:
         $this->setMapping($this->cleanSource);
+
+        // Load custom mappings from external files:
+        $this->loadCustom();
 
         return true;
     }
@@ -237,10 +248,22 @@ class TaskCleanFilenames extends TaskFilesMatch
         $l = $this->logger;
         $config = $this->config;
 
+        // ---------------------------
         $this->cleanSource = $config->get(self::CONF_CLEAN_SOURCE);
         // TODO: Set defaults if no config is given?
         if (!$this->optionIsArray($this->cleanSource, self::CONF_CLEAN_SOURCE)) return false;
         $l->logDebug(sprintf(_("Clean source: %s"), implode(', ', $this->cleanSource)));
+
+        // ---------------------------
+        $setting = $config->get(self::CONF_CLEAN_CUSTOM);
+        // This is optional, therefore it's okay if setting is empty:
+        if(!empty($setting))
+        {
+            // TODO: Only load mappings from subfolder of cinbox (eg plugins) for "better" security?
+            if (!$this->optionIsArray($setting, self::CONF_CLEAN_CUSTOM)) return false;
+            $l->logDebug(sprintf(_("Custom mappings for CleanFilenames: %s"), implode(', ', $setting)));
+            $this->cleanCustom = $setting;
+        }
 
         return true;
     }
@@ -252,10 +275,11 @@ class TaskCleanFilenames extends TaskFilesMatch
     // --------------------------------------------
 
     /**
-     * Define custom mapping of characters for cleanFilename().
+     * Assigns char-replacement mappings by key in $charMappings.
      */
     public function setMapping($mapping)
     {
+        // Starts empty:
         $charMapping = array();
 
         foreach ($mapping as $key)
@@ -265,6 +289,31 @@ class TaskCleanFilenames extends TaskFilesMatch
         }
 
         $this->charMapping = $charMapping;
+
+        return true;
+    }
+
+
+    /**
+     * Adds character-mappings from $mappings to $this->charMappings.
+     * The keys declared in $mappings will then be valid options in
+     * CONF_CLEAN_SOURCE.
+     */
+    public function addMapping($mappings)
+    {
+        $l = $this->logger;
+
+        $keys = array_keys($mappings);
+        $l->logMsg(sprintf(
+            _("Adding %d new mappings as option for %s: %s"),
+            count($keys),
+            self::CONF_CLEAN_SOURCE,
+            implode(', ', $keys)
+        ));
+
+        $charMappings = array_merge($mappings, $this->charMappings);
+
+        $this->charMappings = $charMappings;
 
         return true;
     }
@@ -305,6 +354,72 @@ class TaskCleanFilenames extends TaskFilesMatch
         }
 
         return true;
+    }
+
+
+    /**
+     * Includes an external PHP code snippet, expecting the variable '$charMappingsCustom' to be defined.
+     * The syntax there should be:
+     *
+     * `$charMappingsCustom['custom1'] = array('in' => 'out', ...)`
+     */
+    public function loadCustom()
+    {
+        $l = $this->logger;
+
+        // This is initialized here, but overwritten once a custom file has been included below:
+        $charMappingsCustom = null;
+
+        // This contains a list of files to include:
+        $cleanCustom = $this->cleanCustom;
+        if (empty($cleanCustom))
+        {
+            $l->logDebug(_("No custom mappings defined."));
+            return false;
+        }
+        // NOTE: loadSettings() should already check /if/ cleanCustom is an array or not!
+
+        foreach ($cleanCustom as $file)
+        {
+            if (!file_exists($file))
+            {
+                throw new RuntimeException(sprintf(
+                    _("Custom mapping file not found: '%s'"),
+                    $file
+                ));
+            }
+
+            $l->logMsg(sprintf(
+                _("Loading custom mapping from file '%s'..."),
+                $file
+            ));
+
+            // Actually load (=include the file) if it exists:
+            // NOTE: Beware that this includes /and potentially runs/ code from $file!
+            //       (so make sure it's within CInbox' plugins or binary
+            //       folder, and keep it clean and safe)
+            $included = include($file);
+            // ---------------------------------------------
+
+            // We expect the variable "$charMappingsCustom" to be populated in the included $file:
+            if (empty($charMappingsCustom) OR !is_array($charMappingsCustom))
+            {
+                throw new Exception(sprintf(
+                    _("Invalid custom mapping: '%s' variable is empty or not an array set in '%s'!"),
+                    '$charMappingsCustom[]',
+                    $file
+                ));
+            }
+
+            $l->logInfo(sprintf(
+                _("Loaded custom mappings from '%s':\n%s\n"),
+                $file,
+                print_r($included, true)
+                ));
+
+            // TODO: add mapping to use it
+            $this->addMapping($charMappingsCustom);
+        }
     }
 
 
