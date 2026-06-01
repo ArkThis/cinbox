@@ -371,8 +371,13 @@ class CInbox
 
         $config->loadConfigFromFile();
 
-        // Only basic placeholders resolved here (pre-item information):
-        $config->initPlaceholders();
+        // Provide cinbox-wide information, such as paths, etc:
+        $arguments = array(
+            __DIR_SOURCE__ => $this->sourceFolder       # Provide the working source folder of this CInbox.
+        );
+
+        // Only basic placeholders are resolved here (pre-item information):
+        $config->initPlaceholders($arguments);
 
         return true;
     }
