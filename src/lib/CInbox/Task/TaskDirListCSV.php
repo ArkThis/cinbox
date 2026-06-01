@@ -26,7 +26,6 @@ use \Exception as Exception;
 
 /**
  * Saves a directory listing in CSV format.
- * It adds the file suffix 'self::FILE_SUFFIX', which defaults to "csv".
  * Relies on TaskDirListing to create a list of files/folders of this item.
  *
  *
@@ -50,7 +49,6 @@ class TaskDirListCSV extends TaskDirListing
 
     // Task name/label:
     const TASK_LABEL = 'Directory listing (CSV)';
-    const FILE_SUFFIX = 'csv';
 
 
 
@@ -97,7 +95,7 @@ class TaskDirListCSV extends TaskDirListing
      */
     public function getFilename()
     {
-        $fileName = $this->dirListFile .'.'. self::FILE_SUFFIX;
+        $fileName = $this->dirListFile;
         return $fileName;
     }
 
