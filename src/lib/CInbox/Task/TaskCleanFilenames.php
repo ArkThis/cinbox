@@ -380,7 +380,6 @@ class TaskCleanFilenames extends TaskFilesMatch
         $charsReplace = array_values($this->charMapping);
         $cleanFilename = str_replace($charsIllegal, $charsReplace, $filename);
 
-
         $cleanFilename = $this->convertEncoding(
             $cleanFilename,
             $toEncoding = $this->cleanConvert,
@@ -481,10 +480,11 @@ class TaskCleanFilenames extends TaskFilesMatch
         // Only convert /IF/ from and to encoding differ:
         if (strcmp($fromEncoding, $toEncoding) == 0)
         {
-            $l->logMsg(sprintf(
-                _("From/To encodings (%s/%s) match: skipping conversion. 😎️"),
+            $l->logDebug(sprintf(
+                _("From/To encodings (%s/%s) match: skipping conversion. 😎️ (%s)"),
                 $fromEncoding,
-                $toEncoding
+                $toEncoding,
+                $string
             ));
 
             return $string;
