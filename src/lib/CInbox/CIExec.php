@@ -161,7 +161,7 @@ class CIExec
 
         // Show command output in the terminal:
         if ($showOutput) {
-            print_r($this->getLastOutputStr());
+            print_r($this->getLastOutputStr(). "\n");
         }
 
         return $result;
