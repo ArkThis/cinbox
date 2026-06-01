@@ -283,11 +283,24 @@ class TaskCleanFilenames extends TaskFilesMatch
     {
         // Starts empty:
         $charMapping = array();
+        // Load object-wide list locally for easier handling:
+        $charMappings = $this->charMappings;
 
         foreach ($mapping as $key)
         {
             $key = strtolower($key);
-            $charMapping = array_merge($charMapping, $this->charMappings[$key]);
+
+            // Handle and catch if $key refers to an invalid list:
+            if (!array_key_exists($key, $charMappings))
+            {
+                throw new RuntimeException(sprintf(
+                    _("Invalid char mapping key '%s'! Valid options are: %s"),
+                    $key,
+                    implode(', ', array_keys($charMappings))
+                ));
+            }
+
+            $charMapping = array_merge($charMapping, $charMappings[$key]);
         }
 
         $this->charMapping = $charMapping;
