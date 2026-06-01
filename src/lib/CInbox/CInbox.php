@@ -373,7 +373,7 @@ class CInbox
 
         // Provide cinbox-wide information, such as paths, etc:
         $arguments = array(
-            __DIR_SOURCE__ => $this->sourceFolder       # Provide the working source folder of this CInbox.
+            __DIR_INPUT__ => $this->sourceFolder       # Provide the working source folder of this CInbox.
         );
 
         // Only basic placeholders are resolved here (pre-item information):

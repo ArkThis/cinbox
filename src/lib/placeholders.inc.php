@@ -27,7 +27,7 @@ define('__SECOND__', '[@SECOND@]');
 define('__DATETIME__', '[@DATETIME@]');
 
 define('__DIR_HOME__', '[@DIR_HOME@]');             // Value of $_SERVER['HOME'].
-define('__DIR_SOURCE__', '[@DIR_SOURCE@]');         // Value of source folder (provided by '-i' argument)
+define('__DIR_INPUT__', '[@DIR_INPUT@]');           // Value of source folder (provided by '-i' argument)
 
 // Information about the CInbox executable's location itself.
 // This is useful for relative paths, like 'plugins' etc..
