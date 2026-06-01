@@ -52,10 +52,21 @@ TASKLIST[] = LogfileCopy
 
 
 [__DEFAULT__]
+; Sanitize filenames (using predefined lists, by name):
 CLEAN_SOURCE[] = illegal
 CLEAN_SOURCE[] = umlauts
+;CLEAN_SOURCE[] = quotation
+
 ; Load external PHP snippet for custom character mappings:
 CLEAN_CUSTOM[] = [@PHP_SELF_DIR@]/plugins/CleanFilenames_custom.php
+;CLEAN_SOURCE[] = custom1
+
+; Intermediate encoding to use to stripping out characters not present in the
+; given encoding standard:
+; Use 'iso-8859-1' for Latin1 characters (=removing all emojis or other Unicode symbols)
+CLEAN_CONVERT = iso-8859-1
+;CLEAN_CONVERT = ASCII
+
 
 HASH_TYPE = md5
 HASH_OUTPUT = folder

@@ -21,6 +21,7 @@ namespace ArkThis\CInbox\Task;
 use \ArkThis\CInbox\CIFolder;
 use \Exception as Exception;
 use \RuntimeException as RuntimeException;
+use \UConverter as UConverter;
 
 
 /**
@@ -51,6 +52,7 @@ class TaskCleanFilenames extends TaskFilesMatch
     // Names of config settings used by a task must be defined here.
     const CONF_CLEAN_SOURCE = 'CLEAN_SOURCE';
     const CONF_CLEAN_CUSTOM = 'CLEAN_CUSTOM';
+    const CONF_CLEAN_CONVERT = 'CLEAN_CONVERT';
 
     // Mapping of characters to escape them in a meaningful way:
     // Umlauts:
@@ -135,6 +137,7 @@ class TaskCleanFilenames extends TaskFilesMatch
     private $charMapping;
     protected $cleanSource;
     protected $cleanCustom;
+    protected $cleanConvert;
 
 
 
@@ -178,10 +181,16 @@ class TaskCleanFilenames extends TaskFilesMatch
         // Load custom mappings from external files:
         // (This must come /before/ setMapping, so $charMappings contains the
         // new custom options:
-        $this->loadCustom();
+        if (!empty($this->cleanCustom))
+        {
+            $this->loadCustom();
+        }
 
         // Construct correct character mapping based on config:
-        $this->setMapping($this->cleanSource);
+        if (!empty($this->cleanSource))
+        {
+            $this->setMapping($this->cleanSource);
+        }
 
         return true;
     }
@@ -204,7 +213,10 @@ class TaskCleanFilenames extends TaskFilesMatch
         $error = 0;
         foreach ($all as $filename)
         {
-            $clean = $this->cleanFilename(basename($filename));
+            // TODO: only clean filename *IF* it contains non alphanumeric characters (or spaces).
+
+            $base = basename($filename);
+            $clean = $this->cleanFilename($base);
             $fileIn = $filename;
             $fileOut = dirname($filename) . DIRECTORY_SEPARATOR . $clean;
 
@@ -251,10 +263,14 @@ class TaskCleanFilenames extends TaskFilesMatch
         $config = $this->config;
 
         // ---------------------------
-        $this->cleanSource = $config->get(self::CONF_CLEAN_SOURCE);
-        // TODO: Set defaults if no config is given?
-        if (!$this->optionIsArray($this->cleanSource, self::CONF_CLEAN_SOURCE)) return false;
-        $l->logDebug(sprintf(_("Clean source: %s"), implode(', ', $this->cleanSource)));
+        $setting = $config->get(self::CONF_CLEAN_SOURCE);
+        if(!empty($setting))
+        {
+            // TODO: Set defaults if no config is given?
+            if (!$this->optionIsArray($setting, self::CONF_CLEAN_SOURCE)) return false;
+            $l->logDebug(sprintf(_("Clean source: %s"), implode(', ', $setting)));
+            $this->cleanSource = $setting;
+        }
 
         // ---------------------------
         $setting = $config->get(self::CONF_CLEAN_CUSTOM);
@@ -263,8 +279,18 @@ class TaskCleanFilenames extends TaskFilesMatch
         {
             // TODO: Only load mappings from subfolder of cinbox (eg plugins) for "better" security?
             if (!$this->optionIsArray($setting, self::CONF_CLEAN_CUSTOM)) return false;
-            $l->logDebug(sprintf(_("Custom mappings for CleanFilenames: %s"), implode(', ', $setting)));
+            $l->logDebug(sprintf(_("External files to load for custom mappings: %s"), implode(', ', $setting)));
             $this->cleanCustom = $setting;
+        }
+
+        // ---------------------------
+        $setting = $config->get(self::CONF_CLEAN_CONVERT);
+        // This is optional, therefore it's okay if setting is empty:
+        if(!empty($setting))
+        {
+            // TODO: Only load mappings from subfolder of cinbox (eg plugins) for "better" security?
+            $l->logDebug(sprintf(_("Enabled encoding-conversion to: %s"), $setting));
+            $this->cleanConvert = strtoupper($setting); # Force UPPERCASE
         }
 
         return true;
@@ -347,9 +373,19 @@ class TaskCleanFilenames extends TaskFilesMatch
             throw new Exception(_("Empty or invalid character map."));
         }
 
+        // Detect original encoding:
+        $fromEncoding = mb_detect_encoding($filename, 'auto');
+
         $charsIllegal = array_keys($this->charMapping);
         $charsReplace = array_values($this->charMapping);
         $cleanFilename = str_replace($charsIllegal, $charsReplace, $filename);
+
+
+        $cleanFilename = $this->convertEncoding(
+            $cleanFilename,
+            $toEncoding = $this->cleanConvert,
+            $fromEncoding       # Assumed to be UTF-8 usually (in 2026)
+        );
 
         return $cleanFilename;
     }
@@ -438,6 +474,53 @@ class TaskCleanFilenames extends TaskFilesMatch
     }
 
 
+    public function convertEncoding($string, $toEncoding, $fromEncoding='UTF-8')
+    {
+        $l = $this->logger;
+
+        // Only convert /IF/ from and to encoding differ:
+        if (strcmp($fromEncoding, $toEncoding) == 0)
+        {
+            $l->logMsg(sprintf(
+                _("From/To encodings (%s/%s) match: skipping conversion. 😎️"),
+                $fromEncoding,
+                $toEncoding
+            ));
+
+            return $string;
+        }
+
+        // Change the encoding of a string:
+        $options = array(
+            'to_subst' => '_'
+        );
+
+        $l->logInfo(sprintf(
+            _("Converting encoding from '%s' to '%s': %s"),
+            $fromEncoding,
+            $toEncoding,
+            $string
+        ));
+
+		// Convert to limited charset, to replace unwanted characters:
+        $converted = Uconverter::transcode(
+            $string,
+            $toEncoding,
+            $fromEncoding,
+            $options
+        );
+
+		// Convert 'back' to wider charset (for sanity and compatibility):
+		// (swapped from/to encoding arguments)
+        $converted2 = Uconverter::transcode(
+            $converted,
+            $fromEncoding,
+            $toEncoding,
+            $options
+        );
+
+        return $converted2;
+    }
 
 }
 
