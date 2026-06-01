@@ -229,7 +229,7 @@ class TaskCleanFilenames extends TaskFilesMatch
                     $error++;
                 }
 
-                $l->logMsg(sprintf(_("Cleaning filename '%s' to '%s'."), $fileIn, $clean));
+                $l->logInfo(sprintf(_("Cleaning filename '%s' to '%s'."), $base, $clean));
                 $l->logDebug(sprintf(_("  - In:  '%s'"), $fileIn));
                 $l->logDebug(sprintf(_("  - Out: '%s'"), $fileOut));
             }
