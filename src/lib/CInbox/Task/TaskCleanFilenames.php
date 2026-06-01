@@ -175,11 +175,13 @@ class TaskCleanFilenames extends TaskFilesMatch
     {
         if (!parent::init()) return false;
 
+        // Load custom mappings from external files:
+        // (This must come /before/ setMapping, so $charMappings contains the
+        // new custom options:
+        $this->loadCustom();
+
         // Construct correct character mapping based on config:
         $this->setMapping($this->cleanSource);
-
-        // Load custom mappings from external files:
-        $this->loadCustom();
 
         return true;
     }
