@@ -503,7 +503,7 @@ class TaskCleanFilenames extends TaskFilesMatch
         ));
 
 		// Convert to limited charset, to replace unwanted characters:
-        $converted = Uconverter::transcode(
+        $converted = UConverter::transcode(
             $string,
             $toEncoding,
             $fromEncoding,
@@ -512,7 +512,7 @@ class TaskCleanFilenames extends TaskFilesMatch
 
 		// Convert 'back' to wider charset (for sanity and compatibility):
 		// (swapped from/to encoding arguments)
-        $converted2 = Uconverter::transcode(
+        $converted2 = UConverter::transcode(
             $converted,
             $fromEncoding,
             $toEncoding,
