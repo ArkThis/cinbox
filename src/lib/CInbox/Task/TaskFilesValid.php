@@ -264,6 +264,15 @@ class TaskFilesValid extends TaskFilesMatch
         // Now check each one of them...
         foreach ($all as $file)
         {
+			if (is_dir($file))
+			{
+				$l->logDebug(sprintf(
+					_("Skipping 0-byte check for '%s': It's a folder"),
+					$file
+				));
+				continue;
+			}
+
             // If file is empty...
             if (0 == filesize($file))
             {
