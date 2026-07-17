@@ -1,5 +1,11 @@
-; Example configuration file for Common Inbox
+; ==============================================================
+; 'cinbox.ini'
+; --------------------------------------------------------------
+;
+; Example configuration file for Common Inbox.
 ; For syntax highlighting in VIM: set filetype=dosini
+; ==============================================================
+
 
 [__INBOX__]
 ; (Human-readable) name of this CInbox.
@@ -193,6 +199,9 @@ PREPROCS2[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET@]
 ; files matching HASH_SEARCH.
 HASH_SEARCH[] = *.xml
 
+; Filename patterns for which a hashcode MUST be found in HASH_SEARCH files:
+;HASH_MUST_EXIST[] = *.dpx
+
 ; A list of GLOB patterns for entries (files or folders) that must exist.
 ; MUST_EXIST options can be declared for each subfolder, to allow sanity checks
 ; on a given Item.
@@ -231,43 +240,140 @@ FILES_VALID[] = *.xxx
 
 MUST_EXIST[] = *.avi
 
-; Force filename cases:
+; Force filename upper/lower cases:
+; ===========================
+; NAMECASE_UPPER: force uppercase of whole filename
 ;NAMECASE_UPPER = md5sums
+;
+; NAMECASE_LOWER: force lowercase of whole filename
 ;NAMECASE_LOWER = *.*
+
+; Same as NAMECASE_LOWER/UPPER, but only applied to the characters after the
+; last '.' (from right to left). Used to change the case of the filetype
+; suffix, but leaving the filename part as-is/untouched.
 ;NAMECASE_UPPER_SUFFIX = *.xxx
 ;NAMECASE_LOWER_SUFFIX = *.MD5
 
-# FFmpeg Task:
-;FFMPEG_IN[] = *.avi
-;FFMPEG_OUT[] = [@FILE_IN_NOEXT@].mkv
-;FFMPEG_RECIPE[] = /usr/bin/ffmpeg -i [@FILE_IN@] -c copy -map 0 [@FILE_OUT@] 2>>[@LOGFILE@]
+; FFmpeg Task:
+; ==========================
+; Allows to call ffmpeg to apply format-conversion to audiovisual files.
+; NOTE: Requires 'ffmpeg' binary to be present and callable by the user the CInbox is
+; running as.
+;
+; FFMPEG_IN[]:
+; ---------------
+; Source files to provide as [@FILE_IN@].
+; If a GLOB pattern (*.xxx) is given, it is resolved to a list of files
+; matching, and FFMPEG_OUT/RECIPE are called for each one.
+; Put the pattern in quotes ('*.xxx') to pass the pattern through as-is
+; (no glob-resolve).
+;
+; FFMPEG_OUT[]: 
+; ---------------
+; For each file resolved as FFMPEG_IN, the following placeholders are available
+; from here on:
+;
+; [@DIR_IN@]           Path of input file
+; [@FILE_IN@]          A filename (in/source)
+; [@FILE_IN_NOEXT@];   FILE_IN without its suffix/extension
+; [@FULL_IN_NOEXT@];   Full path+filename without extension
+;
+; FFMPEG_RECIPE[]:
+; ---------------
+; This is the commandline executed, after resolving [@...@] placeholder variables.
+;
+; For each file resolved as FFMPEG_OUT, the following placeholders are available
+; from here on:
+;
+; [@DIR_OUT@]          Path of output file
+; [@FILE_OUT@]         A filename (out/target)
+; [@FILE_OUT_NOEXT@]   FILE_OUT without its suffix/extension
+; [@FULL_OUT_NOEXT@]   Full path+filename without extension
 
-# MediaConch Profile checks
+; Here's a simple example to convert *.avi in the current folder (HIRES) into a
+; Matroska (.mkv) container (next to the FILE_IN source), and map all streams
+; without re-encoding:
+FFMPEG_IN[] = *.avi
+FFMPEG_OUT[] = [@FILE_IN_NOEXT@].mkv
+FFMPEG_RECIPE[] = /usr/bin/ffmpeg -i [@FILE_IN@] -c copy -map 0 [@FILE_OUT@] 2>>[@LOGFILE@]
+
+
+; MediaInfo Task
+; ==========================
+; This allows to generate MediaInfo reports on technical properties of
+; audiovisual files.
+;
+; NOTE:
+; The underlying mechanism is identical to that of the FFmpeg task, so the
+; triplet-config behaves the same:
+MEDIAINFO_IN[] = *.wav
+MEDIAINFO_OUT[] = [@FILE_IN@]-mediainfo
+MEDIAINFO_RECIPE[] = /usr/bin/mediainfo -f --Language=raw --Output=JSON --Logfile=[@FILE_OUT@].json [@FILE_IN@] > /dev/null
+
+
+; MediaConch Task
+; ==========================
+; This allows checking media files against preconfigure MediaConch 'policy'
+; files to validate their technical properties.
+;
+; NOTE:
+; The underlying mechanism is identical to that of the FFmpeg task, so the
+; triplet-config behaves the same:
+;
+; MEDIAINFO_IN[]:
+; ------------------
+; Input/source files to check. Filename, patterns, and in quotes ('*.xxx') for
+; literal use without resolving.
+;
+; MEDIAINFO_OUT[]:
+; ------------------
+; If _IN[] contains more than one source, each _OUT contains a matching target
+; name.
+;
+; MEDIAINFO_RECIPE[]:
+; ------------------
+; This is the commandline executed, after resolving [@...@] placeholder variables.
+
 MEDIACONCH_IN[] = *.mkv
-MEDIACONCH_OUT[] = [@FILE_IN@]-mediaconch_report.txt
-MEDIACONCH_RECIPE[] = /usr/bin/mediaconch -mc -p [@DIR_HOME@]/cinbox-data/_assets/policy/mkv_policy.xml --Output-Text=[@FILE_OUT@] --Output-Json=[@FILE_OUT_NOEXT@].json --policyVerbosity=0 [@FILE_IN@]
+MEDIACONCH_OUT[] = [@FILE_IN@]-mediaconch_report
+MEDIACONCH_RECIPE[] = /usr/bin/mediaconch -mc -p [@DIR_HOME@]/cinbox-data/_assets/policy/mkv_policy.xml --Output-Text=[@FILE_OUT@].txt --Output-Json=[@FILE_OUT].json --policyVerbosity=0 [@FILE_IN@]
 
 
-MEDIAINFO_IN[] = *.mkv
-MEDIAINFO_OUT[] = [@FILE_IN@]-mediainfo.json
-MEDIAINFO_RECIPE[] = /usr/bin/mediainfo -f --Language=raw --Logfile=[@FILE_OUT@] [@FILE_IN@] > /dev/null
-
-
-; The "plugins/postproc.sh" script is identical to "preproc.sh".
+; The "plugins/postproc.sh" Tasks are identical to "preproc.sh".
+; (See PREPROCS/POSTPROCS documentation above)
+; It's simply a different name (post vs pre) to indicate that it's expected to
+; run "later" in the Tasklist.
 ;POSTPROCS[] = [@PHP_SELF_DIR@]/plugins/postproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@] [@YEAR@]
 
 
 [metadata]
+; FILES_VALID[]:
+; -------------------
+; GLOB patterns for filenames/folders which are "allowed" to exist in the
+; current folder.
+; Any pattern NOT MATCHING these will trigger an error, to avoid undesired
+; filetypes or wrong naming to pass through undetected.
 FILES_VALID[] = *.txt
 FILES_VALID[] = *.png
 FILES_VALID[] = *.xml
 FILES_VALID[] = *.csv
 
+; FILES_INVALID[]:
+; -------------------
+; The same, yet inverse functionality as FILES_VALID:
+; Any files MATCHING these patterns will trigger an error.
 FILES_INVALID[] = *.doc
 FILES_INVALID[] = *.docx
 
 
 [lowres]
+; TARGET_STAGE / TARGET_FOLDER in subfolders
+; ------------------------------------------------
+; Are declared before already, but can be used in any Item's subfolder, to copy
+; /that/ folder (and subfolders) into a completely different output target
+; location.
+; Common use case is to copy archival-copies to a different location than their
+; access-copy counterparts.
 TARGET_STAGE = [@DIR_HOME@]/archive/STAGE/part1/[@ITEM_ID@]
 TARGET_FOLDER = [@DIR_HOME@]/archive/part1/video/[@BUCKET@]
 
