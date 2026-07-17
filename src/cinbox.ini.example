@@ -2,15 +2,41 @@
 ; For syntax highlighting in VIM: set filetype=dosini
 
 [__INBOX__]
+; (Human-readable) name of this CInbox.
+; Will be used in logs, but also as name for temporary subfolder in DIR_TEMP
 INBOX_NAME = CInbox Test-and-Demo Config
-COOLOFF_TIME = 0
-COOLOFF_FILTERS[] = ino
-PAUSE_TIME  = 1
-ITEMS_AT_ONCE = 0
-WAIT_FOR_ITEMS = 3
-KEEP_FINISHED = 10
-MOVE_LOGFILES = 1
+
+; Folder where CInbox keeps its temporary files (such as cached hashes,
+; filesystem-stat listings to determine cooloff-time, etc.
 DIR_TEMP = /var/cinbox
+
+; Time to wait until no more changes are happening to any file/folder of an
+; Item before starting to process it.
+COOLOFF_TIME = 0
+
+; This option allows to filter out (=ignore) certain filesystem stats to detect
+; cooloff, in case some are producing false-positives that look like change.
+COOLOFF_FILTERS[] = ino
+
+; How many items to process "at once" in a run, without pausing in between.
+ITEMS_AT_ONCE = 0
+
+; Time (in seconds) to wait between each run.
+PAUSE_TIME  = 1
+
+; Time to wait (in minutes) for new items to appear, when the TODO list is empty.
+; This is used to control flow (and logfile output/size).
+WAIT_FOR_ITEMS = 3
+
+; Keep the most recent (=youngest timestamp) Items in "DONE".
+; More than that will be removed automatically.
+; Set to 0 to keep none, and delete DONE items immediately. This can be useful
+; when Items are large and space is an issue.
+KEEP_FINISHED = 10
+
+; 0 = Write logfiles in LOG folder.
+; 1 = Move the logfiles along with its Item folder (=default and preferred).
+MOVE_LOGFILES = 1
 
 ; Create a file on success/error to trigger external processes.
 ; That file will contain vitally necessary information (item_id,
@@ -18,18 +44,37 @@ DIR_TEMP = /var/cinbox
 TOKEN_DONE = /tmp/cinbox_done-[@ITEM_ID@]-[@YEAR@][@MONTH@]-[@HOUR@][@MINUTE@][@SECOND@].txt
 TOKEN_ERROR = /tmp/cinbox_error-[@ITEM_ID@]-[@DATETIME@].txt
 
-; Working hours when to process new items (crontab syntax):
+; Working hours when to process new items (crontab syntax).
+; Outside of "WORK_TIMES", the inbox will not accept any new items for
+; processing.
+; It may be used to avoid CInbox processing during the day, in order not to
+; slow down network/performance throughput for staff on site.
 ; Monday to Friday, every minute.
 WORK_TIMES[] = * * * * 1-5
 ; Monday to Friday, every 5 minutes, 9:00-17:00
 ;WORK_TIMES[] = */5 9-17 * * 1-5
 
-DIRLIST_FILE = metadata/[@ITEM_ID@]-[@YEAR@][@MONTH@][@DAY@]-list
+; Filename for the generated directory listing (Tasks: DirList(CSV))
+DIRLIST_FILE = metadata/[@ITEM_ID@]-[@YEAR@][@MONTH@][@DAY@]-list.csv
+; Add a UTF-8 Byte-Order-Mark (BOM) at start of DIRLIST_FILE:
 DIRLIST_BOM = false
+
+; Regular Expression (RegEx) that an Item ID must match to be considered valid.
+; See: https://regex101.com/ for help on regular expression syntax.
 ITEM_ID_VALID[] = /^(v|vx|mk)-\d{5}(_b\d{2})?$/i
 
+; Shell script to call, if you want to use custom subfolder "buckets".
+; Takes the Item ID as input, and returns a string of nested subfolders.
+;
+; Common example:
+; 'VS-00815' returns 'VX/00/VX-00815'
 BUCKET_SCRIPT = [@PHP_SELF_DIR@]/plugins/objid_to_path.sh
 
+; List of Tasks to process for each Item.
+; The Tasks are executed in the exact order listed here.
+;
+; For more information on available task types, see:
+; https://github.com/ArkThis/cinbox/blob/main/manual/CInbox_Markdown_Docs.md
 TASKLIST[] = FilesWait
 TASKLIST[] = DirListCSV
 TASKLIST[] = CleanFilenames
@@ -52,6 +97,11 @@ TASKLIST[] = PostProcs
 TASKLIST[] = LogfileCopy
 
 
+; =======================================
+; The [__DEFAULT__] section contains configuration which is applied to any
+; Item's (sub)folder. Values here can be overloaded in individual subfolder
+; sections if necessary.
+; =======================================
 [__DEFAULT__]
 ; Sanitize filenames (using predefined lists, by name):
 CLEAN_SOURCE[] = illegal
@@ -90,19 +140,62 @@ LOG_COPY_NAME = [@ITEM_ID_LC@].cv
 ; Here goes config for folders that have no config section.
 
 
+
+; =======================================
+; [.] = Config applied to the ROOT folder of each Item.
+; All settings here are inherited to subfolders, and may optionally be
+; overloaded there.
+;
+; Popular example:
+; TARGET_FOLDER in [.] is used as base to copy all subfolders that have NO own
+; TARGET_FOLDER setting, keeping the Item's structure as-is. While adding
+; TARGET_FOLDER to a subfolder section, allows /just that/ subfolder (tree) to
+; go somewhere else when being written by "CopyToTarget".
+; =======================================
 [.]
 TARGET_STAGE = [@DIR_HOME@]/archive/STAGE/part2/[@ITEM_ID@]
 TARGET_FOLDER = [@DIR_HOME@]/archive/part2/video/[@BUCKET@]
+
+
+; PREPROCS / POSTPROCS:
+; =============================
+; Custom pre-processing scripts to call at the beginning of the TaskList.
+; Those can be anything that the underlying OS can execute. Usually it's
+; shell-scripts, but could be any other runnable command.
+;
+; PreProcs/PostProcs settings are arrays, to support a list of commands to run
+; in the order given.
+; If you need to run several custom scripts at the same position in the
+; Tasklist, just add as many "PreProcs[]" as you like.
+;
+; If you need to run your scripts at different positions in the tasklist, there
+; are 3 default TaskTypes existing for this:
+; * PreProcs,  PreProcs2,  PreProcs3.
+; * PostProcs, PostProcs2, PostProcs3.
 
 ; plugins/mkparent.sh is used to prepare deeply nested folder structures:
 PREPROCS[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET_STAGE@]
 PREPROCS2[] = [@PHP_SELF_DIR@]/plugins/mkparent.sh [@DIR_TARGET@]
 
-; Enable this to wait until unicorns appear:
+; A list of GLOB patterns that the FilesWait Task will stay in TODO, until they
+; exist. This allows an CInbox to wait for certain files/folders before
+; starting its processing.
+; Common use-case is that 2 different workflows/operators populate an Item over
+; a period of time, such as one puts "The Data" in, and at a later time,
+; hashcode manifests are provided.
+
+; Example: Enable this to wait until unicorns appear:
 ;FILES_WAIT[] = '*.unicorn'
 
+; Search in all those GLOB patterns for hashcodes to match against.
+; The syntax of those files is irrelevant:
+; CInbox calculates the hash of the present data and searches for it in all
+; files matching HASH_SEARCH.
 HASH_SEARCH[] = *.xml
 
+; A list of GLOB patterns for entries (files or folders) that must exist.
+; MUST_EXIST options can be declared for each subfolder, to allow sanity checks
+; on a given Item.
 MUST_EXIST[] = hires
 MUST_EXIST[] = lowres
 MUST_EXIST[] = metadata
@@ -114,6 +207,12 @@ MUST_EXIST[] = metadata
 ;PREPROCS[] = [@PHP_SELF_DIR@]/plugins/preproc.sh [@ITEM_ID@] [@DIR_SOURCE@] [@DIR_TARGET@]
 ;PREPROCS2[] = [@PHP_SELF_DIR@]/plugins/preproc.sh [@DAY@] [@MONTH@] [@YEAR@]
 
+; Policy for CopyToTarget used to avoid overwriting existing Items in the final
+; archival location.
+; Valid options:
+;   1. create: Will only CREATE new folders on the target. Throws an error if the target folder already exists.
+;   2. update: Target folder MUST EXIST already, so CInbox may add additional files to an Item.
+;   3. create_or_update: Creates a new folder if not already existing, and adds files if it already exists.
 UPDATE_FILES = create_or_update
 
 ;FILES_WAIT[] = *.ding
