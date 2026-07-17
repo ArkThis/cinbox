@@ -55,6 +55,7 @@ abstract class TaskDirListing extends CITask
 
     // Names of config settings used by a task must be defined here.
     const CONF_DIRLIST_FILE = 'DIRLIST_FILE';
+    const CONF_DIRLIST_BOM = 'DIRLIST_BOM';
 
 
 
@@ -64,6 +65,7 @@ abstract class TaskDirListing extends CITask
 
     protected $tempFile;
     protected $dirListFilename;             // Filename (without path) where to store directory listing output in.
+    protected $dirListBOM;                  // True: add BOM at first character in output file.
     protected $dirListFile;                 // Filename with path
 
     protected $dirList;                     // List as array
@@ -156,6 +158,19 @@ abstract class TaskDirListing extends CITask
         }
         $l->logDebug(sprintf(_("Filename base for directory listing: %s"), $this->dirListFilename));
 
+        $setting = $config->getFromArray(CIItem::CONF_SECTION_ITEM, self::CONF_DIRLIST_BOM);
+        printf("setting: %s\n", $setting); #DELME
+        if(!empty($setting))
+        {
+            $this->dirListBOM = filter_var($setting, FILTER_VALIDATE_BOOLEAN);
+        }
+        else
+        {
+            // Do NOT write a BOM by default:
+            $this->dirListBOM = false;
+        }
+        $l->logMsg(sprintf(_("Adding Byte-Order-Mark (BOM) to listing: %d"), $this->dirListBOM));
+
         // Must return true on success:
         return true;
     }
@@ -203,6 +218,8 @@ abstract class TaskDirListing extends CITask
     {
         $l = $this->logger;
 
+        $output = array();  // mixed data object, written to file.
+
         if (empty($fileName))
         {
             $l->logError(_("Cannot save to file: No filename given."));
@@ -225,10 +242,18 @@ abstract class TaskDirListing extends CITask
             return true;
         }
 
-        // TODO: What if file already exists?
         $l->logInfo(sprintf(_("Saving directory listing to '%s'..."), $fileName));
 
-        $result = file_put_contents($fileName, $dirListing);
+        // Add BOM if requested:
+        if ($this->dirListBOM)
+        {
+            $output[] = $this->getByteOrderMark();
+        }
+
+        // Add the actual listing for output:
+        $output[] = $dirListing;
+
+        $result = file_put_contents($fileName, $output);
         if ($result === false)
         {
             $l->logError(sprintf(_("Could not write directory listing to '%s'. Please check access rights."), $fileName));
@@ -242,6 +267,16 @@ abstract class TaskDirListing extends CITask
     }
 
 
+    /**
+     * Create a BOM (Byte Order Mark) Unicode character.
+     *
+     * See: https://en.wikipedia.org/wiki/Byte_order_mark
+     */
+    public function getByteOrderMark()
+    {
+        $bom = pack('CCC', 0xEF, 0xBB, 0xBF);   // UTF-8 BOM
+        return $bom;
+    }
 
 }
 
