@@ -25,6 +25,7 @@ WORK_TIMES[] = * * * * 1-5
 ;WORK_TIMES[] = */5 9-17 * * 1-5
 
 DIRLIST_FILE = metadata/[@ITEM_ID@]-[@YEAR@][@MONTH@][@DAY@]-list
+DIRLIST_BOM = false
 ITEM_ID_VALID[] = /^(v|vx|mk)-\d{5}(_b\d{2})?$/i
 
 BUCKET_SCRIPT = [@PHP_SELF_DIR@]/plugins/objid_to_path.sh
