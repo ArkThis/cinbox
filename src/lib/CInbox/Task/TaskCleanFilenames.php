@@ -101,10 +101,11 @@ class TaskCleanFilenames extends TaskFilesMatch
     // Quotation marks and ticks
     // Replace them with "less critical" ones.
     public static $CHARS_QUOTATION = array(
-            "„" => "\"",
-            "“" => "\"",
+            "„" => "'",
+            "“" => "'",
             "´" => "'",
             "`" => "'",
+            '"' => "'",
             );
 
     // Quotation marks and ticks
