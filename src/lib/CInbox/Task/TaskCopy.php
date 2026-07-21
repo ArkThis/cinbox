@@ -81,6 +81,7 @@ abstract class TaskCopy extends CITask
     # Variables that contain the settings from config file:
     protected $updateFolders;
     protected $updateFiles;
+    protected $logFile;                     /// Commandline logfile
 
 
 
