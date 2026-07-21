@@ -287,6 +287,7 @@ class TaskFFmpeg extends AbstractTaskExecFF
     protected function runRecipes($recipe, $sourceFile, $targetFile)
     {
         $l = $this->logger;
+        $config = $this->config;
 
         $logFile = $this->createCmdLogFilename();
         $hashRecipes = $this->getHashRecipes($sourceFile);
