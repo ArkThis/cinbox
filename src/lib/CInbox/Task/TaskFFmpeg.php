@@ -62,11 +62,9 @@ class TaskFFmpeg extends AbstractTaskExecFF
      * Names of config settings used by this task
      */
     //@{
-    const CONF_HASH_TYPE = "FFMPEG_HASH_TYPE";          ///< Algorithm for content hash.
     const CONF_SOURCES = "FFMPEG_IN";                   ///< Filenames or filemasks to process as input.
     const CONF_TARGETS = "FFMPEG_OUT";                  ///< Output filenames (may include path).
     const CONF_RECIPES = "FFMPEG_RECIPE";               ///< Commandline "recipes" to execute FFmpeg transcoding, etc. This includes path+name of FFmpeg binary.
-    const CONF_VALIDATES = "FFMPEG_VALIDATE";           ///< Flag to enable content hash validation. Used to confirm lossless codec or container changes.
     //@}
 
     /**
@@ -74,22 +72,6 @@ class TaskFFmpeg extends AbstractTaskExecFF
      */
     //@{
     const TODO_VALIDATES = 'validate';                   ///< Array key for flag "to validate or not".
-    //@}
-
-    /**
-     * @name Content hash
-     * Constants related to content hashing.
-     */
-    //@{
-    /* Command recipe for content hash (video only) */
-    const HASH_RECIPEMASK_V = '-f hash -hash %s -an %s';
-    /* Command recipe for content hash (audio only) */
-    const HASH_RECIPEMASK_A = '-f hash -hash %s -vn %s';
-
-    const HASH_VIDEO = 'video';                         ///< Array key for video-related content hash.
-    const HASH_AUDIO = 'audio';                         ///< Array key for audio-related content hash.
-    const HASH_FILEMASK_V = '%s.v.%s';                  ///< Filemask for video content hash.
-    const HASH_FILEMASK_A = '%s.a.%s';                  ///< Filemask for audio content hash.
     //@}
 
 
@@ -101,13 +83,8 @@ class TaskFFmpeg extends AbstractTaskExecFF
      * @name Setting variables
      * For storing settings read from the config file:
      */
-    //@{
-    private $validates;                                 ///< @see #CONF_VALIDATES
 
-    private $hashTypesAllowed;                          ///< List of which content hash algorithms/types are available.
-    private $hashType;                                  ///< Selected content hash algorithm/type.
-    //@}
-
+    // Check class AbstractTaskExecFF for common settings.
 
 
     /* ========================================
@@ -117,15 +94,6 @@ class TaskFFmpeg extends AbstractTaskExecFF
     function __construct(&$CIFolder)
     {
         parent::__construct($CIFolder, self::TASK_LABEL);
-
-        // Set which content hash types are available (case insensitive).
-        // See <a href="http://ffmpeg.org/ffmpeg-all.html#hash-1">FFmpeg documentation on "hash" muxer</a>
-        // for details and options.
-        $this->hashTypesAllowed = array(
-                'md5', 'murmur3',
-                'ripemd128', 'ripemd160', 'ripemd256', 'ripemd320',
-                'sha160', 'sha224', 'sha256', 'sha512/224', 'sha512/256', 'sha384', 'sha512',
-                'crc32', 'adler32');
     }
 
 
@@ -143,35 +111,6 @@ class TaskFFmpeg extends AbstractTaskExecFF
     protected function loadSettings()
     {
         if (!parent::loadSettings()) return false;
-
-        $l = $this->logger;
-        $config = $this->config;
-
-        // -------
-        // Load content hash algorithm type:
-        $hashType = strtolower($config->get(self::CONF_HASH_TYPE));
-        $l->logDebug(sprintf(_("Content hashcode type (algorithm): %s"), $hashType));
-
-        //TODO: This is declaring a default. This should be done differently,
-        //and possibly somewhere else...?
-        if (empty($hashType)) $hashType = 'md5';
-
-        // Check if provided hashcode algorithm type is supported:
-        if (!$this->hashTypeIsAllowed($hashType)) return false;
-        $this->hashType = $hashType;
-
-        // -------
-        /* This is currently NOT IMPLEMENTED YET.
-         * And should definitely not be mandatory.
-        $this->validates = $config->get(self::CONF_VALIDATES);
-        // Task is optional, therefore it is skipped if one setting is empty:
-        if(empty($this->validates)) return $this->skipIt();
-        if (!$this->optionIsArray($this->validates, self::CONF_VALIDATES)) return false;
-        $l->logDebug(sprintf(
-                    _("Rewrap/transcoding Hash validate enabled: %s"),
-                    implode(', ', $this->validates)
-                    ));
-         */
 
         // Must return true on success:
         return true;
@@ -217,8 +156,6 @@ class TaskFFmpeg extends AbstractTaskExecFF
             {
                 $fileOut = $filesOut[$key];
                 $count++;
-                // TODO: Add hash generating code to recipe:
-                // if ($validate) $recipe = prepareValidation($recipe);
 
                 if ($this->runRecipes($recipe, $fileIn, $fileOut) != CIExec::EC_OK) $error++;
 
@@ -290,7 +227,6 @@ class TaskFFmpeg extends AbstractTaskExecFF
         $config = $this->config;
 
         $logFile = $this->createCmdLogFilename();
-        $hashRecipes = $this->getHashRecipes($sourceFile);
 
         // TODO: Idea! Add method that resolves flavors of filename
         // (with/without suffix, path, etc) and returns it as ready-to-use
@@ -303,8 +239,6 @@ class TaskFFmpeg extends AbstractTaskExecFF
                 __DIR_IN__=> dirname($sourceFile),
                 __DIR_OUT__=> dirname($targetFile),
                 __LOGFILE__ => $logFile,
-                //__FF_HASH_V__ => $hashRecipes[self::HASH_VIDEO],
-                //__FF_HASH_A__ => $hashRecipes[self::HASH_AUDIO],
                 );
         #print_r($arguments); //DEBUG
         $config->addPlaceholders($arguments);
@@ -332,94 +266,6 @@ class TaskFFmpeg extends AbstractTaskExecFF
         }
 
         return $exitCode;
-    }
-
-
-    /**
-     * Returns ready-to-use commandline recipe strings that create separate
-     * content hash files for video and audio.
-     */
-    protected function getHashRecipes($fileName)
-    {
-        $hashType = $this->hashType;
-        $hashFiles = $this->getHashTempFilenames(
-                $fileName, $this->CIFolder, $hashType);
-
-        $recipes = array(
-                self::HASH_VIDEO => sprintf(self::HASH_RECIPEMASK_V,
-                    $hashType,
-                    $hashFiles[self::HASH_VIDEO]),
-
-                self::HASH_AUDIO => sprintf(self::HASH_RECIPEMASK_A,
-                    $hashType,
-                    $hashFiles[self::HASH_AUDIO]),
-                );
-
-        return $recipes;
-    }
-
-
-    /**
-     * Returns the filenames where the content hashcode is temporarily stored
-     * for $fileName.
-     * This method is static, so it can be used by other tasks to determine
-     * where to find the temporary hashcode files.
-     */
-    public static function getHashTempFilenames($fileName, $CIFolder, $hashType)
-    {
-        // TODO: Replace this by $this->getTempFolder()?
-        $tempFolder = $CIFolder->getTempFolder();
-        $baseFolder = $CIFolder->getBaseFolder();
-
-        // Recreate the same subfolder structure in temp-folder (by replacing
-        // baseFolder substring with tempFolder), and then adding the hash-type
-        // (algo) string as file suffix:
-        $tempName = str_replace($baseFolder, $tempFolder, $fileName);
-
-        $hashFiles = array(
-                // For video content:
-                self::HASH_VIDEO => sprintf(
-                    self::HASH_FILEMASK_V,
-                    $tempName, $hashType),
-
-                // For audio content:
-                self::HASH_AUDIO => sprintf(
-                    self::HASH_FILEMASK_A,
-                    $tempName, $hashType),
-                );
-
-        return $hashFiles;
-    }
-
-
-    /**
-     * Returns an array containing the hash algorithm types allowed/supported.
-     */
-    public function getHashTypesAllowed()
-    {
-        return $this->hashTypesAllowed;
-    }
-
-
-    /**
-    * Checks if provided hashtype is supported by this task.
-    * Technically, all hash types offered by FFmpeg version used are allowed,
-    * but $this->hashTypesAllowed needs to contain them as strings.
-    */
-    protected function hashTypeIsAllowed($hashType)
-    {
-        $hashType = strtolower($hashType);
-
-        if (!in_array($hashType, $this->hashTypesAllowed))
-        {
-            throw new \Exception(sprintf(
-                _("Hash type '%s' is invalid, not supported by FFmpeg or not known to this Task.\nValid types are: %s"),
-                $hashType,
-                implode(' ', $this->hashTypesAllowed)
-            ));
-        }
-
-        return true;
     }
 
     //@}
