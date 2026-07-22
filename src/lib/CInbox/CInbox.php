@@ -204,6 +204,12 @@ class CInbox
 
         // Cleanup temp folder (if empty):
         $tempFolder = $this->tempFolder;
+        if (empty($tempFolder))
+        {
+            // Got no tempfolder to remove, so ... fine?
+            return true;
+        }
+
         if (is_dir($tempFolder))
         {
             $l->logInfo(sprintf(
@@ -1311,6 +1317,7 @@ class CInbox
     {
         $l = $this->logger;
 
+        // This is where the base folder gets loaded from the config:
         $baseFolder = $this->config->get(self::CONF_FOLDER_STATEKEEPING);
         if (empty($baseFolder))
         {
