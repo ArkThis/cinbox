@@ -79,10 +79,18 @@ abstract class TaskCopy extends CITask
             );
 
     # Variables that contain the settings from config file:
-    protected $updateFolders;
-    protected $updateFiles;
-    protected $logFile;                     /// Commandline logfile
+    protected $updateFolders;               ///< Holds setting of self::CONF_UPDATE_FOLDERS
+    protected $updateFiles;                 ///< Holds setting of self::CONF_UPDATE_FILES
 
+    protected $exec;                        ///< The program-execution handling class (usually CIExec)
+
+    /**
+     * $logFile: Contains filename for output of external command execution.
+     * But should only be used if exactly 1 command is called once per class
+     * instantiation. Otherwise, please resolve logfile name using getCmdLogfile()
+     * right before executing the external application.
+     */
+    #protected $logFile;
 
 
     /* ========================================
