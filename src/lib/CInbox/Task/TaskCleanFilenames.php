@@ -218,6 +218,17 @@ class TaskCleanFilenames extends TaskFilesMatch
 
             $base = basename($filename);
             $clean = $this->cleanFilename($base);
+
+            if (empty($clean))
+            {
+                // This is a last-resort catch if something in "cleanFilename()" went wrong:
+                throw new RuntimeException(sprintf(
+                    _("CleanFilenames: Cleaned name would be empty. This should NOT happen!\nSource name: '%s'; Base: '%s'"),
+                    $filename,
+                    $base
+                ));
+            }
+
             $fileIn = $filename;
             $fileOut = dirname($filename) . DIRECTORY_SEPARATOR . $clean;
 
@@ -374,18 +385,42 @@ class TaskCleanFilenames extends TaskFilesMatch
             throw new Exception(_("Empty or invalid character map."));
         }
 
-        // Detect original encoding:
-        $fromEncoding = mb_detect_encoding($filename, 'auto');
+        // Sanity check for library dependency:
+        $fn_detect_encoding = 'mb_detect_encoding';
+        if (!function_exists($fn_detect_encoding))
+        {
+            throw new RuntimeException(sprintf(
+                _("Function not found: '%s'. Check if package '%s' is installed?"),
+                $fn_detect_encoding,
+                'php-mbstring'
+            ));
+        }
 
         $charsIllegal = array_keys($this->charMapping);
         $charsReplace = array_values($this->charMapping);
         $cleanFilename = str_replace($charsIllegal, $charsReplace, $filename);
 
+        // Detect original encoding (source $filename):
+        $fromEncoding = mb_detect_encoding($filename, 'auto');
+        $toEncoding = $this->cleanConvert;  // Taken from config 'CLEAN_CONVERT'
+
+        // Force encoding to $toEncoding:
         $cleanFilename = $this->convertEncoding(
             $cleanFilename,
-            $toEncoding = $this->cleanConvert,
-            $fromEncoding       # Assumed to be UTF-8 usually (in 2026)
+            $toEncoding,
+            $fromEncoding           // Assumed to be UTF-8 usually (in 2026)
         );
+
+        if (empty($cleanFilename))
+        {
+            // This is a last-resort catch if something in "cleanFilename()" went wrong:
+            throw new RuntimeException(sprintf(
+                _("CleanFilenames: Cleaned name would be empty. This should NOT happen!\nSource name: '%s'; fromEncoding: '%s'; toEncoding: '%s'"),
+                $filename,
+                $fromEncoding,
+                $toEncoding
+            ));
+        }
 
         return $cleanFilename;
     }
@@ -478,6 +513,26 @@ class TaskCleanFilenames extends TaskFilesMatch
     {
         $l = $this->logger;
 
+        // Sanity check for library dependency:
+        if (!method_exists('UConverter', 'transcode'))
+        {
+            throw new RuntimeException(sprintf(
+                _("Class method not found: '%s'. Check if the package '%s' is installed?"),
+                'Uconverter::transcode',
+                'php-intl'
+            ));
+        }
+
+        if (empty($toEncoding) OR (empty($fromEncoding)))
+        {
+            throw new RuntimeException(sprintf(
+                _("Character encoding unclear/empty: fromEncoding = '%s'; toEncoding = '%s'\nMake sure '%s' config option is set?"),
+                $fromEncoding,
+                $toEncoding,
+                self::CONF_CLEAN_CONVERT
+            ));
+        }
+
         // Only convert /IF/ from and to encoding differ:
         if (strcmp($fromEncoding, $toEncoding) == 0)
         {
@@ -492,6 +547,8 @@ class TaskCleanFilenames extends TaskFilesMatch
         }
 
         // Change the encoding of a string:
+        // TODO: This declares which char to use to replace invalid characters
+        // Maybe this should be a constant or property of the class?
         $options = array(
             'to_subst' => '_'
         );
