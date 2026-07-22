@@ -18,11 +18,14 @@
 
 namespace ArkThis;
 
-use \Exception as Exception;
 use \RecursiveIteratorIterator as RecursiveIteratorIterator;
 use \RecursiveDirectoryIterator as RecursiveDirectoryIterator;
 use \DirectoryIterator as DirectoryIterator;
 use \SplFileInfo as SplFileInfo;
+
+use \Exception as Exception;
+use \InvalidArgumentException as InvalidArgumentException;
+use \RuntimeException as RuntimeException;
 
 
 /**
@@ -744,6 +747,44 @@ class Helper
         return false;
     }
 
+
+    /**
+     * Checks Array $haystacks for invalid string/character $needle.
+     */
+    public static function containsInvalidStr($haystacks, $needle, &$msg=null)
+    {
+        if (!is_array($haystacks))
+        {
+            throw new InvalidArgumentException(sprintf(
+                _("Expected Array as haystack, got %s"),
+                gettype($haystacks)
+            ));
+        }
+
+        foreach ($haystacks as $key => $haystack)
+        {
+            $found = strpos($haystack, $needle);
+            if ($found > 0)
+            {
+                if (!is_null($msg))
+                {
+                    $msg = (sprintf(
+                        _("Invalid string (%s) detected at position %d in: [%s] '%s'"),
+                        $needle,
+                        $found,
+                        $key,
+                        $haystack
+                    ));
+                }
+
+                // Yes, it contains an invalid character:
+                return true;
+            }
+        }
+
+        // Strings in $haystacks are clean:
+        return false;
+    }
 
 
 }

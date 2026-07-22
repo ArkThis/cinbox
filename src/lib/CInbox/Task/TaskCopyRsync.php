@@ -22,6 +22,8 @@ use \ArkThis\CInbox\CIFolder;
 use \ArkThis\CInbox\CIExec;
 use \ArkThis\Helper;
 use \Exception as Exception;
+use \InvalidArgumentException as InvalidArgumentException;
+use \RuntimeException as RuntimeException;
 
 
 /**
@@ -72,7 +74,6 @@ abstract class TaskCopyRsync extends TaskCopy
     // Task-specific methods
     // --------------------------------------------
 
-
     /**
      * Copies a single file from A to B.
      * Uses external command to do this.
@@ -93,6 +94,34 @@ abstract class TaskCopyRsync extends TaskCopy
 
         $command = Helper::resolveString(self::CMD_COPY_MASK, $arguments);
         $l->logDebug(sprintf(_("Copy command: %s"), $command));
+
+        // Check if the commandline arguments used contain double-quotes ("),
+        // as they would break the quoting of args passed on to the command.
+        // See 'self::CMD_COPY_MASK' to see the command template.
+        $result = null;
+        $msg = '';          // used to carry details from containsInvalidStr() call to output here.
+        try
+        {
+            $result = Helper::containsInvalidStr($arguments, '"', $msg);
+
+            if ($result)
+            {
+                $l->logError(sprintf(
+                    ("Arguments contain invalid characters: %s"),
+                    $msg
+                ));
+                throw new RuntimeException();
+            }
+
+        }
+        catch (InvalidArgumentException $e)
+        {
+            $l->logError(sprintf(
+                ("Invalid argument in Helper::containsInvalidStr."),
+                $e->getMessage()
+            ));
+            throw new RuntimeException();
+        }
 
         $exitCode = $this->exec->execute($command);
 
