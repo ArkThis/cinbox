@@ -90,7 +90,7 @@ abstract class TaskCopy extends CITask
      * instantiation. Otherwise, please resolve logfile name using getCmdLogfile()
      * right before executing the external application.
      */
-    #protected $logFile;
+    protected $logFile;
 
 
     /* ========================================
