@@ -119,13 +119,20 @@ class TaskCleanFilenames extends TaskFilesMatch
             "'" => "_",
             );
 
-    // Even more optional (being picky!):
-    public static $CHARS_PICKY = array(
-            "#" => "_",
-            "," => "_",
-            ";" => "_",
-            "&" => "and",
-            );
+	// Even more optional (being picky!):
+	public static $CHARS_PICKY = array(
+			"!" => "_",
+			"#" => "_",
+			"$" => "_",
+			"%" => "_",
+			"," => "_",
+			";" => "_",
+			"=" => "_",
+			"&" => "and",
+			"@" => "_",
+			"^" => "_",
+			"~" => "_",
+	);
 
 
 
