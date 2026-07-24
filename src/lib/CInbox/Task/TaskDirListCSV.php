@@ -22,6 +22,7 @@ use \DateTime as DateTime;
 use \ArkThis\CInbox\CIFolder;
 use \ArkThis\CInbox\CIItem;
 use \Exception as Exception;
+use \RuntimeException as RuntimeException;
 
 
 /**
@@ -50,6 +51,12 @@ class TaskDirListCSV extends TaskDirListing
     // Task name/label:
     const TASK_LABEL = 'Directory listing (CSV)';
 
+    // Line key/value formatting to use for CSV output.
+    //@{
+    const CSV_STYLE_LIBRE = '"%s","%s","%s","%s","%s","%s","%s"\n';   ///< Works for everyone (except Excel)
+    const CSV_STYLE_EXCEL = '"%s";"%s";"%s";"%s";"%s";"%s";"%s"\r\n'; ///< Optimized for MS-Excel.
+    //@}
+
 
 
     /* ========================================
@@ -57,12 +64,54 @@ class TaskDirListCSV extends TaskDirListing
      * ======================================= */
 
     protected static $formatFileTime = DateTime::ISO8601;
+    protected static $csvLineFormat = self::CSV_STYLE_LIBRE;
+
+    protected static $csvHeaderLine;
+    protected static $csvHeaderFields = array(
+        'Type', 'Path', 'Filename',
+        'Bytes',
+        'CTime', 'MTime', 'ATime'
+    );
 
 
 
     /* ========================================
      * METHODS
      * ======================================= */
+
+    /**
+     * Prepare everything so it's ready for processing.
+     *
+     * @retval boolean
+     *  True if task shall proceed. False if not.
+     */
+    public function init()
+    {
+        if (!parent::init()) return false;
+
+        $l = $this->logger;
+
+        $l->logDebug(sprintf(
+            _("Initializing CSV header with these components:\n%s\n%s"),
+            self::$csvLineFormat,
+            implode(',', self::$csvHeaderFields)
+        ));
+
+        // Populate header line with strings from Array into csvLineFormat
+        // printf-mask:
+        self::$csvHeaderLine = vsprintf(
+            self::$csvLineFormat,
+            self::$csvHeaderFields
+        );
+
+        $l->logMsg(sprintf(
+            _("Using CSV header line: [%s]"),
+            self::$csvHeaderLine
+        ));
+
+        return true;
+    }
+
 
     /**
      * Perform the actual steps of this task.
@@ -93,22 +142,36 @@ class TaskDirListCSV extends TaskDirListing
     /**
      * Returns the actual filename (including path) for the directory listing.
      */
-    public function getFilename()
+    public function getFilename() # TODO: Why is this here and not in parent class TaskDirlist?
     {
         $fileName = $this->dirListFile;
         return $fileName;
     }
 
 
-    public static function getDirListAsCSV($dirList)
+    public function getDirListAsCSV($dirList)
     {
-        $dirListing = '"Type","Path","Filename","Bytes","CTime","MTime","ATime"' . "\n";
+        $l = $this->logger;
+
+        $csvHeaderLine = self::$csvHeaderLine;
+        $csvLineFormat = self::$csvLineFormat;
+
+        $csvHeaderLine = null; #delme
+
+        if (empty($csvHeaderLine))
+        {
+            $msg = _("CSV Header line not initialized/empty!");
+            $l->logError($msg);
+            throw new RuntimeException($msg);
+        }
+
+        $dirListing = $this->csvHeaderLine; // Start with the header as first line.
         foreach ($dirList as $entry)
         {
             // Properties listed:
             $dirListing .= sprintf(
-                    // CSV order: "Type","Path","Filename","Size","CTime","MTime","ATime"'
-                    '"%s","%s","%s","%s","%s","%s","%s"' . "\n",
+                    // CSV fields (names and order), see: $this->csvHeaderFields
+                    $csvLineFormat,
                     $entry->getType(),
                     $entry->getPath(),
                     $entry->getFilename(),
