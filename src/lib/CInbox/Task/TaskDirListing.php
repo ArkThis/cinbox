@@ -28,6 +28,9 @@ use \RecursiveDirectoryIterator as RecursiveDirectoryIterator;
 /**
  * Base class for preparing a directory listing.
  *
+ * This class is *abstract*, as it does NOT write anything to a file.
+ * You need to derive this class and add what's necessary to do that.
+ * @see TaskDirListCSV.php as example.
  *
  * @author Peter Bubestinger-Steindl (cinbox (at) ArkThis.com)
  * @copyright
