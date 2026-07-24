@@ -83,6 +83,11 @@ abstract class TaskDirListing extends CITask
     function __construct(&$CIFolder)
     {
         parent::__construct($CIFolder, self::TASK_LABEL);
+
+        // Initialize defaults:
+        // -----------------------------
+        // Do NOT write a BOM by default:
+        $this->dirListBOM = false;
     }
 
 
@@ -105,7 +110,7 @@ abstract class TaskDirListing extends CITask
         // The config only contains the filename, so we must add the path:
         $dirListFile = $folder->getBaseFolder() . DIRECTORY_SEPARATOR . $this->dirListFilename;
 
-        $l->logDebug(sprintf(_("Directory listing output: '%s'"), $dirListFile)); // DElme
+        $l->logDebug(sprintf(_("Directory listing output: '%s'"), $dirListFile));
         $this->dirListFile = $dirListFile;
 
         // Must return true on success:
@@ -162,15 +167,9 @@ abstract class TaskDirListing extends CITask
         $l->logDebug(sprintf(_("Filename base for directory listing: %s"), $this->dirListFilename));
 
         $setting = $config->getFromArray(CIItem::CONF_SECTION_ITEM, self::CONF_DIRLIST_BOM);
-        printf("setting: %s\n", $setting); #DELME
         if(!empty($setting))
         {
             $this->dirListBOM = filter_var($setting, FILTER_VALIDATE_BOOLEAN);
-        }
-        else
-        {
-            // Do NOT write a BOM by default:
-            $this->dirListBOM = false;
         }
         $l->logMsg(sprintf(_("Adding Byte-Order-Mark (BOM) to listing: %d"), $this->dirListBOM));
 

@@ -53,8 +53,8 @@ class TaskDirListCSV extends TaskDirListing
 
     // Line key/value formatting to use for CSV output.
     //@{
-    const CSV_STYLE_LIBRE = '"%s","%s","%s","%s","%s","%s","%s"\n';   ///< Works for everyone (except Excel)
-    const CSV_STYLE_EXCEL = '"%s";"%s";"%s";"%s";"%s";"%s";"%s"\r\n'; ///< Optimized for MS-Excel.
+    const CSV_STYLE_LIBRE = '"%s","%s","%s","%s","%s","%s","%s"'. "\n";   ///< Works for everyone (except Excel)
+    const CSV_STYLE_EXCEL = '"%s";"%s";"%s";"%s";"%s";"%s";"%s"'. "\r\n"; ///< Optimized for MS-Excel.
     //@}
 
 
@@ -64,9 +64,9 @@ class TaskDirListCSV extends TaskDirListing
      * ======================================= */
 
     protected static $formatFileTime = DateTime::ISO8601;
-    protected static $csvLineFormat = self::CSV_STYLE_LIBRE;
+    protected $csvLineFormat = self::CSV_STYLE_LIBRE;
 
-    protected static $csvHeaderLine;
+    protected $csvHeaderLine;
     protected static $csvHeaderFields = array(
         'Type', 'Path', 'Filename',
         'Bytes',
@@ -93,20 +93,20 @@ class TaskDirListCSV extends TaskDirListing
 
         $l->logDebug(sprintf(
             _("Initializing CSV header with these components:\n%s\n%s"),
-            self::$csvLineFormat,
+            $this->csvLineFormat,
             implode(',', self::$csvHeaderFields)
         ));
 
         // Populate header line with strings from Array into csvLineFormat
         // printf-mask:
-        self::$csvHeaderLine = vsprintf(
-            self::$csvLineFormat,
+        $this->csvHeaderLine = vsprintf(
+            $this->csvLineFormat,
             self::$csvHeaderFields
         );
 
         $l->logMsg(sprintf(
-            _("Using CSV header line: [%s]"),
-            self::$csvHeaderLine
+            _("Using CSV header line: %s"),
+            $this->csvHeaderLine
         ));
 
         return true;
@@ -153,10 +153,8 @@ class TaskDirListCSV extends TaskDirListing
     {
         $l = $this->logger;
 
-        $csvHeaderLine = self::$csvHeaderLine;
-        $csvLineFormat = self::$csvLineFormat;
-
-        $csvHeaderLine = null; #delme
+        $csvHeaderLine = $this->csvHeaderLine;
+        $csvLineFormat = $this->csvLineFormat;
 
         if (empty($csvHeaderLine))
         {
@@ -165,7 +163,7 @@ class TaskDirListCSV extends TaskDirListing
             throw new RuntimeException($msg);
         }
 
-        $dirListing = $this->csvHeaderLine; // Start with the header as first line.
+        $dirListing = $csvHeaderLine; // Start with the header as first line.
         foreach ($dirList as $entry)
         {
             // Properties listed:
