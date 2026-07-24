@@ -65,6 +65,7 @@ class TaskDirListCSV extends TaskDirListing
 
     protected static $formatFileTime = DateTime::ISO8601;
     protected $csvLineFormat = self::CSV_STYLE_LIBRE;
+    protected $csvQuoteChar = '"';
 
     protected $csvHeaderLine;
     protected static $csvHeaderFields = array(
@@ -169,10 +170,10 @@ class TaskDirListCSV extends TaskDirListing
             // Properties listed:
             $dirListing .= sprintf(
                     // CSV fields (names and order), see: $this->csvHeaderFields
-                    $csvLineFormat,
+                    $csvLineFormat,                                 // Mask that defines the CSV type/characters
                     $entry->getType(),
-                    $entry->getPath(),
-                    $entry->getFilename(),
+                    $this->escapeQuotes($entry->getPath()),         // expected to may contain csvQuoteChar
+                    $this->escapeQuotes($entry->getFilename()),     // expected to may contain csvQuoteChar
                     sprintf("%u", $entry->getSize()),
                     date(self::$formatFileTime, $entry->getCTime()),
                     date(self::$formatFileTime, $entry->getMTime()),
@@ -184,6 +185,23 @@ class TaskDirListCSV extends TaskDirListing
     }
 
 
+    /**
+     * Returns a string, properly escaped to use as CSV value - even if it
+     * contained quotes.
+     *
+     * Double quotes in CSV requires doubling them (not using
+     * backslash!)
+     *
+     * So, here's how to escape it properly for use in CSV:
+     * $field = str_replace('"', '""', $field);
+     */
+    public function escapeQuotes($string)
+    {
+        $qc = $this->csvQuoteChar;      // Just to have it shorter ;)
+
+      $escaped = str_replace($qc, $qc.$qc, $string);
+      return $escaped;
+    }
 
 }
 
