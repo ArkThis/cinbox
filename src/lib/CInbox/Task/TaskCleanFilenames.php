@@ -22,6 +22,7 @@ use \ArkThis\CInbox\CIFolder;
 use \Exception as Exception;
 use \RuntimeException as RuntimeException;
 use \UConverter as UConverter;
+use \Normalizer as Normalizer;
 
 
 /**
@@ -53,6 +54,7 @@ class TaskCleanFilenames extends TaskFilesMatch
     const CONF_CLEAN_SOURCE = 'CLEAN_SOURCE';
     const CONF_CLEAN_CUSTOM = 'CLEAN_CUSTOM';
     const CONF_CLEAN_CONVERT = 'CLEAN_CONVERT';
+    const CONF_CLEAN_TRANSLITERATE = 'CLEAN_TRANSLITERATE';
 
     // Mapping of characters to escape them in a meaningful way:
     // Umlauts:
@@ -146,6 +148,7 @@ class TaskCleanFilenames extends TaskFilesMatch
     protected $cleanSource;
     protected $cleanCustom;
     protected $cleanConvert;
+    protected $cleanTransliterate;
 
 
 
@@ -174,6 +177,9 @@ class TaskCleanFilenames extends TaskFilesMatch
 
         // Only replace illegal characters by default:
         $this->setMapping(array('illegal'));
+
+        $this->cleanConvert = 'ASCII';    // ASCII by default.
+        $this->cleanTransliterate = true; // Transliterate non-latin characters to their base latin/ASCII form.
     }
 
 
@@ -307,9 +313,17 @@ class TaskCleanFilenames extends TaskFilesMatch
         // This is optional, therefore it's okay if setting is empty:
         if(!empty($setting))
         {
-            // TODO: Only load mappings from subfolder of cinbox (eg plugins) for "better" security?
-            $l->logDebug(sprintf(_("Enabled encoding-conversion to: %s"), $setting));
+            $l->logDebug(sprintf(_("Set encoding-conversion to: %s"), $setting));
             $this->cleanConvert = strtoupper($setting); # Force UPPERCASE
+        }
+
+        // ---------------------------
+        $setting = $config->get(self::CONF_CLEAN_TRANSLITERATE);
+        // This is optional, therefore it's okay if setting is empty:
+        if(!empty($setting))
+        {
+            $l->logDebug(sprintf(_("Character transliteration: %d"), $setting));
+            $this->cleanTransliterate = filter_var($setting, FILTER_VALIDATE_BOOLEAN);
         }
 
         return true;
@@ -551,6 +565,32 @@ class TaskCleanFilenames extends TaskFilesMatch
             ));
 
             return $string;
+        }
+
+        if ($this->cleanTransliterate)
+        {
+            $l->logMsg(sprintf(
+                _("Transliterating characters...")
+            ));
+
+            // Theoretically awesome, but replaces several chars with '?' - which causes other problems later...
+            //$string = iconv($fromEncoding, $toEncoding.'//TRANSLIT', $string);
+
+            // This only normalizes letters to their latin base.
+            // It leaves emojis, etc in. Intentionally. To have more control over cleaning.
+
+			// Remove ONLY the combining diacritical marks.
+			// - \x{0300}-\x{036f}: Basic Combining Diacritical Marks (e.g., accents)			<- THIS ONE!
+			// - \x{1AB0}-\x{1AFF}: Combining Diacritical Marks Extended
+			// - \x{1DC0}-\x{1DFF}: Combining Diacritical Marks Supplement
+			// - \x{20D0}-\x{20FF}: Combining Diacritical Marks for Symbols (e.g., tilde over O)
+			// - \x{FE20}-\x{FE2F}: Combining Half Marks
+            $normalized =
+                transliterator_transliterate('Any-Latin; Latin-ASCII',      // 3. Convert all leftovers to their latin base
+                preg_replace('/[\x{0300}-\x{036f}]/u', '',                  // 2. Strip all diacritica component characters (multi-byte?)
+                Normalizer::normalize($string, Normalizer::FORM_D)          // 1. Decompose breaks chars with accents into: base char + diacritic
+                ));
+            $string = $normalized;
         }
 
         // Change the encoding of a string:
