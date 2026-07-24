@@ -380,6 +380,16 @@ class CIConfig
 
 
     /**
+     * Returns the global CInbox configuration section for '__INBOX__'
+     */
+    public function getConfigForGlobalItem($arguments=null)
+    {
+        $configSection = $this->getConfigForSection(self::CONF_SECTION_ITEM);
+        return $configSection;
+    }
+
+
+    /**
      * Set the full path and filename of the configuration INI file to be used.
      *
      * Integrity checks are performed to make sure that $configFile is not empty,
